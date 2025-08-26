@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grabber_app/UI/Cart/view/cart_page.dart';
 import 'package:grabber_app/UI/Profile/profile_tab.dart';
 import 'package:grabber_app/UI/Search/search_tab.dart';
 import 'package:grabber_app/UI/Settings/settings_tab.dart';
@@ -54,7 +55,18 @@ class _MainScreenState extends State<MainScreen> {
                 value: dropdownValue,
               ),
               actions: [
-                Image.asset("Assets/Icons/CartIcon.png", color: Colors.black),
+                // Image.asset("Assets/Icons/CartIcon.png", color: Colors.black)  ,
+                IconButton(
+                  icon: ImageIcon(AssetImage("Assets/Icons/CartIcon.png")),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CartPage(), 
+                        ),
+                      );
+                    },
+                  )
               ],
             ),
 
