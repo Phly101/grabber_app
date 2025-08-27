@@ -39,7 +39,7 @@ class HomeSlider extends StatelessWidget {
         return Builder(
           builder: (BuildContext context) {
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 22.0),
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Container(margin: EdgeInsets.zero,
                 height: 222,
                 width: MediaQuery.of(context).size.width * 0.83,
