@@ -27,6 +27,17 @@ class LightThemeData {
         fontSize: 8,
       ),
     ),
+    searchBarTheme: SearchBarThemeData(
+      backgroundColor: WidgetStateProperty.all(LightThemeData.primaryLightColor),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)
+        )
+      )
+    ),
+    cardTheme: CardThemeData(
+      color: LightThemeData.primaryLightColor,
+    ),
     iconTheme: const IconThemeData(color: LightThemeData.blackColor),
 
     textTheme: const TextTheme(
