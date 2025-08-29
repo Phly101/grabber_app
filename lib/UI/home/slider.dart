@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:grabber_app/Theme/light_theme.dart';
 
 class HomeSlider extends StatelessWidget {
   const HomeSlider({super.key});
@@ -9,17 +10,19 @@ class HomeSlider extends StatelessWidget {
       image: 'Assets/Images/SliderImage1.png',
       text: 'Up to 30% offer',
       subText: 'Enjoy our big offer',
-      backgroundColor:  Color(0xFFD7FFD4),
+      backgroundColor: LightThemeData.primaryLightColor
+      //Color(0xFFD7FFD4),
     ),
     HomeSliderr(
       image: 'Assets/Images/SliderImage2.png',
       text: 'Up to 25% offer',
       subText: 'Enjoy our big offer',
-      backgroundColor:Color(0xFF0CA201),
+      backgroundColor:LightThemeData.darkPrimaryColor
     ),
     HomeSliderr(
       image: 'Assets/Images/SliderImage3.png',
-      text: 'Get Same day Deliver',
+      text: '''Get Same day
+Deliver''',
       subText: 'Enjoy our big offer',
       backgroundColor: Color(0xFFFFDB24),
     ),
@@ -40,7 +43,7 @@ class HomeSlider extends StatelessWidget {
           builder: (BuildContext context) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Container(margin: EdgeInsets.zero,
+              child: Container(
                 height: 222,
                 width: MediaQuery.of(context).size.width * 0.83,
                 decoration: BoxDecoration(
@@ -50,7 +53,7 @@ class HomeSlider extends StatelessWidget {
                 child: Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(11.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 19),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,23 +61,22 @@ class HomeSlider extends StatelessWidget {
                           Text(
                             slide.text,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 11),
+                          SizedBox(height: 16),
                           Text(
                             slide.subText,
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          SizedBox(height: 11),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: LightThemeData.surfaceColor,
                             ),
                             onPressed: () {},
                             child: Text(
@@ -91,8 +93,8 @@ class HomeSlider extends StatelessWidget {
                     Flexible(
                       child: Image.asset(
                         slide.image,
-                        height: 155,
-                        width: 232,
+                        height: 200,
+                        width: 242,
                         alignment: Alignment.centerLeft,
                       ),
                     ),
