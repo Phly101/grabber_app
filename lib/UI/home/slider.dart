@@ -33,7 +33,7 @@ Deliver''',
     return CarouselSlider(
       options: CarouselOptions(
         enlargeCenterPage: true,
-        enableInfiniteScroll: false,
+        enableInfiniteScroll: true,
         autoPlay: true,
         viewportFraction: .77,
         autoPlayInterval: Duration(seconds: 6),
