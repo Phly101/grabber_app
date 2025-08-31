@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
+import 'widgets/suggestions.dart';
 
 class SearchTab extends StatefulWidget {
   static const String routeName = "Search_tab";
