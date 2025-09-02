@@ -6,3 +6,8 @@
 ## Google drive link:
 ### https://drive.google.com/drive/folders/1iSySOj1PZhInfgJSr9TeaMdqakeXumFE?usp=sharing
 
+## Current Phase: UI 
+### Time Line: 10 days, from 25th of Augest -->  4th of september
+### We have  finished most of the app UI with screens like home,settings,profile,search,payment and cart finished and the only ones left are  login/sign up and the checkout screen.
+
+## Next Phase: State Management using BLoc.
