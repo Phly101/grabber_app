@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/UI/auth/components.dart';
 import '../main_app/main_screen.dart';
+import 'button.dart';
+import 'text_field.dart';
 
 class SignUp extends StatefulWidget{
   const SignUp({super.key});
