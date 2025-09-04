@@ -1,7 +1,5 @@
 
-//import 'package:grabber_app/UI/home/widgetT/product_model.dart';
-
-import 'product_model.dart';
+import 'package:grabber_app/UI/home/home_files/product_model.dart';
 
 final List<Product> fruit=[
   Product(imagePath:'Assets/Images/Banana.png' ,

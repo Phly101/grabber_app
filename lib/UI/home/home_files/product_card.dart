@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
-import 'product_model.dart';
+import 'package:grabber_app/UI/home/home_files/product_model.dart';
+
 
 Widget buildProductCard(Product product) {
   return Card(

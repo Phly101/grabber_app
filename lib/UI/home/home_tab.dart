@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
 
-import 'package:grabber_app/UI/home/widget_home/Category.dart';
-import 'package:grabber_app/UI/home/widget_home/product_data.dart';
-import 'package:grabber_app/UI/home/widget_home/product_list_view.dart';
-import 'package:grabber_app/UI/home/widget_home/slider.dart';
+import 'package:grabber_app/UI/home/home_files/Category.dart';
+import 'package:grabber_app/UI/home/home_files/product_data.dart';
+import 'package:grabber_app/UI/home/home_files/product_list_view.dart';
+import 'package:grabber_app/UI/home/home_files/slider.dart';
 
 
 

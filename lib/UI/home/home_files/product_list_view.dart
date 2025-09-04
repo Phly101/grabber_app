@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
-import 'package:grabber_app/UI/home/widget_home/product_card.dart';
-import 'package:grabber_app/UI/home/widget_home/product_model.dart';
+import 'package:grabber_app/UI/home/home_files/product_card.dart';
+import 'package:grabber_app/UI/home/home_files/product_model.dart';
 
 class ProductListView extends StatelessWidget {
   final List<Product> products;
