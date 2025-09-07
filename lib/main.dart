@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
+import 'package:grabber_app/UI/Payment/payment_screen.dart';
 import 'package:grabber_app/UI/Profile/profile_tab.dart';
 import 'package:grabber_app/UI/Search/search_tab.dart';
 import 'package:grabber_app/UI/Settings/settings_tab.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         SearchTab.routeName: (context) => const SearchTab(),
         ProfileTab.routeName: (context) => const ProfileTab(),
         SettingsTab.routeName: (context) => const SettingsTab(),
+        PaymentScreen.routName: (context)=> const PaymentScreen(),
       },
       home: Container(
         decoration: const BoxDecoration(
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         child: const SplashScreen(),
       ),
 
-      ///Todo: create and pass in the Theme.
+
        theme: LightThemeData.lightTheme,
     );
   }
