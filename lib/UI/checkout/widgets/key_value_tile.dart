@@ -1,34 +1,43 @@
 import 'package:flutter/material.dart';
 
 class KeyValueTile extends StatelessWidget {
+  final Widget? leading;
   final String label;
-  final String value;
-  final bool bold;
+  final Widget trailing;
   final Color? color;
 
-  const KeyValueTile({
+  KeyValueTile.text({
     super.key,
+    this.leading,
     required this.label,
-    required this.value,
-    this.bold = false,
+    required String value,
     this.color,
-  });
+  }) : trailing = Text(
+         value,
+         style: TextStyle(
+           color: color ?? const Color(0xFF726C6C),
+           fontWeight: FontWeight.bold,
+           fontSize: 16,
+         ),
+       );
+
+  KeyValueTile.icon({
+    super.key,
+    this.leading,
+    required this.label,
+    required IconData icon,
+    this.color,
+  }) : trailing = Icon(icon, size: 30);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      leading: leading,
       title: Text(
         label,
         style: TextStyle(color: color ?? const Color(0xFF726C6C)),
       ),
-      trailing: Text(
-        value,
-        style: TextStyle(
-          color: color ?? const Color(0xFF726C6C),
-          fontWeight: bold ? FontWeight.bold : FontWeight.w500,
-          fontSize: 16,
-        ),
-      ),
+      trailing: trailing,
     );
   }
 }
