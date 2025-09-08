@@ -15,6 +15,14 @@ class ProfileContent extends StatelessWidget {
       decoration: BoxDecoration(
         color: LightThemeData.surfaceColor,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity( 0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3), 
+          ),
+        ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
