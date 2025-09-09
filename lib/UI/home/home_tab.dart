@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class HomeTab extends StatelessWidget {
   static const String routeName = "home_tab";
 
@@ -7,6 +8,13 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Home Page...."));
+    return Center(
+      child: Column(
+        children: [
+          Text("Click to view Payment screen"),
+
+        ],
+      ),
+    );
   }
 }
