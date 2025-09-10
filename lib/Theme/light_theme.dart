@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_double_quotes, prefer_const_constructors
+
+import "package:flutter/material.dart";
 
 class LightThemeData {
   static const Color primaryLightColor = Color(0xffEBFFD7);

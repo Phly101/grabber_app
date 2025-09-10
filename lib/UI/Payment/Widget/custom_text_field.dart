@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
+
+
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/light_theme.dart";
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key});
@@ -36,7 +38,7 @@ class CustomTextField extends StatelessWidget {
 
               Image.asset("Assets/Icons/masterCard.png"),
               Image.asset("Assets/Icons/visa.png"),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
 
 
             ],
