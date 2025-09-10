@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       duration: 3000,
       splash: Image.asset("Assets/Images/logo2.png", fit: BoxFit.contain),
-      nextScreen: const MainScreen(),
+      nextScreen:  MainScreen(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRight,
       backgroundColor: Colors.transparent,
