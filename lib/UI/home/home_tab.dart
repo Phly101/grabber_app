@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grabber_app/UI/checkout/checkout_screen.dart';
 
 
 import 'package:grabber_app/UI/home/home_files/Category.dart';
@@ -39,5 +40,8 @@ class HomeTab extends StatelessWidget {
         ],
       ),
     );
+
+    
+
   }
 }
