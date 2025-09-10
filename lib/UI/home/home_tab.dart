@@ -8,20 +8,7 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, CheckoutScreen.routeName);
-            },
-            child: Text(
-              "Click to view Checkout  screen",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ],
-      ),
+    return 
     );
   }
 }
