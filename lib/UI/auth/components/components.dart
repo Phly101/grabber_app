@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../Theme/light_theme.dart';
+import '../../../Theme/light_theme.dart';
 
 class Components extends StatelessWidget{
-  final Widget child;
-  final double height;
-  const Components({super.key, required this.child, required this.height});
+  const Components({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
+      // height: MediaQuery.of(context).size.height,
+      width: double.infinity,
+      height: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -32,15 +31,7 @@ class Components extends StatelessWidget{
               Center(
                 child: Text("Grabber", style: TextStyle(color: LightThemeData.darkPrimaryColor, fontWeight: FontWeight.bold, fontSize: 50),),
               ),
-              SizedBox(height: height),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: child,
-                  ),
-                ),
-              ),
+              SizedBox(height: 20),
             ],
           ),
         ),
