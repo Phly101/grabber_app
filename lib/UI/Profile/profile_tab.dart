@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_double_quotes, prefer_const_constructors
+
+import "package:flutter/material.dart";
 
 class ProfileTab extends StatelessWidget {
   static const String routeName = "Profile_tab";
