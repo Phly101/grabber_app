@@ -30,6 +30,7 @@ environment:
 dependencies:
  flutter:
     sdk: flutter
+
  animated_splash_screen: ^1.3.0
  bottom_navbar_with_indicator: ^0.0.9
  cupertino_icons: ^1.0.8
@@ -41,7 +42,7 @@ dependencies:
  shimmer: ^3.0.0
  shimmer_animation: ^2.2.2
  flutter_bloc: ^9.1.1
- able_calendar: ^3.2.0
+ table_calendar: ^3.2.0
 
 
 

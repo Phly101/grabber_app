@@ -1,8 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
 import 'package:grabber_app/UI/Profile/widgets/about_app.dart';
 import 'package:grabber_app/UI/Profile/widgets/content.dart';
 import 'package:grabber_app/UI/Profile/widgets/profile_header.dart';
+
+// ignore_for_file: prefer_double_quotes, prefer_const_constructors
+
+import "package:flutter/material.dart";
+
 
 class ProfileTab extends StatelessWidget {
   static const String routeName = "Profile_tab"; 

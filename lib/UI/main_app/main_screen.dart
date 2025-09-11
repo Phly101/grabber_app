@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grabber_app/UI/Cart/view/cart_page.dart';
 import 'package:grabber_app/UI/Profile/profile_tab.dart';
 import 'package:grabber_app/UI/Search/search_tab.dart';
-import 'package:grabber_app/UI/Settings/settings_tab.dart';
+import 'package:grabber_app/UI/Settings/drawer/app_drawer.dart';
+// import 'package:grabber_app/UI/Settings/settings_tab.dart';
 import 'package:grabber_app/UI/home/home_tab.dart';
 import 'package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart';
 
@@ -19,9 +21,12 @@ class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   String dropdownValue = "Example street";
 
+  // Create a GlobalKey for Scaffold
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       key: _scaffoldKey, //attach the key here 
       appBar: selectedIndex == 1
           ? null
           : AppBar(
@@ -54,7 +59,18 @@ class _MainScreenState extends State<MainScreen> {
                 value: dropdownValue,
               ),
               actions: [
-                Image.asset("Assets/Icons/CartIcon.png", color: Colors.black),
+                // Image.asset("Assets/Icons/CartIcon.png", color: Colors.black)  ,
+                IconButton(
+                  icon: ImageIcon(AssetImage("Assets/Icons/CartIcon.png")),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CartPage(), 
+                        ),
+                      );
+                    },
+                  )
               ],
             ),
 
@@ -62,9 +78,14 @@ class _MainScreenState extends State<MainScreen> {
 
       bottomNavigationBar: CustomLineIndicatorBottomNavbar(
         onTap: (index) {
+          if (index == 3) {
+            _scaffoldKey.currentState?.openEndDrawer();
+          }
+          else{
           setState(() {
             selectedIndex = index;
           });
+          }
         },
 
         currentIndex: selectedIndex,
@@ -103,6 +124,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
+      endDrawer: AppDrawer(),
     );
   }
 }
@@ -111,5 +133,5 @@ var tabs = [
   const HomeTab(),
   const SearchTab(),
   const ProfileTab(),
-  const SettingsTab(),
+  // const SettingsTab(),
 ];
