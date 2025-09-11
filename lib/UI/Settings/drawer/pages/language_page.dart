@@ -22,6 +22,7 @@ class _LanguagePageState extends State<LanguagePage> {
             title: const Text("English"),
             onChanged: (val) {
               setState(() => _selectedLang = val!);
+              // TODO: Connect with localization provider or state management (e.g., Bloc, Provider, Riverpod)
             },
           ),
           RadioListTile<String>(
@@ -30,6 +31,7 @@ class _LanguagePageState extends State<LanguagePage> {
             title: const Text("Arabic"),
             onChanged: (val) {
               setState(() => _selectedLang = val!);
+              // TODO: Apply RTL layout direction when Arabic is chosen
             },
           ),
           const Spacer(),
@@ -40,8 +42,9 @@ class _LanguagePageState extends State<LanguagePage> {
                 minimumSize: const Size(double.infinity, 50),
               ),
               onPressed: () {
-                // Save chosen language (add localization logic later)
-                Navigator.pop(context);
+                // TODO: Persist chosen language (e.g., SharedPreferences, Hive, or app settings)
+                // TODO: Reload app or rebuild MaterialApp with new Locale
+                Navigator.pop(context); 
               },
               child: const Text("Save"),
             ),

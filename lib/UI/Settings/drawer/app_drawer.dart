@@ -45,9 +45,10 @@ class AppDrawer extends StatelessWidget {
 
           // Footer
           AppDrawerFooter(
-            
             onLogout: () {
-              
+              // TODO: Implement logout logic (clear user session, tokens, etc.)
+              // TODO: Show confirmation dialog before logging out
+              // Example: showDialog(context: context, builder: (_) => LogoutDialog()); // نفس اللى فى صفحة البروفايل يعنى 
             },
           ),
         ],
