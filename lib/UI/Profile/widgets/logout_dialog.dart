@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
 
 class LogoutDialog extends StatelessWidget {
- 
-
   const LogoutDialog({super.key});
 
   @override
@@ -29,12 +27,15 @@ class LogoutDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-          
             const SizedBox(height: 12),
             const Text(
               "Are you sure you want to log out?",
               textAlign: TextAlign.center,
-              style: TextStyle(color: LightThemeData.blackColor,fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: LightThemeData.blackColor,
+                fontWeight: FontWeight.bold,
+              ),
+              // TODO: Localize this text for multi-language support
             ),
             const SizedBox(height: 50),
             Row(
@@ -42,28 +43,32 @@ class LogoutDialog extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFEA6C6C),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Yes"),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFFD500),
+                    backgroundColor: Color(0xFFEA6C6C), // red
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   onPressed: () {
+                    // TODO: Add logout logic here (clear tokens, clear Hive/SharedPreferences, navigate to login)
                     Navigator.pop(context);
-                  
                   },
-                  child: const Text("No"),
+                  child: const Text("Yes"), 
+                  // TODO: Localize button text
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFFFD500), 
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context); 
+                  },
+                  child: const Text("No"), 
+                  // TODO: Localize button text
                 ),
               ],
             )

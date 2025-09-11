@@ -11,16 +11,16 @@ class ProfileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 466,
+      height: 466, 
       decoration: BoxDecoration(
         color: LightThemeData.surfaceColor,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity( 0.5),
+            color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: const Offset(0, 3), 
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -30,52 +30,59 @@ class ProfileContent extends StatelessWidget {
         children: [
           ProfileItem(
             title: "Email",
-            subtitle: "user@example.com",
+            subtitle: "user@example.com", 
+            // TODO: Replace with dynamic user email from state management / backend
             leading: ClipOval(
               child: Container(
-                color: Colors.grey.shade100, 
-                padding: const EdgeInsets.all(12), 
-                width: 50, 
+                color: Colors.grey.shade100,
+                padding: const EdgeInsets.all(12),
+                width: 50,
                 height: 50,
                 child: const ImageIcon(
                   AssetImage("Assets/Icons/Profile.png"),
-                  
                 ),
+                // TODO: Replace static asset with user profile picture
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              // TODO: Navigate to email change/update screen
+            },
           ),
           ProfileItem(
             title: "Password",
             subtitle: "Make changes to your account",
-            trailing: MaterialButton(onPressed: () {  },
-            child: const ImageIcon(AssetImage("Assets/Icons/Vector.png"))),
-            leading:ClipOval(
+            trailing: MaterialButton(
+              onPressed: () {
+                // TODO: Implement password reset/change functionality
+              },
+              child: const ImageIcon(AssetImage("Assets/Icons/Vector.png")),
+            ),
+            leading: ClipOval(
               child: Container(
-                color: LightThemeData.surfaceColor, 
-                padding: const EdgeInsets.all(12), 
-                width: 50, 
+                color: LightThemeData.surfaceColor,
+                padding: const EdgeInsets.all(12),
+                width: 50,
                 height: 50,
               ),
-            ), 
-            onTap: () {},
+            ),
+            onTap: () {
+              // TODO: Navigate to password update screen
+            },
           ),
-          
           ProfileItem(
             title: "Logout",
             subtitle: "Further secure your account for safety",
             leading: ClipOval(
-            child: Container(
-              color: Colors.grey.shade100, 
-              padding: const EdgeInsets.all(12), 
-              width: 50, 
-              height: 50,
-              child: const Icon(Icons.logout)
+              child: Container(
+                color: Colors.grey.shade100,
+                padding: const EdgeInsets.all(12),
+                width: 50,
+                height: 50,
+                child: const Icon(Icons.logout),
+              ),
             ),
-),
-            
             onTap: () {
-                showDialog(
+              showDialog(
                 context: context,
                 builder: (context) => const LogoutDialog(),
               );
