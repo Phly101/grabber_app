@@ -9,7 +9,8 @@ class ProfileHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 89,
-      decoration: const BoxDecoration(
+      
+      decoration:  BoxDecoration(
         gradient: LinearGradient(
           colors: [
             LightThemeData.secondaryDarkColor,
@@ -19,6 +20,14 @@ class ProfileHeader extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withValues(alpha: 0.5) ,
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: Center(
         child: ListTile(
