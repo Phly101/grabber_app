@@ -22,6 +22,7 @@ class _ThemePageState extends State<ThemePage> {
             title: const Text("Light"),
             onChanged: (val) {
               setState(() => _selectedTheme = val!);
+              // TODO: Connect to ThemeProvider or state management solution
             },
           ),
           RadioListTile<String>(
@@ -30,6 +31,7 @@ class _ThemePageState extends State<ThemePage> {
             title: const Text("Dark"),
             onChanged: (val) {
               setState(() => _selectedTheme = val!);
+              // TODO: Apply dark theme immediately
             },
           ),
           RadioListTile<String>(
@@ -38,6 +40,7 @@ class _ThemePageState extends State<ThemePage> {
             title: const Text("Extra Dark"),
             onChanged: (val) {
               setState(() => _selectedTheme = val!);
+              // TODO: Create and apply a custom "Extra Dark" theme
             },
           ),
           const Spacer(),
@@ -48,8 +51,9 @@ class _ThemePageState extends State<ThemePage> {
                 minimumSize: const Size(double.infinity, 50),
               ),
               onPressed: () {
-                // Save chosen theme (add theme switching logic later)
-                Navigator.pop(context);
+                // TODO: Save selected theme to persistent storage (e.g., SharedPreferences, Hive)
+                // TODO: Trigger MaterialApp theme rebuild with the new theme
+                Navigator.pop(context); 
               },
               child: const Text("Apply"),
             ),
