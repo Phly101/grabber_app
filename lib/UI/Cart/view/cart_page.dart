@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/UI/Cart/view/Widgets/checkout_button.dart';
+import "package:grabber_app/UI/checkout/checkout_screen.dart";
 import 'widgets/cart_item.dart';
 
 class CartPage extends StatelessWidget {
@@ -35,7 +36,7 @@ class CartPage extends StatelessWidget {
       ),
       floatingActionButton: CheckoutButton(
         onPressed: () {
-          // TODO: Navigate to Checkout page instead of showing SnackBar
+          Navigator.pushNamed(context, CheckoutScreen.routeName);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Proceeding to Checkout...")),
           );
