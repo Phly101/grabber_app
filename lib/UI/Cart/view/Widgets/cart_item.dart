@@ -15,9 +15,11 @@ class CartItem extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(12),
-        leading: const ShimmerImage(size: 50),
+        leading: const ShimmerImage(size: 50), 
+        // TODO: Replace static shimmer with product image from network or local cache
         title: const Text(
-          "4 bunch of banana (300g)",
+          "4 bunch of banana (300g)", 
+          // TODO: Make product name dynamic from cart model
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
@@ -25,7 +27,8 @@ class CartItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "\$3.45",
+              "\$3.45", 
+              // TODO: Replace hardcoded price with value from cart item model
               style: TextStyle(fontSize: 16),
             ),
             Row(
@@ -42,12 +45,17 @@ class CartItem extends StatelessWidget {
                         icon: const ImageIcon(
                           AssetImage("Assets/Icons/trash-2.png"),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO: Implement remove item from cart functionality
+                        },
                       ),
-                      const Text("1"),
+                      const Text("1"), 
+                      // TODO: Bind quantity dynamically from cart item model
                       IconButton(
                         icon: const Icon(Icons.add),
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO: Implement increase quantity functionality
+                        },
                       ),
                     ],
                   ),
