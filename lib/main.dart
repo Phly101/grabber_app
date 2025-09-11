@@ -1,3 +1,5 @@
+import "package:device_preview/device_preview.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/light_theme.dart";
 import "package:grabber_app/UI/Payment/payment_screen.dart";
@@ -14,7 +16,10 @@ import "package:grabber_app/UI/main_app/main_screen.dart";
 void main() {
   
   runApp(
-    MyApp(), 
+     DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => MyApp(), 
+  ),
   );
 }
 
