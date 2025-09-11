@@ -39,6 +39,8 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   page_transition: ^2.0.9
   shimmer_animation: ^2.2.2
+  shimmer: ^3.0.0
+  table_calendar: ^3.2.0
 
 dev_dependencies:
 
