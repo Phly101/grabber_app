@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:grabber_app/UI/checkout/checkout_screen.dart';
 
+
+import 'package:grabber_app/UI/home/home_files/Category.dart';
+import 'package:grabber_app/UI/home/home_files/product_data.dart';
+import 'package:grabber_app/UI/home/home_files/product_list_view.dart';
+import 'package:grabber_app/UI/home/home_files/slider.dart';
+
+
+
+//TODO: make FloatingActionButton
+//TODO: make Navigator
+
+
 class HomeTab extends StatelessWidget {
   static const String routeName = "home_tab";
 
@@ -8,20 +20,28 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, CheckoutScreen.routeName);
-            },
-            child: Text(
-              "Click to view Checkout  screen",
-              style: TextStyle(color: Colors.black),
+          HomeSlider(),
+          HomeCategory(),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                ProductListView(products: fruit, title: 'Fruits'),
+                ProductListView(products: detergent, title: 'Detergent'),
+                ProductListView(products: biscuit, title: 'Biscuit'),
+              ],
             ),
           ),
+
+
         ],
       ),
     );
+
+    
+
   }
 }
