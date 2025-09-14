@@ -1,12 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
-import 'package:grabber_app/UI/Payment/Widget/custom_card.dart';
-import 'package:grabber_app/UI/Payment/Widget/custom_row.dart';
-import 'package:grabber_app/UI/Payment/Widget/custom_text_field.dart';
-import 'package:grabber_app/UI/main_app/main_screen.dart';
+// ignore_for_file: prefer_const_constructors
+
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/UI/Payment/Widget/custom_card.dart";
+import "package:grabber_app/UI/Payment/Widget/custom_row.dart";
+import "package:grabber_app/UI/Payment/Widget/custom_text_field.dart";
+import "package:grabber_app/UI/checkout/checkout_screen.dart";
+
 
 class PaymentScreen extends StatefulWidget {
-  static String routName = "PaymentScreen";
+  static String routeName = "PaymentScreen";
 
   const PaymentScreen({super.key});
 
@@ -34,7 +37,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         backgroundColor: LightThemeData.surfaceColor,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, MainScreen.routeName);
+            Navigator.pushNamed(context, CheckoutScreen.routeName);
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
@@ -67,12 +70,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 height: 55,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    
-                      colors: [LightThemeData.primaryLightColor,LightThemeData.secondaryLightColor,LightThemeData.secondaryDarkColor],
-                    stops: [0.0,0.28,0.98],
-
-                  ),
+                  color: Theme.of(context).colorScheme.secondary,
 
                 ),
                 child: Center(child: Text("Confirm and Pay ($price)",style: Theme.of(context).textTheme.bodyMedium,)),
