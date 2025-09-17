@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import "package:grabber_app/Theme/light_theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
-
 import "../../../../l10n/app_localizations.dart";
 
 class BuildProductCard extends StatefulWidget {
@@ -97,9 +96,7 @@ class _BuildProductCardState extends State<BuildProductCard> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    //backgroundColor: Color(0xFF6CC51D),
                     backgroundColor: LightThemeData.secondaryDarkColor,
-                    //padding: EdgeInsets.all(8),
                     minimumSize: Size(25, 30),
                     shape: CircleBorder(),
                   ),
@@ -109,7 +106,6 @@ class _BuildProductCardState extends State<BuildProductCard> {
             ],
           ),
           Expanded(
-            //padding: const EdgeInsets.only(top: 130,left: 8.0,right: 8.0),
             child: Padding(
               padding: const EdgeInsets.only(right: 50),
               child: Column(
@@ -135,10 +131,10 @@ class _BuildProductCardState extends State<BuildProductCard> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     product["price"],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),

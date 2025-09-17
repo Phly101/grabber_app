@@ -1,7 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
-
+import "package:carousel_slider/carousel_slider.dart";
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/light_theme.dart";
 import "../../../../l10n/app_localizations.dart";
 
 class HomeSlider extends StatefulWidget {
@@ -12,21 +11,55 @@ class HomeSlider extends StatefulWidget {
 }
 
 class _HomeSliderState extends State<HomeSlider> {
-List<Map<String, dynamic>> sliderList = [
-  {"image": "Assets/Images/SliderImage1.png", "text": "Up to 30% offer", "subText": "Enjoy our big offer","backgroundColor": LightThemeData.primaryLightColor},
-  {"image": "Assets/Images/SliderImage2.png", "text": "Up to 25% offer", "subText": "Enjoy our big offer","backgroundColor": LightThemeData.darkPrimaryColor},
-  {"image": "Assets/Images/SliderImage3.png", "text": "Get Same day\nDeliver", "subText": "Enjoy our big offer","backgroundColor": const Color(0xFFFFDB24),},
-];
-@override
+  List<Map<String, dynamic>> sliderList = [
+    {
+      "image": "Assets/Images/SliderImage1.png",
+      "text": "Up to 30% offer",
+      "subText": "Enjoy our big offer",
+      "backgroundColor": LightThemeData.primaryLightColor,
+    },
+    {
+      "image": "Assets/Images/SliderImage2.png",
+      "text": "Up to 25% offer",
+      "subText": "Enjoy our big offer",
+      "backgroundColor": LightThemeData.darkPrimaryColor,
+    },
+    {
+      "image": "Assets/Images/SliderImage3.png",
+      "text": "Get Same day\nDeliver",
+      "subText": "Enjoy our big offer",
+      "backgroundColor": const Color(0xFFFFDB24),
+    },
+  ];
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final l10n = AppLocalizations.of(context)!;
-    setState(() {sliderList=[
-      {"image": "Assets/Images/SliderImage1.png", "text": l10n.offer30, "subText": l10n.enjoyOurBigOffer,"backgroundColor": LightThemeData.primaryLightColor},
-      {"image": "Assets/Images/SliderImage2.png", "text": l10n.offer25, "subText": l10n.enjoyOurBigOffer,"backgroundColor": LightThemeData.darkPrimaryColor},
-      {"image": "Assets/Images/SliderImage3.png", "text": l10n.getSameDayDeliver, "subText": l10n.enjoyOurBigOffer,"backgroundColor": const Color(0xFFFFDB24),},
-    ];});
-}
+    setState(() {
+      sliderList = [
+        {
+          "image": "Assets/Images/SliderImage1.png",
+          "text": l10n.offer30,
+          "subText": l10n.enjoyOurBigOffer,
+          "backgroundColor": LightThemeData.primaryLightColor,
+        },
+        {
+          "image": "Assets/Images/SliderImage2.png",
+          "text": l10n.offer25,
+          "subText": l10n.enjoyOurBigOffer,
+          "backgroundColor": LightThemeData.darkPrimaryColor,
+        },
+        {
+          "image": "Assets/Images/SliderImage3.png",
+          "text": l10n.getSameDayDeliver,
+          "subText": l10n.enjoyOurBigOffer,
+          "backgroundColor": const Color(0xFFFFDB24),
+        },
+      ];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
@@ -47,7 +80,7 @@ List<Map<String, dynamic>> sliderList = [
                 width: MediaQuery.of(context).size.width * 0.83,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11),
-                  color:slide["backgroundColor"],
+                  color: slide["backgroundColor"],
                 ),
                 child: Row(
                   children: [
@@ -59,7 +92,7 @@ List<Map<String, dynamic>> sliderList = [
                         children: [
                           Text(
                             slide["text"],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
@@ -107,4 +140,3 @@ List<Map<String, dynamic>> sliderList = [
     );
   }
 }
-
