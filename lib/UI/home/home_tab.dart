@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/UI/home/Widget/home_files/category.dart";
+
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
 import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
@@ -22,7 +22,7 @@ class HomeTab extends StatelessWidget {
       child: Column(
         children: [
           const HomeSlider(),
-          const HomeCategory(),
+         // const HomeCategory(),
           Padding(
             padding: const EdgeInsets.all(15),
             child: Column(

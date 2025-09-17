@@ -19,7 +19,9 @@ import "package:grabber_app/UI/home/home_tab.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:shared_preferences/shared_preferences.dart";
-
+import "Blocs/localization/localEvent.dart";
+import "Blocs/localization/localState.dart";
+import "Blocs/localization/localeBloc.dart";
 import "Utils/constants.dart";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,45 +35,64 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppThemeBloc()..add(InitialEvent()),
-      child: BlocBuilder<AppThemeBloc, AppThemeState>(
-        builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            routes: {
-              AppRoutes.mainApp: (_) => const MainScreen(),
-              AppRoutes.login: (_) => const Login(),
-              AppRoutes.signUp: (_) => const SignUp(),
-              AppRoutes.home: (_) => const HomeTab(),
-              AppRoutes.search: (_) => const SearchTab(),
-              AppRoutes.profile: (_) => const ProfileTab(),
-              AppRoutes.settings: (_) => const AppDrawer(),
-              AppRoutes.payment: (_) => const PaymentScreen(),
-              AppRoutes.checkout: (_) => const CheckoutScreen(),
-              AppRoutes.summary: (_) => const SummaryScreen(),
-              AppRoutes.cart: (_) => const CartPage(),
-              AppRoutes.schedule: (_) => const ScheduleScreen(),
-              AppRoutes.splash: (_) => const SplashScreen(),
-            },
-            home: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: state.appTheme == "L"
-                      ? const AssetImage("Assets/Images/lightSplash.png")
-                      : const AssetImage("Assets/Images/darkSplash.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: const SplashScreen(),
-            ),
+    String savedLang = sharedpref?.getString("lang") ?? "en";
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => LocaleBloc()..add(ChangeLang(Locale(savedLang))),
+        ),
+        BlocProvider(
+          create: (_) => AppThemeBloc()..add(InitialEvent()),
+        ),
+      ],
+        child: BlocBuilder<AppThemeBloc, AppThemeState>(
+            builder: (context, themeState) {
+              return BlocBuilder<LocaleBloc, LocaleState>(
+                builder: (context, localeState) {
+                  Locale currentLocale = const Locale("en");
+                  if (localeState is LocalInitial) currentLocale = localeState.locale;
+                  if (localeState is LocaleUpdated) currentLocale = localeState.locale;
+                  return MaterialApp(
+                    debugShowCheckedModeBanner: false,
 
-            theme: state.appTheme == "L"
-                ? AppThemes.lightTheme
-                : AppThemes.darkTheme,
-          );
-        },
-      ),
+                    routes: {
+                      AppRoutes.mainApp: (_) => const MainScreen(),
+                      AppRoutes.login: (_) => const Login(),
+                      AppRoutes.signUp: (_) => const SignUp(),
+                      AppRoutes.home: (_) => const HomeTab(),
+                      AppRoutes.search: (_) => const SearchTab(),
+                      AppRoutes.profile: (_) => const ProfileTab(),
+                      AppRoutes.settings: (_) => const AppDrawer(),
+                      AppRoutes.payment: (_) => const PaymentScreen(),
+                      AppRoutes.checkout: (_) => const CheckoutScreen(),
+                      AppRoutes.summary: (_) => const SummaryScreen(),
+                      AppRoutes.cart: (_) => const CartPage(),
+                      AppRoutes.schedule: (_) => const ScheduleScreen(),
+                      AppRoutes.splash: (_) => const SplashScreen(),
+                    },
+                    home: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: themeState.appTheme == "L"
+                              ? const AssetImage(
+                              "Assets/Images/lightSplash.png")
+                              : const AssetImage(
+                              "Assets/Images/darkSplash.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: const SplashScreen(),
+                    ),
+
+                    theme: themeState.appTheme == "L"
+                        ? AppThemes.lightTheme
+                        : AppThemes.darkTheme,
+                  );
+                },
+              );
+            })
+
+              ,
     );
   }
 }
