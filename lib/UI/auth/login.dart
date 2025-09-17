@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/UI/auth/sign_up.dart';
-import '../../Theme/light_theme.dart' show LightThemeData;
-import '../main_app/main_screen.dart';
-import 'components/button.dart';
-import 'components/text_field.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/common/gradient_widget_container.dart";
+import "../../Blocs/Theming/app_theme_bloc.dart";
+import "../main_app/main_screen.dart";
+import "components/button.dart";
+import "components/text_field.dart";
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -19,57 +21,67 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    final themeBloc = context.read<AppThemeBloc>();
     return Scaffold(
-      body: Container(
+      body: GradientWidgetContainer(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              LightThemeData.primaryLightColor,
-              LightThemeData.secondaryLightColor,
-              LightThemeData.secondaryDarkColor,
-            ],
-          ),
-        ),
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+
         child: Stack(
           children: [
-            // Components(),
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 120),
                 child: Column(
                   children: [
-                    Image.asset("Assets/Images/Grabber.png"),
+                    themeBloc.state.appTheme == "L"
+                        ? Image.asset("Assets/Images/Grabber.png")
+                        : Image.asset("Assets/Images/GrabberLogoDark.png"),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 20,
                       ),
                       child: Form(
-                        // autovalidateMode: AutovalidateMode.always,
                         key: formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 50),
+                            const SizedBox(height: 50),
                             Text(
                               "Welcome Back To Grabber",
-                              style: Theme.of(context).textTheme.titleLarge
-                                  ?.copyWith(
-                                    color: Color(0xFF5A5555),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: themeBloc.state.appTheme == "L"
+                                  ? Theme.of(
+                                      context,
+                                    ).textTheme.titleLarge?.copyWith(
+                                      color: const Color(0xFF5A5555),
+                                      fontWeight: FontWeight.bold,
+                                    )
+                                  : Theme.of(
+                                      context,
+                                    ).textTheme.titleLarge?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
                               "Please sign in with your mail",
-                              style: Theme.of(context).textTheme.titleMedium
-                                  ?.copyWith(color: Color(0xAB5A5555)),
+                              style: themeBloc.state.appTheme == "L"
+                                  ? Theme.of(
+                                context,
+                              ).textTheme.titleMedium?.copyWith(
+                                color: const Color(0xFF5A5555),
+                                fontWeight: FontWeight.bold,
+                              )
+                                  : Theme.of(
+                                context,
+                              ).textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                             ATextField(
                               label: "User Name",
                               hint: "enter your name",
@@ -78,9 +90,10 @@ class _LoginState extends State<Login> {
                                 if (value == null || value.isEmpty) {
                                   return "User Name is required";
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             ATextField(
                               label: "Password",
                               hint: "enter your password",
@@ -93,14 +106,15 @@ class _LoginState extends State<Login> {
                                 if (value.length < 8) {
                                   return "Password must be at least 8 characters";
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 3),
+                            const SizedBox(height: 3),
                             Align(
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   "Forgot password",
                                   style: TextStyle(
                                     color: Colors.white,
@@ -109,7 +123,7 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                             AButton(
                               text: "Login",
                               onPressed: () {
@@ -118,18 +132,18 @@ class _LoginState extends State<Login> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return MainScreen();
+                                        return const MainScreen();
                                       },
                                     ),
                                   );
                                 }
                               },
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   "Don’t have an account?",
                                   style: TextStyle(
                                     color: Colors.white,
@@ -138,19 +152,15 @@ class _LoginState extends State<Login> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.push(
+                                    Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return SignUp();
-                                        },
-                                      ),
+                                      AppRoutes.signUp,
                                     );
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     "Create Account",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.blue,
                                       fontSize: 19,
                                     ),
                                   ),
@@ -162,7 +172,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ],
-                  // alignment: Alignment.topLeft,
+
                 ),
               ),
             ),

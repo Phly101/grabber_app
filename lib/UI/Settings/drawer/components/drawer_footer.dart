@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
+import 'package:grabber_app/Theme/theme.dart';
 
 class AppDrawerFooter extends StatelessWidget {
   final VoidCallback? onLogout;
@@ -12,10 +12,10 @@ class AppDrawerFooter extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
-              LightThemeData.darkPrimaryColor,
-              LightThemeData.secondaryDarkColor,
+              AppColors.primaryGreen,
+              AppColors.secondaryDarkColor,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

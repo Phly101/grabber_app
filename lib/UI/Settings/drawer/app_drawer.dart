@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'pages/language_page.dart';
-import 'pages/theme_page.dart';
-import 'components/drawer_item.dart';
-import 'components/drawer_header.dart';
-import 'components/drawer_footer.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
+import "../../../Theme/theme.dart" show AppColors;
+import "pages/language_page.dart";
+import "pages/theme_page.dart";
+import "components/drawer_item.dart";
+import "components/drawer_header.dart";
+import "components/drawer_footer.dart";
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -19,7 +21,15 @@ class AppDrawer extends StatelessWidget {
 
           // Items
           DrawerItem(
-            icon: Icons.language,
+            svgIcon: SvgPicture.asset(
+              "Assets/Icons/languageIcon.svg",
+              colorFilter: const ColorFilter.mode(
+                AppColors.textButtonColor,
+                BlendMode.srcIn,
+              ),
+              width: 25,
+              height: 25,
+            ),
             title: "Language",
             showDivider: true,
             onTap: () {
@@ -30,7 +40,11 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           DrawerItem(
-            icon: Icons.brightness_6,
+            svgIcon: Image.asset(
+              "Assets/Icons/day-and-night.png",
+              scale: 15,
+              color: AppColors.textButtonColor,
+            ),
             title: "Theme",
             showDivider: true,
             onTap: () {
@@ -48,7 +62,7 @@ class AppDrawer extends StatelessWidget {
             onLogout: () {
               // TODO: Implement logout logic (clear user session, tokens, etc.)
               // TODO: Show confirmation dialog before logging out
-              // Example: showDialog(context: context, builder: (_) => LogoutDialog()); // نفس اللى فى صفحة البروفايل يعنى 
+              // Example: showDialog(context: context, builder: (_) => LogoutDialog()); // نفس اللى فى صفحة البروفايل يعنى
             },
           ),
         ],

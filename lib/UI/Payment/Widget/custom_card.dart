@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/Theme/theme.dart";
 
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       children: [
         SizedBox(
@@ -20,16 +21,18 @@ class CustomCard extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
                     "Expiry",
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontWeight: FontWeight.bold,)
                   ),
                 ),
                 Container(
                   width: 185,
                   height: 55,
                   decoration: BoxDecoration(
+                    color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: LightThemeData.blackColor.withValues(
+                      color: theme.colorScheme.onPrimary.withValues(
                         alpha: 0.7,
                       ),
                     ),
@@ -40,14 +43,14 @@ class CustomCard extends StatelessWidget {
                       maxLength: 5,
                       cursorColor: Theme.of(
                         context,
-                      ).colorScheme.onPrimary.withValues(alpha: 0.2),
+                      ).colorScheme.primary,
                       decoration: InputDecoration(
                         counterText: "",
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Theme.of(
                               context,
-                            ).colorScheme.onPrimary,
+                            ).colorScheme.primary,
                             width: 2,
                           ),
                         ),
@@ -71,16 +74,18 @@ class CustomCard extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
                     "CVC",
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontWeight: FontWeight.bold,)
                   ),
                 ),
                 Container(
                   width: 185,
                   height: 55,
                   decoration: BoxDecoration(
+                    color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: LightThemeData.blackColor.withValues(
+                      color: theme.colorScheme.onPrimary.withValues(
                         alpha: 0.7,
                       ),
                     ),
@@ -91,13 +96,15 @@ class CustomCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: TextField(
+                            keyboardType: TextInputType.number,
                             maxLength: 3,
                             obscuringCharacter: "*",
                             obscureText: true,
                             cursorColor: Theme.of(
                               context,
-                            ).colorScheme.onPrimary.withValues(alpha: 0.2),
+                            ).colorScheme.primary,
                             decoration: InputDecoration(
+
                               counterText: "",
                               hint: Text(
                                 "***",
@@ -108,7 +115,7 @@ class CustomCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Image.asset("Assets/Icons/card-shield.png"),
+                        Image.asset("Assets/Icons/card-shield.png",color: theme.colorScheme.onPrimary,),
                       ],
                     ),
                   ),

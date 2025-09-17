@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/UI/checkout/checkout_screen.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/UI/home/Widget/home_files/category.dart";
+import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
+import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
+import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
 
-
-import 'package:grabber_app/UI/home/home_files/Category.dart';
-import 'package:grabber_app/UI/home/home_files/product_data.dart';
-import 'package:grabber_app/UI/home/home_files/product_list_view.dart';
-import 'package:grabber_app/UI/home/home_files/slider.dart';
 
 
 
@@ -14,7 +12,7 @@ import 'package:grabber_app/UI/home/home_files/slider.dart';
 
 
 class HomeTab extends StatelessWidget {
-  static const String routeName = "home_tab";
+
 
   const HomeTab({super.key});
 
@@ -23,15 +21,15 @@ class HomeTab extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          HomeSlider(),
-          HomeCategory(),
+          const HomeSlider(),
+          const HomeCategory(),
           Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
               children: [
-                ProductListView(products: fruit, title: 'Fruits'),
-                ProductListView(products: detergent, title: 'Detergent'),
-                ProductListView(products: biscuit, title: 'Biscuit'),
+                ProductListView(products: fruit, title: "Fruits"),
+                ProductListView(products: detergent, title: "Detergent"),
+                ProductListView(products: biscuit, title: "Biscuit"),
               ],
             ),
           ),

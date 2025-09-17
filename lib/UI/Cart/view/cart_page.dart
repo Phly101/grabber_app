@@ -1,15 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/UI/Cart/view/Widgets/checkout_button.dart';
-import "package:grabber_app/UI/checkout/checkout_screen.dart";
-import 'widgets/cart_item.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/UI/Cart/view/Widgets/checkout_button.dart";
+import "package:grabber_app/Utils/routes.dart";
+import "widgets/cart_item.dart";
 
 class CartPage extends StatelessWidget {
+
   const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading:  IconButton(onPressed: (){
+          Navigator.pushNamed(context, AppRoutes.mainApp);
+
+        }, icon: const Icon(Icons.arrow_back_ios_new)),
+        automaticallyImplyLeading: false,
+
         title: const Text(
           "Cart",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -17,7 +24,7 @@ class CartPage extends StatelessWidget {
         centerTitle: true,
         actions: const [
           // TODO: Replace with dynamic order icon or add navigation to Orders page
-          ImageIcon(AssetImage("Assets/Icons/Vector.png")),
+          ImageIcon(AssetImage("Assets/Icons/penIcon.png")),
           Padding(
             padding: EdgeInsets.only(right: 8.0),
             child: Center(
@@ -36,7 +43,7 @@ class CartPage extends StatelessWidget {
       ),
       floatingActionButton: CheckoutButton(
         onPressed: () {
-          Navigator.pushNamed(context, CheckoutScreen.routeName);
+          Navigator.pushNamed(context, AppRoutes.checkout);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Proceeding to Checkout...")),
           );

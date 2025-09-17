@@ -1,12 +1,11 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Schedule/Widget/custom_time_slot.dart";
 import "package:grabber_app/UI/Schedule/Widget/table_widget.dart";
-import "package:grabber_app/UI/checkout/checkout_screen.dart";
+import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/common/gradient_widget_container.dart";
 
 class ScheduleScreen extends StatefulWidget {
-  static String routeName = "ScheduleScreen";
-
   const ScheduleScreen({super.key});
 
   @override
@@ -37,14 +36,16 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
           Row(
             children: [
               Align(
                 alignment: Alignment.centerLeft,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, CheckoutScreen.routeName);
+                    Navigator.pushNamed(context, AppRoutes.checkout);
                   },
                   icon: const Icon(Icons.arrow_back_ios_new),
                 ),
@@ -56,26 +57,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             ],
           ),
 
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.2),
-                  spreadRadius: 4,
-                  blurRadius: 8,
-                  offset: const Offset(8, 8),
-                ),
-              ],
-              gradient: const LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [
-                  LightThemeData.primaryLightColor,
-                  LightThemeData.secondaryLightColor,
-                  LightThemeData.secondaryDarkColor,
-                ],
-              ),
-            ),
+          GradientWidgetContainer(
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
+
             child: TableWidget(today: today, onDaySelected: _onDaySelected),
           ),
           const SizedBox(
@@ -92,7 +77,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           ),
           Expanded(
             child: ListView.builder(
-
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
@@ -136,11 +120,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     ),
                   ],
 
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: AppColors.textButtonColor,
                 ),
                 child: InkWell(
                   autofocus: true,
-                  onTap: () {},
+                  onTap: () {
+
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Center(
@@ -156,7 +142,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
         ],
       ),
     );

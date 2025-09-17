@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class DeliveryOptionTile extends StatelessWidget {
   final String value;
@@ -20,11 +20,14 @@ class DeliveryOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      final theme = Theme.of(context);
     return Column(
       children: [
         ListTile(
+          tileColor: theme.colorScheme.surface,
+
           title: Text(title),
-          leading: Image.asset(icon),
+          leading: Image.asset(icon,color: theme.colorScheme.onPrimary,),
           trailing: Radio(
             value: value,
             groupValue: groupValue,

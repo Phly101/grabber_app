@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/UI/Cart/view/cart_page.dart';
-import 'package:grabber_app/UI/Profile/profile_tab.dart';
-import 'package:grabber_app/UI/Search/search_tab.dart';
-import 'package:grabber_app/UI/Settings/drawer/app_drawer.dart';
-// import 'package:grabber_app/UI/Settings/settings_tab.dart';
-import 'package:grabber_app/UI/home/home_tab.dart';
-import 'package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/Profile/profile_tab.dart";
+import "package:grabber_app/UI/Search/search_tab.dart";
+import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
+import "package:grabber_app/UI/home/home_tab.dart";
+import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
+import "package:grabber_app/Utils/routes.dart";
 
 class MainScreen extends StatefulWidget {
-  static const String routeName = "MainScreen";
+
 
   const MainScreen({super.key});
 
@@ -16,17 +16,17 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   String dropdownValue = "Example street";
 
-  // Create a GlobalKey for Scaffold
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-       key: _scaffoldKey, //attach the key here 
+      key: _scaffoldKey,
       appBar: selectedIndex == 1
           ? null
           : AppBar(
@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
 
               leading: Image.asset(
                 "Assets/Icons/motorcycleIcon.png",
-                color: Colors.black,
+                color: theme.colorScheme.onPrimary,
               ),
               title: DropdownButton(
                 items: const [
@@ -61,16 +61,12 @@ class _MainScreenState extends State<MainScreen> {
               actions: [
                 // Image.asset("Assets/Icons/CartIcon.png", color: Colors.black)  ,
                 IconButton(
-                  icon: ImageIcon(AssetImage("Assets/Icons/CartIcon.png")),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CartPage(), 
-                        ),
-                      );
-                    },
-                  )
+                  icon: const ImageIcon(
+                    AssetImage("Assets/Icons/CartIcon.png"),
+                  ),
+                  onPressed: () {Navigator.pushNamed(context, AppRoutes.cart);
+                  },
+                ),
               ],
             ),
 
@@ -80,18 +76,17 @@ class _MainScreenState extends State<MainScreen> {
         onTap: (index) {
           if (index == 3) {
             _scaffoldKey.currentState?.openEndDrawer();
-          }
-          else{
-          setState(() {
-            selectedIndex = index;
-          });
+          } else {
+            setState(() {
+              selectedIndex = index;
+            });
           }
         },
 
         currentIndex: selectedIndex,
-        selectedColor: Theme.of(context).colorScheme.secondary,
-        unSelectedColor: Theme.of(context).colorScheme.onPrimary,
-        backgroundColor: Theme.of(context).colorScheme.primaryFixed,
+        selectedColor: AppColors.primaryGreen,
+        unSelectedColor: theme.colorScheme.onPrimary,
+        backgroundColor: theme.colorScheme.surface,
         selectedIconSize: 25,
         selectedFontSize: 15,
         unselectedIconSize: 20,
@@ -99,7 +94,6 @@ class _MainScreenState extends State<MainScreen> {
         enableLineIndicator: true,
         lineIndicatorWidth: 3,
         indicatorType: IndicatorType.top,
-
 
         customBottomBarItems: [
           CustomBottomBarItems(
@@ -124,7 +118,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
     );
   }
 }
@@ -133,5 +127,4 @@ var tabs = [
   const HomeTab(),
   const SearchTab(),
   const ProfileTab(),
-  // const SettingsTab(),
 ];

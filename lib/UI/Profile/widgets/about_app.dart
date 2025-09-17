@@ -1,16 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
+import "package:flutter/material.dart";
+
 
 class AboutApp extends StatelessWidget {
   const AboutApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme= Theme.of(context);
     return Container(
       width: double.infinity,
       height: 56, 
       decoration: BoxDecoration(
-        color: LightThemeData.surfaceColor,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -28,7 +29,7 @@ class AboutApp extends StatelessWidget {
           children: [
             InkWell(
               child: ListTile(
-                title: const Text("About App"),
+                title:  Text("About App",style:theme.textTheme.titleMedium ,),
                 // TODO: Localize "About App" for multi-language support
                 leading: ClipOval(
                   child: Container(

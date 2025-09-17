@@ -1,19 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
-import 'package:grabber_app/UI/Profile/widgets/logout_dialog.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
+import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/Profile/widgets/logout_dialog.dart";
 
-import 'profile_item.dart';
+import "profile_item.dart";
 
 class ProfileContent extends StatelessWidget {
   const ProfileContent({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       width: double.infinity,
-      height: 466, 
+      height: 466,
       decoration: BoxDecoration(
-        color: LightThemeData.surfaceColor,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -30,7 +32,7 @@ class ProfileContent extends StatelessWidget {
         children: [
           ProfileItem(
             title: "Email",
-            subtitle: "user@example.com", 
+            subtitle: "user@example.com",
             // TODO: Replace with dynamic user email from state management / backend
             leading: ClipOval(
               child: Container(
@@ -39,8 +41,8 @@ class ProfileContent extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: const ImageIcon(
-                  AssetImage("Assets/Icons/Profile.png"),
-                ),
+                  AssetImage("Assets/Icons/Profile.png",),
+                  color: AppColors.black,),
                 // TODO: Replace static asset with user profile picture
               ),
             ),
@@ -49,20 +51,30 @@ class ProfileContent extends StatelessWidget {
             },
           ),
           ProfileItem(
+
             title: "Password",
             subtitle: "Make changes to your account",
             trailing: MaterialButton(
               onPressed: () {
                 // TODO: Implement password reset/change functionality
               },
-              child: const ImageIcon(AssetImage("Assets/Icons/Vector.png")),
+              child:  ImageIcon(const AssetImage("Assets/Icons/penIcon.png"),color: theme.colorScheme.onPrimary,),
             ),
             leading: ClipOval(
               child: Container(
-                color: LightThemeData.surfaceColor,
+                color:  Colors.grey.shade100,
                 padding: const EdgeInsets.all(12),
                 width: 50,
                 height: 50,
+                child: SvgPicture.asset(
+                "Assets/Icons/keyIcon.svg",
+                colorFilter:  const ColorFilter.mode(
+                   AppColors.black,
+                  BlendMode.srcIn,
+                ),
+                width: 25,
+                height: 25,
+              ),
               ),
             ),
             onTap: () {
@@ -76,9 +88,9 @@ class ProfileContent extends StatelessWidget {
               child: Container(
                 color: Colors.grey.shade100,
                 padding: const EdgeInsets.all(12),
-                width: 50,
-                height: 50,
-                child: const Icon(Icons.logout),
+                width: 55,
+                height: 55,
+                child:  const Icon(Icons.logout,color: AppColors.black ,),
               ),
             ),
             onTap: () {

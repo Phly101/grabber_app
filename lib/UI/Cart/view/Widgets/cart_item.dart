@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
-import 'shimmer_image.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/theme.dart";
+import "shimmer_image.dart";
 
 class CartItem extends StatelessWidget {
   const CartItem({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
-      color: LightThemeData.primaryLightColor,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -35,8 +35,9 @@ class CartItem extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
+                    border: Border.all(color: theme.colorScheme.onPrimary.withValues(alpha: 0.3),),
                     borderRadius: BorderRadius.circular(20),
-                    color: LightThemeData.surfaceColor,
+                    color: theme.colorScheme.surface,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

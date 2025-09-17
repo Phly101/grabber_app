@@ -1,4 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+
+import "../components/custom_list_tile.dart";
 
 class ThemePage extends StatefulWidget {
   const ThemePage({super.key});
@@ -8,57 +13,50 @@ class ThemePage extends StatefulWidget {
 }
 
 class _ThemePageState extends State<ThemePage> {
-  String _selectedTheme = "Light"; // default
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Choose Theme")),
-      body: Column(
-        children: [
-          RadioListTile<String>(
-            value: "Light",
-            groupValue: _selectedTheme,
-            title: const Text("Light"),
-            onChanged: (val) {
-              setState(() => _selectedTheme = val!);
-              // TODO: Connect to ThemeProvider or state management solution
-            },
-          ),
-          RadioListTile<String>(
-            value: "Dark",
-            groupValue: _selectedTheme,
-            title: const Text("Dark"),
-            onChanged: (val) {
-              setState(() => _selectedTheme = val!);
-              // TODO: Apply dark theme immediately
-            },
-          ),
-          RadioListTile<String>(
-            value: "Extra Dark",
-            groupValue: _selectedTheme,
-            title: const Text("Extra Dark"),
-            onChanged: (val) {
-              setState(() => _selectedTheme = val!);
-              // TODO: Create and apply a custom "Extra Dark" theme
-            },
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
-              ),
-              onPressed: () {
-                // TODO: Save selected theme to persistent storage (e.g., SharedPreferences, Hive)
-                // TODO: Trigger MaterialApp theme rebuild with the new theme
-                Navigator.pop(context); 
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BlocBuilder<AppThemeBloc, AppThemeState>(
+              builder: (context, state) {
+                return CustomListTile(
+                  themeId: state.appTheme?? "L",
+                  onTap: () {
+                    BlocProvider.of<AppThemeBloc>(context).add(LightEvent());
+                  },
+                  title: "Light",
+                  icons: FontAwesomeIcons.solidSun,
+                  iconColors: [Colors.white, Colors.orangeAccent],
+                  id: 0,
+                );
               },
-              child: const Text("Apply"),
             ),
-          )
-        ],
+            const SizedBox(height: 20),
+
+            BlocBuilder<AppThemeBloc, AppThemeState>(
+              builder: (context, state) {
+                return CustomListTile(
+                  themeId:state.appTheme?? "L",
+                  onTap: () {
+                    BlocProvider.of<AppThemeBloc>(context).add(DarkEvent());
+                  },
+                  title: "Dark",
+                  icons: FontAwesomeIcons.moon,
+                  iconColors: [Colors.white, Colors.orangeAccent],
+                  id: 1,
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

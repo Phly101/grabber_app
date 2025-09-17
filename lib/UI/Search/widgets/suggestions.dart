@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/theme.dart";
 
 class SuggestionsList extends StatelessWidget {
   final String searchText;
@@ -15,6 +15,7 @@ class SuggestionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme= Theme.of(context);
     if (filteredProducts.isEmpty) {
       return Center(
         child: Padding(
@@ -25,13 +26,14 @@ class SuggestionsList extends StatelessWidget {
     } else {
       return ListView.separated(
         itemCount: filteredProducts.length,
-        separatorBuilder: (context, index) => SizedBox(height: 20),
+        separatorBuilder: (context, index) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
           return Card(
+            elevation: 4,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: 150,
                   child: Image.asset(
@@ -47,8 +49,8 @@ class SuggestionsList extends StatelessWidget {
                       Image.asset("Assets/Icons/star.png"),
                       Image.asset("Assets/Icons/star.png"),
                       Image.asset("Assets/Icons/star.png"),
-                      SizedBox(width: 4),
-                      Text("4.8(287)"),
+                      const SizedBox(width: 4),
+                      const Text("4.8(287)"),
                     ],
                   ),
                   trailing: ElevatedButton(
@@ -56,13 +58,13 @@ class SuggestionsList extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
                       padding: const EdgeInsets.all(12),
-                      backgroundColor: LightThemeData.secondaryDarkColor,
+                      backgroundColor: AppColors.secondaryDarkColor,
                     ),
                     child: Image.asset("Assets/Icons/Icons (1).png"),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, bottom: 16),
+                const Padding(
+                  padding: EdgeInsets.only(left: 16, bottom: 16),
                   child: Text(
                     "\$3.99",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
