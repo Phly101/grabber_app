@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
 import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
