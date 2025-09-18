@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
-import 'widgets/suggestions.dart';
+
+import "package:flutter/material.dart";
+import "widgets/suggestions.dart";
+import "../../l10n/app_localizations.dart";
+
+
 
 class SearchTab extends StatefulWidget {
   static const String routeName = "Search_tab";
@@ -17,21 +21,38 @@ class _SearchTabState extends State<SearchTab> {
   List<String> filteredProducts = [];
 
   @override
+
   void initState() {
     super.initState();
-    filteredProducts = allProducts;
+
+    void didChangeDependencies() {
+      super.didChangeDependencies();
+      allProducts = [
+        AppLocalizations.of(context)!.banana,
+        AppLocalizations.of(context)!.apple,
+        AppLocalizations.of(context)!.grapes,
+        AppLocalizations.of(context)!.pineapple,
+      ];
+
+      filteredProducts = allProducts;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 50, right: 16),
       child: Column(
         children: [
           SearchBar(
             controller: searchController,
-            hintText: 'Search',
-            leading: Image.asset("Assets/Icons/Icons.png"),
+
+            hintText: AppLocalizations.of(context)!.search,
+            leading: Image.asset("Assets/Icons/Icons.png",color: theme.colorScheme.onPrimary,),
+
             trailing: [
               if (searchText != "")
                 IconButton(
@@ -41,11 +62,13 @@ class _SearchTabState extends State<SearchTab> {
                     filteredProducts = allProducts;
                     setState(() {});
                   },
-                  icon: Image.asset("Assets/Icons/Group 12561.png"),
+
+                  icon: Image.asset("Assets/Icons/Group 12561.png",color:theme.colorScheme.onPrimary),
                 ),
             ],
             padding: WidgetStateProperty.all(
-              EdgeInsets.symmetric(horizontal: 16),
+              const EdgeInsets.symmetric(horizontal: 16),
+
             ),
             onChanged: (value) {
               setState(() {
@@ -60,7 +83,9 @@ class _SearchTabState extends State<SearchTab> {
               });
             },
           ),
-          SizedBox(height: 20),
+
+          const SizedBox(height: 20),
+
           Expanded(
             child: SuggestionsList(
               searchText: searchText,

@@ -1,34 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/common/gradient_widget_container.dart";
+
+import "../../../Theme/theme.dart";
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GradientWidgetContainer(
       width: double.infinity,
       height: 89,
-      
-      decoration:  BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            LightThemeData.secondaryDarkColor,
-            LightThemeData.secondaryLightColor,
-            LightThemeData.primaryLightColor,
-          ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.5) ,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
       child: Center(
         child: ListTile(
           leading: ClipOval(
@@ -40,22 +22,23 @@ class ProfileHeader extends StatelessWidget {
               // TODO: Replace static AssetImage with a NetworkImage if user has a profile picture
               child: const ImageIcon(
                 AssetImage("Assets/Icons/Profile.png"),
+                color: AppColors.black,
               ),
             ),
           ),
-          title: const Text(
+          title: Text(
             "Itunuoluwa Abidoye",
             // TODO: Replace with dynamic username from state/provider/auth service
             style: TextStyle(
-              color: LightThemeData.primaryLightColor,
+              color: Theme.of(context).colorScheme.onPrimary,
               fontWeight: FontWeight.bold, // Added bold for better emphasis
             ),
           ),
-          subtitle: const Text(
+          subtitle: Text(
             "@Itunuoluwa",
             // TODO: Replace with dynamic handle/ID
             style: TextStyle(
-              color: LightThemeData.primaryLightColor,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
           trailing: MaterialButton(
@@ -65,9 +48,9 @@ class ProfileHeader extends StatelessWidget {
             shape: const CircleBorder(),
             minWidth: 0,
             padding: EdgeInsets.zero,
-            child: const ImageIcon(
-              AssetImage("Assets/Icons/Vector.png"),
-              color: LightThemeData.primaryLightColor, 
+            child: ImageIcon(
+              const AssetImage("Assets/Icons/penIcon.png"),
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
         ),

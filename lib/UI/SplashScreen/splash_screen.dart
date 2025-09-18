@@ -1,8 +1,10 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import "package:animated_splash_screen/animated_splash_screen.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/UI/auth/login.dart";
+import "package:page_transition/page_transition.dart";
 
-import '../auth/login.dart';
 
 class SplashScreen extends StatelessWidget {
   static const String routeName = "SplashScreen";
@@ -11,11 +13,13 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeBloc = context.read<AppThemeBloc>();
     return AnimatedSplashScreen(
       duration: 3000,
-      splash: Image.asset("Assets/Images/logo2.png", fit: BoxFit.contain),
+      splash: themeBloc.state.appTheme == "L" ? Image.asset("Assets/Images/logo2.png", fit: BoxFit.contain):
+      Image.asset("Assets/Images/logoDark.png", fit: BoxFit.contain),
 
-      nextScreen: Login(),
+      nextScreen: const Login(),
 
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.leftToRight,

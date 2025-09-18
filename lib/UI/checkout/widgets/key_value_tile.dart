@@ -31,7 +31,10 @@ class KeyValueTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme= Theme.of(context);
     return ListTile(
+      tileColor: theme.colorScheme.surface,
+
       leading: leading,
       title: Text(
         label,

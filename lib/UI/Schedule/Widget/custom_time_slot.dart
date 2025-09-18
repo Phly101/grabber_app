@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
-import "../../../Theme/light_theme.dart";
+import "package:grabber_app/common/gradient_widget_container.dart";
+
 
 class CustomTimeSlot extends StatelessWidget {
   final String? title;
@@ -18,31 +19,12 @@ class CustomTimeSlot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+
+      child: GradientWidgetContainer(
         width: 395,
         height: 65,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          gradient: isFree ?? false
-              ? const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    LightThemeData.primaryLightColor,
-                    LightThemeData.secondaryLightColor,
-                    LightThemeData.secondaryDarkColor,
-                  ],
-                )
-              : const LinearGradient(colors: [Colors.white,Colors.white]),
-          boxShadow: [
-            BoxShadow(
-              spreadRadius: 4,
-              blurRadius: 8,
-              color: Colors.black.withValues(alpha: 0.2),
-              offset: const Offset(8, 8),
-            ),
-          ],
-        ),
+        enableGradient: isFree ?? false,
+
         child: ListTile(
           title: Text(
             title ?? "",

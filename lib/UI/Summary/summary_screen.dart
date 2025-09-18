@@ -1,24 +1,63 @@
 import "package:flutter/material.dart";
+
+import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Summary/Widgets/list_items.dart";
-import "package:grabber_app/UI/checkout/checkout_screen.dart";
-class SummaryScreen extends StatelessWidget {
-  static String routeName = "SummaryScreen";
+import "package:grabber_app/Utils/routes.dart";
+import "../../l10n/app_localizations.dart";
+class SummaryScreen extends StatefulWidget {
+
 
   const SummaryScreen({super.key});
 
   @override
+  State<SummaryScreen> createState() => _SummaryScreenState();
+}
+
+class _SummaryScreenState extends State<SummaryScreen> {
+  List<List> items = [
+    ["4 bunch of banana (300g)", 3.45, 3],
+    ["Bell peppers (400g)", 1.70, 2],
+    ["Oranges (500g)", 6.30, 2],
+    ["Purex (250ml)", 2.90, 1],
+    ["Lemons (1Kg)", 7.88, 1],
+    ["Quadratini biscuit", 1.45, 1],
+
+  ];
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final l10n = AppLocalizations.of(context)!;
+    setState(() {
+      items=[
+        [l10n.bananaBundle300g, 3.45, 3],
+        [l10n.bellPeppers400g, 1.70, 2],
+        [l10n.oranges500g, 6.30, 2],
+        [l10n.purex250ml, 2.90, 1],
+        [l10n.lemons1kg, 7.88, 1],
+        [l10n.quadratiniBiscuit, 1.45, 1],
+      ];
+    },);
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, CheckoutScreen.routeName);
+
+            Navigator.pushNamed(context, AppRoutes.checkout);
+
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          "Order Summary",
+
+            AppLocalizations.of(context)!.orderSummary,
+
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
@@ -30,12 +69,16 @@ class SummaryScreen extends StatelessWidget {
 
           child: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
+
+              color: AppColors.textButtonColor,
+
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListTile(
               title: Text(
-                "Subtotal",
+
+                  AppLocalizations.of(context)!.subtotal,
+
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
@@ -80,15 +123,6 @@ class SummaryScreen extends StatelessWidget {
   }
 }
 
-List<List> items = [
-  ["4 bunch of banana (300g)", 3.45, 3],
-  ["Bell peppers (400g)", 1.70, 2],
-  ["Oranges (500g)", 6.30, 2],
-  ["Purex (250ml)", 2.90, 1],
-  ["Lemons (1Kg)", 7.88, 1],
-  ["Quadratini biscuit", 1.45, 1],
-
-];
 
 num subTotal(List<List> prices) {
   num subTotal = 0;

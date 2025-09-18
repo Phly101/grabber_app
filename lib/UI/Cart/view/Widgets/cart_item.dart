@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/light_theme.dart';
-import 'shimmer_image.dart';
+import "package:flutter/material.dart";
+
+import "shimmer_image.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class CartItem extends StatelessWidget {
   const CartItem({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
-      color: LightThemeData.primaryLightColor,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -17,8 +18,8 @@ class CartItem extends StatelessWidget {
         contentPadding: const EdgeInsets.all(12),
         leading: const ShimmerImage(size: 50), 
         // TODO: Replace static shimmer with product image from network or local cache
-        title: const Text(
-          "4 bunch of banana (300g)", 
+        title:  Text(
+            AppLocalizations.of(context)!.bananaBundle300g,
           // TODO: Make product name dynamic from cart model
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -35,8 +36,9 @@ class CartItem extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
+                    border: Border.all(color: theme.colorScheme.onPrimary.withValues(alpha: 0.3),),
                     borderRadius: BorderRadius.circular(20),
-                    color: LightThemeData.surfaceColor,
+                    color: theme.colorScheme.surface,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

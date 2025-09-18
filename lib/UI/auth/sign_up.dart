@@ -1,8 +1,12 @@
-import 'package:flutter/material.dart';
-import '../../Theme/light_theme.dart';
-import '../main_app/main_screen.dart';
-import 'components/button.dart';
-import 'components/text_field.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/common/gradient_widget_container.dart";
+import "../../l10n/app_localizations.dart";
+import "../main_app/main_screen.dart";
+import "components/button.dart";
+import "components/text_field.dart";
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -23,30 +27,25 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeBloc = context.read<AppThemeBloc>();
     return Scaffold(
-      body: Container(
+      body: GradientWidgetContainer(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              LightThemeData.primaryLightColor,
-              LightThemeData.secondaryLightColor,
-              LightThemeData.secondaryDarkColor,
-            ],
-          ),
-        ),
+
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+
         child: Stack(
           children: [
-            // Components(),
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 120),
                 child: Column(
                   children: [
-                    Image.asset("Assets/Images/Grabber.png"),
+                    themeBloc.state.appTheme == "L"
+                        ? Image.asset("Assets/Images/Grabber.png")
+                        : Image.asset("Assets/Images/GrabberLogoDark.png"),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
@@ -57,86 +56,122 @@ class _SignUpState extends State<SignUp> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 50),
+                            const SizedBox(height: 50),
                             ATextField(
-                              label: "Full Name",
-                              hint: "enter your full name",
+                              label: AppLocalizations.of(context)!.fullName,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourFullName,
                               controller: fullName,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Full Name is required";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.fullNameIsRequired;
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             ATextField(
-                              label: "Mobile Number",
-                              hint: "enter your mobile number",
+                              label: AppLocalizations.of(context)!.mobileNumber,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourMobileNumber,
                               controller: mobileNumber,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Mobile Number is required";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.mobileNumberIsRequired;
                                 } else if (!RegExp(
-                                  r'^01[0-9]{9}$',
+                                  r"^01[0-9]{9}$",
                                 ).hasMatch(value)) {
-                                  return "Enter a valid number";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.enterAValidNumber;
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             ATextField(
-                              label: "E-mail address",
-                              hint: "enter your email address",
+                              label: AppLocalizations.of(context)!.emailAddress,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourEmailAddress,
                               controller: email,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Email is required";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.emailIsRequired;
                                 } else if (!RegExp(
-                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
+                                  r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
                                 ).hasMatch(value)) {
-                                  return "Enter a valid email";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.enterAValidEmail;
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             ATextField(
-                              label: "Password",
-                              hint: "enter your password",
+                              label: AppLocalizations.of(context)!.password,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourPassword,
                               controller: password,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Password is required";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.passwordIsRequired;
                                 }
                                 if (value.length < 8) {
-                                  return "Password must be at least 8 characters";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.passwordMustBeAtLeast8Characters;
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             ATextField(
-                              label: "confirm password",
-                              hint: "confirm your passwords",
+                              label: AppLocalizations.of(
+                                context,
+                              )!.confirmPassword,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.confirmYourPasswords,
                               controller: confirmPassword,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Please confirm your password";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.pleaseConfirmYourPassword;
                                 } else if (value != password.text) {
-                                  return "Passwords do not match";
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.passwordsDoNotMatch;
                                 }
+                                return null;
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Text(
-                              "City",
-                              style: TextStyle(
-                                color: Color(0xFF7A8469),
+                              AppLocalizations.of(context)!.city,
+                              style:  TextStyle(
+                                color: themeBloc.state.appTheme == "L" ?  const Color(0xFF5A5555):
+                                Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 20,
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Container(
                               width: 200,
                               decoration: BoxDecoration(
@@ -154,21 +189,28 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                                 hint: Text(
-                                  "Select City",
-                                  style: TextStyle(
+                                  AppLocalizations.of(context)!.selectCity,
+                                  style: const TextStyle(
                                     color: Color(0xB2000000),
                                     fontSize: 18,
                                   ),
                                 ),
 
-                                items: ["Alexandria", "Cairo", "Giza"]
-                                    .map(
-                                      (city) => DropdownMenuItem(
-                                        value: city,
-                                        child: Text(city),
-                                      ),
-                                    )
-                                    .toList(),
+                                items:
+                                    [
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.alexandria,
+                                          AppLocalizations.of(context)!.cairo,
+                                          AppLocalizations.of(context)!.giza,
+                                        ]
+                                        .map(
+                                          (city) => DropdownMenuItem(
+                                            value: city,
+                                            child: Text(city),
+                                          ),
+                                        )
+                                        .toList(),
                                 onChanged: (value) {
                                   setState(() {
                                     selectCity = value;
@@ -176,26 +218,48 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 validator: (value) {
                                   if (value == null) {
-                                    return "Please select a city";
+                                    return AppLocalizations.of(
+                                      context,
+                                    )!.pleaseSelectACity;
                                   }
+                                  return null;
                                 },
                               ),
                             ),
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             AButton(
-                              text: "Sign up",
+                              text: AppLocalizations.of(context)!.signUp,
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return MainScreen();
-                                      },
-                                    ),
-                                  );
+                                  Navigator.pushNamed(context, AppRoutes.mainApp);
                                 }
                               },
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.alreadyHaveAnAccount,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, AppRoutes.login);
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(context)!.login,
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 19,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
