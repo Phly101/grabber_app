@@ -6,6 +6,7 @@ import "package:grabber_app/UI/Payment/Widget/custom_card.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_row.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_text_field.dart";
 import "package:grabber_app/Utils/routes.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -20,11 +21,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String price = "\$49.00";
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    option = AppLocalizations.of(context)!.payWithCard;
     currentOption = option;
   }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -37,7 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text("Payment", style: Theme.of(context).textTheme.titleLarge),
+        title: Text(AppLocalizations.of(context)!.payment, style: Theme.of(context).textTheme.titleLarge),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -53,7 +54,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
-                "Card number",
+                AppLocalizations.of(context)!.cardNumber,
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontWeight: FontWeight.bold
                 ),
@@ -74,7 +75,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "Confirm and Pay ($price)",
+                      AppLocalizations.of(context)!.confirmAndPay49,
                       style: Theme.of(
                         context,
                       ).textTheme.titleMedium!.copyWith(

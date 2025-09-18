@@ -1,3 +1,4 @@
+
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
@@ -6,8 +7,10 @@ import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
 import "package:grabber_app/UI/home/home_tab.dart";
 import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
 import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 
 class MainScreen extends StatefulWidget {
+
 
 
   const MainScreen({super.key});
@@ -16,9 +19,11 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   String dropdownValue = "Example street";
+
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -27,6 +32,9 @@ class _MainScreenState extends State<MainScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       key: _scaffoldKey,
+
+  // Create a GlobalKey for Scaffold
+
       appBar: selectedIndex == 1
           ? null
           : AppBar(
@@ -34,7 +42,9 @@ class _MainScreenState extends State<MainScreen> {
 
               leading: Image.asset(
                 "Assets/Icons/motorcycleIcon.png",
+
                 color: theme.colorScheme.onPrimary,
+
               ),
               title: DropdownButton(
                 items: const [
@@ -61,12 +71,14 @@ class _MainScreenState extends State<MainScreen> {
               actions: [
                 // Image.asset("Assets/Icons/CartIcon.png", color: Colors.black)  ,
                 IconButton(
+
                   icon: const ImageIcon(
                     AssetImage("Assets/Icons/CartIcon.png"),
                   ),
                   onPressed: () {Navigator.pushNamed(context, AppRoutes.cart);
                   },
                 ),
+
               ],
             ),
 
@@ -76,10 +88,12 @@ class _MainScreenState extends State<MainScreen> {
         onTap: (index) {
           if (index == 3) {
             _scaffoldKey.currentState?.openEndDrawer();
+
           } else {
             setState(() {
               selectedIndex = index;
             });
+
           }
         },
 
@@ -95,36 +109,48 @@ class _MainScreenState extends State<MainScreen> {
         lineIndicatorWidth: 3,
         indicatorType: IndicatorType.top,
 
+
+
         customBottomBarItems: [
           CustomBottomBarItems(
             isAssetsImage: false,
-            label: "Home",
+            label: AppLocalizations.of(context)!.home,
+
             icon: Icons.home,
           ),
           CustomBottomBarItems(
             isAssetsImage: false,
-            label: "Search",
+
+            label: AppLocalizations.of(context)!.search,
+
             icon: Icons.search,
           ),
           CustomBottomBarItems(
             isAssetsImage: false,
-            label: "Profile",
+
+            label: AppLocalizations.of(context)!.profile,
+
             icon: Icons.person,
           ),
           CustomBottomBarItems(
             isAssetsImage: false,
-            label: "Settings",
+
+            label: AppLocalizations.of(context)!.settings,
+
             icon: Icons.settings,
           ),
         ],
       ),
+
       endDrawer: const AppDrawer(),
+
     );
   }
 }
 
 var tabs = [
-  const HomeTab(),
+  HomeTab(),
   const SearchTab(),
   const ProfileTab(),
+
 ];

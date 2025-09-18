@@ -5,6 +5,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Cart/view/cart_page.dart";
+import "package:flutter_localizations/flutter_localizations.dart";
 import "package:grabber_app/UI/Payment/payment_screen.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
 import "package:grabber_app/UI/Schedule/schedule_screen.dart";
@@ -23,12 +24,12 @@ import "Blocs/localization/localEvent.dart";
 import "Blocs/localization/localState.dart";
 import "Blocs/localization/localeBloc.dart";
 import "Utils/constants.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String savedLang = sharedpref?.getString("lang") ?? "en";
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -45,54 +47,73 @@ class MyApp extends StatelessWidget {
           create: (_) => AppThemeBloc()..add(InitialEvent()),
         ),
       ],
-        child: BlocBuilder<AppThemeBloc, AppThemeState>(
-            builder: (context, themeState) {
-              return BlocBuilder<LocaleBloc, LocaleState>(
-                builder: (context, localeState) {
-                  Locale currentLocale = const Locale("en");
-                  if (localeState is LocalInitial) currentLocale = localeState.locale;
-                  if (localeState is LocaleUpdated) currentLocale = localeState.locale;
-                  return MaterialApp(
-                    debugShowCheckedModeBanner: false,
-
-                    routes: {
-                      AppRoutes.mainApp: (_) => const MainScreen(),
-                      AppRoutes.login: (_) => const Login(),
-                      AppRoutes.signUp: (_) => const SignUp(),
-                      AppRoutes.home: (_) => const HomeTab(),
-                      AppRoutes.search: (_) => const SearchTab(),
-                      AppRoutes.profile: (_) => const ProfileTab(),
-                      AppRoutes.settings: (_) => const AppDrawer(),
-                      AppRoutes.payment: (_) => const PaymentScreen(),
-                      AppRoutes.checkout: (_) => const CheckoutScreen(),
-                      AppRoutes.summary: (_) => const SummaryScreen(),
-                      AppRoutes.cart: (_) => const CartPage(),
-                      AppRoutes.schedule: (_) => const ScheduleScreen(),
-                      AppRoutes.splash: (_) => const SplashScreen(),
-                    },
-                    home: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: themeState.appTheme == "L"
-                              ? const AssetImage(
-                              "Assets/Images/lightSplash.png")
-                              : const AssetImage(
-                              "Assets/Images/darkSplash.png"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: const SplashScreen(),
-                    ),
-
-                    theme: themeState.appTheme == "L"
-                        ? AppThemes.lightTheme
-                        : AppThemes.darkTheme,
+      child: BlocBuilder<AppThemeBloc, AppThemeState>(
+        builder: (context, themeState) {
+          return BlocBuilder<LocaleBloc, LocaleState>(
+            builder: (context, localeState) {
+              Locale currentLocale = const Locale("en");
+              if (localeState is LocalInitial) {
+                currentLocale = localeState.locale;
+              }
+              if (localeState is LocaleUpdated) {
+                currentLocale = localeState.locale;
+              }
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                locale: currentLocale,
+                supportedLocales: const [
+                  Locale("en"),
+                  Locale("ar"),
+                ],
+                localizationsDelegates: [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                ],
+                builder: (context, child) {
+                  return Directionality(
+                    textDirection: currentLocale.languageCode == "ar"
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
+                    child: child!,
                   );
                 },
-              );
-            })
 
-              ,
+                routes: {
+                  AppRoutes.mainApp: (_) => const MainScreen(),
+                  AppRoutes.login: (_) => const Login(),
+                  AppRoutes.signUp: (_) => const SignUp(),
+                  AppRoutes.home: (_) => const HomeTab(),
+                  AppRoutes.search: (_) => const SearchTab(),
+                  AppRoutes.profile: (_) => const ProfileTab(),
+                  AppRoutes.settings: (_) => const AppDrawer(),
+                  AppRoutes.payment: (_) => const PaymentScreen(),
+                  AppRoutes.checkout: (_) => const CheckoutScreen(),
+                  AppRoutes.summary: (_) => const SummaryScreen(),
+                  AppRoutes.cart: (_) => const CartPage(),
+                  AppRoutes.schedule: (_) => const ScheduleScreen(),
+                  AppRoutes.splash: (_) => const SplashScreen(),
+                },
+                home: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: themeState.appTheme == "L"
+                          ? const AssetImage("Assets/Images/lightSplash.png")
+                          : const AssetImage("Assets/Images/darkSplash.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: const SplashScreen(),
+                ),
+
+                theme: themeState.appTheme == "L"
+                    ? AppThemes.lightTheme
+                    : AppThemes.darkTheme,
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

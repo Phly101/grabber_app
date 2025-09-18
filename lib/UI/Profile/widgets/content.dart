@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/widgets/logout_dialog.dart";
-
+import "../../../l10n/app_localizations.dart";
 import "profile_item.dart";
 
 class ProfileContent extends StatelessWidget {
@@ -31,8 +31,8 @@ class ProfileContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ProfileItem(
-            title: "Email",
-            subtitle: "user@example.com",
+            title: AppLocalizations.of(context)!.email,
+            subtitle: AppLocalizations.of(context)!.userExample,
             // TODO: Replace with dynamic user email from state management / backend
             leading: ClipOval(
               child: Container(
@@ -52,8 +52,8 @@ class ProfileContent extends StatelessWidget {
           ),
           ProfileItem(
 
-            title: "Password",
-            subtitle: "Make changes to your account",
+            title: AppLocalizations.of(context)!.password,
+            subtitle: AppLocalizations.of(context)!.makeChangesToYourAccount,
             trailing: MaterialButton(
               onPressed: () {
                 // TODO: Implement password reset/change functionality
@@ -82,8 +82,8 @@ class ProfileContent extends StatelessWidget {
             },
           ),
           ProfileItem(
-            title: "Logout",
-            subtitle: "Further secure your account for safety",
+            title: AppLocalizations.of(context)!.logout,
+            subtitle: AppLocalizations.of(context)!.furtherSecureYourAccountForSafety,
             leading: ClipOval(
               child: Container(
                 color: Colors.grey.shade100,

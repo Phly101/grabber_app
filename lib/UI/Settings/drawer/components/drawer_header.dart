@@ -1,14 +1,15 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class AppDrawerHeader extends StatelessWidget {
   const AppDrawerHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const DrawerHeader(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
+    return  DrawerHeader(
+      decoration: const BoxDecoration(
+        gradient:  LinearGradient(
           colors: [
             AppColors.primaryGreen,
             AppColors.secondaryDarkColor,
@@ -20,14 +21,14 @@ class AppDrawerHeader extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.settings,
             size: 60,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
-            "Settings",
-            style: TextStyle(
+            AppLocalizations.of(context)!.settings,
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
 

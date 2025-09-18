@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import "package:table_calendar/table_calendar.dart";
+import "package:grabber_app/Utils/constants.dart";
+
 
 class TableWidget extends StatelessWidget {
   final DateTime today;
@@ -15,6 +17,7 @@ class TableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return TableCalendar(
+        locale: sharedpref?.getString("lang") ?? "en",
       daysOfWeekStyle: const DaysOfWeekStyle(
         weekdayStyle: const TextStyle(color: Colors.white), // Mon–Fri
         weekendStyle: TextStyle(color: Colors.red), // Sat–Sun
@@ -30,10 +33,12 @@ class TableWidget extends StatelessWidget {
         // change grey to red
         disabledTextStyle: const TextStyle(color: Colors.grey),
         // style disabled days
+
         selectedDecoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
           shape: BoxShape.circle,
         ),
+
       ),
       calendarBuilders: CalendarBuilders(
         outsideBuilder: (context, day, focusedDay) {
@@ -88,6 +93,8 @@ class TableWidget extends StatelessWidget {
           );
         },
       ),
+        daysOfWeekHeight: 35,
+
       daysOfWeekVisible: true,
       headerStyle: HeaderStyle(
         titleTextStyle: Theme.of(context).textTheme.titleMedium!,
@@ -96,7 +103,9 @@ class TableWidget extends StatelessWidget {
       ),
       availableGestures: AvailableGestures.all,
       focusedDay: today,
+
       selectedDayPredicate: (day) => isSameDay(day, today),
+
       firstDay: DateTime.utc(2024, 1, 1),
       lastDay: DateTime.utc(2040, 1, 1),
       onDaySelected: onDaySelected,

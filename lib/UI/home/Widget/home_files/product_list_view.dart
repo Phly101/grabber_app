@@ -1,17 +1,17 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_card.dart";
-import "package:grabber_app/UI/home/Widget/home_files/product_model.dart";
-
+import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 
 class ProductListView extends StatelessWidget {
-  final List<Product> products;
+
   final String title;
 
   const ProductListView({
     super.key,
-    required this.products,
     required this.title,
+    required product,
   });
 
   @override
@@ -28,9 +28,9 @@ class ProductListView extends StatelessWidget {
             const Spacer(),
             TextButton(
               onPressed: () {},
-              child: const Text(
-                "See all",
-                style:  TextStyle(
+              child: Text(
+                AppLocalizations.of(context)!.seeAll,
+                style:  const TextStyle(
                   color: AppColors.textButtonColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -47,7 +47,9 @@ class ProductListView extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: products.length,
             itemBuilder: (context, index) {
-              return BuildProductCard(product: products,index: index,);
+              return BuildProductCard(
+                index: index,
+              );
             },
           ),
         ),

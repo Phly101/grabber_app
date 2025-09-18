@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:grabber_app/Theme/theme.dart';
+import "package:flutter/material.dart";
+import "package:grabber_app/Theme/theme.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class AppDrawerFooter extends StatelessWidget {
   final VoidCallback? onLogout;
@@ -32,7 +33,7 @@ class AppDrawerFooter extends StatelessWidget {
             ),
           ),
           icon: const Icon(Icons.logout,),
-          label: const Text("Logout"),
+          label: Text(AppLocalizations.of(context)!.logout),
           onPressed: onLogout,
         ),
       ),

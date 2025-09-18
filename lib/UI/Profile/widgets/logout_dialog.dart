@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
+import "../../../l10n/app_localizations.dart";
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
@@ -21,7 +22,7 @@ class LogoutDialog extends StatelessWidget {
           children: [
             const SizedBox(height: 12),
              Text(
-              "Are you sure you want to log out?",
+               AppLocalizations.of(context)!.areYouSureYouWantToLogout,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: theme.colorScheme.onPrimary,
@@ -50,7 +51,7 @@ class LogoutDialog extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    "Yes",
+                    AppLocalizations.of(context)!.yes,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.onPrimary,
@@ -73,7 +74,7 @@ class LogoutDialog extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    "No",
+                    AppLocalizations.of(context)!.no,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.onPrimary,

@@ -3,7 +3,7 @@ import "package:grabber_app/UI/checkout/widgets/delivery_option_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_switch_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_value_tile.dart";
 import "package:grabber_app/Utils/routes.dart";
-
+import "../../../l10n/app_localizations.dart";
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
 
@@ -26,7 +26,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: const Text("Checkout"),
+        title:  Text(AppLocalizations.of(context)!.checkout,),
         backgroundColor: Colors.transparent,
         elevation: 0,
         toolbarHeight: 100,
@@ -48,7 +48,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     children: [
                       DeliveryOptionTile(
                         value: "Priority",
-                        title: "Priority (10 - 20 mins)",
+                        title: AppLocalizations.of(context)!.priority1020Mins,
                         icon: "Assets/Icons/carbon_receipt.png",
                         groupValue: deliveryType,
                         onChanged: (val) => setState(() => deliveryType = val),
@@ -60,7 +60,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                       DeliveryOptionTile(
                         value: "Standard",
-                        title: "Standard (30 - 45 mins)",
+                        title: AppLocalizations.of(context)!.standard3045Mins,
                         icon: "Assets/Icons/fluent_receipt-28-regular.png",
                         groupValue: deliveryType,
                         onChanged: (val) => setState(() => deliveryType = val),
@@ -80,7 +80,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       leading: Image.asset(
                         "Assets/Icons/icon-park-outline_time.png",color: theme.colorScheme.onPrimary,
                       ),
-                      label: "Schedule",
+                      label: AppLocalizations.of(context)!.schedule,
                       icon: Icons.chevron_right,
                       color: theme.colorScheme.onPrimary,
                     ),
@@ -99,7 +99,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           border: Border.all(color: theme.colorScheme.onPrimary)
                       ),
                       child: KeyValueTile.icon(
-                        label: "Order Summary (12 items)",
+                        label:AppLocalizations.of(context)!.orderSummary12Items,
                         icon: Icons.chevron_right,
                         color: theme.colorScheme.onPrimary,
                       ),
@@ -118,7 +118,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               child: Column(
                 children: [
                   KeyValueTile.text(
-                    label: "Subtotal",
+                    label: AppLocalizations.of(context)!.subtotal,
                     value: "\$40.25",
                     color: theme.colorScheme.onPrimary,
                   ),
@@ -128,7 +128,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     color: Color(0xFFECECEC),
                   ),
                   KeyValueTile.text(
-                    label: "Bag fee",
+                    label: AppLocalizations.of(context)!.bagFee,
                     value: "\$0.25",
                     color: theme.colorScheme.onPrimary,
                   ),
@@ -138,7 +138,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     color: Color(0xFFECECEC),
                   ),
                   KeyValueTile.text(
-                    label: "Service fee",
+                    label: AppLocalizations.of(context)!.serviceFee,
                     value: "\$5.25",
                     color: theme.colorScheme.onPrimary,
                   ),
@@ -148,7 +148,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     color: Color(0xFFECECEC),
                   ),
                   KeyValueTile.text(
-                    label: "Delivery",
+                    label: AppLocalizations.of(context)!.delivery,
                     value: "\$0.00",
                     color: theme.colorScheme.onPrimary,
                   ),
@@ -158,7 +158,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     color: Color(0xFFECECEC),
                   ),
                   KeyValueTile.text(
-                    label: "Total",
+                    label: AppLocalizations.of(context)!.total,
                     value: "\$49.00",
                     color: theme.colorScheme.onPrimary,
                   ),
@@ -168,7 +168,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     color: Color(0xFFECECEC),
                   ),
                   KeySwitchTile(
-                    label: "Request an invoice",
+                    label:  AppLocalizations.of(context)!.requestAnInvoice,
                     value: invoice,
                     onChanged: (val) => setState(() => invoice = val),
 
@@ -182,7 +182,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 vertical: 24.0,
               ),
               child: Text(
-                "Payment method",
+                AppLocalizations.of(context)!.paymentMethod,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -211,7 +211,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     const TextStyle(fontSize: 16),
                   ),
                 ),
-                child: const Text("Place Order"),
+                child:  Text(AppLocalizations.of(context)!.placeOrder,),
               ),
             ),
           ],

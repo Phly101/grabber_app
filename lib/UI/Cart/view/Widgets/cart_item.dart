@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/theme.dart";
+
 import "shimmer_image.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class CartItem extends StatelessWidget {
   const CartItem({super.key});
@@ -17,8 +18,8 @@ class CartItem extends StatelessWidget {
         contentPadding: const EdgeInsets.all(12),
         leading: const ShimmerImage(size: 50), 
         // TODO: Replace static shimmer with product image from network or local cache
-        title: const Text(
-          "4 bunch of banana (300g)", 
+        title:  Text(
+            AppLocalizations.of(context)!.bananaBundle300g,
           // TODO: Make product name dynamic from cart model
           style: TextStyle(fontWeight: FontWeight.bold),
         ),

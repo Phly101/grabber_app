@@ -7,6 +7,8 @@ import "components/drawer_item.dart";
 import "components/drawer_header.dart";
 import "components/drawer_footer.dart";
 
+import "../../../l10n/app_localizations.dart";
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -30,7 +32,8 @@ class AppDrawer extends StatelessWidget {
               width: 25,
               height: 25,
             ),
-            title: "Language",
+            title: AppLocalizations.of(context)!.language,
+
             showDivider: true,
             onTap: () {
               Navigator.push(
@@ -45,7 +48,8 @@ class AppDrawer extends StatelessWidget {
               scale: 15,
               color: AppColors.textButtonColor,
             ),
-            title: "Theme",
+            title: AppLocalizations.of(context)!.theme,
+
             showDivider: true,
             onTap: () {
               Navigator.push(

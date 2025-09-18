@@ -1,14 +1,11 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
+import "package:grabber_app/UI/home/Widget/home_files/Category.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
 import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
-
-
-
+import "../../l10n/app_localizations.dart";
 
 //TODO: make FloatingActionButton
 //TODO: make Navigator
-
 
 class HomeTab extends StatelessWidget {
 
@@ -21,24 +18,19 @@ class HomeTab extends StatelessWidget {
       child: Column(
         children: [
           const HomeSlider(),
-         // const HomeCategory(),
+          const HomeCategory(),
           Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
               children: [
-                ProductListView(products: fruit, title: "Fruits"),
-                ProductListView(products: detergent, title: "Detergent"),
-                ProductListView(products: biscuit, title: "Biscuit"),
+                ProductListView(product: "fruit", title: AppLocalizations.of(context)!.fruits),
+                ProductListView(product: "detergent", title: AppLocalizations.of(context)!.detergent),
+                ProductListView(product: "biscuit", title: AppLocalizations.of(context)!.biscuit),
               ],
             ),
           ),
-
-
         ],
       ),
     );
-
-    
-
   }
 }

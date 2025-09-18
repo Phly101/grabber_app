@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-
+import "../../../l10n/app_localizations.dart";
 
 class AboutApp extends StatelessWidget {
   const AboutApp({super.key});
@@ -29,7 +29,7 @@ class AboutApp extends StatelessWidget {
           children: [
             InkWell(
               child: ListTile(
-                title:  Text("About App",style:theme.textTheme.titleMedium ,),
+                title:  Text(AppLocalizations.of(context)!.aboutApp,style:theme.textTheme.titleMedium ,),
                 // TODO: Localize "About App" for multi-language support
                 leading: ClipOval(
                   child: Container(

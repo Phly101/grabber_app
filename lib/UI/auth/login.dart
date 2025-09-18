@@ -1,8 +1,7 @@
 import "package:flutter/material.dart";
-import "package:flutter_bloc/flutter_bloc.dart";
-import "package:grabber_app/Utils/routes.dart";
-import "package:grabber_app/common/gradient_widget_container.dart";
-import "../../Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/UI/auth/sign_up.dart";
+import "../../Theme/light_theme.dart" show LightThemeData;
+import "../../l10n/app_localizations.dart";
 import "../main_app/main_screen.dart";
 import "components/button.dart";
 import "components/text_field.dart";
@@ -21,90 +20,80 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc = context.read<AppThemeBloc>();
     return Scaffold(
-      body: GradientWidgetContainer(
+      body: Container(
         width: double.infinity,
         height: double.infinity,
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              LightThemeData.primaryLightColor,
+              LightThemeData.secondaryLightColor,
+              LightThemeData.secondaryDarkColor,
+            ],
+          ),
+        ),
         child: Stack(
           children: [
+
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 120),
                 child: Column(
                   children: [
-                    themeBloc.state.appTheme == "L"
-                        ? Image.asset("Assets/Images/Grabber.png")
-                        : Image.asset("Assets/Images/GrabberLogoDark.png"),
+                    Image.asset("Assets/Images/Grabber.png"),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 20,
                       ),
                       child: Form(
+
                         key: formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 50),
                             Text(
-                              "Welcome Back To Grabber",
-                              style: themeBloc.state.appTheme == "L"
-                                  ? Theme.of(
-                                      context,
-                                    ).textTheme.titleLarge?.copyWith(
-                                      color: const Color(0xFF5A5555),
-                                      fontWeight: FontWeight.bold,
-                                    )
-                                  : Theme.of(
-                                      context,
-                                    ).textTheme.titleLarge?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              "Please sign in with your mail",
-                              style: themeBloc.state.appTheme == "L"
-                                  ? Theme.of(
-                                context,
-                              ).textTheme.titleMedium?.copyWith(
+                              AppLocalizations.of(context)!.welcomeBackToGrabber,
+                              style: Theme.of(context).textTheme.titleLarge
+                                  ?.copyWith(
                                 color: const Color(0xFF5A5555),
-                                fontWeight: FontWeight.bold,
-                              )
-                                  : Theme.of(
-                                context,
-                              ).textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            const SizedBox(height: 5),
+                            Text(
+                              AppLocalizations.of(context)!.pleaseSignInWithYourMail,
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(color: const Color(0xAB5A5555)),
+                            ),
                             const SizedBox(height: 40),
                             ATextField(
-                              label: "User Name",
-                              hint: "enter your name",
+                              label: AppLocalizations.of(context)!.userName,
+                              hint: AppLocalizations.of(context)!.enterYourName,
                               controller: username,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "User Name is required";
+                                  return AppLocalizations.of(context)!.userNameIsRequired;
                                 }
                                 return null;
                               },
                             ),
                             const SizedBox(height: 20),
                             ATextField(
-                              label: "Password",
-                              hint: "enter your password",
+                              label: AppLocalizations.of(context)!.password,
+                              hint: AppLocalizations.of(context)!.enterYourPassword,
                               controller: password,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Password is required";
+                                  return AppLocalizations.of(context)!.passwordIsRequired;
                                 }
                                 if (value.length < 8) {
-                                  return "Password must be at least 8 characters";
+                                  return AppLocalizations.of(context)!.passwordMustBeAtLeast8Characters;
                                 }
                                 return null;
                               },
@@ -114,9 +103,9 @@ class _LoginState extends State<Login> {
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 onPressed: () {},
-                                child: const Text(
-                                  "Forgot password",
-                                  style: TextStyle(
+                                child: Text(
+                                  AppLocalizations.of(context)!.forgotPassword,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 19,
                                   ),
@@ -125,7 +114,7 @@ class _LoginState extends State<Login> {
                             ),
                             const SizedBox(height: 40),
                             AButton(
-                              text: "Login",
+                              text: AppLocalizations.of(context)!.login,
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   Navigator.push(
@@ -143,24 +132,28 @@ class _LoginState extends State<Login> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
-                                  "Don’t have an account?",
-                                  style: TextStyle(
+                                Text(
+                                  AppLocalizations.of(context)!.dontHaveAnAccount,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 19,
                                   ),
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(
+                                    Navigator.push(
                                       context,
-                                      AppRoutes.signUp,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const SignUp();
+                                        },
+                                      ),
                                     );
                                   },
-                                  child: const Text(
-                                    "Create Account",
-                                    style: TextStyle(
-                                      color: Colors.blue,
+                                  child: Text(
+                                    AppLocalizations.of(context)!.createAccount,
+                                    style: const TextStyle(
+                                      color: Colors.white,
                                       fontSize: 19,
                                     ),
                                   ),
@@ -172,7 +165,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ],
-
+                  // alignment: Alignment.topLeft,
                 ),
               ),
             ),

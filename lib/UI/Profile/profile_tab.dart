@@ -3,14 +3,13 @@ import "package:flutter/material.dart";
 import "package:grabber_app/UI/Profile/widgets/about_app.dart";
 import "package:grabber_app/UI/Profile/widgets/content.dart";
 import "package:grabber_app/UI/Profile/widgets/profile_header.dart";
-
+import "../../../l10n/app_localizations.dart";
 
 
 
 
 
 class ProfileTab extends StatelessWidget {
-  static const String routeName = "Profile_tab"; 
   // TODO: Consider renaming routeName to match app's route naming convention
 
   const ProfileTab({super.key});
@@ -35,7 +34,7 @@ class ProfileTab extends StatelessWidget {
               const ProfileContent(),
               const SizedBox(height: 10),
               Text(
-                "More", 
+                AppLocalizations.of(context)!.more,
                 // TODO: Localize "More" for multi-language support
                 style: TextStyle(
                   fontSize: 18,

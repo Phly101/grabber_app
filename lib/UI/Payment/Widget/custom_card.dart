@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/theme.dart";
-
+import "../../../l10n/app_localizations.dart";
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key});
 
@@ -20,7 +19,7 @@ class CustomCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    "Expiry",
+                      AppLocalizations.of(context)!.expiry,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.bold,)
                   ),
@@ -73,7 +72,7 @@ class CustomCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    "CVC",
+                      AppLocalizations.of(context)!.cvc,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.bold,)
                   ),

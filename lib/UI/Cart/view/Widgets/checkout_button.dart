@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class CheckoutButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -16,10 +17,10 @@ class CheckoutButton extends StatelessWidget {
         // TODO: Replace with navigation to checkout screen or API call
         backgroundColor: AppColors.textButtonColor,
         // TODO: Add theme switch (light/dark mode) support for dynamic colors
-        label: const Text(
-          "Check Out", 
+        label:  Text(
+            AppLocalizations.of(context)!.checkOut,
           // TODO: Localize this text for multi-language support
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18, 
             fontWeight: FontWeight.bold, 
             color: AppColors.white,
