@@ -14,4 +14,6 @@ class AppRoutes{
   static const String settings = "/settings";
   static const String splash = "/splash";
   static const String summary = "/summary";
+  static const String theme = "/theme";
+  static const String language = "/language";
 }

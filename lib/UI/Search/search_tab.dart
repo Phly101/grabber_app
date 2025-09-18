@@ -51,7 +51,7 @@ class _SearchTabState extends State<SearchTab> {
             controller: searchController,
 
             hintText: AppLocalizations.of(context)!.search,
-            leading: Image.asset("Assets/Icons/Icons.png"),
+            leading: Image.asset("Assets/Icons/Icons.png",color: theme.colorScheme.onPrimary,),
 
             trailing: [
               if (searchText != "")

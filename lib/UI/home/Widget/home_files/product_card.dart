@@ -72,8 +72,8 @@ class _BuildProductCardState extends State<BuildProductCard> {
     final product = products[widget.index];
     return Card(
       elevation: 3,
-      //color: Color(0xFFEBFFD7),
-      color: LightThemeData.primaryLightColor,
+
+
       margin: const EdgeInsets.all(10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Column(
@@ -92,14 +92,15 @@ class _BuildProductCardState extends State<BuildProductCard> {
                 ),
               ),
               Positioned(
-                top: 110,
-                left: 105,
+                bottom: 10,
+                right: 10,
 
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LightThemeData.secondaryDarkColor,
                     minimumSize: const Size(25, 30),
+                    padding: const EdgeInsets.all(10),
                     shape: const CircleBorder(),
                   ),
                   child: const Icon(Icons.add, size: 22, color: Colors.white),

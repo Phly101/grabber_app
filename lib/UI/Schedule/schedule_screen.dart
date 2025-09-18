@@ -158,7 +158,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 child: InkWell(
                   autofocus: true,
                   onTap: () {
-
+                  Navigator.popAndPushNamed(context, AppRoutes.checkout);
                   },
 
                   child: Padding(

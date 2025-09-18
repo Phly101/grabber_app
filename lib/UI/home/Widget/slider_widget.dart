@@ -30,12 +30,12 @@ class SliderWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    slide["title"],
+                    slide["text"] ?? "",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    slide["subtitle"],
+                    slide["subText"] ?? "",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
                   ),
                   const SizedBox(height: 11),
@@ -50,6 +50,7 @@ class SliderWidget extends StatelessWidget {
                         vertical: 8,
                       ),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -59,11 +60,11 @@ class SliderWidget extends StatelessWidget {
                       "Shop Now",
                       style: slide["isDark"]
                           ? Theme.of(context).textTheme.titleMedium!.copyWith(
-                              color: AppColors.textButtonColor,
-                            )
+                        color: AppColors.textButtonColor,
+                      )
                           : Theme.of(context).textTheme.titleMedium!.copyWith(
-                              color: AppColors.primaryLightColor,
-                            ),
+                        color: AppColors.primaryLightColor,
+                      ),
                     ),
                   ),
                 ],

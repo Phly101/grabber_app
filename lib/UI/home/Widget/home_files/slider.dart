@@ -1,6 +1,7 @@
 import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/UI/home/Widget/slider_widget.dart";
 import "../../../../l10n/app_localizations.dart";
 
 class HomeSlider extends StatefulWidget {
@@ -43,18 +44,21 @@ class _HomeSliderState extends State<HomeSlider> {
           "text": l10n.offer30,
           "subText": l10n.enjoyOurBigOffer,
           "backgroundColor": LightThemeData.primaryLightColor,
+          "isDark": false,
         },
         {
           "image": "Assets/Images/SliderImage2.png",
           "text": l10n.offer25,
           "subText": l10n.enjoyOurBigOffer,
           "backgroundColor": LightThemeData.darkPrimaryColor,
+          "isDark": true,
         },
         {
           "image": "Assets/Images/SliderImage3.png",
           "text": l10n.getSameDayDeliver,
           "subText": l10n.enjoyOurBigOffer,
           "backgroundColor": const Color(0xFFFFDB24),
+          "isDark": false,
         },
       ];
     });
@@ -73,67 +77,7 @@ class _HomeSliderState extends State<HomeSlider> {
       items: sliderList.map((slide) {
         return Builder(
           builder: (BuildContext context) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Container(
-                height: 222,
-                width: MediaQuery.of(context).size.width * 0.83,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(11),
-                  color: slide["backgroundColor"],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 19),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            slide["text"],
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 16),
-                          Text(
-                            slide["subText"],
-                            style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 11),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: LightThemeData.surfaceColor,
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              AppLocalizations.of(context)!.shopNow,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Flexible(
-                      child: Image.asset(
-                        slide["image"],
-                        height: 200,
-                        width: 242,
-                        alignment: Alignment.centerLeft,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+            return SliderWidget(slide: slide);
           },
         );
       }).toList(),

@@ -35,6 +35,7 @@ class _ThemePageState extends State<ThemePage> {
                   icons: FontAwesomeIcons.solidSun,
                   iconColors: [Colors.white, Colors.orangeAccent],
                   id: 0,
+                  isLocal: false,
                 );
               },
             ),
@@ -47,6 +48,7 @@ class _ThemePageState extends State<ThemePage> {
                   onTap: () {
                     BlocProvider.of<AppThemeBloc>(context).add(DarkEvent());
                   },
+                  isLocal: false,
                   title: "Dark",
                   icons: FontAwesomeIcons.moon,
                   iconColors: [Colors.white, Colors.orangeAccent],

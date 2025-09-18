@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
+import "package:grabber_app/Utils/routes.dart";
 import "../../../Theme/theme.dart" show AppColors;
 import "pages/language_page.dart";
 import "pages/theme_page.dart";
@@ -36,10 +37,7 @@ class AppDrawer extends StatelessWidget {
 
             showDivider: true,
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const LanguagePage()),
-              );
+              Navigator.pushNamed(context, AppRoutes.theme);
             },
           ),
           DrawerItem(
@@ -52,10 +50,7 @@ class AppDrawer extends StatelessWidget {
 
             showDivider: true,
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const ThemePage()),
-              );
+              Navigator.pushNamed(context, AppRoutes.theme);
             },
           ),
 
@@ -64,6 +59,7 @@ class AppDrawer extends StatelessWidget {
           // Footer
           AppDrawerFooter(
             onLogout: () {
+              Navigator.popAndPushNamed(context, AppRoutes.login);
               // TODO: Implement logout logic (clear user session, tokens, etc.)
               // TODO: Show confirmation dialog before logging out
               // Example: showDialog(context: context, builder: (_) => LogoutDialog()); // نفس اللى فى صفحة البروفايل يعنى

@@ -1,5 +1,8 @@
-import "package:flutter/cupertino.dart";
-import "package:grabber_app/Theme/light_theme.dart";
+
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
 class HomeCategory extends StatefulWidget {
@@ -34,6 +37,7 @@ void didChangeDependencies() {
 }
   @override
   Widget build(BuildContext context) {
+  final themeBloc = context.read<AppThemeBloc>();
     return SizedBox(
       height: 120,
       child: ListView.builder(
@@ -45,13 +49,13 @@ void didChangeDependencies() {
             child: Column(
               children: [
                 Image.asset(categoriessList[index]["image"]),
-                SizedBox(height: 11),
+                const SizedBox(height: 11),
                 Text(
                   //AppLocalizations.of(context)!.
                   categoriessList[index]["text"],
-                  style: const TextStyle(
+                  style:  TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: (LightThemeData.darkPrimaryColor),
+                    color: themeBloc.state.appTheme == "L"? AppColors.textButtonColor: AppColors.white
                   ),
                 ),
               ],

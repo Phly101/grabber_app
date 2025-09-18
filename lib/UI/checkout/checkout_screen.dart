@@ -94,15 +94,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     onTap: () {
                       Navigator.pushNamed(context, AppRoutes.summary);
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: theme.colorScheme.onPrimary)
-                      ),
-                      child: KeyValueTile.icon(
-                        label:AppLocalizations.of(context)!.orderSummary12Items,
-                        icon: Icons.chevron_right,
-                        color: theme.colorScheme.onPrimary,
-                      ),
+                    child: KeyValueTile.icon(
+                      label:AppLocalizations.of(context)!.orderSummary12Items,
+                      icon: Icons.chevron_right,
+                      color: theme.colorScheme.onPrimary,
                     ),
                   ),
                 ],

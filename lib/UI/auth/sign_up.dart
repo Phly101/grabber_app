@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
-import "../../Theme/light_theme.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../l10n/app_localizations.dart";
 import "../main_app/main_screen.dart";
 import "components/button.dart";
@@ -24,30 +27,25 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeBloc = context.read<AppThemeBloc>();
     return Scaffold(
-      body: Container(
+      body: GradientWidgetContainer(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              LightThemeData.primaryLightColor,
-              LightThemeData.secondaryLightColor,
-              LightThemeData.secondaryDarkColor,
-            ],
-          ),
-        ),
+
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+
         child: Stack(
           children: [
-            // Components(),
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 120),
                 child: Column(
                   children: [
-                    Image.asset("Assets/Images/Grabber.png"),
+                    themeBloc.state.appTheme == "L"
+                        ? Image.asset("Assets/Images/Grabber.png")
+                        : Image.asset("Assets/Images/GrabberLogoDark.png"),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
@@ -61,11 +59,15 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(height: 50),
                             ATextField(
                               label: AppLocalizations.of(context)!.fullName,
-                              hint: AppLocalizations.of(context)!.enterYourFullName,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourFullName,
                               controller: fullName,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return AppLocalizations.of(context)!.fullNameIsRequired;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.fullNameIsRequired;
                                 }
                                 return null;
                               },
@@ -73,15 +75,21 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(height: 20),
                             ATextField(
                               label: AppLocalizations.of(context)!.mobileNumber,
-                              hint: AppLocalizations.of(context)!.enterYourMobileNumber,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourMobileNumber,
                               controller: mobileNumber,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return AppLocalizations.of(context)!.mobileNumberIsRequired;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.mobileNumberIsRequired;
                                 } else if (!RegExp(
                                   r"^01[0-9]{9}$",
                                 ).hasMatch(value)) {
-                                  return AppLocalizations.of(context)!.enterAValidNumber;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.enterAValidNumber;
                                 }
                                 return null;
                               },
@@ -89,15 +97,21 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(height: 20),
                             ATextField(
                               label: AppLocalizations.of(context)!.emailAddress,
-                              hint: AppLocalizations.of(context)!.enterYourEmailAddress,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourEmailAddress,
                               controller: email,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return AppLocalizations.of(context)!.emailIsRequired;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.emailIsRequired;
                                 } else if (!RegExp(
                                   r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
                                 ).hasMatch(value)) {
-                                  return AppLocalizations.of(context)!.enterAValidEmail;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.enterAValidEmail;
                                 }
                                 return null;
                               },
@@ -105,30 +119,44 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(height: 20),
                             ATextField(
                               label: AppLocalizations.of(context)!.password,
-                              hint: AppLocalizations.of(context)!.enterYourPassword,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterYourPassword,
                               controller: password,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return AppLocalizations.of(context)!.passwordIsRequired;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.passwordIsRequired;
                                 }
                                 if (value.length < 8) {
-                                  return AppLocalizations.of(context)!.passwordMustBeAtLeast8Characters;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.passwordMustBeAtLeast8Characters;
                                 }
                                 return null;
                               },
                             ),
                             const SizedBox(height: 20),
                             ATextField(
-                              label: AppLocalizations.of(context)!.confirmPassword,
-                              hint: AppLocalizations.of(context)!.confirmYourPasswords,
+                              label: AppLocalizations.of(
+                                context,
+                              )!.confirmPassword,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.confirmYourPasswords,
                               controller: confirmPassword,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return AppLocalizations.of(context)!.pleaseConfirmYourPassword;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.pleaseConfirmYourPassword;
                                 } else if (value != password.text) {
-                                  return AppLocalizations.of(context)!.passwordsDoNotMatch;
+                                  return AppLocalizations.of(
+                                    context,
+                                  )!.passwordsDoNotMatch;
                                 }
                                 return null;
                               },
@@ -136,8 +164,9 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(height: 20),
                             Text(
                               AppLocalizations.of(context)!.city,
-                              style: const TextStyle(
-                                color: Color(0xFF7A8469),
+                              style:  TextStyle(
+                                color: themeBloc.state.appTheme == "L" ?  const Color(0xFF5A5555):
+                                Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 20,
                               ),
@@ -167,14 +196,21 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
 
-                                items: [AppLocalizations.of(context)!.alexandria, AppLocalizations.of(context)!.cairo, AppLocalizations.of(context)!.giza]
-                                    .map(
-                                      (city) => DropdownMenuItem(
-                                        value: city,
-                                        child: Text(city),
-                                      ),
-                                    )
-                                    .toList(),
+                                items:
+                                    [
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.alexandria,
+                                          AppLocalizations.of(context)!.cairo,
+                                          AppLocalizations.of(context)!.giza,
+                                        ]
+                                        .map(
+                                          (city) => DropdownMenuItem(
+                                            value: city,
+                                            child: Text(city),
+                                          ),
+                                        )
+                                        .toList(),
                                 onChanged: (value) {
                                   setState(() {
                                     selectCity = value;
@@ -182,7 +218,9 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 validator: (value) {
                                   if (value == null) {
-                                    return AppLocalizations.of(context)!.pleaseSelectACity;
+                                    return AppLocalizations.of(
+                                      context,
+                                    )!.pleaseSelectACity;
                                   }
                                   return null;
                                 },
@@ -193,16 +231,35 @@ class _SignUpState extends State<SignUp> {
                               text: AppLocalizations.of(context)!.signUp,
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const MainScreen();
-                                      },
-                                    ),
-                                  );
+                                  Navigator.pushNamed(context, AppRoutes.mainApp);
                                 }
                               },
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.alreadyHaveAnAccount,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, AppRoutes.login);
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(context)!.login,
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 19,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

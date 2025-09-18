@@ -448,4 +448,5 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+  String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
 }

@@ -448,4 +448,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  String get alreadyHaveAnAccount => 'Already have an account?';
+
 }

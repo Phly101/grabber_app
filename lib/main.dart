@@ -11,6 +11,8 @@ import "package:grabber_app/UI/Profile/profile_tab.dart";
 import "package:grabber_app/UI/Schedule/schedule_screen.dart";
 import "package:grabber_app/UI/Search/search_tab.dart";
 import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
+import "package:grabber_app/UI/Settings/drawer/pages/language_page.dart";
+import "package:grabber_app/UI/Settings/drawer/pages/theme_page.dart";
 import "package:grabber_app/UI/SplashScreen/splash_screen.dart";
 import "package:grabber_app/UI/Summary/summary_screen.dart";
 import "package:grabber_app/UI/auth/login.dart";
@@ -93,6 +95,8 @@ class MyApp extends StatelessWidget {
                   AppRoutes.cart: (_) => const CartPage(),
                   AppRoutes.schedule: (_) => const ScheduleScreen(),
                   AppRoutes.splash: (_) => const SplashScreen(),
+                  AppRoutes.language:(_)=> const LanguagePage(),
+                  AppRoutes.theme:(_)=> const ThemePage(),
                 },
                 home: Container(
                   decoration: BoxDecoration(

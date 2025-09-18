@@ -10,6 +10,7 @@ class CustomListTile extends StatelessWidget {
   final Widget? widget;
   final List<Color> iconColors;
   final int? id;
+  final bool? isLocal;
 
   const CustomListTile({
     super.key,
@@ -20,6 +21,7 @@ class CustomListTile extends StatelessWidget {
     this.id,
     this.widget,
     this.icons,
+    this.isLocal,
   });
 
   @override
@@ -33,7 +35,14 @@ class CustomListTile extends StatelessWidget {
           width: 2,
         ),
         borderRadius: BorderRadius.circular(20),
-        gradient: _buildGradient(id ?? 0, themeId,),
+        gradient: (isLocal ?? false) ? _buildGradientLocal(
+          id ?? 0,
+          themeId,
+        ):
+        _buildGradient(
+          id ?? 0,
+          themeId,
+        ),
       ),
 
       child: ListTile(
@@ -45,6 +54,8 @@ class CustomListTile extends StatelessWidget {
           title,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onPrimary,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
         ),
       ),
@@ -105,4 +116,49 @@ Color _getIconColor(int id, String themeId, List<Color> iconColors) {
   }
 
   return iconColors[0];
+}
+
+LinearGradient _buildGradientLocal(
+  int id,
+  String themeId,
+) {
+  if (id == 0) {
+    if (themeId == "en") {
+      return const LinearGradient(
+        colors: [
+          AppColors.primaryLightColor,
+          AppColors.secondaryLightColor,
+          AppColors.secondaryDarkColor,
+        ],
+        begin: Alignment.bottomRight,
+        end: Alignment.topLeft,
+      );
+    } else {
+      return const LinearGradient(
+        colors: [Colors.black, Colors.grey, Colors.white],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
+    }
+  } else if (id == 1) {
+    if (themeId == "ar") {
+      return const LinearGradient(
+        colors: [
+          AppColors.primaryLightColor,
+          AppColors.secondaryLightColor,
+          AppColors.secondaryDarkColor,
+        ],
+        begin: Alignment.bottomRight,
+        end: Alignment.topLeft,
+      );
+    } else {
+      return const LinearGradient(
+        colors: [Colors.black, Colors.grey, Colors.white],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
+    }
+  }
+
+  return const LinearGradient(colors: [Colors.blue, Colors.purple]);
 }

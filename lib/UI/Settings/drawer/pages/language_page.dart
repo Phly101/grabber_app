@@ -1,6 +1,7 @@
 
 import "package:flutter/material.dart";
 import "package:grabber_app/UI/Settings/drawer/components/custom_list_tile.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 
 class LanguagePage extends StatefulWidget {
   const LanguagePage({super.key});
@@ -22,11 +23,12 @@ class _LanguagePageState extends State<LanguagePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomListTile(
-              themeId: "n",
+              themeId: "en",
               onTap: () {},
-              title: "English",
+              title: AppLocalizations.of(context)!.english,
               widget: Image.asset("Assets/Icons/english-language.png",scale: 15,),
               iconColors: [Colors.white, Colors.orangeAccent],
+              isLocal: true,
               id: 0,
             ),
             const SizedBox(height: 20),
@@ -34,10 +36,11 @@ class _LanguagePageState extends State<LanguagePage> {
             CustomListTile(
               themeId: "n",
               onTap: () {},
-              title: "Arabic",
+              title: AppLocalizations.of(context)!.arabic,
               widget: Image.asset("Assets/Icons/arabic.png",scale: 15,),
               iconColors: [Colors.white, Colors.orangeAccent],
               id: 1,
+              isLocal: true,
             ),
             const SizedBox(height: 20),
 

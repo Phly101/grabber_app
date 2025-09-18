@@ -28,36 +28,36 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run flutter pub outdated.
 dependencies:
- flutter:
-<<<<<<< HEAD
+  flutter:
+
     sdk: flutter
 
-=======
-   sdk: flutter
 
- flutter_localizations:
-   sdk: flutter
- intl: ^0.20.2
- shared_preferences: ^2.2.3
->>>>>>> new-feat-localization
- animated_splash_screen: ^1.3.0
- bottom_navbar_with_indicator: ^0.0.9
- cupertino_icons: ^1.0.8
- device_preview: ^1.3.1
- firebase_core: ^4.0.0
- carousel_slider: ^5.1.1
- flutter_launcher_icons: ^0.14.4
- page_transition: ^2.0.9
- shimmer: ^3.0.0
- shimmer_animation: ^2.2.2
- flutter_bloc: ^9.1.1
- table_calendar: ^3.2.0
-<<<<<<< HEAD
- font_awesome_flutter: ^10.10.0
- flutter_svg: ^2.2.1
- shared_preferences: ^2.5.3
-=======
->>>>>>> new-feat-localization
+
+
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  shared_preferences: ^2.2.3
+
+  animated_splash_screen: ^1.3.0
+  bottom_navbar_with_indicator: ^0.0.9
+  cupertino_icons: ^1.0.8
+  device_preview: ^1.3.1
+  firebase_core: ^4.0.0
+  carousel_slider: ^5.1.1
+  flutter_launcher_icons: ^0.14.4
+  page_transition: ^2.0.9
+  shimmer: ^3.0.0
+  shimmer_animation: ^2.2.2
+  flutter_bloc: ^9.1.1
+  table_calendar: ^3.2.0
+
+  font_awesome_flutter: ^10.10.0
+  flutter_svg: ^2.2.1
+
+
+
 
 
 
@@ -76,10 +76,10 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-<<<<<<< HEAD
-=======
+
+
   generate: true
->>>>>>> new-feat-localization
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
