@@ -37,7 +37,7 @@ class AppDrawer extends StatelessWidget {
 
             showDivider: true,
             onTap: () {
-              Navigator.pushNamed(context, AppRoutes.theme);
+              Navigator.pushNamed(context, AppRoutes.language);
             },
           ),
           DrawerItem(

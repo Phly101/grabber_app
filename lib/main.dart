@@ -109,7 +109,7 @@ class MyApp extends StatelessWidget {
                   ),
                   child: const SplashScreen(),
                 ),
-
+                themeMode: ThemeMode.system,
                 theme: themeState.appTheme == "L"
                     ? AppThemes.lightTheme
                     : AppThemes.darkTheme,

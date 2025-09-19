@@ -1,11 +1,7 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_card.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
-import "package:grabber_app/l10n/app_localizations.dart";
-
 class ProductListView extends StatelessWidget {
-
   final String title;
 
   const ProductListView({
@@ -21,22 +17,10 @@ class ProductListView extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(
-              title,
-              style: Theme.of(context).textTheme.titleMedium
-            ),
-            const Spacer(),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                AppLocalizations.of(context)!.seeAll,
-                style:  const TextStyle(
-                  color: AppColors.textButtonColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            Text(title, style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            )),
           ],
         ),
         const SizedBox(height: 10),

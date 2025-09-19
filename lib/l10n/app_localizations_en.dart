@@ -451,4 +451,5 @@ class AppLocalizationsEn extends AppLocalizations {
 
   String get alreadyHaveAnAccount => 'Already have an account?';
 
+
 }

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-
+import "package:grabber_app/common/custom_card_widget.dart";
 import "shimmer_image.dart";
 import "../../../../l10n/app_localizations.dart";
 
@@ -9,7 +9,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Card(
+    return CustomCardWidget(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -21,7 +21,7 @@ class CartItem extends StatelessWidget {
         title:  Text(
             AppLocalizations.of(context)!.bananaBundle300g,
           // TODO: Make product name dynamic from cart model
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
