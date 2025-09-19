@@ -19,8 +19,8 @@ class CartPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
 
-        title: const Text(
-          "Cart",
+        title:  Text(
+          AppLocalizations.of(context)!.cart,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,

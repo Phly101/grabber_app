@@ -80,7 +80,7 @@
   "locker": "Locker",
   "biscoff": "Biscoff",
   "tuc": "TUC",
-  "rating48": "4.8 (287)",
+  "rating48With287": "4.8 (287)",
   "offer30": "Up to 30% offer",
   "offer25": "Up to 25% offer",
   "getSameDayDeliver": "Get Same day\nDeliver",
@@ -147,6 +147,6 @@
      "home": "Home",
      "search": "Search",
      "profile": "Profile",
-     "settings": "Settings"
+     "settings": "Settings",
      "alreadyHaveAnAccount": "Already have an account?"
 }

@@ -17,7 +17,7 @@ class TableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return TableCalendar(
-        locale: sharedpref?.getString("lang") ?? "en",
+      locale: sharedPref?.getString("lang") ?? "en",
       daysOfWeekStyle: const DaysOfWeekStyle(
         weekdayStyle: const TextStyle(color: Colors.white), // Mon–Fri
         weekendStyle: TextStyle(color: Colors.red), // Sat–Sun

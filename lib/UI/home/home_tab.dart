@@ -40,19 +40,19 @@ class _HomeTabState extends State<HomeTab> {
           HomeCategory(
             onCategoryTap: (category) {
               switch (category) {
-                case "Fruits":
+                case "fruits":
                   scrollTo(fruitKey);
                   break;
-                case "Milk & egg":
+                case "milkAndEgg":
                   scrollTo(milkKey);
                   break;
-                case "Beverages":
+                case "beverages":
                   scrollTo(beveragesKey);
                   break;
-                case "Laundry":
+                case "laundry":
                   scrollTo(laundryKey);
                   break;
-                case "Vegetables":
+                case "vegetables":
                   scrollTo(vegetablesKey);
                   break;
                 case "Biscoff":

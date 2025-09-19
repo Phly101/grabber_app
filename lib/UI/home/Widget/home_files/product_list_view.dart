@@ -25,7 +25,7 @@ class ProductListView extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         AspectRatio(
-          aspectRatio: 1.3,
+          aspectRatio: 1.28,
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,

@@ -22,14 +22,15 @@ import "package:grabber_app/UI/home/home_tab.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:shared_preferences/shared_preferences.dart";
-import "Blocs/localization/localEvent.dart";
-import "Blocs/localization/localState.dart";
-import "Blocs/localization/localeBloc.dart";
+import "Blocs/localization/app_locale_Event.dart";
+import "Blocs/localization/app_locale_State.dart";
+import "Blocs/localization/app_locale_Bloc.dart";
 import "Utils/constants.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
+  sharedPref=await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -38,12 +39,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String savedLang = sharedpref?.getString("lang") ?? "en";
 
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => LocaleBloc()..add(ChangeLang(Locale(savedLang))),
+          create: (_) => LocaleBloc()..add(InitialLangEvent()),
         ),
         BlocProvider(
           create: (_) => AppThemeBloc()..add(InitialEvent()),
@@ -53,16 +53,14 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return BlocBuilder<LocaleBloc, LocaleState>(
             builder: (context, localeState) {
-              Locale currentLocale = const Locale("en");
-              if (localeState is LocalInitial) {
-                currentLocale = localeState.locale;
+              String locale = sharedPref!.getString("lang") ?? "en";
+              if (localeState is ChangeLang) {
+                locale = localeState.langCode!;
               }
-              if (localeState is LocaleUpdated) {
-                currentLocale = localeState.locale;
-              }
-              return MaterialApp(
+              return MaterialApp(//elasticOut   //easeOutSine
+                themeAnimationCurve:Curves.easeOutQuint,
                 debugShowCheckedModeBanner: false,
-                locale: currentLocale,
+                locale:Locale(locale),
                 supportedLocales: const [
                   Locale("en"),
                   Locale("ar"),
@@ -72,9 +70,19 @@ class MyApp extends StatelessWidget {
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
                 ],
+                localeResolutionCallback: (deviceLocale, supportedLocales) {
+                  for (var locale in supportedLocales) {
+                    if (deviceLocale != null) {
+                      if (deviceLocale.languageCode == locale.languageCode) {
+                        return deviceLocale;
+                      }
+                    }
+                  }
+                  return supportedLocales.first;
+                },
                 builder: (context, child) {
                   return Directionality(
-                    textDirection: currentLocale.languageCode == "ar"
+                    textDirection: locale == "ar"
                         ? TextDirection.rtl
                         : TextDirection.ltr,
                     child: child!,
@@ -91,7 +99,7 @@ class MyApp extends StatelessWidget {
                   AppRoutes.settings: (_) => const AppDrawer(),
                   AppRoutes.payment: (_) => const PaymentScreen(),
                   AppRoutes.checkout: (_) => const CheckoutScreen(),
-                  AppRoutes.summary: (_) => const SummaryScreen(),
+                  AppRoutes.summary: (_) => SummaryScreen(),
                   AppRoutes.cart: (_) => const CartPage(),
                   AppRoutes.schedule: (_) => const ScheduleScreen(),
                   AppRoutes.splash: (_) => const SplashScreen(),
