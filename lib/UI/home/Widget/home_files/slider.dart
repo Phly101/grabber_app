@@ -1,6 +1,6 @@
 import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/slider_widget.dart";
 import "../../../../l10n/app_localizations.dart";
 
@@ -17,13 +17,13 @@ class _HomeSliderState extends State<HomeSlider> {
       "image": "Assets/Images/SliderImage1.png",
       "text": "Up to 30% offer",
       "subText": "Enjoy our big offer",
-      "backgroundColor": LightThemeData.primaryLightColor,
+      "backgroundColor": AppColors.primaryLightColor,
     },
     {
       "image": "Assets/Images/SliderImage2.png",
       "text": "Up to 25% offer",
       "subText": "Enjoy our big offer",
-      "backgroundColor": LightThemeData.darkPrimaryColor,
+      "backgroundColor": AppColors.textButtonColor,
     },
     {
       "image": "Assets/Images/SliderImage3.png",
@@ -43,14 +43,14 @@ class _HomeSliderState extends State<HomeSlider> {
           "image": "Assets/Images/SliderImage1.png",
           "text": l10n.offer30,
           "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": LightThemeData.primaryLightColor,
+          "backgroundColor": AppColors.primaryLightColor,
           "isDark": false,
         },
         {
           "image": "Assets/Images/SliderImage2.png",
           "text": l10n.offer25,
           "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": LightThemeData.darkPrimaryColor,
+          "backgroundColor": AppColors.textButtonColor,
           "isDark": true,
         },
         {

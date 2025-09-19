@@ -1,12 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
-import "package:grabber_app/UI/auth/sign_up.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
-import "../../Theme/light_theme.dart" show LightThemeData;
 import "../../l10n/app_localizations.dart";
-import "../main_app/main_screen.dart";
 import "components/button.dart";
 import "components/text_field.dart";
 
@@ -41,7 +38,7 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     themeBloc.state.appTheme == "L"
-                        ? Image.asset("Assets/Images/Grabber.png")
+                        ? Image.asset("Assets/Images/Grabber222.png")
                         : Image.asset("Assets/Images/GrabberLogoDark.png"),
                     Padding(
                       padding: const EdgeInsets.symmetric(

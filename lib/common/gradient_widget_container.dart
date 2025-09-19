@@ -60,9 +60,7 @@ class GradientWidgetContainer extends StatelessWidget {
         final defaultSolid = (state.appTheme == "L")
             ? Colors.white
             : AppColors.darkSurface;
-
         final bool allowGradient = enableGradient ?? true;
-
         return Container(
           width: width,
           height: height,

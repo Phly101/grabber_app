@@ -1,10 +1,12 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
+import "package:grabber_app/common/custom_card_widget.dart";
 import "../../../../l10n/app_localizations.dart";
 
 class BuildProductCard extends StatefulWidget {
   final int index;
+
   const BuildProductCard({
     super.key,
     required this.index,
@@ -20,7 +22,7 @@ class _BuildProductCardState extends State<BuildProductCard> {
     super.didChangeDependencies();
     final l10n = AppLocalizations.of(context)!;
     setState(() {
-      products=[
+      products = [
         {
           "imagePath": "Assets/Images/Banana.png",
           "name": l10n.banana,
@@ -42,7 +44,7 @@ class _BuildProductCardState extends State<BuildProductCard> {
         {
           "imagePath": "Assets/Images/Strawberry.png",
           "name": l10n.strawberry,
-          "rate":  l10n.rating1,
+          "rate": l10n.rating1,
           "price": l10n.price4,
         },
         {
@@ -70,10 +72,9 @@ class _BuildProductCardState extends State<BuildProductCard> {
   @override
   Widget build(BuildContext context) {
     final product = products[widget.index];
-    return Card(
-      elevation: 3,
-
-
+    final theme = Theme.of(context);
+    return CustomCardWidget(
+      elevation: 6,
       margin: const EdgeInsets.all(10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Column(
@@ -98,7 +99,7 @@ class _BuildProductCardState extends State<BuildProductCard> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: LightThemeData.secondaryDarkColor,
+                    backgroundColor: AppColors.secondaryDarkColor,
                     minimumSize: const Size(25, 30),
                     padding: const EdgeInsets.all(10),
                     shape: const CircleBorder(),
@@ -118,29 +119,29 @@ class _BuildProductCardState extends State<BuildProductCard> {
                 children: [
                   Text(
                     product["name"],
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: theme.textTheme.bodyLarge,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
                   Row(
                     children: [
-                      const Icon(Icons.star, color: Color(0xFFFFD500), size: 13),
+                      const Icon(
+                        Icons.star,
+                        color: Color(0xFFFFD500),
+                        size: 13,
+                      ),
                       const SizedBox(width: 3),
                       Text(
                         product["rate"],
-                        style: const TextStyle(fontSize: 15,),
+                        style: theme.textTheme.bodyLarge,
                       ),
                     ],
                   ),
                   const SizedBox(height: 5),
                   Text(
                     product["price"],
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                    style: theme.textTheme.bodyLarge!.copyWith(
+                      color: AppColors.textButtonColor,
                     ),
                   ),
                 ],

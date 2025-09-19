@@ -1,6 +1,7 @@
 
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/common/custom_card_widget.dart";
 
 import "../../../l10n/app_localizations.dart";
 
@@ -19,7 +20,7 @@ class SuggestionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+  final theme =Theme.of(context);
 
 
     if (filteredProducts.isEmpty) {
@@ -37,8 +38,8 @@ class SuggestionsList extends StatelessWidget {
 
         separatorBuilder: (context, index) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
-          return Card(
-            elevation: 4,
+          return CustomCardWidget(
+            elevation: 6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,7 +53,7 @@ class SuggestionsList extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text(filteredProducts[index]),
+                  title: Text(filteredProducts[index],style: theme.textTheme.bodyLarge,),
                   subtitle: Row(
                     children: [
                       Image.asset("Assets/Icons/star.png"),
@@ -61,7 +62,7 @@ class SuggestionsList extends StatelessWidget {
                       Image.asset("Assets/Icons/star.png"),
 
                       const SizedBox(width: 4),
-                      const Text("4.8(287)"),
+                       Text("4.8(287)",style: theme.textTheme.bodyLarge,),
 
                     ],
                   ),
@@ -78,12 +79,12 @@ class SuggestionsList extends StatelessWidget {
                   ),
                 ),
 
-                const Padding(
-                  padding: EdgeInsets.only(left: 16, bottom: 16),
+                 Padding(
+                  padding: const EdgeInsets.only(left: 16, bottom: 16),
 
                   child: Text(
                     "\$3.99",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: theme.textTheme.bodyLarge!.copyWith(color: AppColors.textButtonColor)
                   ),
                 ),
               ],

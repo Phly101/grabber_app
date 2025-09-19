@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/common/custom_card_widget.dart";
 
 class ListItems extends StatelessWidget {
   final String? title;
@@ -14,7 +15,7 @@ class ListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return CustomCardWidget(
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),

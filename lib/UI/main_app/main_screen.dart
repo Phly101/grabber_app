@@ -1,5 +1,8 @@
-
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_svg/svg.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
 import "package:grabber_app/UI/Search/search_tab.dart";
@@ -10,75 +13,45 @@ import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
 class MainScreen extends StatefulWidget {
-
-
-
   const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
-
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
-  String dropdownValue = "Example street";
-
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final themeBloc = context.read<AppThemeBloc>();
     return Scaffold(
       key: _scaffoldKey,
 
-  // Create a GlobalKey for Scaffold
-
+      // Create a GlobalKey for Scaffold
       appBar: selectedIndex == 1
           ? null
           : AppBar(
               toolbarHeight: 120,
-
-              leading: Image.asset(
-                "Assets/Icons/motorcycleIcon.png",
-
-                color: theme.colorScheme.onPrimary,
-
+              leading: Center(
+                child: FaIcon(
+                  FontAwesomeIcons.motorcycle,
+                  color: theme.colorScheme.onPrimary,
+                ),
               ),
-              title: DropdownButton(
-                items: const [
-                  DropdownMenuItem<String>(
-                    value: "Example street",
-                    child: Text("Example street"),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: "Example street2",
-                    child: Text("Example street2"),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: "Example street3",
-                    child: Text("Example street3"),
-                  ),
-                ],
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownValue = newValue!;
-                  });
-                },
-                value: dropdownValue,
-              ),
+              title: themeBloc.state.appTheme == "L"
+                  ? Image.asset("Assets/Images/Grabber1.png")
+                  : Image.asset("Assets/Images/Grabber.png"),
+              // centerTitle: true,
               actions: [
-                // Image.asset("Assets/Icons/CartIcon.png", color: Colors.black)  ,
                 IconButton(
-
-                  icon: const ImageIcon(
-                    AssetImage("Assets/Icons/CartIcon.png"),
-                  ),
-                  onPressed: () {Navigator.pushNamed(context, AppRoutes.cart);
+                  icon: FaIcon(FontAwesomeIcons.cartShopping,color: theme.colorScheme.onPrimary,),
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.cart);
                   },
                 ),
-
               ],
             ),
 
@@ -88,12 +61,10 @@ class _MainScreenState extends State<MainScreen> {
         onTap: (index) {
           if (index == 3) {
             _scaffoldKey.currentState?.openEndDrawer();
-
           } else {
             setState(() {
               selectedIndex = index;
             });
-
           }
         },
 
@@ -108,8 +79,6 @@ class _MainScreenState extends State<MainScreen> {
         enableLineIndicator: true,
         lineIndicatorWidth: 3,
         indicatorType: IndicatorType.top,
-
-
 
         customBottomBarItems: [
           CustomBottomBarItems(
@@ -143,14 +112,12 @@ class _MainScreenState extends State<MainScreen> {
       ),
 
       endDrawer: const AppDrawer(),
-
     );
   }
 }
 
 var tabs = [
-  HomeTab(),
+  const HomeTab(),
   const SearchTab(),
   const ProfileTab(),
-
 ];

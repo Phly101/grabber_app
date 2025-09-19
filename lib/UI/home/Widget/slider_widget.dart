@@ -11,6 +11,7 @@ class SliderWidget extends StatelessWidget {
 //Todo: a variable of the block needs to be applied here for theming
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
@@ -31,12 +32,12 @@ class SliderWidget extends StatelessWidget {
                 children: [
                   Text(
                     slide["text"] ?? "",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: slide["isDark"] ? AppColors.white: AppColors.black),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     slide["subText"] ?? "",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: slide["isDark"] ? AppColors.white: AppColors.black),
                   ),
                   const SizedBox(height: 11),
                   ElevatedButton(
