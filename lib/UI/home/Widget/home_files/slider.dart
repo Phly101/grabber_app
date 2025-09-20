@@ -45,6 +45,7 @@ class _HomeSliderState extends State<HomeSlider> {
           "subText": l10n.enjoyOurBigOffer,
           "backgroundColor": AppColors.primaryLightColor,
           "isDark": false,
+          "isLight": true,
         },
         {
           "image": "Assets/Images/SliderImage2.png",
@@ -52,6 +53,7 @@ class _HomeSliderState extends State<HomeSlider> {
           "subText": l10n.enjoyOurBigOffer,
           "backgroundColor": AppColors.textButtonColor,
           "isDark": true,
+          "isLight": false,
         },
         {
           "image": "Assets/Images/SliderImage3.png",
@@ -59,6 +61,7 @@ class _HomeSliderState extends State<HomeSlider> {
           "subText": l10n.enjoyOurBigOffer,
           "backgroundColor": const Color(0xFFFFDB24),
           "isDark": false,
+          "isLight": false,
         },
       ];
     });

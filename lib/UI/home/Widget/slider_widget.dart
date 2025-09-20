@@ -8,15 +8,14 @@ class SliderWidget extends StatelessWidget {
     super.key,
     required this.slide,
   });
-//Todo: a variable of the block needs to be applied here for theming
+
+
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        height: 222,
-        width: MediaQuery.of(context).size.width * 0.83,
+
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(11),
           color: slide["backgroundColor"],
@@ -25,19 +24,27 @@ class SliderWidget extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 19),
+              padding: const EdgeInsets.only(left: 12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     slide["text"] ?? "",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: slide["isDark"] ? AppColors.white: AppColors.black),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: slide["isDark"]
+                          ? AppColors.white
+                          : AppColors.black,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     slide["subText"] ?? "",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(color: slide["isDark"] ? AppColors.white: AppColors.black),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: slide["isDark"]
+                          ? AppColors.white
+                          : AppColors.black,
+                    ),
                   ),
                   const SizedBox(height: 11),
                   ElevatedButton(
@@ -61,11 +68,11 @@ class SliderWidget extends StatelessWidget {
                       "Shop Now",
                       style: slide["isDark"]
                           ? Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: AppColors.textButtonColor,
-                      )
+                              color: AppColors.textButtonColor,
+                            )
                           : Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: AppColors.primaryLightColor,
-                      ),
+                              color: AppColors.primaryLightColor,
+                            ),
                     ),
                   ),
                 ],
@@ -74,8 +81,6 @@ class SliderWidget extends StatelessWidget {
             Flexible(
               child: Image.asset(
                 slide["image"],
-                height: 200,
-                width: 242,
                 alignment: Alignment.centerLeft,
               ),
             ),

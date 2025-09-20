@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/AboutScreen/about_screen.dart";
 import "package:grabber_app/UI/Cart/view/cart_page.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:grabber_app/UI/Payment/payment_screen.dart";
@@ -60,59 +61,64 @@ class MyApp extends StatelessWidget {
               if (localeState is LocaleUpdated) {
                 currentLocale = localeState.locale;
               }
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                locale: currentLocale,
-                supportedLocales: const [
-                  Locale("en"),
-                  Locale("ar"),
-                ],
-                localizationsDelegates: [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                builder: (context, child) {
-                  return Directionality(
-                    textDirection: currentLocale.languageCode == "ar"
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    child: child!,
-                  );
-                },
+              return AnimatedTheme(
+                data: themeState.appTheme == "L"? AppThemes.lightTheme: AppThemes.darkTheme,
+                duration: const Duration(milliseconds: 300),
+                child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  locale: currentLocale,
+                  supportedLocales: const [
+                    Locale("en"),
+                    Locale("ar"),
+                  ],
+                  localizationsDelegates: [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                  ],
+                  builder: (context, child) {
+                    return Directionality(
+                      textDirection: currentLocale.languageCode == "ar"
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      child: child!,
+                    );
+                  },
 
-                routes: {
-                  AppRoutes.mainApp: (_) => const MainScreen(),
-                  AppRoutes.login: (_) => const Login(),
-                  AppRoutes.signUp: (_) => const SignUp(),
-                  AppRoutes.home: (_) => const HomeTab(),
-                  AppRoutes.search: (_) => const SearchTab(),
-                  AppRoutes.profile: (_) => const ProfileTab(),
-                  AppRoutes.settings: (_) => const AppDrawer(),
-                  AppRoutes.payment: (_) => const PaymentScreen(),
-                  AppRoutes.checkout: (_) => const CheckoutScreen(),
-                  AppRoutes.summary: (_) => const SummaryScreen(),
-                  AppRoutes.cart: (_) => const CartPage(),
-                  AppRoutes.schedule: (_) => const ScheduleScreen(),
-                  AppRoutes.splash: (_) => const SplashScreen(),
-                  AppRoutes.language:(_)=> const LanguagePage(),
-                  AppRoutes.theme:(_)=> const ThemePage(),
-                },
-                home: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: themeState.appTheme == "L"
-                          ? const AssetImage("Assets/Images/lightSplash.png")
-                          : const AssetImage("Assets/Images/darkSplash.png"),
-                      fit: BoxFit.cover,
+                  routes: {
+                    AppRoutes.mainApp: (_) => const MainScreen(),
+                    AppRoutes.login: (_) => const Login(),
+                    AppRoutes.signUp: (_) => const SignUp(),
+                    AppRoutes.home: (_) => const HomeTab(),
+                    AppRoutes.search: (_) => const SearchTab(),
+                    AppRoutes.profile: (_) => const ProfileTab(),
+                    AppRoutes.settings: (_) => const AppDrawer(),
+                    AppRoutes.payment: (_) => const PaymentScreen(),
+                    AppRoutes.checkout: (_) => const CheckoutScreen(),
+                    AppRoutes.summary: (_) => const SummaryScreen(),
+                    AppRoutes.cart: (_) => const CartPage(),
+                    AppRoutes.schedule: (_) => const ScheduleScreen(),
+                    AppRoutes.splash: (_) => const SplashScreen(),
+                    AppRoutes.language:(_)=> const LanguagePage(),
+                    AppRoutes.theme:(_)=> const ThemePage(),
+                    AppRoutes.aboutScreen: (_)=> const AboutScreen(),
+                  },
+                  home: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: themeState.appTheme == "L"
+                            ? const AssetImage("Assets/Images/lightSplash.png")
+                            : const AssetImage("Assets/Images/darkSplash.png"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                    child: const SplashScreen(),
                   ),
-                  child: const SplashScreen(),
+                  themeMode: ThemeMode.system,
+                  theme: themeState.appTheme == "L"
+                      ? AppThemes.lightTheme
+                      : AppThemes.darkTheme,
                 ),
-                themeMode: ThemeMode.system,
-                theme: themeState.appTheme == "L"
-                    ? AppThemes.lightTheme
-                    : AppThemes.darkTheme,
               );
             },
           );
