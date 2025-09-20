@@ -4,7 +4,8 @@ import "package:grabber_app/Theme/theme.dart";
 
 class CustomListTile extends StatelessWidget {
   final String title;
-  final String themeId;
+  final String? themeId;
+  final String? localId;
   final GestureTapCallback onTap;
   final IconData? icons;
   final Widget? widget;
@@ -14,14 +15,16 @@ class CustomListTile extends StatelessWidget {
 
   const CustomListTile({
     super.key,
-    required this.themeId,
+
     required this.onTap,
     required this.title,
     required this.iconColors,
+    this.themeId,
     this.id,
     this.widget,
     this.icons,
     this.isLocal,
+    this.localId,
   });
 
   @override
@@ -35,21 +38,22 @@ class CustomListTile extends StatelessWidget {
           width: 2,
         ),
         borderRadius: BorderRadius.circular(20),
-        gradient: (isLocal ?? false) ? _buildGradientLocal(
-          id ?? 0,
-          themeId,
-        ):
-        _buildGradient(
-          id ?? 0,
-          themeId,
-        ),
+        gradient: (isLocal ?? false)
+            ? _buildGradientLocal(
+                id ?? 0,
+                localId ??  "en",
+              )
+            : _buildGradient(
+                id ?? 0,
+                themeId??"L",
+              ),
       ),
 
       child: ListTile(
         onTap: onTap,
         leading:
             widget ??
-            FaIcon(icons, color: _getIconColor(id!, themeId, iconColors)),
+            FaIcon(icons, color: _getIconColor(id!, themeId?? "L", iconColors)),
         title: Text(
           title,
           style: theme.textTheme.bodyMedium?.copyWith(
@@ -120,10 +124,10 @@ Color _getIconColor(int id, String themeId, List<Color> iconColors) {
 
 LinearGradient _buildGradientLocal(
   int id,
-  String themeId,
+  String localId,
 ) {
   if (id == 0) {
-    if (themeId == "en") {
+    if (localId == "en") {
       return const LinearGradient(
         colors: [
           AppColors.primaryLightColor,
@@ -141,7 +145,7 @@ LinearGradient _buildGradientLocal(
       );
     }
   } else if (id == 1) {
-    if (themeId == "ar") {
+    if (localId == "ar") {
       return const LinearGradient(
         colors: [
           AppColors.primaryLightColor,

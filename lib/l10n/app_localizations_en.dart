@@ -252,7 +252,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tuc => 'TUC';
 
   @override
-  String get rating48 => '4.8 (287)';
+  String get rating48With287 => '4.8 (287)';
 
   @override
   String get offer30 => 'Up to 30% offer';
@@ -449,7 +449,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get profile => 'Profile';
 
+  @override
   String get alreadyHaveAnAccount => 'Already have an account?';
-
-
 }

@@ -581,11 +581,11 @@ abstract class AppLocalizations {
   /// **'TUC'**
   String get tuc;
 
-  /// No description provided for @rating48.
+  /// No description provided for @rating48With287.
   ///
   /// In en, this message translates to:
   /// **'4.8 (287)'**
-  String get rating48;
+  String get rating48With287;
 
   /// No description provided for @offer30.
   ///
@@ -976,6 +976,11 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
   String get alreadyHaveAnAccount;
 }
 

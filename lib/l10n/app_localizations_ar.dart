@@ -252,7 +252,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tuc => 'توك';
 
   @override
-  String get rating48 => '4.8 (287)';
+  String get rating48With287 => '٤٫٨ (٢٨٧)';
 
   @override
   String get offer30 => 'خصم يصل إلى 30٪';
@@ -448,5 +448,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
   String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
 }

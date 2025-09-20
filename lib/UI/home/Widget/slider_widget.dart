@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/LocalizationHelper/localizationHelper.dart";
 import "package:grabber_app/Theme/theme.dart";
+
+import "../../../l10n/app_localizations.dart";
 
 class SliderWidget extends StatelessWidget {
   final Map<String, dynamic> slide;
@@ -31,12 +34,12 @@ class SliderWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    slide["text"] ?? "",
+                   LocalizationHelper.getString(context, slide["text"] ?? "") ,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(color: slide["isDark"] ? AppColors.white: AppColors.black),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    slide["subText"] ?? "",
+                   LocalizationHelper.getString(context,  slide["subText"] ?? ""),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(color: slide["isDark"] ? AppColors.white: AppColors.black),
                   ),
                   const SizedBox(height: 11),
@@ -58,7 +61,7 @@ class SliderWidget extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: Text(
-                      "Shop Now",
+                      AppLocalizations.of(context)!.shopNow,
                       style: slide["isDark"]
                           ? Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: AppColors.textButtonColor,

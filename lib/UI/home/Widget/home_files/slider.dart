@@ -15,54 +15,28 @@ class _HomeSliderState extends State<HomeSlider> {
   List<Map<String, dynamic>> sliderList = [
     {
       "image": "Assets/Images/SliderImage1.png",
-      "text": "Up to 30% offer",
-      "subText": "Enjoy our big offer",
+      "text": "offer30",
+      "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.primaryLightColor,
+      "isDark": false,
     },
     {
       "image": "Assets/Images/SliderImage2.png",
-      "text": "Up to 25% offer",
-      "subText": "Enjoy our big offer",
+      "text": "offer25",
+      "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.textButtonColor,
+      "isDark": false,
     },
     {
       "image": "Assets/Images/SliderImage3.png",
-      "text": "Get Same day\nDeliver",
-      "subText": "Enjoy our big offer",
+      "text": "getSameDayDeliver",
+      "subText": "enjoyOurBigOffer",
       "backgroundColor": const Color(0xFFFFDB24),
+      "isDark": false,
     },
   ];
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context)!;
-    setState(() {
-      sliderList = [
-        {
-          "image": "Assets/Images/SliderImage1.png",
-          "text": l10n.offer30,
-          "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": AppColors.primaryLightColor,
-          "isDark": false,
-        },
-        {
-          "image": "Assets/Images/SliderImage2.png",
-          "text": l10n.offer25,
-          "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": AppColors.textButtonColor,
-          "isDark": true,
-        },
-        {
-          "image": "Assets/Images/SliderImage3.png",
-          "text": l10n.getSameDayDeliver,
-          "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": const Color(0xFFFFDB24),
-          "isDark": false,
-        },
-      ];
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {

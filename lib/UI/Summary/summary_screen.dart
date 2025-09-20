@@ -1,43 +1,21 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/LocalizationHelper/localizationHelper.dart";
 
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Summary/Widgets/list_items.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "../../l10n/app_localizations.dart";
-class SummaryScreen extends StatefulWidget {
+class SummaryScreen extends StatelessWidget {
 
-
-  const SummaryScreen({super.key});
-
-  @override
-  State<SummaryScreen> createState() => _SummaryScreenState();
-}
-
-class _SummaryScreenState extends State<SummaryScreen> {
   List<List> items = [
-    ["4 bunch of banana (300g)", 3.45, 3],
-    ["Bell peppers (400g)", 1.70, 2],
-    ["Oranges (500g)", 6.30, 2],
-    ["Purex (250ml)", 2.90, 1],
-    ["Lemons (1Kg)", 7.88, 1],
-    ["Quadratini biscuit", 1.45, 1],
+    ["bananaBundle300g", 3.45, 3],
+    ["bellPeppers400g", 1.70, 2],
+    ["oranges500g", 6.30, 2],
+    ["purex250ml", 2.90, 1],
+    ["lemons1kg", 7.88, 1],
+    ["quadratiniBiscuit", 1.45, 1],
 
   ];
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context)!;
-    setState(() {
-      items=[
-        [l10n.bananaBundle300g, 3.45, 3],
-        [l10n.bellPeppers400g, 1.70, 2],
-        [l10n.oranges500g, 6.30, 2],
-        [l10n.purex250ml, 2.90, 1],
-        [l10n.lemons1kg, 7.88, 1],
-        [l10n.quadratiniBiscuit, 1.45, 1],
-      ];
-    },);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +85,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
               itemBuilder: (BuildContext context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListItems(
-                  title: items[index][0],
+                  title:LocalizationHelper.getString(context, items[index][0]),
                   count: items[index][2],
                   price: items[index][1],
                 ),
@@ -122,7 +100,6 @@ class _SummaryScreenState extends State<SummaryScreen> {
     );
   }
 }
-
 
 num subTotal(List<List> prices) {
   num subTotal = 0;
