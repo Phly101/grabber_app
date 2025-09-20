@@ -2,9 +2,9 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/UI/Settings/drawer/components/custom_list_tile.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
-import "../../../../Blocs/localization/app_locale_Bloc.dart";
-import "../../../../Blocs/localization/app_locale_Event.dart";
-import "../../../../Blocs/localization/app_locale_State.dart";
+import "../../../../Blocs/localization/app_locale_bloc.dart";
+import "../../../../Blocs/localization/app_locale_event.dart";
+import "../../../../Blocs/localization/app_locale_state.dart";
 
 class LanguagePage extends StatefulWidget {
   const LanguagePage({super.key});
@@ -26,7 +26,8 @@ class _LanguagePageState extends State<LanguagePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomListTile(
-                  themeId: "en",
+
+                  localId: state.langCode,
                   onTap: () {
                     BlocProvider.of<LocaleBloc>(context).add(EnglishLangEvent());
                   },
@@ -42,7 +43,7 @@ class _LanguagePageState extends State<LanguagePage> {
                 const SizedBox(height: 20),
 
                 CustomListTile(
-                  themeId: "n",
+                  localId: state.langCode,
                   onTap: () {
                     BlocProvider.of<LocaleBloc>(context).add(ArabicLangEvent());
                   },

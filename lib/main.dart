@@ -22,9 +22,9 @@ import "package:grabber_app/UI/home/home_tab.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:shared_preferences/shared_preferences.dart";
-import "Blocs/localization/app_locale_Event.dart";
-import "Blocs/localization/app_locale_State.dart";
-import "Blocs/localization/app_locale_Bloc.dart";
+import "Blocs/localization/app_locale_event.dart";
+import "Blocs/localization/app_locale_state.dart";
+import "Blocs/localization/app_locale_bloc.dart";
 import "Utils/constants.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 void main() async {

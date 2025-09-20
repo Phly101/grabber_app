@@ -1,10 +1,10 @@
 import "package:flutter_bloc/flutter_bloc.dart";
 import "../../Utils/constants.dart";
-import "app_locale_Event.dart";
-import "app_locale_State.dart";
+import "app_locale_event.dart";
+import "app_locale_state.dart";
 
 class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
-  LocaleBloc() : super(InitialLangState()) {
+  LocaleBloc() : super(InitialLangState(langCode: "en")) {
     on<LocaleEvent>((event, emit) async {
       if (event is InitialLangEvent) {
         if (sharedPref?.getString("lang") != null) {
