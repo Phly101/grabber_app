@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/AboutScreen/about_screen.dart";
 import "package:grabber_app/UI/Cart/view/cart_page.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:grabber_app/UI/Payment/payment_screen.dart";
@@ -27,10 +28,12 @@ import "Blocs/localization/app_locale_state.dart";
 import "Blocs/localization/app_locale_bloc.dart";
 import "Utils/constants.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
-  sharedPref=await SharedPreferences.getInstance();
+  sharedPref = await SharedPreferences.getInstance();
+
   runApp(const MyApp());
 }
 
@@ -39,7 +42,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -55,72 +57,79 @@ class MyApp extends StatelessWidget {
             builder: (context, localeState) {
               String locale = sharedPref!.getString("lang") ?? "en";
               if (localeState is ChangeLang) {
-                locale = localeState.langCode!;
+                locale = localeState.langCode;
               }
-              return MaterialApp(//elasticOut   //easeOutSine
-                themeAnimationCurve:Curves.easeOutQuint,
-                debugShowCheckedModeBanner: false,
-                locale:Locale(locale),
-                supportedLocales: const [
-                  Locale("en"),
-                  Locale("ar"),
-                ],
-                localizationsDelegates: [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                localeResolutionCallback: (deviceLocale, supportedLocales) {
-                  for (var locale in supportedLocales) {
-                    if (deviceLocale != null) {
-                      if (deviceLocale.languageCode == locale.languageCode) {
-                        return deviceLocale;
-                      }
-                    }
-                  }
-                  return supportedLocales.first;
-                },
-                builder: (context, child) {
-                  return Directionality(
-                    textDirection: locale == "ar"
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    child: child!,
-                  );
-                },
 
-                routes: {
-                  AppRoutes.mainApp: (_) => const MainScreen(),
-                  AppRoutes.login: (_) => const Login(),
-                  AppRoutes.signUp: (_) => const SignUp(),
-                  AppRoutes.home: (_) => const HomeTab(),
-                  AppRoutes.search: (_) => const SearchTab(),
-                  AppRoutes.profile: (_) => const ProfileTab(),
-                  AppRoutes.settings: (_) => const AppDrawer(),
-                  AppRoutes.payment: (_) => const PaymentScreen(),
-                  AppRoutes.checkout: (_) => const CheckoutScreen(),
-                  AppRoutes.summary: (_) => SummaryScreen(),
-                  AppRoutes.cart: (_) => const CartPage(),
-                  AppRoutes.schedule: (_) => const ScheduleScreen(),
-                  AppRoutes.splash: (_) => const SplashScreen(),
-                  AppRoutes.language:(_)=> const LanguagePage(),
-                  AppRoutes.theme:(_)=> const ThemePage(),
-                },
-                home: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: themeState.appTheme == "L"
-                          ? const AssetImage("Assets/Images/lightSplash.png")
-                          : const AssetImage("Assets/Images/darkSplash.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: const SplashScreen(),
-                ),
-                themeMode: ThemeMode.system,
-                theme: themeState.appTheme == "L"
+              return AnimatedTheme(
+                data: themeState.appTheme == "L"
                     ? AppThemes.lightTheme
                     : AppThemes.darkTheme,
+                duration: const Duration(milliseconds: 300),
+                child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  locale: Locale(locale),
+                  supportedLocales: const [
+                    Locale("en"),
+                    Locale("ar"),
+                  ],
+                  localizationsDelegates: [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                  ],
+                  localeResolutionCallback: (deviceLocale, supportedLocales) {
+                    for (var locale in supportedLocales) {
+                      if (deviceLocale != null) {
+                        if (deviceLocale.languageCode == locale.languageCode) {
+                          return deviceLocale;
+                        }
+                      }
+                    }
+                    return supportedLocales.first;
+                  },
+                  builder: (context, child) {
+                    return Directionality(
+                      textDirection: locale == "ar"
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      child: child!,
+                    );
+                  },
+
+                  routes: {
+                    AppRoutes.mainApp: (_) => const MainScreen(),
+                    AppRoutes.login: (_) => const Login(),
+                    AppRoutes.signUp: (_) => const SignUp(),
+                    AppRoutes.home: (_) => const HomeTab(),
+                    AppRoutes.search: (_) => const SearchTab(),
+                    AppRoutes.profile: (_) => const ProfileTab(),
+                    AppRoutes.settings: (_) => const AppDrawer(),
+                    AppRoutes.payment: (_) => const PaymentScreen(),
+                    AppRoutes.checkout: (_) => const CheckoutScreen(),
+                    AppRoutes.summary: (_) => SummaryScreen(),
+                    AppRoutes.cart: (_) => const CartPage(),
+                    AppRoutes.schedule: (_) => const ScheduleScreen(),
+                    AppRoutes.splash: (_) => const SplashScreen(),
+                    AppRoutes.language: (_) => const LanguagePage(),
+                    AppRoutes.theme: (_) => const ThemePage(),
+                    AppRoutes.aboutScreen: (_) => const AboutScreen(),
+                  },
+                  home: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: themeState.appTheme == "L"
+                            ? const AssetImage("Assets/Images/lightSplash.png")
+                            : const AssetImage("Assets/Images/darkSplash.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: const SplashScreen(),
+                  ),
+                  themeMode: ThemeMode.system,
+                  theme: themeState.appTheme == "L"
+                      ? AppThemes.lightTheme
+                      : AppThemes.darkTheme,
+                ),
               );
             },
           );

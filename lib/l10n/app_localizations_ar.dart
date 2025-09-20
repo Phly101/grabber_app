@@ -451,4 +451,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
+  @override
+  String get developedBy => 'تم التطوير بواسطة';
+
+  @override
+  String get developerEmail => 'البريد الإلكتروني';
+
+  @override
+  String get website => 'الموقع الإلكتروني';
+
+  @override
+  String get viewOpenSourceLicenses => 'عرض تراخيص المصدر المفتوح';
+
+  @override
+  String get appDescriptionLine1 => 'غرابر هو رفيقك الذكي لقائمة التسوق.';
+
+  @override
+  String get appDescriptionLine2 => 'أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.';
+
+  @override
+  String get appDescriptionLine3 => 'سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.';
+
+
+
 }

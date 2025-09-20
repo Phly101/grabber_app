@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../../l10n/app_localizations.dart";
 
@@ -48,7 +48,7 @@ class LogoutDialog extends StatelessWidget {
                   ),
                   onPressed: () {
                     // TODO: Add logout logic here (clear tokens, clear Hive/SharedPreferences, navigate to login)
-                    Navigator.pop(context);
+                    Navigator.popAndPushNamed(context, AppRoutes.login);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.yes,
@@ -57,7 +57,7 @@ class LogoutDialog extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  // TODO: Localize button text
+
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -80,7 +80,7 @@ class LogoutDialog extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
-                  // TODO: Localize button text
+
                 ),
               ],
             ),

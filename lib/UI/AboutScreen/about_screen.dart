@@ -3,6 +3,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/Utils/routes.dart";
+import "../../../l10n/app_localizations.dart";
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -11,15 +12,20 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final blocTheme = context.read<AppThemeBloc>();
+    final loc = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context, AppRoutes.profile);
-        }, icon: Icon(Icons.arrow_back_ios,color: theme.colorScheme.onPrimary,)),
-        title: Text("About Grabber",style: theme.textTheme.titleLarge!.copyWith(
-          color:  AppColors.white
-        ),),
-
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context, AppRoutes.profile);
+          },
+          icon: Icon(Icons.arrow_back_ios, color: theme.colorScheme.onPrimary),
+        ),
+        title: Text(
+          "Grabber",
+          style: theme.textTheme.titleLarge!.copyWith(color: AppColors.white),
+        ),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -35,93 +41,137 @@ class AboutScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  "Gragger",
+                  "Grabber",
                   style: theme.textTheme.titleLarge!.copyWith(
-                      color: blocTheme.state.appTheme == "L"? AppColors.textButtonColor : AppColors.white)
+                    color: blocTheme.state.appTheme == "L"
+                        ? AppColors.textButtonColor
+                        : AppColors.white,
+                  ),
                 ),
-                 const SizedBox(height: 10,),
-                 Text(
+                const SizedBox(height: 10),
+                Text(
                   "Version 1.0.0",
                   style: theme.textTheme.bodyLarge!.copyWith(
-                      color: Colors.grey)
+                    color: Colors.grey,
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
 
-
             Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              elevation: 2,
-              child:  Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "Grabber is your smart shopping list companion. "
-                      "Easily add groceries, track quantities, and stay organized. "
-                      "Whether at home or in the store, Gragger keeps your shopping hassle-free.",
-                  style: theme.textTheme.bodyLarge!.copyWith(
-                      color: blocTheme.state.appTheme == "L"? AppColors.textButtonColor : AppColors.white),
-                  textAlign: TextAlign.center,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(
+                          Icons.shopping_cart,
+                          color: Colors.green,
+                          size: 28,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "Grabber" ,
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      loc.appDescriptionLine1,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      loc.appDescriptionLine2,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      loc.appDescriptionLine3,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
                 ),
               ),
             ),
+
             const SizedBox(height: 20),
 
-
             Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
               elevation: 2,
-              child:  const Column(
+              child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.person, color: Colors.green),
-                    title: Text("Developed by"),
-                    subtitle: Text("MSB"),
+                    leading: const Icon(Icons.person, color: Colors.green),
+                    title: Text(loc.developedBy),
+                    subtitle: const Text("MSB"),
                   ),
-                  Divider(height: 0,color: AppColors.white,),
+                  Divider(height: 0, color: theme.colorScheme.onPrimary),
                   Padding(
-                    padding: EdgeInsets.all(1.0),
+                    padding: const EdgeInsets.all(1.0),
                     child: ListTile(
-                      leading: Icon(Icons.email, color: Colors.green),
-                      title: Text("Email"),
-                      subtitle: Text("basel.10@gmail.com"),
+                      leading: const Icon(Icons.email, color: Colors.green),
+                      title: Text(loc.developerEmail),
+                      subtitle: const Text("basel.10@gmail.com"),
                     ),
                   ),
-                  Divider(height: 0,color:AppColors.white,),
+                  Divider(height: 0, color: theme.colorScheme.onPrimary),
                   ListTile(
-                    leading: Icon(Icons.public, color: Colors.green),
-                    title: Text("Website"),
-                    subtitle: Text("www.grabber.com"),
+                    leading: const Icon(Icons.public, color: Colors.green),
+                    title: Text(loc.website),
+                    subtitle: const Text("www.grabber.com"),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 20),
 
-
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green[600],
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
               icon: const Icon(Icons.article_outlined, color: Colors.white),
-              label:  Text("View Open Source Licenses", style: theme.textTheme.bodyLarge!.copyWith(
-                  color: AppColors.white)),
+              label: Text(
+                loc.viewOpenSourceLicenses,
+                style: theme.textTheme.bodyLarge!.copyWith(
+                  color: AppColors.white,
+                ),
+              ),
               onPressed: () {
                 showLicensePage(
                   context: context,
                   applicationName: "Grabber",
                   applicationVersion: "1.0.0",
-                  applicationLegalese: "© 2025 Gragger. All rights reserved.",
+                  applicationLegalese: "© 2025 Grabber. All rights reserved.",
                 );
               },
             ),
             const SizedBox(height: 30),
 
-
             Text(
-              "© 2025 Gragger. All rights reserved.",
+              "© 2025 Grabber. All rights reserved.",
               style: theme.textTheme.bodyLarge!.copyWith(color: Colors.grey),
               textAlign: TextAlign.center,
             ),

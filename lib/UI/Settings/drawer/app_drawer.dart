@@ -2,8 +2,6 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "../../../Theme/theme.dart" show AppColors;
-import "pages/language_page.dart";
-import "pages/theme_page.dart";
 import "components/drawer_item.dart";
 import "components/drawer_header.dart";
 import "components/drawer_footer.dart";

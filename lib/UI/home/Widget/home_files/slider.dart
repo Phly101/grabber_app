@@ -2,7 +2,7 @@ import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/slider_widget.dart";
-import "../../../../l10n/app_localizations.dart";
+
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -19,13 +19,15 @@ class _HomeSliderState extends State<HomeSlider> {
       "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.primaryLightColor,
       "isDark": false,
+
     },
     {
       "image": "Assets/Images/SliderImage2.png",
       "text": "offer25",
       "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.textButtonColor,
-      "isDark": false,
+      "isDark": true,
+
     },
     {
       "image": "Assets/Images/SliderImage3.png",
@@ -35,7 +37,6 @@ class _HomeSliderState extends State<HomeSlider> {
       "isDark": false,
     },
   ];
-
 
 
   @override
