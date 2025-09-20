@@ -1,16 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/light_theme.dart";
+import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_card.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_row.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_text_field.dart";
-import "package:grabber_app/UI/checkout/checkout_screen.dart";
-
+import "package:grabber_app/Utils/routes.dart";
+import "../../../../l10n/app_localizations.dart";
 
 class PaymentScreen extends StatefulWidget {
-  static String routeName = "PaymentScreen";
-
   const PaymentScreen({super.key});
 
   @override
@@ -23,25 +21,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String price = "\$49.00";
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    option = AppLocalizations.of(context)!.payWithCard;
     currentOption = option;
   }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
-        shadowColor: Colors.transparent,
-        backgroundColor: LightThemeData.surfaceColor,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, CheckoutScreen.routeName);
+            Navigator.pushNamed(context, AppRoutes.checkout);
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: Text("Payment", style: Theme.of(context).textTheme.titleMedium),
+        title: Text(AppLocalizations.of(context)!.payment, style: Theme.of(context).textTheme.titleLarge),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -50,33 +47,45 @@ class _PaymentScreenState extends State<PaymentScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Divider(
-              color: LightThemeData.blackColor.withValues(alpha: 0.5),
+              color: theme.colorScheme.onPrimary.withValues(alpha: 0.5),
               height: 2,
             ),
             CustomRow(option: option, url: "Assets/Icons/credit-card.png"),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
-                "Card number",
-                style: Theme.of(context).textTheme.titleMedium,
+                AppLocalizations.of(context)!.cardNumber,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.bold
+                ),
               ),
             ),
             CustomTextField(),
             CustomCard(),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Container(
-                width: double.infinity,
-                height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).colorScheme.secondary,
-
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  width: double.infinity,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.textButtonColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.confirmAndPay49,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.white),
+                    ),
+                  ),
                 ),
-                child: Center(child: Text("Confirm and Pay ($price)",style: Theme.of(context).textTheme.bodyMedium,)),
-
               ),
-            )
+            ),
           ],
         ),
       ),

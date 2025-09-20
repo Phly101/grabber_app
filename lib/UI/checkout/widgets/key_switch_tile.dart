@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class KeySwitchTile extends StatelessWidget {
   final String label;
@@ -14,12 +14,14 @@ class KeySwitchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ListTile(
+
       title: Text(label),
-      tileColor: Color(0xFFF6F6F6),
+      tileColor: theme.colorScheme.surface,
       trailing: Switch(
         value: value,
-        activeTrackColor: Color(0xFF0CA201),
+        activeTrackColor: const Color(0xFF0CA201),
         inactiveThumbColor: Colors.white,
         onChanged: onChanged,
       ),
