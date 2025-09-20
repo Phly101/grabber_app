@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../../l10n/app_localizations.dart";

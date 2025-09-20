@@ -19,7 +19,7 @@ class TableWidget extends StatelessWidget {
     return TableCalendar(
       locale: sharedPref?.getString("lang") ?? "en",
       daysOfWeekStyle: const DaysOfWeekStyle(
-        weekdayStyle: const TextStyle(color: Colors.white), // Mon–Fri
+        weekdayStyle: TextStyle(color: Colors.white), // Mon–Fri
         weekendStyle: TextStyle(color: Colors.red), // Sat–Sun
       ),
 

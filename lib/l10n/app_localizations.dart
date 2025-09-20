@@ -982,6 +982,15 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already have an account?'**
   String get alreadyHaveAnAccount;
+
+  String get developedBy;
+  String get developerEmail;
+  String get website;
+  String get viewOpenSourceLicenses;
+  String get appDescriptionLine1;
+  String get appDescriptionLine2;
+  String get appDescriptionLine3;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

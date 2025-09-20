@@ -15,24 +15,24 @@ class _HomeSliderState extends State<HomeSlider> {
   List<Map<String, dynamic>> sliderList = [
     {
       "image": "Assets/Images/SliderImage1.png",
-      "text": "Up to 30% offer",
-      "subText": "Enjoy Our Big Offer",
+      "text": "offer30",
+      "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.primaryLightColor,
       "isDark": false,
 
     },
     {
       "image": "Assets/Images/SliderImage2.png",
-      "text": "Up to 25% offer",
-      "subText": "Enjoy Our Big Offer",
+      "text": "offer25",
+      "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.textButtonColor,
-      "isDark": false,
+      "isDark": true,
 
     },
     {
       "image": "Assets/Images/SliderImage3.png",
-      "text": "Get Same Day Deliver",
-      "subText": "Enjoy Our Big Offer",
+      "text": "getSameDayDeliver",
+      "subText": "enjoyOurBigOffer",
       "backgroundColor": const Color(0xFFFFDB24),
       "isDark": false,
     },

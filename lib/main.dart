@@ -60,9 +60,6 @@ class MyApp extends StatelessWidget {
                 locale = localeState.langCode;
               }
 
-              if (localeState is LocaleUpdated) {
-                currentLocale = localeState.locale;
-              }
               return AnimatedTheme(
                 data: themeState.appTheme == "L"
                     ? AppThemes.lightTheme

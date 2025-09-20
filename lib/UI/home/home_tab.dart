@@ -54,7 +54,7 @@ class _HomeTabState extends State<HomeTab> {
                 case "vegetables":
                   scrollTo(vegetablesKey);
                   break;
-                case "Biscoff":
+                case "Biscuit":
                   scrollTo(biscuitKey);
                   break;
                 case "Detergent":

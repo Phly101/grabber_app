@@ -451,4 +451,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAnAccount => 'Already have an account?';
+  @override
+  String get developedBy => 'Developed by';
+
+  @override
+  String get developerEmail => 'Email';
+
+  @override
+  String get website => 'Website';
+
+  @override
+  String get viewOpenSourceLicenses => 'View Open Source Licenses';
+
+  @override
+  String get appDescriptionLine1 => 'Grabber is your smart shopping list companion.';
+
+  @override
+  String get appDescriptionLine2 => 'Easily add groceries, track quantities, and stay organized.';
+
+  @override
+  String get appDescriptionLine3 => 'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
+
+
 }

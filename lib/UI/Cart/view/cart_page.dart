@@ -24,7 +24,7 @@ class CartPage extends StatelessWidget {
 
         title:  Text(
           AppLocalizations.of(context)!.cart,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [

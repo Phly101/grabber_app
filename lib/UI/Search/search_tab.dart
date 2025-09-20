@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "../../LocalizationHelper/localizationHelper.dart";
+import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "widgets/suggestions.dart";
 import "../../l10n/app_localizations.dart";
 

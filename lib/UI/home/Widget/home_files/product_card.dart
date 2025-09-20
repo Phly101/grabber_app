@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
-import "../../../../LocalizationHelper/localizationHelper.dart";
-import "../../../../l10n/app_localizations.dart";
+
 
 class BuildProductCard extends StatelessWidget {
   final int index;
