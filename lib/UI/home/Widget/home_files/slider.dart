@@ -2,7 +2,7 @@ import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/slider_widget.dart";
-import "../../../../l10n/app_localizations.dart";
+
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -16,56 +16,28 @@ class _HomeSliderState extends State<HomeSlider> {
     {
       "image": "Assets/Images/SliderImage1.png",
       "text": "Up to 30% offer",
-      "subText": "Enjoy our big offer",
+      "subText": "Enjoy Our Big Offer",
       "backgroundColor": AppColors.primaryLightColor,
+      "isDark": false,
+
     },
     {
       "image": "Assets/Images/SliderImage2.png",
       "text": "Up to 25% offer",
-      "subText": "Enjoy our big offer",
+      "subText": "Enjoy Our Big Offer",
       "backgroundColor": AppColors.textButtonColor,
+      "isDark": false,
+
     },
     {
       "image": "Assets/Images/SliderImage3.png",
-      "text": "Get Same day\nDeliver",
-      "subText": "Enjoy our big offer",
+      "text": "Get Same Day Deliver",
+      "subText": "Enjoy Our Big Offer",
       "backgroundColor": const Color(0xFFFFDB24),
+      "isDark": false,
     },
   ];
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context)!;
-    setState(() {
-      sliderList = [
-        {
-          "image": "Assets/Images/SliderImage1.png",
-          "text": l10n.offer30,
-          "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": AppColors.primaryLightColor,
-          "isDark": false,
-          "isLight": true,
-        },
-        {
-          "image": "Assets/Images/SliderImage2.png",
-          "text": l10n.offer25,
-          "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": AppColors.textButtonColor,
-          "isDark": true,
-          "isLight": false,
-        },
-        {
-          "image": "Assets/Images/SliderImage3.png",
-          "text": l10n.getSameDayDeliver,
-          "subText": l10n.enjoyOurBigOffer,
-          "backgroundColor": const Color(0xFFFFDB24),
-          "isDark": false,
-          "isLight": false,
-        },
-      ];
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

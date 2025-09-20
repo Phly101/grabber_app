@@ -2,7 +2,6 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Utils/constants.dart";
 
 part "app_theme_event.dart";
-
 part "app_theme_state.dart";
 class AppThemeBloc extends Bloc<AppThemeEvent, AppThemeState> {
   AppThemeBloc() : super(_getInitialTheme()) {

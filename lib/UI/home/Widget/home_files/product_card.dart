@@ -2,9 +2,10 @@ import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
+import "../../../../LocalizationHelper/localizationHelper.dart";
 import "../../../../l10n/app_localizations.dart";
 
-class BuildProductCard extends StatefulWidget {
+class BuildProductCard extends StatelessWidget {
   final int index;
 
   const BuildProductCard({
@@ -13,65 +14,8 @@ class BuildProductCard extends StatefulWidget {
   });
 
   @override
-  State<BuildProductCard> createState() => _BuildProductCardState();
-}
-
-class _BuildProductCardState extends State<BuildProductCard> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context)!;
-    setState(() {
-      products = [
-        {
-          "imagePath": "Assets/Images/Banana.png",
-          "name": l10n.banana,
-          "rate": l10n.rating1,
-          "price": l10n.price1,
-        },
-        {
-          "imagePath": "Assets/Images/Frame 400 (1).png",
-          "name": l10n.pepper,
-          "rate": l10n.rating1,
-          "price": l10n.price2,
-        },
-        {
-          "imagePath": "Assets/Images/Orange.png",
-          "name": l10n.orange,
-          "rate": l10n.rating1,
-          "price": l10n.price3,
-        },
-        {
-          "imagePath": "Assets/Images/Strawberry.png",
-          "name": l10n.strawberry,
-          "rate": l10n.rating1,
-          "price": l10n.price4,
-        },
-        {
-          "imagePath": "Assets/Images/Lemon.png",
-          "name": l10n.lemon,
-          "rate": l10n.rating1,
-          "price": l10n.price5,
-        },
-        {
-          "imagePath": "Assets/Images/Watermelon.png",
-          "name": l10n.waterMelon,
-          "rate": l10n.rating1,
-          "price": l10n.price6,
-        },
-        {
-          "imagePath": "Assets/Images/Apple.png",
-          "name": l10n.apple,
-          "rate": l10n.rating1,
-          "price": l10n.price6,
-        },
-      ];
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final product = products[widget.index];
+    final product = products[index];
     final theme = Theme.of(context);
     return CustomCardWidget(
       elevation: 6,
@@ -118,7 +62,7 @@ class _BuildProductCardState extends State<BuildProductCard> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    product["name"],
+                    LocalizationHelper.getString(context, product["name"]),
                     style: theme.textTheme.bodyLarge,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -132,14 +76,14 @@ class _BuildProductCardState extends State<BuildProductCard> {
                       ),
                       const SizedBox(width: 3),
                       Text(
-                        product["rate"],
+                       LocalizationHelper.getString(context, product["rating48With287"]) ,
                         style: theme.textTheme.bodyLarge,
                       ),
                     ],
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    product["price"],
+                   LocalizationHelper.getString(context, product["price1"]),
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,
                     ),

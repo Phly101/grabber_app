@@ -1,9 +1,7 @@
-
 import "package:flutter/material.dart";
+import "../../LocalizationHelper/localizationHelper.dart";
 import "widgets/suggestions.dart";
 import "../../l10n/app_localizations.dart";
-
-
 
 class SearchTab extends StatefulWidget {
   static const String routeName = "Search_tab";
@@ -17,32 +15,16 @@ class SearchTab extends StatefulWidget {
 class _SearchTabState extends State<SearchTab> {
   TextEditingController searchController = TextEditingController();
   String searchText = "";
-  List<String> allProducts = ["Banana", "Apple", "Grapes", "Pineapple"];
+  List<String> allProducts = ["banana", "apple", "grapes", "pineapple"];
   List<String> filteredProducts = [];
-
-  @override
-
-  void initState() {
-    super.initState();
-
-    void didChangeDependencies() {
-      super.didChangeDependencies();
-      allProducts = [
-        AppLocalizations.of(context)!.banana,
-        AppLocalizations.of(context)!.apple,
-        AppLocalizations.of(context)!.grapes,
-        AppLocalizations.of(context)!.pineapple,
-      ];
-
-      filteredProducts = allProducts;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
-
+    List<String> localizedProducts = allProducts
+        .map((key) => LocalizationHelper.getString(context, key))
+        .toList();
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 50, right: 16),
       child: Column(
@@ -59,7 +41,7 @@ class _SearchTabState extends State<SearchTab> {
                   onPressed: () {
                     searchText = "";
                     searchController.clear();
-                    filteredProducts = allProducts;
+                    filteredProducts = localizedProducts;
                     setState(() {});
                   },
 
@@ -73,7 +55,7 @@ class _SearchTabState extends State<SearchTab> {
             onChanged: (value) {
               setState(() {
                 searchText = value;
-                filteredProducts = allProducts
+                filteredProducts = localizedProducts
                     .where(
                       (suggestion) => suggestion.toLowerCase().contains(
                         value.toLowerCase(),
