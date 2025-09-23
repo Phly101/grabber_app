@@ -3,6 +3,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/AboutScreen/about_screen.dart";
 import "package:grabber_app/UI/Cart/view/cart_page.dart";
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => AppThemeBloc()..add(InitialEvent()),
         ),
+        BlocProvider(
+          create: (_)=>CartBloc()
+          ),
       ],
       child: BlocBuilder<AppThemeBloc, AppThemeState>(
         builder: (context, themeState) {
