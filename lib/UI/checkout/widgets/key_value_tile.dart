@@ -26,8 +26,8 @@ class KeyValueTile extends StatelessWidget {
     super.key,
     this.leading,
     required this.label,
-    required IconData icon,
-    this.color, this.colorIcon,
+    IconData? icon,
+    this.color, this.colorIcon, TextStyle? style,
   }) : trailing = Icon(icon, size: 30,color: colorIcon,);
 
   @override

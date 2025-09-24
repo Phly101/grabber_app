@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "../../../Utils/routes.dart";
 import "../../../l10n/app_localizations.dart";
 import "key_value_tile.dart";
 import "optionTile.dart";
@@ -28,21 +27,19 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap:  () {},
-          child: ListTile(
-            leading: Image.asset("Assets/Icons/home-address 1.png"),
-            title: Text(
-              AppLocalizations.of(context)!.deliveryAddress,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
+          onTap: () {},
+          child: KeyValueTile.icon(
+            leading:Image.asset("Assets/Icons/home-address 1.png") ,
+            label: AppLocalizations.of(context)!.deliveryAddress,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/gps-svgrepo-com 3.png"),
             label: AppLocalizations.of(context)!.deliverToCurrentLocation,
@@ -51,7 +48,7 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
 
-         ListTile(
+        ListTile(
           leading: Text(
             AppLocalizations.of(context)!.other,
             style: const TextStyle(
@@ -62,7 +59,7 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/money.png"),
             label: AppLocalizations.of(context)!.cashOnDelivery,
