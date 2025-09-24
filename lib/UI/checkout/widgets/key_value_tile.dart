@@ -5,13 +5,14 @@ class KeyValueTile extends StatelessWidget {
   final String label;
   final Widget trailing;
   final Color? color;
+  final Color? colorIcon;
 
   KeyValueTile.text({
     super.key,
     this.leading,
     required this.label,
     required String value,
-    this.color,
+    this.color, this.colorIcon,
   }) : trailing = Text(
          value,
          style: TextStyle(
@@ -26,8 +27,8 @@ class KeyValueTile extends StatelessWidget {
     this.leading,
     required this.label,
     required IconData icon,
-    this.color,
-  }) : trailing = Icon(icon, size: 30);
+    this.color, this.colorIcon,
+  }) : trailing = Icon(icon, size: 30,color: colorIcon,);
 
   @override
   Widget build(BuildContext context) {

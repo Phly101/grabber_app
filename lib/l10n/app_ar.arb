@@ -143,6 +143,7 @@
   "price6": "١٫٩٩ ج.م",
   "rating1": "٤٫٨ (٢٨٧)",
   "home": "الرئيسية",
+  "deliveryAddress": "عنوان التسليم",
   "search": "بحث",
   "profile": "الملف الشخصي",
   "settings": "الإعدادات",
@@ -153,7 +154,11 @@
   "viewOpenSourceLicenses": "عرض تراخيص المصدر المفتوح",
   "appDescriptionLine1": "غرابر هو رفيقك الذكي لقائمة التسوق.",
   "appDescriptionLine2": "أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.",
-  "appDescriptionLine3": "سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب."
-
+  "appDescriptionLine3": "سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.",
+  "deliverToCurrentLocation": "تسليم إلى موقعك الحالي",
+  "upiPay": "دفع UPI",
+  "scanAndPay": "مسح للدفع",
+  "other": "أخرى",
+  "cashOnDelivery": "الدفع عند الاستلام"
 
 }
