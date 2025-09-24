@@ -18,7 +18,6 @@ class BuildCheckOutBody extends StatefulWidget {
   @override
   State<BuildCheckOutBody> createState() => _BuildCheckOutBodyState();
 }
-
 class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
   String? deliveryType = "Standard";
   bool invoice = false;
