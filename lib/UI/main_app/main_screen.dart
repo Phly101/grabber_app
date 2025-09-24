@@ -1,0 +1,122 @@
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/Profile/profile_tab.dart";
+import "package:grabber_app/UI/Search/search_tab.dart";
+import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
+import "package:grabber_app/UI/home/home_tab.dart";
+import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
+import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themeBloc = context.read<AppThemeBloc>();
+    return Scaffold(
+      key: _scaffoldKey,
+
+      // Create a GlobalKey for Scaffold
+      appBar: selectedIndex == 1
+          ? null
+          : AppBar(
+              toolbarHeight: 120,
+              leading: Center(
+                child: FaIcon(
+                  FontAwesomeIcons.motorcycle,
+                  color: theme.colorScheme.onPrimary,
+                ),
+              ),
+              title: themeBloc.state.appTheme == "L"
+                  ? Image.asset("Assets/Images/Grabber1.png")
+                  : Image.asset("Assets/Images/Grabber.png"),
+              // centerTitle: true,
+              actions: [
+                IconButton(
+                  icon: FaIcon(FontAwesomeIcons.cartShopping,color: theme.colorScheme.onPrimary,),
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.cart);
+                  },
+                ),
+              ],
+            ),
+
+      body: tabs[selectedIndex],
+
+      bottomNavigationBar: CustomLineIndicatorBottomNavbar(
+        onTap: (index) {
+          if (index == 3) {
+            _scaffoldKey.currentState?.openEndDrawer();
+          } else {
+            setState(() {
+              selectedIndex = index;
+            });
+          }
+        },
+
+        currentIndex: selectedIndex,
+        selectedColor: AppColors.primaryGreen,
+        unSelectedColor: theme.colorScheme.onPrimary,
+        backgroundColor: theme.colorScheme.surface,
+        selectedIconSize: 25,
+        selectedFontSize: 15,
+        unselectedIconSize: 20,
+        unselectedFontSize: 12,
+        enableLineIndicator: true,
+        lineIndicatorWidth: 3,
+        indicatorType: IndicatorType.top,
+
+        customBottomBarItems: [
+          CustomBottomBarItems(
+            isAssetsImage: false,
+            label: AppLocalizations.of(context)!.home,
+
+            icon: Icons.home,
+          ),
+          CustomBottomBarItems(
+            isAssetsImage: false,
+
+            label: AppLocalizations.of(context)!.search,
+
+            icon: Icons.search,
+          ),
+          CustomBottomBarItems(
+            isAssetsImage: false,
+
+            label: AppLocalizations.of(context)!.profile,
+
+            icon: Icons.person,
+          ),
+          CustomBottomBarItems(
+            isAssetsImage: false,
+
+            label: AppLocalizations.of(context)!.settings,
+
+            icon: Icons.settings,
+          ),
+        ],
+      ),
+
+      endDrawer: const AppDrawer(),
+    );
+  }
+}
+
+var tabs = [
+  const HomeTab(),
+  const SearchTab(),
+  const ProfileTab(),
+];
