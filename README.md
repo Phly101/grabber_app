@@ -1,13 +1,29 @@
 # Grad-Project
 ## App-Name: Grabber Shopping List
-### Description: A Collaborative Flutter graduation project for DEPI, that aims to help flutter devs study implement and innovatie in a real project ,with technologies that ranges from simple like basic flutter widgets to firebase integration, implementing state-managment (Bloc/cubit), while also dealing with UIUX tech like Figma and much more.
+### Description: A Collaborative Flutter graduation project for DEPI, that aims to help flutter devs study implement and innovatie in a real project ,with technologies that ranges from simple like basic flutter widgets to firebase integration,
+implementing state-managment (Bloc/cubit), while also dealing with UIUX tech like Figma and much more. Our project is a super market app that help users oder their groceries online with ease and convenience with simple friendly UI.
 #### Our Team (MSB) comprised of 6 with Basel EL Rafei as the team lead Mark Ayman as Co-Lead and our hard working fresh devs, Marian Makram, Mariana Essam ,Martina Wageeh and finally Simon Abd El Malak.
 
 ## Google drive link:
 ### https://drive.google.com/drive/folders/1iSySOj1PZhInfgJSr9TeaMdqakeXumFE?usp=sharing
 
-## Current Phase: UI 
-### Time Line: 10 days, from 25th of Augest -->  4th of september
-### We have  finished most of the app UI with screens like home,settings,profile,search,payment and cart finished and the only ones left are  login/sign up and the checkout screen.
+## finished Phase: UIUX and it's implementation into flutter.
+### Basel initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen in this phase.
+### Marian And Martina wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
+### Simon implemented the UI of the login and the singup screen.
+### Marina did the UI of search screen as well as the check out screen.
+### Mark did Cart,settings,profile screens.
 
-## Next Phase: State Management using BLoc.
+
+## Current Phase: State Management using BLoc, Firebase integration , CURD,Auth,Notification,sharing and verification.
+### Basel added the dark theme, created the theme bloc, the invoice bloc, and the made the structure of the invoice pdf as well as some improvments to the code.
+### Marian Loacal bloc, edited the checkout screen.
+### Mark And Martina are working on the cart and add bloc to add and delete items from cart.
+### Simon and Marina are working the fire store to implement CURD.
+
+## after these are done  we will be implemting the auth, verification, Notification and sharing with their subsequet blocs.
+
+
+## Next Phase: Uint testing.
+
+
