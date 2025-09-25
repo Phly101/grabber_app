@@ -1,7 +1,8 @@
 # Grad-Project
 ## App-Name: Grabber Shopping List
 ### Description: A Collaborative Flutter graduation project for DEPI, that aims to help flutter devs study implement and innovatie in a real project ,with technologies that ranges from simple like basic flutter widgets to firebase integration,
-### implementing state-managment (Bloc), while also dealing with UIUX tech like Figma and much more. Our project is a super market app that help users oder their groceries online with ease and concise with simple friendly UI.
+### implementing state-managment (Bloc), while also dealing with UIUX tech like Figma and much more. Our project is a super market app that help users oder their groceries online with ease, rate products, share with friends and deliver to your ### door step in a timely manner.
+### It's easy to use,concise, with a simple yet friendly engaging  UI.
 #### Our Team (MSB) comprised of 6 with Basel EL Rafei as the team lead Mark Ayman as Co-Lead and our hard working fresh devs, Marian Makram, Mariana Essam ,Martina Wageeh and finally Simon Abd El Malak.
 
 ## Google drive link:
