@@ -25,6 +25,6 @@
 ## after these are done  we will be implemting the auth, verification, Notification and sharing with their subsequet blocs.
 
 
-## Next Phase: Uint testing.
+## Next Phase: Unit testing.
 
 
