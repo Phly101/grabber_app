@@ -2,7 +2,7 @@ import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/slider_widget.dart";
-
+import "package:grabber_app/Utils/routes.dart";
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -12,14 +12,14 @@ class HomeSlider extends StatefulWidget {
 }
 
 class _HomeSliderState extends State<HomeSlider> {
-  List<Map<String, dynamic>> sliderList = [
+  final List<Map<String, dynamic>> sliderList = [
     {
       "image": "Assets/Images/SliderImage1.png",
       "text": "offer30",
       "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.primaryLightColor,
       "isDark": false,
-
+      "index": 0,
     },
     {
       "image": "Assets/Images/SliderImage2.png",
@@ -27,7 +27,7 @@ class _HomeSliderState extends State<HomeSlider> {
       "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.textButtonColor,
       "isDark": true,
-
+      "index": 1,
     },
     {
       "image": "Assets/Images/SliderImage3.png",
@@ -35,13 +35,14 @@ class _HomeSliderState extends State<HomeSlider> {
       "subText": "enjoyOurBigOffer",
       "backgroundColor": const Color(0xFFFFDB24),
       "isDark": false,
+      "index": 2,
     },
   ];
 
-
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
+    return CarouselSlider.builder(
+      itemCount: sliderList.length,
       options: CarouselOptions(
         enlargeCenterPage: true,
         enableInfiniteScroll: true,
@@ -49,13 +50,26 @@ class _HomeSliderState extends State<HomeSlider> {
         viewportFraction: .77,
         autoPlayInterval: const Duration(seconds: 6),
       ),
-      items: sliderList.map((slide) {
-        return Builder(
-          builder: (BuildContext context) {
-            return SliderWidget(slide: slide);
+      itemBuilder: (context, index, realIndex) {
+        final slide = sliderList[index];
+
+        return GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AppRoutes.offerScreen,
+              arguments: {
+                "slide": slide,
+                "index": index,
+              },
+            );
           },
+          child: Hero(
+            tag: "slide_$index",
+            child: SliderWidget(slide: slide),
+          ),
         );
-      }).toList(),
+      },
     );
   }
 }

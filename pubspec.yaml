@@ -58,6 +58,7 @@ dependencies:
   pdf: ^3.11.3
   equatable: ^2.0.7
   path_provider: ^2.1.5
+  cloud_firestore: ^6.0.2
 
 
 

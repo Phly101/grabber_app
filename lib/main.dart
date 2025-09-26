@@ -1,5 +1,6 @@
 // import "package:device_preview/device_preview.dart";
 // import "package:flutter/foundation.dart";
+import "package:firebase_core/firebase_core.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
@@ -7,6 +8,7 @@ import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/AboutScreen/about_screen.dart";
 import "package:grabber_app/UI/Cart/view/cart_page.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/UI/OfferScreen/offer_screen.dart";
 import "package:grabber_app/UI/Payment/payment_screen.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
 import "package:grabber_app/UI/Schedule/schedule_screen.dart";
@@ -22,6 +24,7 @@ import "package:grabber_app/UI/checkout/checkout_screen.dart";
 import "package:grabber_app/UI/home/home_tab.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/firebase_options.dart";
 import "package:shared_preferences/shared_preferences.dart";
 import "Blocs/localization/app_locale_event.dart";
 import "Blocs/localization/app_locale_state.dart";
@@ -32,8 +35,9 @@ import "package:grabber_app/l10n/app_localizations.dart";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
-  sharedPref = await SharedPreferences.getInstance();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -55,7 +59,7 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return BlocBuilder<LocaleBloc, LocaleState>(
             builder: (context, localeState) {
-              String locale = sharedPref!.getString("lang") ?? "en";
+              String locale = sharedPreferences!.getString("lang") ?? "en";
               if (localeState is ChangeLang) {
                 locale = localeState.langCode;
               }
@@ -113,6 +117,7 @@ class MyApp extends StatelessWidget {
                     AppRoutes.language: (_) => const LanguagePage(),
                     AppRoutes.theme: (_) => const ThemePage(),
                     AppRoutes.aboutScreen: (_) => const AboutScreen(),
+                    AppRoutes.offerScreen: (_) => const OfferScreen(),
                   },
                   home: Container(
                     decoration: BoxDecoration(

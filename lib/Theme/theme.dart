@@ -1,33 +1,33 @@
 import "package:flutter/material.dart";
 
 class AppColors {
-  // Primary App Colors
-  static const Color primaryGreen = Color(0xFF1E8D00);
-  static const Color accentGreen = Color(0xFF9BDA62);
-  static const Color secondaryDarkColor = Color(0xff6CC51D);
+    // Primary App Colors
+    static const Color primaryGreen = Color(0xFF1E8D00);
+    static const Color accentGreen = Color(0xFF9BDA62);
+    static const Color secondaryDarkColor = Color(0xff6CC51D);
 
-  static const Color appBarBottomNav = Color(0xFFD7FFD4);
-  static const Color primaryLightColor = Color(0xffEBFFD7);
-  static const Color secondaryLightColor = Color(0xffAEDC81);
+    static const Color appBarBottomNav = Color(0xFFD7FFD4);
+    static const Color primaryLightColor = Color(0xffEBFFD7);
+    static const Color secondaryLightColor = Color(0xffAEDC81);
 
 
-  // Greyscale/Neutral Colors for Light Mode
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color black = Color(0xFF000000);
-  static const Color lightGrey = Color(0xFFF5F5F5);
-  static const Color mediumGrey = Color(0xFF888888);
-  static const Color darkGrey = Color(0xFF333333);
+    // Greyscale/Neutral Colors for Light Mode
+    static const Color white = Color(0xFFFFFFFF);
+    static const Color black = Color(0xFF000000);
+    static const Color lightGrey = Color(0xFFF5F5F5);
+    static const Color mediumGrey = Color(0xFF888888);
+    static const Color darkGrey = Color(0xFF333333);
 
-  // Greyscale/Neutral Colors for Dark Mode
-  static const Color darkBackground = Color(0xFF121212);
-  static const Color darkSurface = Color(0xFF1E1E1E);
-  static const Color darkOnSurface = Color(0xFFFFFFFF);
-  static const Color darkOnBackground = Color(0xFFFFFFFF);
-  static const Color darkMediumGrey = Color(0xFFAFAFAF);
+    // Greyscale/Neutral Colors for Dark Mode
+    static const Color darkBackground = Color(0xFF121212);
+    static const Color darkSurface = Color(0xFF1E1E1E);
+    static const Color darkOnSurface = Color(0xFFFFFFFF);
+    static const Color darkOnBackground = Color(0xFFFFFFFF);
+    static const Color darkMediumGrey = Color(0xFFAFAFAF);
 
-  // Special purpose colors
-  static const Color yellowStar = Color(0xFFF9C311);
-  static const Color textButtonColor = primaryGreen;
+    // Special purpose colors
+    static const Color yellowStar = Color(0xFFF9C311);
+    static const Color textButtonColor = primaryGreen;
 }
 
 // Defines the text styles for both light and dark typography

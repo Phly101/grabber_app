@@ -35,7 +35,8 @@ class _ThemePageState extends State<ThemePage> {
                   },
                   title: AppLocalizations.of(context)!.light,
                   icons: FontAwesomeIcons.solidSun,
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.blue.withValues(alpha: 0.5),Colors.orangeAccent],
                   id: 0,
                   isLocal: false,
                 );
@@ -53,7 +54,8 @@ class _ThemePageState extends State<ThemePage> {
                   isLocal: false,
                   title: AppLocalizations.of(context)!.dark,
                   icons: FontAwesomeIcons.moon,
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.blue.withValues(alpha: 0.5),Colors.orangeAccent],
                   id: 1,
                 );
               },
