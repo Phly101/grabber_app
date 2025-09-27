@@ -5,7 +5,6 @@ import "optionTile.dart";
 
 class DeliveryAndPayment extends StatelessWidget {
   const DeliveryAndPayment({super.key});
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
