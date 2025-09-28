@@ -32,7 +32,7 @@
 ### Martina Wageeh
 ### Simon Abd El Malak.
 
-#Phase 1 Responsibilites:
+# Phase 1 Responsibilites:
 ## UI Phase: 
 ### Basel EL Rafei: initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen, about app screen, schedule screen and order summary screen in this phase.
 ### Marian Makram And Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
@@ -40,7 +40,7 @@
 ### Marina Essam: did the UI of search screen as well as the check out screen.
 ### Mark Ayman: did Cart,settings,profile screens.
 
-#Phase 2 Responsibilites:
+# Phase 2 Responsibilites:
 ## FireBase Phase:
 ### Basel El Rafei: Authentication.
 ### Mark Ayman: Sharing cart.
@@ -48,7 +48,7 @@
 ### Martina Wageeh: Verification .
 ### Marina Essam: Firestore User data Update.
 
-#Phase 3 Responsibilites:
+# Phase 3 Responsibilites:
 ## State Management phase:
 ### Basel El Rafei: Theme Bloc, AuthBloc, Invoice Bloc.
 ### Mark Ayman & Martina Wageeh : Cart Bloc.
@@ -57,23 +57,23 @@
 ###  Mark Ayman & Simon Abd EL Malak: Sharing Cart Bloc.
 ### Marina Essam: User Bloc.
 
-#Phase 4 Responsibilites:
+# Phase 4 Responsibilites:
 ## Unit Testing phase: Under Discussion.
 
 
-#Phase 5 Responsibilites:
+# Phase 5 Responsibilites:
 ## Final phase: Under Discussion.
 
 
 
-#Instructor: Michel Hany
+# Instructor: Michel Hany
 
 
 
-#Porject Files:
+# Porject Files:
 
 
-#License:
+# License:
 
 
 
