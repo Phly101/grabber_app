@@ -6,6 +6,7 @@ abstract class CartEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 class AddItemEvent extends CartEvent {
   final CartItemModel item;
   const AddItemEvent(this.item);
@@ -24,6 +25,4 @@ class IncreaseQtyEvent extends CartEvent {
 class DecreaseQtyEvent extends CartEvent {
   final String name;
   const DecreaseQtyEvent(this.name);
-
-  
 }
