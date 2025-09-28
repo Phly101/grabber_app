@@ -51,9 +51,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => AppThemeBloc()..add(InitialEvent()),
         ),
-        BlocProvider(
-          create: (_)=>CartBloc()
-          ),
+        BlocProvider(create: (_) => CartBloc()),
       ],
       child: BlocBuilder<AppThemeBloc, AppThemeState>(
         builder: (context, themeState) {
