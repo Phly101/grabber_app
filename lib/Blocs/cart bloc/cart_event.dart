@@ -24,4 +24,6 @@ class IncreaseQtyEvent extends CartEvent {
 class DecreaseQtyEvent extends CartEvent {
   final String name;
   const DecreaseQtyEvent(this.name);
+
+  
 }
