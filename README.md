@@ -66,7 +66,7 @@
 
 
 
-# Instructor: Michel Hany
+# Instructor: Michael Hany
 
 
 
