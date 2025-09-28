@@ -36,13 +36,14 @@
 ## UI Phase: 
 ### Basel EL Rafei: initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen, about app screen, schedule screen and order summary screen in this phase.
 ### Marian Makram And Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
+### Marian Makram Added UI to the Checout screen. 
 ### Simon Abd EL Malak: implemented the UI of the login and the sign up screen.
 ### Marina Essam: did the UI of search screen as well as the check out screen.
 ### Mark Ayman: did Cart,settings,profile screens.
 
 # Phase 2 Responsibilites:
 ## FireBase Phase:
-### Basel El Rafei: Authentication.
+### Basel El Rafei: Authentication , Fire store user data(Cart).
 ### Mark Ayman: Sharing cart.
 ### Marian Makram & Simon Abd EL Malak: Firstore database.
 ### Martina Wageeh: Verification .
@@ -53,9 +54,10 @@
 ### Basel El Rafei: Theme Bloc, AuthBloc, Invoice Bloc.
 ### Mark Ayman & Martina Wageeh : Cart Bloc.
 ### Martina Wageeh: Verfication Bloc.
-### Mark Ayman & Marian Makram: Locale Bloc, Firstore Bloc. 
+### Mark Ayman & Marian Makram:  Firstore Bloc. 
+### Marian Makram Locale Bloc.
 ###  Mark Ayman & Simon Abd EL Malak: Sharing Cart Bloc.
-### Marina Essam: User Bloc.
+### Marina Essam & Basel El Rafei: User Bloc.
 
 # Phase 4 Responsibilites:
 ## Unit Testing phase: Under Discussion.
