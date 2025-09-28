@@ -53,7 +53,7 @@
 ### Basel El Rafei: Theme Bloc, AuthBloc, Invoice Bloc.
 ### Mark Ayman & Martina Wageeh : Cart Bloc.
 ### Martina Wageeh: Verfication Bloc.
-### Marian Makram: Locale Bloc, Firstore Bloc. 
+### Mark Ayman & Marian Makram: Locale Bloc, Firstore Bloc. 
 ###  Mark Ayman & Simon Abd EL Malak: Sharing Cart Bloc.
 ### Marina Essam: User Bloc.
 
