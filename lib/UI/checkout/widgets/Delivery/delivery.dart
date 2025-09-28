@@ -1,11 +1,10 @@
 import "package:flutter/material.dart";
-import "../../../Utils/routes.dart";
-import "../../../l10n/app_localizations.dart";
-import "key_value_tile.dart";
-import "optionTile.dart";
+import "../../../../l10n/app_localizations.dart";
+import "delivery_address.dart";
+import "../key_value_tile.dart";
+import "../optionTile.dart";
 
 class DeliveryAndPayment extends StatelessWidget {
-  const DeliveryAndPayment({super.key});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -27,21 +26,26 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap:  () {},
-          child: ListTile(
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return DeliveryAddress();
+              },
+            );
+          },
+          child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/home-address 1.png"),
-            title: Text(
-              AppLocalizations.of(context)!.deliveryAddress,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
+            label: AppLocalizations.of(context)!.deliveryAddress,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/gps-svgrepo-com 3.png"),
             label: AppLocalizations.of(context)!.deliverToCurrentLocation,
@@ -50,7 +54,7 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
 
-         ListTile(
+        ListTile(
           leading: Text(
             AppLocalizations.of(context)!.other,
             style: const TextStyle(
@@ -61,7 +65,7 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/money.png"),
             label: AppLocalizations.of(context)!.cashOnDelivery,
