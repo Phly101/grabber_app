@@ -8,7 +8,7 @@ import "package:grabber_app/UI/checkout/ViewModel/invoice_event.dart";
 import "package:grabber_app/UI/checkout/widgets/delivery_option_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_switch_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_value_tile.dart";
-import "package:grabber_app/UI/checkout/widgets/delivery_payment.dart";
+import "package:grabber_app/UI/checkout/widgets/Delivery/delivery.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
@@ -31,6 +31,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            DeliveryAndPayment(),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -247,7 +248,6 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
               ),
             ),
 
-            const DeliveryAndPayment(),
 
             SizedBox(
               width: double.infinity,

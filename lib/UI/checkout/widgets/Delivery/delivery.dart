@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
-import "../../../l10n/app_localizations.dart";
-import "key_value_tile.dart";
-import "optionTile.dart";
+import "../../../../l10n/app_localizations.dart";
+import "delivery_address.dart";
+import "../key_value_tile.dart";
+import "../optionTile.dart";
 
 class DeliveryAndPayment extends StatelessWidget {
-  const DeliveryAndPayment({super.key});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -26,9 +26,16 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap: () {},
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return DeliveryAddress();
+              },
+            );
+          },
           child: KeyValueTile.icon(
-            leading:Image.asset("Assets/Icons/home-address 1.png") ,
+            leading: Image.asset("Assets/Icons/home-address 1.png"),
             label: AppLocalizations.of(context)!.deliveryAddress,
             style: const TextStyle(
               color: Colors.grey,
