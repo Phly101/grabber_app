@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:grabber_app/Theme/light_theme.dart';
 import 'package:grabber_app/UI/Profile/profile_tab.dart';
@@ -6,9 +7,18 @@ import 'package:grabber_app/UI/Settings/settings_tab.dart';
 import 'package:grabber_app/UI/SplashScreen/splash_screen.dart';
 import 'package:grabber_app/UI/home/home_tab.dart';
 import 'package:grabber_app/UI/main_app/main_screen.dart';
+import 'package:device_preview/device_preview.dart';
+
 
 void main() {
-  runApp(const MyApp());
+
+  runApp(
+    DevicePreview(
+
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
