@@ -14,20 +14,20 @@ class KeyValueTile extends StatelessWidget {
     required String value,
     this.color, this.colorIcon,
   }) : trailing = Text(
-         value,
-         style: TextStyle(
-           color: color ?? const Color(0xFF726C6C),
-           fontWeight: FontWeight.bold,
-           fontSize: 16,
-         ),
-       );
+    value,
+    style: TextStyle(
+      color: color ?? const Color(0xFF726C6C),
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    ),
+  );
 
   KeyValueTile.icon({
     super.key,
     this.leading,
     required this.label,
-    required IconData icon,
-    this.color, this.colorIcon,
+    IconData? icon,
+    this.color, this.colorIcon, TextStyle? style,
   }) : trailing = Icon(icon, size: 30,color: colorIcon,);
 
   @override
