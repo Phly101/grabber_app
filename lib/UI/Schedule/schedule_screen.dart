@@ -53,7 +53,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   child: IconButton(
                     onPressed: () {
         
-                      Navigator.pushNamed(context, AppRoutes.checkout);
+                      Navigator.pop(context);
         
                     },
                     icon: const Icon(Icons.arrow_back_ios_new),

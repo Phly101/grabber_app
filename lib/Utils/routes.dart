@@ -1,5 +1,3 @@
-
-
 class AppRoutes{
   static const String mainApp = "/main_app";
   static const String login = "/login";
@@ -17,4 +15,6 @@ class AppRoutes{
   static const String theme = "/theme";
   static const String language = "/language";
   static const String aboutScreen = "/About";
+
+
 }

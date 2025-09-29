@@ -1,7 +1,5 @@
 
-import "package:equatable/equatable.dart";
-import "package:grabber_app/UI/checkout/Model/InvoiceModel/invoice_data.dart";
-
+part of "invoice_bloc.dart";
 
 sealed class InvoiceEvent extends Equatable {
   const InvoiceEvent();

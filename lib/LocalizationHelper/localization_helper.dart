@@ -7,6 +7,8 @@ class LocalizationHelper {
     "vegetables": (l) => l.vegetables,
     "beverages": (l) => l.beverages,
     "milkAndEgg": (l) => l.milkAndEgg,
+    "Biscuit": (l) => l.biscuit,
+    "Detergent": (l) => l.detergent,
     "laundry": (l) => l.laundry,
     "banana": (l) => l.banana,
     "apple": (l) => l.apple,

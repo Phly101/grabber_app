@@ -20,7 +20,11 @@ class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text(AppLocalizations.of(context)!.chooseTheme)),
+      appBar: AppBar(
+          leading: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: const Icon(Icons.arrow_back_ios)),
+          title:  Text(AppLocalizations.of(context)!.chooseTheme)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -35,7 +39,8 @@ class _ThemePageState extends State<ThemePage> {
                   },
                   title: AppLocalizations.of(context)!.light,
                   icons: FontAwesomeIcons.solidSun,
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.blue.withValues(alpha: 0.5),Colors.orangeAccent],
                   id: 0,
                   isLocal: false,
                 );
@@ -53,7 +58,8 @@ class _ThemePageState extends State<ThemePage> {
                   isLocal: false,
                   title: AppLocalizations.of(context)!.dark,
                   icons: FontAwesomeIcons.moon,
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.blue.withValues(alpha: 0.5),Colors.orangeAccent],
                   id: 1,
                 );
               },

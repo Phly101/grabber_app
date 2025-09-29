@@ -2,7 +2,9 @@ import "package:animated_splash_screen/animated_splash_screen.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/UI/auth/login.dart";
+import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:page_transition/page_transition.dart";
 
 class SplashScreen extends StatelessWidget {
@@ -11,20 +13,38 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeBloc = context.read<AppThemeBloc>();
-    return AnimatedSplashScreen(
-      duration: 3000,
-      splash: (themeBloc.state.appTheme == "L")
-          ? Image.asset("Assets/Images/logo2.png", fit: BoxFit.contain)
-          : Image.asset("Assets/Images/logoDark.png", fit: BoxFit.contain),
+    final authBloc = context.read<AuthBloc>();
 
-      nextScreen: const Login(),
+    // Fire AppStarted to check persistent login
+    authBloc.add(AppStarted());
+    return BlocBuilder<AuthBloc,AuthState>(
+      builder: (context, state) {
+        // While checking login, show splash
+        Widget nextScreen = const Login(); // default
+        if (state is AuthAuthenticated) {
+          nextScreen = const MainScreen();
+        } else if (state is AuthUnauthenticated || state is AuthInitial) {
+          nextScreen = const Login();
+        }
+        return AnimatedSplashScreen(
+          duration: 3000,
+          splash: (themeBloc.state.appTheme == "L")
+              ? Image.asset("Assets/Images/logo2.png", fit: BoxFit.contain)
+              : Image.asset("Assets/Images/logoDark.png", fit: BoxFit.contain),
 
-      splashTransition: SplashTransition.fadeTransition,
-      pageTransitionType: PageTransitionType.leftToRight,
-      backgroundColor: Colors.transparent,
-      centered: true,
+          nextScreen: nextScreen,
 
-      splashIconSize: MediaQuery.of(context).size.height,
+          splashTransition: SplashTransition.fadeTransition,
+          pageTransitionType: PageTransitionType.leftToRight,
+          backgroundColor: Colors.transparent,
+          centered: true,
+
+          splashIconSize: MediaQuery
+              .of(context)
+              .size
+              .height,
+        );
+      },
     );
   }
 }

@@ -7,8 +7,8 @@ class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
   LocaleBloc() : super(InitialLangState(langCode: "en")) {
     on<LocaleEvent>((event, emit) async {
       if (event is InitialLangEvent) {
-        if (sharedPref?.getString("lang") != null) {
-          if (sharedPref?.getString("lang") == "ar") {
+        if (sharedPreferences?.getString("lang") != null) {
+          if (sharedPreferences?.getString("lang") == "ar") {
             emit(ChangeLang(langCode: "ar"));
           }
           else {
@@ -17,11 +17,11 @@ class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
         }
       }
       else if (event is ArabicLangEvent) {
-        sharedPref?.setString("lang", "ar");
+        sharedPreferences?.setString("lang", "ar");
         emit(ChangeLang(langCode: "ar"));
       }
       else if (event is EnglishLangEvent) {
-      sharedPref?.setString("lang", "en");
+      sharedPreferences?.setString("lang", "en");
       emit(ChangeLang(langCode: "en"));
       }
     });

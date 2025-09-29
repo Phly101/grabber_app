@@ -1,8 +1,7 @@
 
 
-import "dart:io";
 
-import "package:equatable/equatable.dart";
+part of "invoice_bloc.dart";
 
 
 

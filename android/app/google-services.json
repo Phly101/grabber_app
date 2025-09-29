@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "353522436751",
+    "project_id": "grabber-7f649",
+    "storage_bucket": "grabber-7f649.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353522436751:android:1d413c5a15ee979dce7efa",
+        "android_client_info": {
+          "package_name": "com.example.grabber_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMghVns7NQPHfC44qh9amh_GJAZa0saMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

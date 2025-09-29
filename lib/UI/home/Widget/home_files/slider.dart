@@ -12,14 +12,14 @@ class HomeSlider extends StatefulWidget {
 }
 
 class _HomeSliderState extends State<HomeSlider> {
-  List<Map<String, dynamic>> sliderList = [
+  final List<Map<String, dynamic>> sliderList = [
     {
       "image": "Assets/Images/SliderImage1.png",
       "text": "offer30",
       "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.primaryLightColor,
       "isDark": false,
-
+      "index": 0,
     },
     {
       "image": "Assets/Images/SliderImage2.png",
@@ -27,7 +27,7 @@ class _HomeSliderState extends State<HomeSlider> {
       "subText": "enjoyOurBigOffer",
       "backgroundColor": AppColors.textButtonColor,
       "isDark": true,
-
+      "index": 1,
     },
     {
       "image": "Assets/Images/SliderImage3.png",
@@ -35,13 +35,14 @@ class _HomeSliderState extends State<HomeSlider> {
       "subText": "enjoyOurBigOffer",
       "backgroundColor": const Color(0xFFFFDB24),
       "isDark": false,
+      "index": 2,
     },
   ];
 
-
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
+    return CarouselSlider.builder(
+      itemCount: sliderList.length,
       options: CarouselOptions(
         enlargeCenterPage: true,
         enableInfiniteScroll: true,
@@ -49,13 +50,11 @@ class _HomeSliderState extends State<HomeSlider> {
         viewportFraction: .77,
         autoPlayInterval: const Duration(seconds: 6),
       ),
-      items: sliderList.map((slide) {
-        return Builder(
-          builder: (BuildContext context) {
-            return SliderWidget(slide: slide);
-          },
-        );
-      }).toList(),
+      itemBuilder: (context, index, realIndex) {
+        final slide = sliderList[index];
+
+        return SliderWidget(slide: slide);
+      },
     );
   }
 }
