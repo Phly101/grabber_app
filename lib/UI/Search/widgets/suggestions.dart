@@ -67,7 +67,9 @@ class SuggestionsList extends StatelessWidget {
                     ],
                   ),
                   trailing: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
                       padding: const EdgeInsets.all(12),

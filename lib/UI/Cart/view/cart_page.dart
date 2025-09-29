@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
 import "package:grabber_app/UI/Cart/view/Widgets/checkout_button.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
@@ -22,7 +24,7 @@ class CartPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
 
-        title:  Text(
+        title: Text(
           AppLocalizations.of(context)!.cart,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -46,11 +48,20 @@ class CartPage extends StatelessWidget {
         children: [
           Expanded(
             flex: 8,
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                // TODO: Replace with dynamic list from cart provider / state management
-                return const CartItem();
+            child: BlocBuilder<CartBloc, CartState>(
+              builder: (context, state) {
+                if (state.items.isEmpty) {
+                  return const Center(child: Text("Cart is empty"));
+                }
+                return ListView.builder(
+                  itemCount: state.items.length,
+                  itemBuilder: (context, index) {
+                    final item = state.items[index];
+                    return CartItem(
+                      item: item,
+                    );
+                  },
+                );
               },
             ),
           ),
@@ -63,7 +74,7 @@ class CartPage extends StatelessWidget {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
                   //Todo: implement the onPressed function
-                  onTap: (){},
+                  onTap: () {},
                   child: ListTile(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -79,27 +90,26 @@ class CartPage extends StatelessWidget {
                     ),
 
                     trailing: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: theme.colorScheme.onPrimary,
-                      ),
+                      Icons.arrow_forward_ios_outlined,
+                      color: theme.colorScheme.onPrimary,
                     ),
+                  ),
                 ),
               ),
-              ),
             ),
-
+          ),
         ],
       ),
       //Todo: fix the layout overlapping checkout button
       floatingActionButton: CheckoutButton(
-      onPressed: () {
-      Navigator.pushNamed(context, AppRoutes.checkout);
-      ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-      content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
-      ),
-      );
-      },
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.checkout);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
+            ),
+          );
+        },
       ),
       // TODO: Consider changing position if design updates (e.g., bottomNavigationBar)
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
