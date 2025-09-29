@@ -441,6 +441,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get price6 => 'EGP 1.99';
 
   @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
   String get rating1 => '4.8 (287)';
 
   @override
@@ -451,6 +454,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAnAccount => 'Already have an account?';
+
   @override
   String get developedBy => 'Developed by';
 
@@ -472,5 +476,18 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get appDescriptionLine3 => 'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
 
+  @override
+  String get deliverToCurrentLocation => 'Deliver to your current location';
 
+  @override
+  String get upiPay => 'UPI Pay';
+
+  @override
+  String get scanAndPay => 'Scan & Pay';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get cashOnDelivery => 'Cash on Delivery';
 }

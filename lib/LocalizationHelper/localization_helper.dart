@@ -42,6 +42,8 @@ class LocalizationHelper {
     "price2": (l) => l.price2,
     "rating1": (l) => l.rating1,
     "rating48With287": (l) => l.rating48With287,
+    "Biscuit": (l) => l.biscuit,
+    "Detergent": (l) => l.detergent,
   };
 
   static String getString(BuildContext context, String key) {
