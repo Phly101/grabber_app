@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AppStarted event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthLoading());
+
     final isLoggedIn = await authService.isUserLoggedIn();
     if (isLoggedIn && FirebaseAuth.instance.currentUser != null) {
       emit(AuthAuthenticated(FirebaseAuth.instance.currentUser!));
