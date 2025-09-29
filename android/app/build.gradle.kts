@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.grabber_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
 
     ndkVersion = "29.0.13599879"
 
@@ -32,7 +32,7 @@ android {
 
 
 
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
 
 
 

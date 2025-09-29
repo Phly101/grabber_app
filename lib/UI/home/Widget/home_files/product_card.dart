@@ -32,7 +32,9 @@ class BuildProductCard extends StatelessWidget {
                       CachedNetworkImage(
                         imageUrl: item["image_URL"],
                         placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
+                            const Center(
+                              child: CircularProgressIndicator(),
+                            ),
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error),
                         fit: BoxFit.fill,

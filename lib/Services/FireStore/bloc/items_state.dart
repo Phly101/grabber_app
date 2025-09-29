@@ -1,4 +1,4 @@
-part of 'items_bloc.dart';
+part of "items_bloc.dart";
 
 sealed class ItemsState extends Equatable {
   const ItemsState();
