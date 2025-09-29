@@ -30,9 +30,7 @@ class _HomeCategoryState extends State<HomeCategory> {
         child: BlocBuilder<ItemsBloc, ItemsState>(
           builder: (context, state) {
             if (state is ItemsLoading) {
-              return const Center(
-                child: Center(child: CircularProgressIndicator()),
-              );
+              return const Center(child: CircularProgressIndicator());
             } else if (state is ItemsLoaded) {
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -54,7 +52,7 @@ class _HomeCategoryState extends State<HomeCategory> {
                           CachedNetworkImage(
                             imageUrl: imageUrl,
                             placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                                const Center(child: CircularProgressIndicator()),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
                             fit: BoxFit.cover,
