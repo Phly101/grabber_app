@@ -4,9 +4,6 @@ import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
 import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
 import "../../l10n/app_localizations.dart";
 
-//TODO: make FloatingActionButton
-//TODO: make Navigator
-
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
 
@@ -55,7 +52,7 @@ class _HomeTabState extends State<HomeTab> {
                 case "vegetables":
                   scrollTo(vegetablesKey);
                   break;
-                case "Biscoff":
+                case "Biscuit":
                   scrollTo(biscuitKey);
                   break;
                 case "Detergent":
@@ -72,31 +69,37 @@ class _HomeTabState extends State<HomeTab> {
                   key: milkKey,
                   product: "Milk & egg",
                   title: AppLocalizations.of(context)!.milkAndEgg,
+                  collectionName: "egg&milk",
                 ),
                 ProductListView(
                   key: beveragesKey,
                   product: "Beverages",
                   title: AppLocalizations.of(context)!.beverages,
+                  collectionName: "Beverages list",
                 ),
                 ProductListView(
                   key: laundryKey,
                   product: "laundry",
                   title: AppLocalizations.of(context)!.laundry,
+                  collectionName: "Laundry list",
                 ),
                 ProductListView(
                   key: vegetablesKey,
                   product: "vegetables",
                   title: AppLocalizations.of(context)!.vegetables,
+                  collectionName: "vegetables list",
                 ),
                 ProductListView(
                   key: biscuitKey,
                   product: "biscuit",
                   title: AppLocalizations.of(context)!.biscuit,
+                  collectionName: "Biscuit list",
                 ),
                 ProductListView(
                   key: detergentKey,
                   product: "Detergent",
                   title: AppLocalizations.of(context)!.detergent,
+                  collectionName: "Detergent list",
                 ),
               ],
             ),

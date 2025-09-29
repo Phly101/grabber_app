@@ -1,47 +1,43 @@
 // import "package:device_preview/device_preview.dart";
 // import "package:flutter/foundation.dart";
-import "package:flutter/material.dart";
+
+// Flutter & Firebase
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
-import "package:grabber_app/Theme/theme.dart";
-import "package:grabber_app/UI/Cart/view/cart_page.dart";
+import "package:flutter/material.dart";
+import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
-import "package:grabber_app/UI/Payment/payment_screen.dart";
-import "package:grabber_app/UI/Profile/profile_tab.dart";
-import "package:grabber_app/UI/Schedule/schedule_screen.dart";
-import "package:grabber_app/UI/Search/search_tab.dart";
-import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
-import "package:grabber_app/UI/Settings/drawer/pages/language_page.dart";
-import "package:grabber_app/UI/Settings/drawer/pages/theme_page.dart";
-import "package:grabber_app/UI/SplashScreen/splash_screen.dart";
-import "package:grabber_app/UI/Summary/summary_screen.dart";
-import "package:grabber_app/UI/auth/login.dart";
-import "package:grabber_app/UI/auth/sign_up.dart";
-import "package:grabber_app/UI/checkout/checkout_screen.dart";
-import "package:grabber_app/UI/home/home_tab.dart";
-import "package:grabber_app/UI/main_app/main_screen.dart";
+import "Services/Authentication/auth_service.dart";
+
+// App core
+import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/Utils/constants.dart";
 import "package:grabber_app/Utils/routes.dart";
-import "package:shared_preferences/shared_preferences.dart";
-import "Blocs/localization/app_locale_event.dart";
-import "Blocs/localization/app_locale_state.dart";
-import "Blocs/localization/app_locale_bloc.dart";
-import "Utils/constants.dart";
+import "package:grabber_app/firebase_options.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
-void main() async {
+import "package:shared_preferences/shared_preferences.dart";
+
+// Blocs
+import "Blocs/Theming/app_theme_bloc.dart";
+import "Blocs/localization/localization.dart";
+import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+
+// Features (barrel files or grouped imports)
+import "package:grabber_app/UI/ui.dart";
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
-  sharedPref=await SharedPreferences.getInstance();
-  runApp(const MyApp());
-}
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-
-    return MultiBlocProvider(
+  final authService = AuthService();
+  runApp(
+    MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (_) => AuthBloc(authService: authService)..add(AppStarted()),
+        ),
         BlocProvider(
           create: (_) => LocaleBloc()..add(InitialLangEvent()),
         ),
@@ -49,18 +45,35 @@ class MyApp extends StatelessWidget {
           create: (_) => AppThemeBloc()..add(InitialEvent()),
         ),
       ],
-      child: BlocBuilder<AppThemeBloc, AppThemeState>(
-        builder: (context, themeState) {
-          return BlocBuilder<LocaleBloc, LocaleState>(
-            builder: (context, localeState) {
-              String locale = sharedPref!.getString("lang") ?? "en";
-              if (localeState is ChangeLang) {
-                locale = localeState.langCode!;
-              }
-              return MaterialApp(//elasticOut   //easeOutSine
-                themeAnimationCurve:Curves.easeOutQuint,
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AppThemeBloc, AppThemeState>(
+      builder: (context, themeState) {
+        return BlocBuilder<LocaleBloc, LocaleState>(
+          builder: (context, localeState) {
+            String locale = sharedPreferences!.getString("lang") ?? "en";
+            if (localeState is ChangeLang) {
+              locale = localeState.langCode;
+            }
+
+            return AnimatedTheme(
+              data: themeState.appTheme == "L"
+                  ? AppThemes.lightTheme
+                  : AppThemes.darkTheme,
+              duration: const Duration(milliseconds: 300),
+              child: MaterialApp(
                 debugShowCheckedModeBanner: false,
-                locale:Locale(locale),
+                locale: Locale(locale),
                 supportedLocales: const [
                   Locale("en"),
                   Locale("ar"),
@@ -99,12 +112,13 @@ class MyApp extends StatelessWidget {
                   AppRoutes.settings: (_) => const AppDrawer(),
                   AppRoutes.payment: (_) => const PaymentScreen(),
                   AppRoutes.checkout: (_) => const CheckoutScreen(),
-                  AppRoutes.summary: (_) => SummaryScreen(),
+                  AppRoutes.summary: (_) => const SummaryScreen(),
                   AppRoutes.cart: (_) => const CartPage(),
                   AppRoutes.schedule: (_) => const ScheduleScreen(),
                   AppRoutes.splash: (_) => const SplashScreen(),
-                  AppRoutes.language:(_)=> const LanguagePage(),
-                  AppRoutes.theme:(_)=> const ThemePage(),
+                  AppRoutes.language: (_) => const LanguagePage(),
+                  AppRoutes.theme: (_) => const ThemePage(),
+                  AppRoutes.aboutScreen: (_) => const AboutScreen(),
                 },
                 home: Container(
                   decoration: BoxDecoration(
@@ -121,11 +135,11 @@ class MyApp extends StatelessWidget {
                 theme: themeState.appTheme == "L"
                     ? AppThemes.lightTheme
                     : AppThemes.darkTheme,
-              );
-            },
-          );
-        },
-      ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

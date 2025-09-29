@@ -5,7 +5,6 @@ import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_card.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_row.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_text_field.dart";
-import "package:grabber_app/Utils/routes.dart";
 import "../../../../l10n/app_localizations.dart";
 
 class PaymentScreen extends StatefulWidget {
@@ -34,7 +33,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         toolbarHeight: 120,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.checkout);
+            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),

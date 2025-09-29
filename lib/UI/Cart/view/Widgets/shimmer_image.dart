@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+import "package:flutter/material.dart";
+import "package:shimmer/shimmer.dart";
 
 class ShimmerImage extends StatelessWidget {
   final double size;

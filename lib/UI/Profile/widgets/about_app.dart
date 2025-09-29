@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/Utils/routes.dart";
 import "../../../l10n/app_localizations.dart";
 
 class AboutApp extends StatelessWidget {
@@ -9,7 +10,7 @@ class AboutApp extends StatelessWidget {
     final theme= Theme.of(context);
     return Container(
       width: double.infinity,
-      height: 56, 
+      height: 56,
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
@@ -29,8 +30,8 @@ class AboutApp extends StatelessWidget {
           children: [
             InkWell(
               child: ListTile(
+                trailing: Icon(Icons.arrow_forward_ios,color: theme.colorScheme.onPrimary,),
                 title:  Text(AppLocalizations.of(context)!.aboutApp,style:theme.textTheme.titleMedium ,),
-                // TODO: Localize "About App" for multi-language support
                 leading: ClipOval(
                   child: Container(
                     color: Colors.grey.shade100,
@@ -46,7 +47,8 @@ class AboutApp extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // TODO: Navigate to About screen with app info, version, developer details
+                Navigator.pushNamed(context, AppRoutes.aboutScreen);
+
               },
             ),
           ],

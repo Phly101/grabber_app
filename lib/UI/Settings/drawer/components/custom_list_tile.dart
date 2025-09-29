@@ -10,6 +10,7 @@ class CustomListTile extends StatelessWidget {
   final IconData? icons;
   final Widget? widget;
   final List<Color> iconColors;
+  final List<Color> textColors;
   final int? id;
   final bool? isLocal;
 
@@ -25,11 +26,13 @@ class CustomListTile extends StatelessWidget {
     this.icons,
     this.isLocal,
     this.localId,
+    required this.textColors,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // final blocTheme =context.read<AppThemeBloc>();
 
     return Container(
       decoration: BoxDecoration(
@@ -41,11 +44,11 @@ class CustomListTile extends StatelessWidget {
         gradient: (isLocal ?? false)
             ? _buildGradientLocal(
                 id ?? 0,
-                localId ??  "en",
+                localId ?? "en",
               )
             : _buildGradient(
                 id ?? 0,
-                themeId??"L",
+                themeId ?? "L",
               ),
       ),
 
@@ -53,13 +56,16 @@ class CustomListTile extends StatelessWidget {
         onTap: onTap,
         leading:
             widget ??
-            FaIcon(icons, color: _getIconColor(id!, themeId?? "L", iconColors)),
+            FaIcon(
+              icons,
+              color: _getIconColor(id!, themeId ?? "L", iconColors),
+            ),
         title: Text(
           title,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onPrimary,
+            color: _getTextColor(id!, themeId ?? "L", textColors),
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 24,
           ),
         ),
       ),
@@ -84,7 +90,11 @@ LinearGradient _buildGradient(
       );
     } else {
       return const LinearGradient(
-        colors: [Colors.black, Colors.grey, Colors.white],
+        colors: [
+          Colors.black,
+          Colors.grey,
+          Colors.white,
+        ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       );
@@ -102,7 +112,11 @@ LinearGradient _buildGradient(
       );
     } else {
       return const LinearGradient(
-        colors: [Colors.black, Colors.grey, Colors.white],
+        colors: [
+          Colors.black,
+          Colors.grey,
+          Colors.white,
+        ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       );
@@ -120,6 +134,16 @@ Color _getIconColor(int id, String themeId, List<Color> iconColors) {
   }
 
   return iconColors[0];
+}
+
+Color _getTextColor(int id, String themeId, List<Color> textColors) {
+  if (id == 0) {
+    return themeId == "L" ? textColors[1] : textColors[0];
+  } else if (id == 1) {
+    return themeId == "D" ? textColors[1] : textColors[0];
+  }
+
+  return textColors[0];
 }
 
 LinearGradient _buildGradientLocal(

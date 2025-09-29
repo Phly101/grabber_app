@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
-import "../../../../LocalizationHelper/localizationHelper.dart";
+
 
 class HomeCategory extends StatefulWidget {
   final void Function(String category) onCategoryTap;
@@ -20,6 +21,10 @@ class _HomeCategoryState extends State<HomeCategory> {
     {"image": "Assets/Images/category3.png", "text": "beverages"},
     {"image": "Assets/Images/category4.png", "text": "laundry"},
     {"image": "Assets/Images/category5.png", "text": "vegetables"},
+    {"image": "Assets/Images/category6.png", "text": "Biscuit"},
+    {"image": "Assets/Images/category7.png", "text": "Detergent"},
+
+
   ];
 
   @override
