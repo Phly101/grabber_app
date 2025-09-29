@@ -2,7 +2,7 @@ import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/slider_widget.dart";
-import "package:grabber_app/Utils/routes.dart";
+
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -53,22 +53,7 @@ class _HomeSliderState extends State<HomeSlider> {
       itemBuilder: (context, index, realIndex) {
         final slide = sliderList[index];
 
-        return GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              AppRoutes.offerScreen,
-              arguments: {
-                "slide": slide,
-                "index": index,
-              },
-            );
-          },
-          child: Hero(
-            tag: "slide_$index",
-            child: SliderWidget(slide: slide),
-          ),
-        );
+        return SliderWidget(slide: slide);
       },
     );
   }

@@ -46,9 +46,7 @@ class ProfileContent extends StatelessWidget {
                 // TODO: Replace static asset with user profile picture
               ),
             ),
-            onTap: () {
-              // TODO: Navigate to email change/update screen
-            },
+
           ),
           ProfileItem(
 

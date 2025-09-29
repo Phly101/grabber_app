@@ -20,7 +20,11 @@ class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text(AppLocalizations.of(context)!.chooseTheme)),
+      appBar: AppBar(
+          leading: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: const Icon(Icons.arrow_back_ios)),
+          title:  Text(AppLocalizations.of(context)!.chooseTheme)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

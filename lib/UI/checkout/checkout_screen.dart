@@ -1,11 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceAPI/pdf_api.dart";
-import "package:grabber_app/UI/checkout/ViewModel/invoice_bloc.dart";
-import "package:grabber_app/UI/checkout/ViewModel/invoice_state.dart";
 import "package:grabber_app/UI/checkout/widgets/checkout_body.dart";
-import "package:grabber_app/Utils/routes.dart";
 import "../../../l10n/app_localizations.dart";
+import "Bloc/invoice_bloc.dart";
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -49,7 +47,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               appBar: AppBar(
                 leading: IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.cart);
+                    Navigator.pop(context);
                   },
                   icon: const Icon(Icons.arrow_back_ios_new),
                 ),

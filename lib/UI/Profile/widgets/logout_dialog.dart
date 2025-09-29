@@ -1,4 +1,7 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:fluttertoast/fluttertoast.dart";
+import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../../l10n/app_localizations.dart";
@@ -9,6 +12,31 @@ class LogoutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    return BlocConsumer<AuthBloc, AuthState>(
+  listener: (context, state) {
+    if( state is AuthSignOutLoading){
+      Fluttertoast.showToast(
+        msg: "Logging out....",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+    else if (state is AuthUnauthenticated) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.login,
+            (route) => false,
+      );
+    } else if (state is AuthError) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(state.error)),
+      );
+    }
+  },
+  builder: (context, state) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: GradientWidgetContainer(
@@ -48,6 +76,7 @@ class LogoutDialog extends StatelessWidget {
                   ),
                   onPressed: () {
                     // TODO: Add logout logic here (clear tokens, clear Hive/SharedPreferences, navigate to login)
+                    context.read<AuthBloc>().add(SignOutRequested());
                     Navigator.popAndPushNamed(context, AppRoutes.login);
                   },
                   child: Text(
@@ -88,5 +117,7 @@ class LogoutDialog extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

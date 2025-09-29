@@ -83,6 +83,8 @@ class SliderWidget extends StatelessWidget {
                 slide["image"],
                 alignment: Alignment.centerLeft,
                 fit: BoxFit.contain,
+                cacheWidth: 400,
+                cacheHeight: 300,
               ),
             ),
           ],
