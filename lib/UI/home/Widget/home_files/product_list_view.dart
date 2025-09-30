@@ -2,11 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
-import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_card.dart";
-import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
-import "package:grabber_app/common/custom_card_widget.dart";
-import "package:shimmer/shimmer.dart";
 
 class ProductListView extends StatelessWidget {
   final String title;
@@ -40,23 +36,23 @@ class ProductListView extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           AspectRatio(
-            aspectRatio: 1.28,
+            aspectRatio: 1.38,
             child: BlocBuilder<ItemsBloc, ItemsState>(
               builder: (context, state) {
                 if (state is ItemsLoading) {
-                  // return const Center(child: CircularProgressIndicator());
-                  return const Shimmer(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.primaryLightColor,
-                        AppColors.secondaryLightColor,
-                        AppColors.secondaryDarkColor,
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    child: CustomCardWidget(),
-                  );
+                   return const Center(child: CircularProgressIndicator());
+                  // return const Shimmer(
+                  //   gradient: LinearGradient(
+                  //     colors: [
+                  //       AppColors.primaryLightColor,
+                  //       AppColors.secondaryLightColor,
+                  //       AppColors.secondaryDarkColor,
+                  //     ],
+                  //     begin: Alignment.centerLeft,
+                  //     end: Alignment.centerRight,
+                  //   ),
+                  //   child: CustomCardWidget(),
+                  // );
                 } else if (state is ItemsLoaded) {
                   final items = state.items;
                   return ListView.builder(
@@ -71,7 +67,7 @@ class ProductListView extends StatelessWidget {
                     },
                   );
                 } else if (state is ItemsError) {
-                  return Center(child: Text('Error: ${state.message}'));
+                  return Center(child: Text("Error: ${state.message}"));
                 } else {
                   return const SizedBox.shrink();
                 }

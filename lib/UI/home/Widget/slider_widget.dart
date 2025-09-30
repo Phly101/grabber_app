@@ -28,18 +28,19 @@ class SliderWidget extends StatelessWidget {
         child: BlocBuilder<ItemsBloc, ItemsState>(
           builder: (BuildContext context, state) {
             if (state is ItemsLoading) {
-              return const Shimmer(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.primaryLightColor,
-                    AppColors.secondaryLightColor,
-                    AppColors.secondaryDarkColor,
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-                child: CustomCardWidget(),
-              );
+              return const Center(child: CircularProgressIndicator());
+              // Shimmer(
+              //   gradient: LinearGradient(
+              //     colors: [
+              //       AppColors.primaryLightColor,
+              //       AppColors.secondaryLightColor,
+              //       AppColors.secondaryDarkColor,
+              //     ],
+              //     begin: Alignment.centerLeft,
+              //     end: Alignment.centerRight,
+              //   ),
+              //   child: CustomCardWidget(),
+              // );
             } else if (state is ItemsLoaded) {
               List<Map> sliderItems = state.items;
 
@@ -47,11 +48,9 @@ class SliderWidget extends StatelessWidget {
                 itemCount: sliderItems.length,
                 itemBuilder: (context, index, realIndex) {
                   final slider = sliderItems[index];
-                  final Color bgColor = localBackgrounds[index % localBackgrounds.length];
+                  final Color bgColor = localBackgrounds[index];
 
                   return Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: bgColor,

@@ -2,7 +2,6 @@ import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
-import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 
 class BuildProductCard extends StatelessWidget {
@@ -12,7 +11,6 @@ class BuildProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = products[index];
     final item = items[index];
     final theme = Theme.of(context);
     return CustomCardWidget(
@@ -73,31 +71,12 @@ class BuildProductCard extends StatelessWidget {
                     style: theme.textTheme.bodyLarge,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Color(0xFFFFD500),
-                        size: 13,
-                      ),
-                      const SizedBox(width: 3),
-                      Text(
-                        LocalizationHelper.getString(
-                          context,
-                          product["rating48With287"],
-                        ),
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 12),
                   Text(
                     LocalizationHelper.getString(
                       context,
-                      item["price"].toString(),
+                      '${item["price"].toString()}  \$',
                     ),
-
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,
                     ),
