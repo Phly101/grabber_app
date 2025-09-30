@@ -9,17 +9,11 @@ import "../../../../Services/FireStore/firestore_service.dart";
 import "../../../../Theme/theme.dart";
 import "../../../../common/custom_card_widget.dart";
 
-//  stless
-class HomeCategory extends StatefulWidget {
+class HomeCategory extends StatelessWidget {
   final void Function(String category) onCategoryTap;
 
   const HomeCategory({super.key, required this.onCategoryTap});
 
-  @override
-  State<HomeCategory> createState() => _HomeCategoryState();
-}
-
-class _HomeCategoryState extends State<HomeCategory> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -29,7 +23,7 @@ class _HomeCategoryState extends State<HomeCategory> {
       create: (context) =>
           ItemsBloc(FirestoreService())..add(const LoadItems("category")),
       child: SizedBox(
-        height: 180,
+        height: 130,
         child: BlocBuilder<ItemsBloc, ItemsState>(
           builder: (context, state) {
             if (state is ItemsLoading) {
@@ -55,7 +49,7 @@ class _HomeCategoryState extends State<HomeCategory> {
                   final String imageUrl = category["image_URL"] ?? "";
 
                   return InkWell(
-                    onTap: () => widget.onCategoryTap(text),
+                    onTap: () => onCategoryTap(text),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 5,
@@ -63,15 +57,17 @@ class _HomeCategoryState extends State<HomeCategory> {
                       ),
                       child: Column(
                         children: [
-                          CachedNetworkImage(
-                            imageUrl: imageUrl,
-                            placeholder: (context, url) =>
-                                const Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            fit: BoxFit.cover,
-                            width: 100,
-                            height: 100,
+                          ClipOval(
+                            child: CachedNetworkImage(
+                              imageUrl: imageUrl,
+                              placeholder: (context, url) =>
+                                  const Center(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                              fit: BoxFit.cover,
+                              width: 80,
+                              height: 80,
+                            ),
                           ),
                           const SizedBox(height: 11),
                           Text(
