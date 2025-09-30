@@ -16,7 +16,7 @@
 
 # Work Plan:
 ### 1. UI Flutter
-### 2. Firebase (CRUD, Authentication,sharing cart,)
+### 2. Firebase (CRUD, Authentication,sharing cart,verification)
 ### 3. State Managment (BLoc)
 ### 4. Unit testing
 ### 5. Finalization
