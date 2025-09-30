@@ -3,6 +3,7 @@ import "package:grabber_app/UI/home/Widget/home_files/category.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
 import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
 import "../../l10n/app_localizations.dart";
+import "Widget/slider_widget.dart";
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -33,7 +34,7 @@ class _HomeTabState extends State<HomeTab> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const HomeSlider(),
+           SliderWidget(),
           HomeCategory(
             onCategoryTap: (category) {
               switch (category) {
@@ -66,6 +67,11 @@ class _HomeTabState extends State<HomeTab> {
             child: Column(
               children: [
                 ProductListView(
+                  key: fruitKey,
+                  product: "Fruits",
+                  title: AppLocalizations.of(context)!.fruits,
+                  collectionName: "Fruits list",
+                ),ProductListView(
                   key: milkKey,
                   product: "Milk & egg",
                   title: AppLocalizations.of(context)!.milkAndEgg,

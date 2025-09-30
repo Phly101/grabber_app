@@ -1,12 +1,15 @@
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:shimmer/shimmer.dart";
 import "../../../../Blocs/Theming/app_theme_bloc.dart";
 import "../../../../LocalizationHelper/localization_helper.dart";
 import "../../../../Services/FireStore/bloc/items_bloc.dart";
 import "../../../../Services/FireStore/firestore_service.dart";
 import "../../../../Theme/theme.dart";
+import "../../../../common/custom_card_widget.dart";
 
+//  stless
 class HomeCategory extends StatefulWidget {
   final void Function(String category) onCategoryTap;
 
@@ -30,15 +33,26 @@ class _HomeCategoryState extends State<HomeCategory> {
         child: BlocBuilder<ItemsBloc, ItemsState>(
           builder: (context, state) {
             if (state is ItemsLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Shimmer(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.primaryLightColor,
+                    AppColors.secondaryLightColor,
+                    AppColors.secondaryDarkColor,
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                child: CustomCardWidget(),
+              );
             } else if (state is ItemsLoaded) {
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: state.items.length,
                 itemBuilder: (context, index) {
-                  final category = state.items[index];
-                  final text = category["title_en"] ?? "";
-                  final imageUrl = category["image_URL"] ?? "";
+                  final Map<String, dynamic> category = state.items[index];
+                  final String text = category["title_en"] ?? "";
+                  final String imageUrl = category["image_URL"] ?? "";
 
                   return InkWell(
                     onTap: () => widget.onCategoryTap(text),

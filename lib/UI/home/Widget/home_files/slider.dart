@@ -53,7 +53,7 @@ class _HomeSliderState extends State<HomeSlider> {
       itemBuilder: (context, index, realIndex) {
         final slide = sliderList[index];
 
-        return SliderWidget(slide: slide);
+        return SliderWidget();
       },
     );
   }
