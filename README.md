@@ -43,21 +43,25 @@
 
 # Phase 2 Responsibilites:
 ## FireBase Phase:
-### Basel El Rafei: Authentication , Fire store user data(Cart).
-### Mark Ayman: Sharing cart.
-### Marian Makram & Simon Abd EL Malak: Firstore database.
-### Martina Wageeh: Verification .
-### Marina Essam: Firestore User data Update.
+### Basel El Rafei: Authentication , update user data in profile UI, updating locale bloc to update the localization via Firestore rather than local files.
+### Mark Ayman & Basel EL Rafei: Sharing cart.
+### Mark Ayman: Fetching FireStore database data into products UI,updating/Featching cart UI with FireStore database data.
+### Marian Makram: Firstore database (SLider, categories,) and fetching into UI.
+### Simon Abd EL Malak: Firstore database(loaclization english & arabic) and Crud functions of cart.
+### Martina Wageeh: Verification.
+### Marina Essam: Fetching user data into profile UI.
 
 # Phase 3 Responsibilites:
 ## State Management phase:
 ### Basel El Rafei: Theme Bloc, AuthBloc, Invoice Bloc.
+### Mark Ayman & Basel El Rafei: sharing Bloc.
 ### Mark Ayman & Martina Wageeh : Cart Bloc.
+### Simon Abd EL Malak: create/update/delete functions in CartBloc.
 ### Martina Wageeh: Verfication Bloc.
-### Mark Ayman & Marian Makram:  Firstore Bloc. 
+### Mark Ayman:  Firstore Bloc. 
 ### Marian Makram Locale Bloc.
-###  Mark Ayman & Simon Abd EL Malak: Sharing Cart Bloc.
-### Marina Essam & Basel El Rafei: User Bloc.
+### Mark Ayman & Simon Abd EL Malak: Sharing Cart Bloc.
+### Marina Essam: User Bloc.
 
 # Phase 4 Responsibilites:
 ## Unit Testing phase: Under Discussion.
