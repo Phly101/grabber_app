@@ -6,6 +6,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -43,6 +44,9 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (_) => AppThemeBloc()..add(InitialEvent()),
+        ),
+        BlocProvider(
+          create: (_) => UserBloc(),
         ),
       ],
       child: const MyApp(),

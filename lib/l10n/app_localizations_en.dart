@@ -490,4 +490,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cashOnDelivery => 'Cash on Delivery';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get updateName => 'Update Name';
+
+  @override
+  String get updatePhoneNumber => 'Update Phone Number';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get loadingProfileData => 'Loading Profile Data...';
+
+  @override
+  String get failedToLoadProfileData => 'Failed To Load Profile Data';
+
+  @override
+  String get dataUpdatedSuccessfully => 'Data Updated Successfully';
+
+  @override
+  String get failedToUpdateData => 'Failed To Update Data';
 }

@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/widgets/logout_dialog.dart";
+import "../../../Services/Users/Bloc/user_bloc.dart";
 import "../../../l10n/app_localizations.dart";
+import "edit_dialog.dart";
 import "profile_item.dart";
 
 class ProfileContent extends StatelessWidget {
@@ -31,9 +34,16 @@ class ProfileContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ProfileItem(
-            title: AppLocalizations.of(context)!.email,
-            subtitle: AppLocalizations.of(context)!.userExample,
-            // TODO: Replace with dynamic user email from state management / backend
+            title: Text(
+              AppLocalizations.of(context)!.email,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: BlocSelector<UserBloc, UserState, String>(
+              selector: (state) => state.user.email,
+              builder: (context, email) {
+                return Text(email, style: const TextStyle( fontSize: 14, color: Colors.grey));
+              },
+            ),
             leading: ClipOval(
               child: Container(
                 color: Colors.grey.shade100,
@@ -41,38 +51,48 @@ class ProfileContent extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: const ImageIcon(
-                  AssetImage("Assets/Icons/Profile.png",),
-                  color: AppColors.black,),
+                  AssetImage(
+                    "Assets/Icons/Profile.png",
+                  ),
+                  color: AppColors.black,
+                ),
                 // TODO: Replace static asset with user profile picture
               ),
             ),
-
           ),
           ProfileItem(
-
-            title: AppLocalizations.of(context)!.password,
-            subtitle: AppLocalizations.of(context)!.makeChangesToYourAccount,
+            title: Text(
+              AppLocalizations.of(context)!.password,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              AppLocalizations.of(context)!.makeChangesToYourAccount,
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
+            ),
             trailing: MaterialButton(
               onPressed: () {
                 // TODO: Implement password reset/change functionality
               },
-              child:  ImageIcon(const AssetImage("Assets/Icons/penIcon.png"),color: theme.colorScheme.onPrimary,),
+              child: ImageIcon(
+                const AssetImage("Assets/Icons/penIcon.png"),
+                color: theme.colorScheme.onPrimary,
+              ),
             ),
             leading: ClipOval(
               child: Container(
-                color:  Colors.grey.shade100,
+                color: Colors.grey.shade100,
                 padding: const EdgeInsets.all(12),
                 width: 50,
                 height: 50,
                 child: SvgPicture.asset(
-                "Assets/Icons/keyIcon.svg",
-                colorFilter:  const ColorFilter.mode(
-                   AppColors.black,
-                  BlendMode.srcIn,
+                  "Assets/Icons/keyIcon.svg",
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.black,
+                    BlendMode.srcIn,
+                  ),
+                  width: 25,
+                  height: 25,
                 ),
-                width: 25,
-                height: 25,
-              ),
               ),
             ),
             onTap: () {
@@ -80,15 +100,69 @@ class ProfileContent extends StatelessWidget {
             },
           ),
           ProfileItem(
-            title: AppLocalizations.of(context)!.logout,
-            subtitle: AppLocalizations.of(context)!.furtherSecureYourAccountForSafety,
+            title: Text(AppLocalizations.of(context)!.phoneNumber),
+            subtitle: BlocSelector<UserBloc, UserState, String>(
+              selector: (state) => state.user.phoneNumber,
+              builder: (context, phoneNumber) {
+                return Text(phoneNumber, style: const TextStyle( fontSize: 14, color: Colors.grey));
+              },
+            ),
+            trailing: MaterialButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => EditDialog(
+                    field: "phoneNum",
+                    currentValue: context.read<UserBloc>().state.user.phoneNumber,
+                  ),
+                );
+              },
+              child: ImageIcon(
+                const AssetImage("Assets/Icons/penIcon.png"),
+                color: theme.colorScheme.onPrimary,
+              ),
+            ),
+            leading: ClipOval(
+              child: Container(
+                color: Colors.grey.shade100,
+                padding: const EdgeInsets.all(12),
+                width: 50,
+                height: 50,
+                child: SvgPicture.asset(
+                  "Assets/Icons/phone.svg",
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.black,
+                    BlendMode.srcIn,
+                  ),
+                  width: 25,
+                  height: 25,
+                ),
+              ),
+            ),
+            onTap: () {
+              // TODO: Navigate to phone number update screen
+            },
+          ),
+
+          ProfileItem(
+            title: Text(
+              AppLocalizations.of(context)!.logout,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              AppLocalizations.of(context)!.furtherSecureYourAccountForSafety,
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
+            ),
             leading: ClipOval(
               child: Container(
                 color: Colors.grey.shade100,
                 padding: const EdgeInsets.all(12),
                 width: 55,
                 height: 55,
-                child:  const Icon(Icons.logout,color: AppColors.black ,),
+                child: const Icon(
+                  Icons.logout,
+                  color: AppColors.black,
+                ),
               ),
             ),
             onTap: () {
