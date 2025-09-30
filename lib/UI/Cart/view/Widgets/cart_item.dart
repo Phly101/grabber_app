@@ -34,7 +34,7 @@ class CartItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              item.price.toString(),
+              (item.price * item.quantity).toString(),
               style: TextStyle(fontSize: 16),
             ),
             Row(
