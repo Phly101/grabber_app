@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/UI/home/Widget/home_files/category.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
-import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
 import "../../l10n/app_localizations.dart";
 import "Widget/slider_widget.dart";
 
