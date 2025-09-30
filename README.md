@@ -46,7 +46,7 @@
 ### Basel El Rafei: Authentication , update user data in profile UI, updating locale bloc to update the localization via Firestore rather than local files.
 ### Mark Ayman & Basel EL Rafei: Sharing cart.
 ### Mark Ayman: Fetching FireStore database data into products UI,updating/Featching cart UI with FireStore database data.
-### Marian Makram: Firstore database (SLider, categories,) and fetching into UI.
+### Marian Makram: Firstore database (SLider, categories, products) and fetching into UI.
 ### Simon Abd EL Malak: Firstore database(loaclization english & arabic) and Crud functions of cart.
 ### Martina Wageeh: Verification.
 ### Marina Essam: Fetching user data into profile UI.
