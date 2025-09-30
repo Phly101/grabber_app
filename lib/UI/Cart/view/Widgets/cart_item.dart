@@ -51,9 +51,7 @@ class CartItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: const ImageIcon(
-                          AssetImage("Assets/Icons/trash-2.png"),
-                        ),
+                        icon: const Icon(Icons.remove_sharp),
                         onPressed: () {
                           if (item.quantity > 1) {
                             context.read<CartBloc>().add(
