@@ -1,5 +1,8 @@
 
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 
@@ -35,9 +38,9 @@ class SuggestionsList extends StatelessWidget {
     } else {
       return ListView.separated(
         itemCount: filteredProducts.length,
-
         separatorBuilder: (context, index) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
+          final name = filteredProducts[index];   // name to string type
           return CustomCardWidget(
             elevation: 6,
             child: Column(
@@ -68,6 +71,19 @@ class SuggestionsList extends StatelessWidget {
                   ),
                   trailing: ElevatedButton(
                     onPressed: () {
+                        context.read<CartBloc>().add(
+                          AddItemEvent(
+                            CartItemModel(  // using product static
+                              imagePath: "Assets/Images/Frame 400.png",
+                              name: name,
+                              price: 3.6,
+                              quantity: 1,
+                            ),
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("$name added to cart")),
+                        );
 
                     },
                     style: ElevatedButton.styleFrom(

@@ -54,6 +54,7 @@ class CartPage extends StatelessWidget {
                   return const Center(child: Text("Cart is empty"));
                 }
                 return ListView.builder(
+                  //padding: EdgeInsets.only(bottom: 100),
                   itemCount: state.items.length,
                   itemBuilder: (context, index) {
                     final item = state.items[index];
