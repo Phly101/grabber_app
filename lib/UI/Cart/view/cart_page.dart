@@ -19,6 +19,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   final _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -107,7 +108,10 @@ class _CartPageState extends State<CartPage> {
                   borderRadius: BorderRadius.circular(16),
                   //Todo: implement the onPressed function
                   onTap: () {
-                    final bottomDrawer = BottomDrawer(formKey: _formKey,controller: _controller);
+                    final bottomDrawer = BottomDrawer(
+                      formKey: _formKey,
+                      controller: _controller,
+                    );
                     bottomDrawer.openBottomDrawer(context);
                   },
                   child: ListTile(

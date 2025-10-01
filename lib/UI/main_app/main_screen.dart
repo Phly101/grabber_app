@@ -10,6 +10,7 @@ import "package:grabber_app/UI/home/home_tab.dart";
 import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
+import "package:badges/badges.dart" as badges;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -46,7 +47,20 @@ class _MainScreenState extends State<MainScreen> {
               // centerTitle: true,
               actions: [
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.cartShopping,color: theme.colorScheme.onPrimary,),
+                  onPressed: () {},
+                  icon: badges.Badge(
+                    badgeContent: const Text(""),
+                    child: FaIcon(
+                      FontAwesomeIcons.bell,
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.cartShopping,
+                    color: theme.colorScheme.onPrimary,
+                  ),
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.cart);
                   },
