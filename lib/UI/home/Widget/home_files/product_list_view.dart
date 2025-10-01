@@ -4,6 +4,9 @@ import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_card.dart";
 
+
+
+
 class ProductListView extends StatelessWidget {
   final String title;
   final String collectionName;
@@ -41,17 +44,11 @@ class ProductListView extends StatelessWidget {
               builder: (context, state) {
                 if (state is ItemsLoading) {
                    return const Center(child: CircularProgressIndicator());
-                  // return const Shimmer(
-                  //   gradient: LinearGradient(
-                  //     colors: [
-                  //       AppColors.primaryLightColor,
-                  //       AppColors.secondaryLightColor,
-                  //       AppColors.secondaryDarkColor,
-                  //     ],
-                  //     begin: Alignment.centerLeft,
-                  //     end: Alignment.centerRight,
+                  // return  Shimmer(
+                  //   color: Colors.blue,
+                  //   child: const CustomCardWidget(
+                  //
                   //   ),
-                  //   child: CustomCardWidget(),
                   // );
                 } else if (state is ItemsLoaded) {
                   final items = state.items;

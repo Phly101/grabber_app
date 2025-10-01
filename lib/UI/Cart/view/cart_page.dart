@@ -1,16 +1,24 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/UI/Cart/view/Widgets/bottom_drawer.dart";
 import "package:grabber_app/UI/Cart/view/Widgets/checkout_button.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 import "widgets/cart_item.dart";
 import "../../../l10n/app_localizations.dart";
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -98,7 +106,10 @@ class CartPage extends StatelessWidget {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
                   //Todo: implement the onPressed function
-                  onTap: () {},
+                  onTap: () {
+                    final bottomDrawer = BottomDrawer(formKey: _formKey,controller: _controller);
+                    bottomDrawer.openBottomDrawer(context);
+                  },
                   child: ListTile(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),

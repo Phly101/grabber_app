@@ -18,7 +18,7 @@ class _ProfileTabState extends State<ProfileTab> {
   @override
   void initState() {
     super.initState();
-    context.read<UserBloc>().add(FetchUserData());
+    context.read<UserBloc>().add(const FetchUserData());
   }
 
   void showToast(String msg) {
@@ -38,8 +38,11 @@ class _ProfileTabState extends State<ProfileTab> {
     return Scaffold(
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserInitial || state is UserLoading) {
+          if (state is UserInitial) {
             showToast(AppLocalizations.of(context)!.loadingProfileData);
+            // } else if (state is UserLoading) {
+            //   showToast(AppLocalizations.of(context)!.loadingProfileData);
+            // }
           } else if (state is UserUpdateError) {
             showToast(AppLocalizations.of(context)!.failedToLoadProfileData);
           }
@@ -50,9 +53,9 @@ class _ProfileTabState extends State<ProfileTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProfileHeader(),
+                const ProfileHeader(),
                 const SizedBox(height: 16),
-                ProfileContent(),
+                const ProfileContent(),
                 const SizedBox(height: 10),
                 Text(
                   AppLocalizations.of(context)!.more,

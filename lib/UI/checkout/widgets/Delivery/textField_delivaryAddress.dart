@@ -1,14 +1,14 @@
-import "package:flutter/cupertino.dart";
+
 import "package:flutter/material.dart";
 
 import "../../../../Theme/theme.dart";
 
-class TextfieldDelivaryaddress extends StatelessWidget {
+class TextFieldDeliveryAddress extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final String hintText;
 
-  const TextfieldDelivaryaddress({
+  const TextFieldDeliveryAddress({
     super.key,
     required this.controller,
     required this.labelText,

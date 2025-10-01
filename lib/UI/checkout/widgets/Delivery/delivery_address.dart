@@ -2,9 +2,14 @@ import "package:flutter/material.dart";
 import "package:grabber_app/UI/checkout/widgets/Delivery/textField_delivaryAddress.dart";
 
 
-class DeliveryAddress extends StatelessWidget {
-  DeliveryAddress({super.key});
+class DeliveryAddress extends StatefulWidget {
+  const DeliveryAddress({super.key});
 
+  @override
+  State<DeliveryAddress> createState() => _DeliveryAddressState();
+}
+
+class _DeliveryAddressState extends State<DeliveryAddress> {
   TextEditingController controller2 = TextEditingController();
 
   @override
@@ -16,26 +21,26 @@ class DeliveryAddress extends StatelessWidget {
         ),
 
 
-        TextfieldDelivaryaddress(
+        TextFieldDeliveryAddress(
           controller: controller2,
           labelText: "First Name",
           hintText: "First Name",
         ),
         const SizedBox(height: 18,),
-        TextfieldDelivaryaddress(
+        TextFieldDeliveryAddress(
           controller: controller2,
           labelText: "Last Name",
           hintText: "Last Name",
         ),
         const SizedBox(height: 18,),
-        TextfieldDelivaryaddress(
+        TextFieldDeliveryAddress(
           controller: controller2,
           labelText: "Address Finder",
           hintText: "Address Finder",
         ),
         const SizedBox(height: 18,),
 
-        TextfieldDelivaryaddress(
+        TextFieldDeliveryAddress(
           controller: controller2,
           labelText: "Mobile",
           hintText: "Mobile",

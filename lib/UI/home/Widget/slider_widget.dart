@@ -1,5 +1,4 @@
 import "package:cached_network_image/cached_network_image.dart";
-import "package:carousel_slider/carousel_options.dart";
 import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -7,16 +6,19 @@ import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 import "package:grabber_app/Theme/theme.dart";
-import "package:shimmer/shimmer.dart";
-import "../../../common/custom_card_widget.dart";
 import "../../../l10n/app_localizations.dart";
 
 class SliderWidget extends StatelessWidget {
-  final List<Color> localBackgrounds = [
-    AppColors.primaryLightColor,
-    AppColors.textButtonColor,
-    const Color(0xFFFFDB24),
-  ];
+  final List<Color> localBackgrounds;
+  const SliderWidget({
+    super.key,
+    this.localBackgrounds = const [
+      AppColors.primaryLightColor,
+      AppColors.textButtonColor,
+      Color(0xFFFFDB24),
+    ],
+  });
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +67,18 @@ class SliderWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  LocalizationHelper.getString(context, slider["title_en"]),
-                                  style:  Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: slider["isDark"] ? AppColors.white : AppColors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                  LocalizationHelper.getString(
+                                    context,
+                                    slider["title_en"],
                                   ),
+                                  style: Theme.of(context).textTheme.titleLarge!
+                                      .copyWith(
+                                        color: slider["isDark"]
+                                            ? AppColors.white
+                                            : AppColors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
@@ -80,13 +88,14 @@ class SliderWidget extends StatelessWidget {
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: slider["isDark"]
-                                        ? AppColors.white
-                                        : AppColors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: Theme.of(context).textTheme.titleLarge!
+                                      .copyWith(
+                                        color: slider["isDark"]
+                                            ? AppColors.white
+                                            : AppColors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
 
                                 const SizedBox(height: 22),
@@ -103,12 +112,17 @@ class SliderWidget extends StatelessWidget {
                                     child: Text(
                                       AppLocalizations.of(context)!.shopNow,
                                       style: slider["isDark"]
-                                          ? Theme.of(context).textTheme.titleMedium!.copyWith(
-                                        color: AppColors.textButtonColor,
-                                      )
-                                          : Theme.of(context).textTheme.titleMedium!.copyWith(
-                                        color: AppColors.primaryLightColor,
-                                      ),
+                                          ? Theme.of(
+                                              context,
+                                            ).textTheme.titleMedium!.copyWith(
+                                              color: AppColors.textButtonColor,
+                                            )
+                                          : Theme.of(
+                                              context,
+                                            ).textTheme.titleMedium!.copyWith(
+                                              color:
+                                                  AppColors.primaryLightColor,
+                                            ),
                                     ),
                                   ),
                                 ),
@@ -119,15 +133,18 @@ class SliderWidget extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: CachedNetworkImage(
-                            height: 191,width: 117,
+                            height: 191,
+                            width: 117,
                             fit: BoxFit.cover,
                             imageUrl: slider["image_URL"],
                             placeholder: (context, url) => const Center(
                               child: CircularProgressIndicator(),
                             ),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                           ),
-                        ), const SizedBox(width: 11),
+                        ),
+                        const SizedBox(width: 11),
                       ],
                     ),
                   );
@@ -139,8 +156,7 @@ class SliderWidget extends StatelessWidget {
                   autoPlayInterval: const Duration(seconds: 6),
                 ),
               );
-            }
-            else if (state is ItemsError) {
+            } else if (state is ItemsError) {
               return Center(child: Text("Error: ${state.message}"));
             }
             return const SizedBox.shrink();

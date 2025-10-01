@@ -1,15 +1,15 @@
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 
 class BuildProductCard extends StatelessWidget {
   final int index;
-  final items;
+  final dynamic items;
   const BuildProductCard({super.key, required this.index, required this.items});
 
   @override
@@ -53,8 +53,8 @@ class BuildProductCard extends StatelessWidget {
                     context.read<CartBloc>().add(
                       AddItemEvent(
                         CartItemModel(
-                          imagePath: product["imagePath"],
-                          name: product["name"],
+                          imagePath: item["image_URL"],
+                          name: item["title_en"],
                           price: 3.6,
                           quantity: 1
                         )
@@ -92,7 +92,7 @@ class BuildProductCard extends StatelessWidget {
                   Text(
                     LocalizationHelper.getString(
                       context,
-                      '${item["price"].toString()}  \$',
+                      'Price: ${item["price"].toString()}\$',
                     ),
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,

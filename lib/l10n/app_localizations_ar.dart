@@ -1,6 +1,6 @@
 // ignore: unused_import
 import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
-import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint

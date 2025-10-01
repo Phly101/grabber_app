@@ -1,14 +1,16 @@
+import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
+
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 // import "shimmer_image.dart";
-import "../../../../l10n/app_localizations.dart";
 
 class CartItem extends StatelessWidget {
   final CartItemModel item;
+
   const CartItem({super.key, required this.item});
 
   @override
@@ -21,7 +23,10 @@ class CartItem extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(12),
-        leading: Image.asset(item.imagePath, width: 50, height: 50),
+        leading: CachedNetworkImage(
+          imageUrl: item.imagePath,
+          fit: BoxFit.cover,
+        ),
         title: Text(
           // AppLocalizations.of(context)!.bananaBundle300g,
           // item.name, // but this remove the localization
@@ -35,7 +40,7 @@ class CartItem extends StatelessWidget {
           children: [
             Text(
               (item.price * item.quantity).toString(),
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
             Row(
               children: [

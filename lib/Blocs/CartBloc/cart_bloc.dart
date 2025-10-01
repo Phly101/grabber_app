@@ -1,6 +1,7 @@
 import "package:bloc/bloc.dart";
 import "package:equatable/equatable.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
+
 
 part "cart_event.dart";
 part "cart_state.dart";

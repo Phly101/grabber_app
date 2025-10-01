@@ -1,11 +1,10 @@
 
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
-import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
-
 import "../../../l10n/app_localizations.dart";
 
 

@@ -33,7 +33,7 @@ class _HomeTabState extends State<HomeTab> {
     return SingleChildScrollView(
       child: Column(
         children: [
-           SliderWidget(),
+           const SliderWidget(),
           HomeCategory(
             onCategoryTap: (category) {
               switch (category) {

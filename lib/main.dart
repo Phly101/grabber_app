@@ -6,11 +6,6 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
-
-import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
-
-import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
-
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -22,9 +17,11 @@ import "package:grabber_app/l10n/app_localizations.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
 // Blocs
+import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
 import "Blocs/Theming/app_theme_bloc.dart";
 import "Blocs/localization/localization.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 
 // Features (barrel files or grouped imports)
 import "package:grabber_app/UI/ui.dart";
