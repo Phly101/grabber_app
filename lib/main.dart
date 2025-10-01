@@ -6,6 +6,8 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
+import "package:grabber_app/Services/FireStore/firestore_service.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -52,6 +54,8 @@ Future<void> main() async {
         ),
 
         BlocProvider(create: (_) => CartBloc()),
+
+        BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
 
       ],
       child: const MyApp(),
