@@ -1,4 +1,5 @@
 // ignore: unused_import
+import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
@@ -490,4 +491,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cashOnDelivery => 'الدفع عند الاستلام';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get updateName => 'تعديل إسم المستخدم';
+
+  @override
+  String get updatePhoneNumber => 'تعديل رقم الهاتف';
+
+  @override
+  String get cancel => 'إالغاء';
+
+  @override
+  String get loadingProfileData => 'تحميل بيانات الملف الشخصي...';
+
+  @override
+  String get failedToLoadProfileData => 'خطأ في تحميل بيانات الملف الشخصي';
+
+  @override
+  String get dataUpdatedSuccessfully => 'تعديل بيانات المستخدم بنجاح';
+
+  @override
+  String get failedToUpdateData => 'خطأ في تعديل بيانات المستخدم';
 }

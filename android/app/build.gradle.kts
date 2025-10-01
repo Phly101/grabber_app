@@ -6,6 +6,9 @@ plugins {
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+
+    id("org.jetbrains.kotlin.android")
+
 }
 
 android {
@@ -32,7 +35,7 @@ android {
 
 
 
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
 
 
 
@@ -52,4 +55,8 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.firebase:firebase-firestore:25.0.0")
 }

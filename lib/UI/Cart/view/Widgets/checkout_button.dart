@@ -9,15 +9,16 @@ class CheckoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: onPressed,
-      // TODO: Replace with navigation to checkout screen or API call
-      backgroundColor: AppColors.textButtonColor,
-      // TODO: Add theme switch (light/dark mode) support for dynamic colors
-      label:  Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: Text(
-            AppLocalizations.of(context)!.checkOut,
+    return SizedBox(
+      width: 220,
+      height: 60,
+      child: FloatingActionButton.extended(
+        onPressed: onPressed,
+        // TODO: Replace with navigation to checkout screen or API call
+        backgroundColor: AppColors.textButtonColor,
+        // TODO: Add theme switch (light/dark mode) support for dynamic colors
+        label: Text(
+          AppLocalizations.of(context)!.checkOut,
           // TODO: Localize this text for multi-language support
           style: const TextStyle(
             fontSize: 18,
@@ -25,9 +26,9 @@ class CheckoutButton extends StatelessWidget {
             color: AppColors.white,
           ),
         ),
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
       ),
     );
   }

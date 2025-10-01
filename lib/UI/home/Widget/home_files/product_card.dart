@@ -1,21 +1,20 @@
+import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
-import "package:grabber_app/UI/home/Widget/home_files/product_data.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
-
 
 class BuildProductCard extends StatelessWidget {
   final int index;
-
-  const BuildProductCard({
-    super.key,
-    required this.index,
-  });
+  final items;
+  const BuildProductCard({super.key, required this.index, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    final product = products[index];
+    final item = items[index];
     final theme = Theme.of(context);
     return CustomCardWidget(
       elevation: 6,
@@ -30,10 +29,19 @@ class BuildProductCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRect(
-                  child: Image.asset(
-                    product["imagePath"],
-                    fit: BoxFit.cover,
-                  ),
+                  child:
+                      CachedNetworkImage(
+                        imageUrl: item["image_URL"],
+                        placeholder: (context, url) =>
+                            const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                        fit: BoxFit.fill,
+                        width: 200,
+                        height: 150,
+                      ),
                 ),
               ),
               Positioned(
@@ -41,7 +49,21 @@ class BuildProductCard extends StatelessWidget {
                 right: 10,
 
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<CartBloc>().add(
+                      AddItemEvent(
+                        CartItemModel(
+                          imagePath: product["imagePath"],
+                          name: product["name"],
+                          price: 3.6,
+                          quantity: 1
+                        )
+                      )
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Added to cart"))
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.secondaryDarkColor,
                     minimumSize: const Size(25, 30),
@@ -62,28 +84,16 @@ class BuildProductCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    LocalizationHelper.getString(context, product["name"]),
+                    LocalizationHelper.getString(context, item["title_en"]),
                     style: theme.textTheme.bodyLarge,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Color(0xFFFFD500),
-                        size: 13,
-                      ),
-                      const SizedBox(width: 3),
-                      Text(
-                       LocalizationHelper.getString(context, product["rating48With287"]) ,
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 12),
                   Text(
-                   LocalizationHelper.getString(context, product["price1"]),
+                    LocalizationHelper.getString(
+                      context,
+                      '${item["price"].toString()}  \$',
+                    ),
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,
                     ),

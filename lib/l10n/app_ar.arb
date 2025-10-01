@@ -161,6 +161,12 @@
   "scanAndPay": "مسح للدفع",
   "other": "أخرى",
   "cashOnDelivery": "الدفع عند الاستلام"
-
-
+  "phoneNumber": "رقم الهاتف"
+  "updateName": "تعديل إسم المستخدم"
+  "updatePhoneNumber": "تعديل رقم الهاتف"
+  "cancel": "إلغاء"
+  "loadingProfileData": "...تحميل بيانات الملف الشخصي"
+  "failedToLoadProfileData": "خطأ في تحميل بيانات الملف الشخصي"
+  "dataUpdatedSuccessfully": "تعديل بيانات المستخدم بنجاح"
+  "failedToUpdateData": "خطأ في تعديل بيانات المستخدم"
 }
