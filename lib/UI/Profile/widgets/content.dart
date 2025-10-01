@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
+import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/widgets/logout_dialog.dart";
 import "../../../Services/Users/Bloc/user_bloc.dart";
@@ -41,7 +42,10 @@ class ProfileContent extends StatelessWidget {
             subtitle: BlocSelector<UserBloc, UserState, String>(
               selector: (state) => state.user.email,
               builder: (context, email) {
-                return Text(email, style: const TextStyle( fontSize: 14, color: Colors.grey));
+                return Text(
+                  email,
+                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                );
               },
             ),
             leading: ClipOval(
@@ -60,51 +64,59 @@ class ProfileContent extends StatelessWidget {
               ),
             ),
           ),
-          ProfileItem(
-            title: Text(
-              AppLocalizations.of(context)!.password,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-              AppLocalizations.of(context)!.makeChangesToYourAccount,
-              style: const TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-            trailing: MaterialButton(
-              onPressed: () {
-                // TODO: Implement password reset/change functionality
-              },
-              child: ImageIcon(
-                const AssetImage("Assets/Icons/penIcon.png"),
-                color: theme.colorScheme.onPrimary,
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              // TODO: implement listener
+            },
+            child: ProfileItem(
+              title: Text(
+                AppLocalizations.of(context)!.password,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
-            leading: ClipOval(
-              child: Container(
-                color: Colors.grey.shade100,
-                padding: const EdgeInsets.all(12),
-                width: 50,
-                height: 50,
-                child: SvgPicture.asset(
-                  "Assets/Icons/keyIcon.svg",
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.black,
-                    BlendMode.srcIn,
-                  ),
-                  width: 25,
-                  height: 25,
+              subtitle: Text(
+                AppLocalizations.of(context)!.makeChangesToYourAccount,
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+              trailing: MaterialButton(
+                onPressed: () {
+                //  context.read<AuthBloc>().add(UpdatePasswordRequested(currentEmail: currentEmail, currentPassword: currentPassword, newPassword: newPassword));
+                },
+                child: ImageIcon(
+                  const AssetImage("Assets/Icons/penIcon.png"),
+                  color: theme.colorScheme.onPrimary,
                 ),
               ),
+              leading: ClipOval(
+                child: Container(
+                  color: Colors.grey.shade100,
+                  padding: const EdgeInsets.all(12),
+                  width: 50,
+                  height: 50,
+                  child: SvgPicture.asset(
+                    "Assets/Icons/keyIcon.svg",
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.black,
+                      BlendMode.srcIn,
+                    ),
+                    width: 25,
+                    height: 25,
+                  ),
+                ),
+              ),
+              onTap: () {
+                // TODO: Navigate to password update screen
+              },
             ),
-            onTap: () {
-              // TODO: Navigate to password update screen
-            },
           ),
           ProfileItem(
             title: Text(AppLocalizations.of(context)!.phoneNumber),
             subtitle: BlocSelector<UserBloc, UserState, String>(
               selector: (state) => state.user.phoneNumber,
               builder: (context, phoneNumber) {
-                return Text(phoneNumber, style: const TextStyle( fontSize: 14, color: Colors.grey));
+                return Text(
+                  phoneNumber,
+                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                );
               },
             ),
             trailing: MaterialButton(
@@ -113,7 +125,11 @@ class ProfileContent extends StatelessWidget {
                   context: context,
                   builder: (context) => EditDialog(
                     field: "phoneNum",
-                    currentValue: context.read<UserBloc>().state.user.phoneNumber,
+                    currentValue: context
+                        .read<UserBloc>()
+                        .state
+                        .user
+                        .phoneNumber,
                   ),
                 );
               },

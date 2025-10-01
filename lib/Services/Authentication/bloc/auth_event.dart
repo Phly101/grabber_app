@@ -46,3 +46,10 @@ final class ForgotPasswordRequested extends AuthEvent {
 
   ForgotPasswordRequested({required this.email});
 }
+final class UpdatePasswordRequested extends AuthEvent {
+  final String currentEmail;
+  final String currentPassword;
+  final String newPassword;
+
+  UpdatePasswordRequested({required this.currentEmail, required this.currentPassword, required this.newPassword,});
+}
