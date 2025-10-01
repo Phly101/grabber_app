@@ -1,7 +1,7 @@
 class CartItemModel {
   final String imagePath;
   final String name;
-  final double price;
+  final num price;
   final int quantity;
 
   CartItemModel({
