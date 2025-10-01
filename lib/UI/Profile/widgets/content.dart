@@ -99,6 +99,11 @@ class _ProfileContentState extends State<ProfileContent> {
                     confirmPasswordController: _newConfirmPasswordController,
                   );
                   showPasswordChangeForm.showChangePasswordForm(context);
+                  _emailController.clear();
+                  _currentPasswordController.clear();
+                  _newPasswordController.clear();
+                  _newConfirmPasswordController.clear();
+                  _formKey.currentState!.reset();
 
                 },
                 icon: ImageIcon(

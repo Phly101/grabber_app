@@ -165,11 +165,7 @@ class ChangePasswordForm {
                                 textColor: Colors.white,
                                 fontSize: 16.0,
                               );
-                              emailController.clear();
-                              currentPasswordController.clear();
-                              newPasswordController.clear();
-                              confirmPasswordController.clear();
-                              formKey.currentState!.reset();
+
                               Navigator.pop(context);
                             }
                             else if (state is AuthError) {
