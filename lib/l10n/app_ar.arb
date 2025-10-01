@@ -106,7 +106,7 @@
   "more": "المزيد",
   "scheduleDelivery": "جدولة التسليم",
   "timeSlots": "فترات الوقت",
-  "free": "حر",
+  "free": "مجاني",
   "saveAndContinue": "حفظ ومتابعة",
   "time0800to0930": "08:00 ص – 09:30 ص",
   "time1000to1115": "10:00 ص – 11:15 ص",
@@ -116,9 +116,7 @@
   "time0800to0915": "08:00 م – 09:15 م",
   "time0630to0700": "06:30 ص – 07:00 ص",
   "noSuggestionsFoundFor": "لا توجد اقتراحات لـ \"%s\"",
-  "search": "بحث",
   "pineapple": "أناناس",
-  "settings": "الإعدادات",
   "language": "اللغة",
   "theme": "المظهر",
   "chooseLanguage": "اختر اللغة",
@@ -138,15 +136,37 @@
   "quadratiniBiscuit": "بسكويت كوادراتيني",
   "noSuggestionsFound": "لا توجد اقتراحات لـ",
   "price1": "٥٫٢٩ ج.م",
-   "price2": "٢٫٩٩ ج.م",
-   "price3": "٣٫٩٩ ج.م",
-   "price4": "١٫٩٩ ج.م",
-   "price5": "١٫٩٩ ج.م",
-   "price6": "١٫٩٩ ج.م",
-    "rating1": "٤٫٨ (٢٨٧)",
-    "home": "الرئيسية",
-    "search": "بحث",
-    "profile": "الملف الشخصي",
-    "settings": "الإعدادات",
-    "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟"
+  "price2": "٢٫٩٩ ج.م",
+  "price3": "٣٫٩٩ ج.م",
+  "price4": "١٫٩٩ ج.م",
+  "price5": "١٫٩٩ ج.م",
+  "price6": "١٫٩٩ ج.م",
+  "rating1": "٤٫٨ (٢٨٧)",
+  "home": "الرئيسية",
+  "deliveryAddress": "عنوان التسليم",
+  "search": "بحث",
+  "profile": "الملف الشخصي",
+  "settings": "الإعدادات",
+  "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟",
+  "developedBy": "تم التطوير بواسطة",
+  "developerEmail": "البريد الإلكتروني",
+  "website": "الموقع الإلكتروني",
+  "viewOpenSourceLicenses": "عرض تراخيص المصدر المفتوح",
+  "appDescriptionLine1": "غرابر هو رفيقك الذكي لقائمة التسوق.",
+  "appDescriptionLine2": "أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.",
+
+  "appDescriptionLine3": "سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.",
+  "deliverToCurrentLocation": "تسليم إلى موقعك الحالي",
+  "upiPay": "دفع UPI",
+  "scanAndPay": "مسح للدفع",
+  "other": "أخرى",
+  "cashOnDelivery": "الدفع عند الاستلام"
+  "phoneNumber": "رقم الهاتف"
+  "updateName": "تعديل إسم المستخدم"
+  "updatePhoneNumber": "تعديل رقم الهاتف"
+  "cancel": "إلغاء"
+  "loadingProfileData": "...تحميل بيانات الملف الشخصي"
+  "failedToLoadProfileData": "خطأ في تحميل بيانات الملف الشخصي"
+  "dataUpdatedSuccessfully": "تعديل بيانات المستخدم بنجاح"
+  "failedToUpdateData": "خطأ في تعديل بيانات المستخدم"
 }

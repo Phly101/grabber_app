@@ -959,6 +959,12 @@ abstract class AppLocalizations {
   /// **'EGP 1.99'**
   String get price6;
 
+  /// No description provided for @deliveryAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Address'**
+  String get deliveryAddress;
+
   /// No description provided for @rating1.
   ///
   /// In en, this message translates to:
@@ -982,6 +988,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already have an account?'**
   String get alreadyHaveAnAccount;
+
+  /// No description provided for @developedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Developed by'**
+  String get developedBy;
+
+  /// No description provided for @developerEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get developerEmail;
+
+  /// No description provided for @website.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get website;
+
+  /// No description provided for @viewOpenSourceLicenses.
+  ///
+  /// In en, this message translates to:
+  /// **'View Open Source Licenses'**
+  String get viewOpenSourceLicenses;
+
+  /// No description provided for @appDescriptionLine1.
+  ///
+  /// In en, this message translates to:
+  /// **'Grabber is your smart shopping list companion.'**
+  String get appDescriptionLine1;
+
+  /// No description provided for @appDescriptionLine2.
+  ///
+  /// In en, this message translates to:
+  /// **'Easily add groceries, track quantities, and stay organized.'**
+  String get appDescriptionLine2;
+
+  /// No description provided for @appDescriptionLine3.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether at home or in the store, Grabber keeps your shopping hassle-free.'**
+  String get appDescriptionLine3;
+
+  /// No description provided for @deliverToCurrentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliver to your current location'**
+  String get deliverToCurrentLocation;
+
+  /// No description provided for @upiPay.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI Pay'**
+  String get upiPay;
+
+  /// No description provided for @scanAndPay.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Pay'**
+  String get scanAndPay;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @cashOnDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash on Delivery'**
+  String get cashOnDelivery;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @updateName.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Name'**
+  String get updateName;
+
+  /// No description provided for @updatePhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Phone Number'**
+  String get updatePhoneNumber;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @loadingProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Profile Data'**
+  String get loadingProfileData;
+
+  /// No description provided for @failedToLoadProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed To Load Profile Data'**
+  String get failedToLoadProfileData;
+
+  /// No description provided for @dataUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Updated Successfully'**
+  String get dataUpdatedSuccessfully;
+
+  /// No description provided for @failedToUpdateData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed To Update Data'**
+  String get failedToUpdateData;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

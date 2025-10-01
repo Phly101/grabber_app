@@ -1,10 +1,17 @@
+import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
+
+import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
-import "shimmer_image.dart";
-import "../../../../l10n/app_localizations.dart";
+// import "shimmer_image.dart";
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  final CartItemModel item;
+
+  const CartItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -16,27 +23,32 @@ class CartItem extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.all(12),
-        leading: const ShimmerImage(size: 50), 
-        // TODO: Replace static shimmer with product image from network or local cache
-        title:  Text(
-            AppLocalizations.of(context)!.bananaBundle300g,
-          // TODO: Make product name dynamic from cart model
+        leading: CachedNetworkImage(
+          imageUrl: item.imagePath,
+          fit: BoxFit.cover,
+        ),
+        title: Text(
+          // AppLocalizations.of(context)!.bananaBundle300g,
+          // item.name, // but this remove the localization
+          LocalizationHelper.getString(context, item.name),
+
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "\$3.45", 
-              // TODO: Replace hardcoded price with value from cart item model
-              style: TextStyle(fontSize: 16),
+            Text(
+              (item.price * item.quantity).toString(),
+              style: const TextStyle(fontSize: 16),
             ),
             Row(
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: theme.colorScheme.onPrimary.withValues(alpha: 0.3),),
+                    border: Border.all(
+                      color: theme.colorScheme.onPrimary.withValues(alpha: 0.3),
+                    ),
                     borderRadius: BorderRadius.circular(20),
                     color: theme.colorScheme.surface,
                   ),
@@ -44,26 +56,33 @@ class CartItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: const ImageIcon(
-                          AssetImage("Assets/Icons/trash-2.png"),
-                        ),
+                        icon: const Icon(Icons.remove_sharp),
                         onPressed: () {
-                          // TODO: Implement remove item from cart functionality
+                          if (item.quantity > 1) {
+                            context.read<CartBloc>().add(
+                              DecreaseQtyEvent(item.name),
+                            );
+                          } else {
+                            context.read<CartBloc>().add(
+                              RemoveItemEvent(item.name),
+                            );
+                          }
                         },
                       ),
-                      const Text("1"), 
-                      // TODO: Bind quantity dynamically from cart item model
+                      Text(item.quantity.toString()),
                       IconButton(
                         icon: const Icon(Icons.add),
                         onPressed: () {
-                          // TODO: Implement increase quantity functionality
+                          context.read<CartBloc>().add(
+                            IncreaseQtyEvent(item.name),
+                          );
                         },
                       ),
                     ],
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

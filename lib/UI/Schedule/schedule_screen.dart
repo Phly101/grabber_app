@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Schedule/Widget/custom_time_slot.dart";
 import "package:grabber_app/UI/Schedule/Widget/table_widget.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
-import "../../LocalizationHelper/localizationHelper.dart";
+
 import "../../l10n/app_localizations.dart";
 class ScheduleScreen extends StatefulWidget {
 
@@ -52,7 +53,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   child: IconButton(
                     onPressed: () {
         
-                      Navigator.pushNamed(context, AppRoutes.checkout);
+                      Navigator.pop(context);
         
                     },
                     icon: const Icon(Icons.arrow_back_ios_new),

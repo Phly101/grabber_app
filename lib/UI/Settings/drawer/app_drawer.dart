@@ -1,13 +1,13 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
+import "package:fluttertoast/fluttertoast.dart";
+import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/Utils/routes.dart";
-import "../../../Theme/theme.dart" show AppColors;
-import "pages/language_page.dart";
-import "pages/theme_page.dart";
+import "../../../Theme/theme.dart";
 import "components/drawer_item.dart";
 import "components/drawer_header.dart";
 import "components/drawer_footer.dart";
-
 import "../../../l10n/app_localizations.dart";
 
 class AppDrawer extends StatelessWidget {
@@ -15,58 +15,118 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Header
-          const AppDrawerHeader(),
+    return BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+         if( state is AuthSignOutLoading){
+           Fluttertoast.showToast(
+             msg: "Logging out....",
+             toastLength: Toast.LENGTH_SHORT,
+             gravity: ToastGravity.BOTTOM,
+             backgroundColor: Colors.green,
+             textColor: Colors.white,
+             fontSize: 16.0,
+           );
+        }
+        else if (state is AuthUnauthenticated) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.login,
+            (route) => false,
+          );
+        }
 
-          // Items
-          DrawerItem(
-            svgIcon: SvgPicture.asset(
-              "Assets/Icons/languageIcon.svg",
-              colorFilter: const ColorFilter.mode(
-                AppColors.textButtonColor,
-                BlendMode.srcIn,
+        else if (state is AuthError) {
+          Fluttertoast.showToast(
+            msg: state.error,
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      },
+      builder: (context, state) {
+        return Drawer(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Header
+              const AppDrawerHeader(),
+
+              // Items
+              DrawerItem(
+                svgIcon: SvgPicture.asset(
+                  "Assets/Icons/languageIcon.svg",
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.textButtonColor,
+                    BlendMode.srcIn,
+                  ),
+                  width: 25,
+                  height: 25,
+                ),
+                title: AppLocalizations.of(context)!.language,
+
+                showDivider: true,
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.language);
+                },
               ),
-              width: 25,
-              height: 25,
-            ),
-            title: AppLocalizations.of(context)!.language,
+              DrawerItem(
+                svgIcon: Image.asset(
+                  "Assets/Icons/day-and-night.png",
+                  scale: 15,
+                  color: AppColors.textButtonColor,
+                ),
+                title: AppLocalizations.of(context)!.theme,
 
-            showDivider: true,
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.language);
-            },
+                showDivider: true,
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.theme);
+                },
+              ),
+
+              const Spacer(),
+
+              // Footer
+              AppDrawerFooter(
+                onLogout: () {
+                  showDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("Confirm Log Out"),
+                        content: Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.areYouSureYouWantToLogout,
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: Text(AppLocalizations.of(context)!.no),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(true),
+                            child: Text(
+                              AppLocalizations.of(context)!.logout,
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ).then((confirmed) {
+                    if (confirmed == true) {
+                      context.read<AuthBloc>().add(SignOutRequested());
+                    }
+                  });
+                },
+              ),
+            ],
           ),
-          DrawerItem(
-            svgIcon: Image.asset(
-              "Assets/Icons/day-and-night.png",
-              scale: 15,
-              color: AppColors.textButtonColor,
-            ),
-            title: AppLocalizations.of(context)!.theme,
-
-            showDivider: true,
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.theme);
-            },
-          ),
-
-          const Spacer(),
-
-          // Footer
-          AppDrawerFooter(
-            onLogout: () {
-              Navigator.popAndPushNamed(context, AppRoutes.login);
-              // TODO: Implement logout logic (clear user session, tokens, etc.)
-              // TODO: Show confirmation dialog before logging out
-              // Example: showDialog(context: context, builder: (_) => LogoutDialog()); // نفس اللى فى صفحة البروفايل يعنى
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

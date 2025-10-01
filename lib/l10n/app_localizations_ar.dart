@@ -1,5 +1,6 @@
 // ignore: unused_import
-import 'package:intl/intl.dart' as intl;
+import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -330,7 +331,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get timeSlots => 'فترات الوقت';
 
   @override
-  String get free => 'حر';
+  String get free => 'مجاني';
 
   @override
   String get saveAndContinue => 'حفظ ومتابعة';
@@ -441,6 +442,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get price6 => '١٫٩٩ ج.م';
 
   @override
+  String get deliveryAddress => 'عنوان التسليم';
+
+  @override
   String get rating1 => '٤٫٨ (٢٨٧)';
 
   @override
@@ -451,4 +455,64 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
+
+  @override
+  String get developedBy => 'تم التطوير بواسطة';
+
+  @override
+  String get developerEmail => 'البريد الإلكتروني';
+
+  @override
+  String get website => 'الموقع الإلكتروني';
+
+  @override
+  String get viewOpenSourceLicenses => 'عرض تراخيص المصدر المفتوح';
+
+  @override
+  String get appDescriptionLine1 => 'غرابر هو رفيقك الذكي لقائمة التسوق.';
+
+  @override
+  String get appDescriptionLine2 => 'أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.';
+
+  @override
+  String get appDescriptionLine3 => 'سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.';
+
+  @override
+  String get deliverToCurrentLocation => 'تسليم إلى موقعك الحالي';
+
+  @override
+  String get upiPay => 'دفع UPI';
+
+  @override
+  String get scanAndPay => 'مسح للدفع';
+
+  @override
+  String get other => 'أخرى';
+
+  @override
+  String get cashOnDelivery => 'الدفع عند الاستلام';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get updateName => 'تعديل إسم المستخدم';
+
+  @override
+  String get updatePhoneNumber => 'تعديل رقم الهاتف';
+
+  @override
+  String get cancel => 'إالغاء';
+
+  @override
+  String get loadingProfileData => 'تحميل بيانات الملف الشخصي...';
+
+  @override
+  String get failedToLoadProfileData => 'خطأ في تحميل بيانات الملف الشخصي';
+
+  @override
+  String get dataUpdatedSuccessfully => 'تعديل بيانات المستخدم بنجاح';
+
+  @override
+  String get failedToUpdateData => 'خطأ في تعديل بيانات المستخدم';
 }

@@ -441,6 +441,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get price6 => 'EGP 1.99';
 
   @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
   String get rating1 => '4.8 (287)';
 
   @override
@@ -451,4 +454,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAnAccount => 'Already have an account?';
+
+  @override
+  String get developedBy => 'Developed by';
+
+  @override
+  String get developerEmail => 'Email';
+
+  @override
+  String get website => 'Website';
+
+  @override
+  String get viewOpenSourceLicenses => 'View Open Source Licenses';
+
+  @override
+  String get appDescriptionLine1 => 'Grabber is your smart shopping list companion.';
+
+  @override
+  String get appDescriptionLine2 => 'Easily add groceries, track quantities, and stay organized.';
+
+  @override
+  String get appDescriptionLine3 => 'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
+
+  @override
+  String get deliverToCurrentLocation => 'Deliver to your current location';
+
+  @override
+  String get upiPay => 'UPI Pay';
+
+  @override
+  String get scanAndPay => 'Scan & Pay';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get cashOnDelivery => 'Cash on Delivery';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get updateName => 'Update Name';
+
+  @override
+  String get updatePhoneNumber => 'Update Phone Number';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get loadingProfileData => 'Loading Profile Data...';
+
+  @override
+  String get failedToLoadProfileData => 'Failed To Load Profile Data';
+
+  @override
+  String get dataUpdatedSuccessfully => 'Data Updated Successfully';
+
+  @override
+  String get failedToUpdateData => 'Failed To Update Data';
 }

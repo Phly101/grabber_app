@@ -4,12 +4,13 @@ class KeySwitchTile extends StatelessWidget {
   final String label;
   final bool value;
   final ValueChanged<bool> onChanged;
+  final void Function()? onTap;
 
   const KeySwitchTile({
     super.key,
     required this.label,
     required this.value,
-    required this.onChanged,
+    required this.onChanged, this.onTap,
   });
 
   @override
@@ -19,6 +20,7 @@ class KeySwitchTile extends StatelessWidget {
 
       title: Text(label),
       tileColor: theme.colorScheme.surface,
+      onTap: onTap,
       trailing: Switch(
         value: value,
         activeTrackColor: const Color(0xFF0CA201),
