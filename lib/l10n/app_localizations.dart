@@ -1060,6 +1060,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cash on Delivery'**
   String get cashOnDelivery;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @updateName.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Name'**
+  String get updateName;
+
+  /// No description provided for @updatePhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Phone Number'**
+  String get updatePhoneNumber;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @loadingProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Profile Data'**
+  String get loadingProfileData;
+
+  /// No description provided for @failedToLoadProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed To Load Profile Data'**
+  String get failedToLoadProfileData;
+
+  /// No description provided for @dataUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Updated Successfully'**
+  String get dataUpdatedSuccessfully;
+
+  /// No description provided for @failedToUpdateData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed To Update Data'**
+  String get failedToUpdateData;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
