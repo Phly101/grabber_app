@@ -1,5 +1,8 @@
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/cart%20bloc/cart_item_model.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
@@ -46,7 +49,21 @@ class BuildProductCard extends StatelessWidget {
                 right: 10,
 
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<CartBloc>().add(
+                      AddItemEvent(
+                        CartItemModel(
+                          imagePath: product["imagePath"],
+                          name: product["name"],
+                          price: 3.6,
+                          quantity: 1
+                        )
+                      )
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Added to cart"))
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.secondaryDarkColor,
                     minimumSize: const Size(25, 30),

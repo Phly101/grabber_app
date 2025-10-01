@@ -160,5 +160,12 @@
   "scanAndPay": "Scan & Pay",
   "other": "Other",
   "cashOnDelivery": "Cash on Delivery"
-
+  "phoneNumber": "Phone Number"
+  "updateName": "Update Name"
+  "updatePhoneNumber": "Update Phone Number"
+  "cancel": "Cancel"
+  "loadingProfileData": "Loading Profile Data..."
+  "failedToLoadProfileData": "Failed To Load Profile Data"
+  "dataUpdatedSuccessfully": "Data Updated Successfully"
+  "failedToUpdateData": "Failed To Update Data"
 }
