@@ -8,7 +8,7 @@ class BottomDrawer {
 
   const BottomDrawer({required this.formKey, required this.controller});
 
-   void openBottomDrawer(BuildContext context) {
+  void openBottomDrawer(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: false,
@@ -34,6 +34,7 @@ class BottomDrawer {
                         border: const OutlineInputBorder(),
                         labelText: "Enter the email of whom you want to gift",
                         hintText: "Enter email address",
+
                         hintStyle: TextStyle(color: Colors.grey.shade500),
                       ),
                       validator: (value) {
@@ -68,8 +69,7 @@ class BottomDrawer {
                                         Navigator.pop(context); // close dialog
                                         Fluttertoast.showToast(
                                           gravity: ToastGravity.BOTTOM,
-                                          msg:
-                                              "Sending gift to ${controller.text}",
+                                          msg: "Sending gift to ${controller.text}",
                                           timeInSecForIosWeb: 2,
                                           backgroundColor: Colors.green,
                                           textColor: Colors.white,
@@ -98,13 +98,19 @@ class BottomDrawer {
                               );
                             }
                           },
-                          child: const ButtonWidget(text: "Send Gift!", color: Colors.green,),
+                          child: const ButtonWidget(
+                            text: "Send Gift!",
+                            color: Colors.green,
+                          ),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const ButtonWidget(text: "Cancel", color: Colors.redAccent),
+                          child: const ButtonWidget(
+                            text: "Cancel",
+                            color: Colors.redAccent,
+                          ),
                         ),
                       ],
                     ),

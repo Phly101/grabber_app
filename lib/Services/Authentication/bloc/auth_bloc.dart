@@ -16,6 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInRequested>(_onSignInRequested);
     on<SignOutRequested>(_onSignOutRequested);
     on<ForgotPasswordRequested>(_onForgotPasswordRequested);
+    on<UpdatePasswordRequested>(_onUpdatePasswordRequested);
   }
 
   Future<void> _onAppStarted(
@@ -100,6 +101,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (e) {
 
       emit(AuthError("Failed to send password reset request"));
+    }
+  }
+  Future<void> _onUpdatePasswordRequested(
+      UpdatePasswordRequested event,
+      Emitter<AuthState> emit,
+      ) async {
+    emit(AuthUpdatePasswordLoading());
+
+    try {
+      final result = await authService.updatePassword(newPassword: event.newPassword, currentPassword: event.currentPassword);
+
+      if (result.error != null) {
+
+        emit(AuthError(result.error!));
+      } else {
+
+        emit(AuthUpdatePassword(message: result.message ?? "Password changed successfully"));
+      }
+    } catch (e) {
+
+      emit(AuthError("Failed to Update password."));
     }
   }
 }

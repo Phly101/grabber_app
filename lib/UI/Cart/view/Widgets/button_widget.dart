@@ -16,7 +16,7 @@ class ButtonWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.5),
-            blurRadius: 4,
+            blurRadius: 2,
             spreadRadius: 2,
           ),
         ],
