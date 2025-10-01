@@ -28,6 +28,7 @@ class EditDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<FormState> formKey = GlobalKey();
     final TextEditingController controller = TextEditingController(
       text: currentValue,
     );
@@ -54,31 +55,59 @@ class EditDialog extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        content: TextField(
-          controller: controller,
-          style: theme.textTheme.bodyLarge?.copyWith(
-            color: theme.colorScheme.onSurface,
-          ),
-          decoration: InputDecoration(
-            hintText: "Enter new $field",
-            hintStyle: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.6),
+        content: Form(
+          key: formKey,
+          child: TextFormField(
+            controller: controller,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: theme.colorScheme.onSurface,
             ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: theme.colorScheme.primary),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: theme.colorScheme.primary,
-                width: 2,
+            decoration: InputDecoration(
+              hintText: field == "name"
+                  ? AppLocalizations.of(context)!.enterYourFullName
+                  : AppLocalizations.of(context)!.enterYourMobileNumber,
+              hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
-              borderRadius: BorderRadius.circular(12),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: theme.colorScheme.primary),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 14,
+              ),
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 14,
-            ),
+            validator: (value) {
+              if (field == "name") {
+                if (value == null || value.isEmpty) {
+                  return AppLocalizations.of(
+                    context,
+                  )!.fullNameIsRequired;
+                }
+                return null;
+              } else {
+                if (value == null || value.isEmpty) {
+                  return AppLocalizations.of(
+                    context,
+                  )!.mobileNumberIsRequired;
+                } else if (!RegExp(
+                  r"^01[0-9]{9}$",
+                ).hasMatch(value)) {
+                  return AppLocalizations.of(
+                    context,
+                  )!.enterAValidNumber;
+                }
+                return null;
+              }
+            },
           ),
         ),
         actions: [
@@ -94,14 +123,16 @@ class EditDialog extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              if (field == "name") {
-                context.read<UserBloc>().add(
-                  UpdateUserName(newName: controller.text),
-                );
-              } else {
-                context.read<UserBloc>().add(
-                  UpdatePhoneNum(newNum: controller.text),
-                );
+              if (formKey.currentState!.validate()) {
+                if (field == "name") {
+                  context.read<UserBloc>().add(
+                    UpdateUserName(newName: controller.text),
+                  );
+                } else {
+                  context.read<UserBloc>().add(
+                    UpdatePhoneNum(newNum: controller.text),
+                  );
+                }
               }
             },
             child: Text(

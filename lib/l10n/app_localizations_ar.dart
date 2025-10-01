@@ -502,7 +502,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get updatePhoneNumber => 'تعديل رقم الهاتف';
 
   @override
-  String get cancel => 'إالغاء';
+  String get cancel => 'إلغاء';
 
   @override
   String get loadingProfileData => 'تحميل بيانات الملف الشخصي...';
