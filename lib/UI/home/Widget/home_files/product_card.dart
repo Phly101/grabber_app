@@ -55,7 +55,7 @@ class BuildProductCard extends StatelessWidget {
                         CartItemModel(
                           imagePath: item["image_URL"],
                           name: item["title_en"],
-                          price: 3.6,
+                          price: item["price"],
                           quantity: 1
                         )
                       )
