@@ -22,7 +22,7 @@ class CartPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
 
-        title:  Text(
+        title: Text(
           AppLocalizations.of(context)!.cart,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -55,15 +55,20 @@ class CartPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.only(
+              right: 12.0,
+              left: 12.0,
+              bottom: 100,
+            ),
             child: CustomCardWidget(
+              color: Colors.transparent,
               child: Material(
                 color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(16),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
                   //Todo: implement the onPressed function
-                  onTap: (){},
+                  onTap: () {},
                   child: ListTile(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -79,27 +84,26 @@ class CartPage extends StatelessWidget {
                     ),
 
                     trailing: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: theme.colorScheme.onPrimary,
-                      ),
+                      Icons.arrow_forward_ios_outlined,
+                      color: theme.colorScheme.onPrimary,
                     ),
+                  ),
                 ),
               ),
-              ),
             ),
-
+          ),
         ],
       ),
       //Todo: fix the layout overlapping checkout button
       floatingActionButton: CheckoutButton(
-      onPressed: () {
-      Navigator.pushNamed(context, AppRoutes.checkout);
-      ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-      content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
-      ),
-      );
-      },
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.checkout);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
+            ),
+          );
+        },
       ),
       // TODO: Consider changing position if design updates (e.g., bottomNavigationBar)
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
