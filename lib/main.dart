@@ -2,6 +2,7 @@
 // import "package:flutter/foundation.dart";
 
 // Flutter & Firebase
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
@@ -41,7 +42,8 @@ Future<void> main() async {
           create: (_) => AuthBloc(authService: authService)..add(AppStarted()),
         ),
         BlocProvider(
-          create: (_) => LocaleBloc()..add(InitialLangEvent()),
+          create: (_) => LocaleBloc(FirebaseFirestore.instance)
+            ..add(InitialLangEvent()),
         ),
         BlocProvider(
           create: (_) => AppThemeBloc()..add(InitialEvent()),
@@ -91,6 +93,7 @@ class MyApp extends StatelessWidget {
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate, // 👈 this fixes your error
                 ],
                 localeResolutionCallback: (deviceLocale, supportedLocales) {
                   for (var locale in supportedLocales) {
