@@ -61,7 +61,6 @@ class ChangePasswordForm {
         bool confirmVisible = false;
         bool showNewFields = false;
 
-        // Inside StatefulBuilder
         return StatefulBuilder(
           builder: (context, setState) {
             return DraggableScrollableSheet(
@@ -79,20 +78,26 @@ class ChangePasswordForm {
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: buildInputDecoration(
-                            label: "Email",
-                            hint: "Enter email address",
+                            label: AppLocalizations.of(context)!.email,
+                            hint: AppLocalizations.of(
+                              context,
+                            )!.enterYourEmailAddress,
                             icon: FontAwesomeIcons.envelope,
                             isVisible: false,
                             toggleVisibility: () {},
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Email cannot be empty";
+                              return AppLocalizations.of(
+                                context,
+                              )!.emailIsRequired;
                             }
                             const pattern = r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
                             final regex = RegExp(pattern);
                             if (!regex.hasMatch(value)) {
-                              return "Enter a valid email address";
+                              return AppLocalizations.of(
+                                context,
+                              )!.enterAValidEmail;
                             }
                             return null;
                           },
@@ -104,8 +109,12 @@ class ChangePasswordForm {
                           controller: currentPasswordController,
                           obscureText: !currentVisible,
                           decoration: buildInputDecoration(
-                            label: "Current Password",
-                            hint: "Enter current password",
+                            label: AppLocalizations.of(
+                              context,
+                            )!.currentPassword,
+                            hint: AppLocalizations.of(
+                              context,
+                            )!.enterCurrentPassword,
                             icon: FontAwesomeIcons.lock,
                             isPassword: true,
                             isVisible: currentVisible,
@@ -115,16 +124,18 @@ class ChangePasswordForm {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Current password cannot be empty";
+                              return AppLocalizations.of(
+                                context,
+                              )!.currentPasswordEmpty;
                             }
                             if (value.length < 6) {
-                              return "Password must be at least 6 characters";
+                              return AppLocalizations.of(
+                                context,
+                              )!.passwordMustBeAtLeast6Characters;
                             }
-
                             return null;
                           },
                           onChanged: (value) {
-                            // show new fields only if valid length
                             if (value.length >= 6 && !showNewFields) {
                               setState(() => showNewFields = true);
                             } else if (value.isEmpty && showNewFields) {
@@ -139,7 +150,9 @@ class ChangePasswordForm {
                           listener: (context, state) {
                             if (state is AuthUpdatePasswordLoading) {
                               Fluttertoast.showToast(
-                                msg: "Sending your request ...",
+                                msg: AppLocalizations.of(
+                                  context,
+                                )!.sendingRequest,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 backgroundColor: Colors.green,
@@ -148,15 +161,16 @@ class ChangePasswordForm {
                               );
                             } else if (state is AuthForgotPassword) {
                               Fluttertoast.showToast(
-                                msg: "Password reset email sent successfully",
+                                msg: AppLocalizations.of(
+                                  context,
+                                )!.passwordResetEmailSent,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 backgroundColor: Colors.green,
                                 textColor: Colors.white,
                                 fontSize: 16.0,
                               );
-                            }
-                            else if (state is AuthUpdatePassword) {
+                            } else if (state is AuthUpdatePassword) {
                               Fluttertoast.showToast(
                                 msg: state.message,
                                 toastLength: Toast.LENGTH_SHORT,
@@ -167,8 +181,7 @@ class ChangePasswordForm {
                               );
 
                               Navigator.pop(context);
-                            }
-                            else if (state is AuthError) {
+                            } else if (state is AuthError) {
                               Fluttertoast.showToast(
                                 msg: state.error,
                                 toastLength: Toast.LENGTH_SHORT,
@@ -198,20 +211,22 @@ class ChangePasswordForm {
                           ),
                         ),
 
-                        // Show only after current password is filled
                         if (showNewFields) ...[
                           Divider(
                             height: 1,
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
                           const SizedBox(height: 16),
+
                           // New Password
                           TextFormField(
                             controller: newPasswordController,
                             obscureText: !newVisible,
                             decoration: buildInputDecoration(
-                              label: "New Password",
-                              hint: "Enter new password",
+                              label: AppLocalizations.of(context)!.newPassword,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.enterNewPassword,
                               icon: FontAwesomeIcons.key,
                               isPassword: true,
                               isVisible: newVisible,
@@ -220,13 +235,19 @@ class ChangePasswordForm {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "New password cannot be empty";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.newPasswordEmpty;
                               }
                               if (value.length < 6) {
-                                return "Password must be at least 6 characters";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.passwordMustBeAtLeast6Characters;
                               }
                               if (value == currentPasswordController.text) {
-                                return "New password must be different from current password";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.newPasswordDifferent;
                               }
                               return null;
                             },
@@ -238,8 +259,12 @@ class ChangePasswordForm {
                             controller: confirmPasswordController,
                             obscureText: !confirmVisible,
                             decoration: buildInputDecoration(
-                              label: "Confirm Password",
-                              hint: "Re-enter new password",
+                              label: AppLocalizations.of(
+                                context,
+                              )!.confirmNewPassword,
+                              hint: AppLocalizations.of(
+                                context,
+                              )!.reEnterNewPassword,
                               icon: FontAwesomeIcons.lock,
                               isPassword: true,
                               isVisible: confirmVisible,
@@ -249,10 +274,14 @@ class ChangePasswordForm {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "Confirm password cannot be empty";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.confirmPasswordEmpty;
                               }
                               if (value != newPasswordController.text) {
-                                return "Passwords do not match";
+                                return AppLocalizations.of(
+                                  context,
+                                )!.passwordsDoNotMatch;
                               }
                               return null;
                             },
@@ -271,12 +300,16 @@ class ChangePasswordForm {
                                         newPassword: newPasswordController.text,
                                       ),
                                     );
-
-
                                   }
                                 },
-                                child: const ButtonWidget(
-                                  text: "Confirm",
+                                child: ButtonWidget(
+                                  text: Text(
+                                    AppLocalizations.of(context)!.Confirm,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(color: Colors.white),
+                                  ),
                                   color: Colors.green,
                                 ),
                               ),
@@ -284,8 +317,14 @@ class ChangePasswordForm {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: const ButtonWidget(
-                                  text: "Cancel",
+                                child: ButtonWidget(
+                                  text: Text(
+                                    AppLocalizations.of(context)!.Cancel,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(color: Colors.white),
+                                  ),
                                   color: Colors.redAccent,
                                 ),
                               ),
