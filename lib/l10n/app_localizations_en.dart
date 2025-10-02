@@ -114,6 +114,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUp => 'Sign up';
 
   @override
+  String get emailVerificationTitle => 'Email Verification';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent!';
+
+  @override
+  String get emailVerified => 'Email verified ✅';
+
+  @override
+  String get emailNotVerified => 'Email not verified yet ❌';
+
+  @override
+  String errorWithMessage(Object message) {
+    return 'Error: $message';
+  }
+
+  @override
+  String get verificationInstruction => 'We sent a verification link to your email.\nPlease check your inbox.';
+
+  @override
+  String get checkNowButton => 'I\'ve verified, Check now';
+
+  @override
+  String get resendEmailButton => 'Resend Verification Email';
+
+  @override
   String get checkOut => 'Check Out';
 
   @override

@@ -1,8 +1,11 @@
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+import "package:grabber_app/Services/Verification/Bloc/verfication_bloc.dart";
+import "package:grabber_app/UI/auth/components/verification_dialog.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../l10n/app_localizations.dart";
@@ -36,17 +39,33 @@ class _LoginState extends State<Login> {
             fontSize: 16.0,
           );
         } else if (state is AuthAuthenticated) {
-          Fluttertoast.showToast(
-            msg: "Login successful 🎉",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
+          final user = FirebaseAuth.instance.currentUser;
 
-          Navigator.pushReplacementNamed(context, AppRoutes.mainApp);
-        } else if (state is AuthForgotPassword) {
+          if (user != null && !user.emailVerified) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return BlocProvider.value(
+                  value: context.read<VerificationBloc>(),
+                  child: const VerificationDialog(),
+                );
+              },
+            );
+          } else {
+            Fluttertoast.showToast(
+              msg: "Login successful 🎉",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+
+            Navigator.pushReplacementNamed(context, AppRoutes.mainApp);
+          }
+        }
+        else if (state is AuthForgotPassword) {
           Fluttertoast.showToast(
             msg: "Password reset email sent successfully",
             toastLength: Toast.LENGTH_SHORT,

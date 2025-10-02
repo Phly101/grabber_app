@@ -7,6 +7,9 @@ import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:grabber_app/Blocs/cart%20bloc/cart_bloc.dart";
+import "package:grabber_app/Services/Verification/Bloc/verfication_bloc.dart";
+import "package:grabber_app/Services/Verification/verfication_service.dart";
+import "package:grabber_app/UI/auth/components/verification_dialog.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -46,6 +49,9 @@ Future<void> main() async {
           create: (_) => AppThemeBloc()..add(InitialEvent()),
         ),
         BlocProvider(create: (_) => CartBloc()),
+        BlocProvider(
+  create: (_) => VerificationBloc(VerificationService()),
+  child: VerificationDialog()),
       ],
       child: const MyApp(),
     ),
