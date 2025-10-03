@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate, // 👈 this fixes your error
+                  GlobalCupertinoLocalizations.delegate,
                 ],
                 localeResolutionCallback: (deviceLocale, supportedLocales) {
                   for (var locale in supportedLocales) {
