@@ -41,32 +41,6 @@ Future<void> main() async {
 
 
   runApp(
-    // MultiBlocProvider(
-    //   providers: [
-    //     BlocProvider(
-    //       create: (_) => AuthBloc(authService: authService)..add(AppStarted()),
-    //     ),
-    //     BlocProvider(
-    //       create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent()),
-    //     ),
-    //     BlocProvider(
-    //       create: (_) => AppThemeBloc()..add(InitialEvent()),
-    //     ),
-    //
-    //     BlocProvider(
-    //       create: (_) => UserBloc(),
-    //     ),
-    //
-    //     if (user != null)
-    //       BlocProvider(
-    //         create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
-    //       ),
-    //
-    //     // BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
-    //
-    //   ],
-    //   child: const MyApp(),
-    // ),
     StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
