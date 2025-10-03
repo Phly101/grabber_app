@@ -2,11 +2,12 @@
 // import "package:flutter/foundation.dart";
 
 // Flutter & Firebase
-import "package:cloud_firestore/cloud_firestore.dart";
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/Services/Users/user_services.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -27,6 +28,7 @@ import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 // Features (barrel files or grouped imports)
 import "package:grabber_app/UI/ui.dart";
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
@@ -34,7 +36,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final  userServices = UserServices();
   final authService = AuthService();
+
+  final user = FirebaseAuth.instance.currentUser;
+
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -42,8 +49,7 @@ Future<void> main() async {
           create: (_) => AuthBloc(authService: authService)..add(AppStarted()),
         ),
         BlocProvider(
-          create: (_) => LocaleBloc(FirebaseFirestore.instance)
-            ..add(InitialLangEvent()),
+          create: (_) => LocaleBloc()..add(InitialLangEvent()),
         ),
         BlocProvider(
           create: (_) => AppThemeBloc()..add(InitialEvent()),
@@ -53,7 +59,12 @@ Future<void> main() async {
           create: (_) => UserBloc(),
         ),
 
-        BlocProvider(create: (_) => CartBloc()),
+        if (user != null)
+          BlocProvider(
+            create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
+          ),
+
+        // BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
 
       ],
       child: const MyApp(),
@@ -93,7 +104,6 @@ class MyApp extends StatelessWidget {
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
                 ],
                 localeResolutionCallback: (deviceLocale, supportedLocales) {
                   for (var locale in supportedLocales) {
