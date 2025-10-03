@@ -10,7 +10,7 @@ class LocalizationHelper {
   }
   static String localizedProductField(
       Map<String, dynamic> item,
-      String field,
+      String? field,
       BuildContext context,
       ) {
     final langCode = context.read<LocaleBloc>().state.langCode;

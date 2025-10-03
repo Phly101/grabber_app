@@ -110,8 +110,8 @@ class BuildProductCard extends StatelessWidget {
                   Text(
                     LocalizationHelper.getString(
                       context,
-                      'Price: ${item["price"].toString()}\$',
-                    ),
+                      'Price: ${item["price"].toString()}\$' ,
+                    ) ,
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,
                     ),

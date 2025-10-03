@@ -1,5 +1,6 @@
-import "package:bloc/bloc.dart";
+
 import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 
 import "../../Services/Users/user_services.dart";

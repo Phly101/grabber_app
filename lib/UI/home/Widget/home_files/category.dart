@@ -76,7 +76,7 @@ class HomeCategory extends StatelessWidget {
                           ),
                           const SizedBox(height: 11),
                           Text(
-                            LocalizationHelper.getString(context, title),
+                            LocalizationHelper.getString(context, title) ?? "",
                             style: theme.textTheme.bodyLarge!.copyWith(
                               color: themeBloc.state.appTheme == "L"
                                   ? AppColors.textButtonColor
