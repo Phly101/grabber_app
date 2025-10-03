@@ -2,10 +2,12 @@
 // import "package:flutter/foundation.dart";
 
 // Flutter & Firebase
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/Services/Users/user_services.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -26,6 +28,7 @@ import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 // Features (barrel files or grouped imports)
 import "package:grabber_app/UI/ui.dart";
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
@@ -33,7 +36,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final  userServices = UserServices();
   final authService = AuthService();
+
+  final user = FirebaseAuth.instance.currentUser;
+
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -51,7 +59,12 @@ Future<void> main() async {
           create: (_) => UserBloc(),
         ),
 
-        BlocProvider(create: (_) => CartBloc()),
+        if (user != null)
+          BlocProvider(
+            create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
+          ),
+
+        // BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
 
       ],
       child: const MyApp(),
