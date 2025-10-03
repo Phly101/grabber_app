@@ -1,5 +1,5 @@
 import "package:cloud_firestore/cloud_firestore.dart";
-import "package:firebase_auth/firebase_auth.dart";
+
 import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 
 class UserServices {
@@ -9,7 +9,7 @@ class UserServices {
 
   // String get uid => FirebaseAuth.instance.currentUser!.uid;
   UserServices(this.uid);
-  CollectionReference get _cart1 => users.doc(uid).collection("cart");
+  //CollectionReference get _cart1 => users.doc(uid).collection("cart");
 
   Stream<QuerySnapshot> getCart1() {
     return _cart.snapshots();

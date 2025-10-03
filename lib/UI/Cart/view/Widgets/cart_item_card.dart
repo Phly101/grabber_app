@@ -50,7 +50,7 @@ class CartItemCard extends StatelessWidget {
                 children: [
                   // Product Name
                   Text(
-                    LocalizationHelper.getString(context, item.name) ?? "",
+                    LocalizationHelper.getString(context, item.name),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
