@@ -353,6 +353,12 @@ abstract class AppLocalizations {
   /// **'Resend Verification Email'**
   String get resendEmailButton;
 
+  /// No description provided for @verificationCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification link valid for 10 seconds...'**
+  String get verificationCooldown;
+
   /// No description provided for @checkOut.
   ///
   /// In en, this message translates to:

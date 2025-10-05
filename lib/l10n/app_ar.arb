@@ -39,6 +39,7 @@
   "verificationInstruction": "لقد أرسلنا رابط تحقق إلى بريدك الإلكتروني.\nمن فضلك تحقق من صندوق الوارد.",
   "checkNowButton": "لقد تحققت، افحص الآن",
   "resendEmailButton": "إعادة إرسال رسالة التحقق",
+  "verificationCooldown": "رابط التحقق صالح لمدة 10 ثوانٍ...",
   "selectCity": "اختر المدينة",
   "pleaseSelectACity": "الرجاء اختيار مدينة",
   "signUp": "إنشاء حساب",

@@ -42,6 +42,7 @@
   "verificationInstruction": "We sent a verification link to your email.\nPlease check your inbox.",
   "checkNowButton": "I've verified, Check now",
   "resendEmailButton": "Resend Verification Email",
+  "verificationCooldown": "Verification link valid for 10 seconds...",
   "checkOut": "Check Out",
   "cart": "Cart",
   "orders": "Orders",

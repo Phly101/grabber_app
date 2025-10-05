@@ -1,4 +1,4 @@
-part of 'verfication_bloc.dart';
+part of 'verification_bloc.dart';
 
 // @immutable
 // sealed class VerficationState {}
@@ -11,6 +11,7 @@ abstract class VerificationState extends Equatable{
 }
 class VerficationInitial extends VerificationState{}
 class VerficationLoading extends VerificationState{}
+class VerficationEmailCooldown extends VerificationState {}
 class VerficationError extends VerificationState {
   final String message;
   VerficationError(this.message);

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grabber_app/Services/Verification/Bloc/verfication_bloc.dart';
+import 'package:grabber_app/Services/Verification/Bloc/verification_bloc.dart';
 import 'package:grabber_app/Utils/routes.dart';
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
@@ -33,7 +33,7 @@ class VerificationDialog extends StatelessWidget {
             }
           } else if (state is VerficationError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppLocalizations.of(context)!.errorWithMessage as String)),
+              SnackBar(content: Text("Error: ${state.message}")),
             );
           }
         },
@@ -64,16 +64,38 @@ class VerificationDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              TextButton(
-                onPressed: () {
-                  context.read<VerificationBloc>().add(SendVerificationEmail());
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: Theme.of(context).colorScheme.primary,
+              // const SizedBox(height: 10),
+              // TextButton(
+              //   onPressed: () {
+              //     context.read<VerificationBloc>().add(SendVerificationEmail());
+              //   },
+              //   style: TextButton.styleFrom(
+              //     foregroundColor: Theme.of(context).colorScheme.primary,
+              //   ),
+              //   child: Text(AppLocalizations.of(context)!.resendEmailButton),
+              // ),
+              if (state is! VerficationEmailCooldown) ...[
+                const SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {
+                    context.read<VerificationBloc>().add(SendVerificationEmail());
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  child: Text(AppLocalizations.of(context)!.resendEmailButton),
                 ),
-                child: Text(AppLocalizations.of(context)!.resendEmailButton),
-              ),
+              ] else ...[
+                const SizedBox(height: 10),
+                Text(
+                  AppLocalizations.of(context)!.verificationCooldown,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+              ],
+
             ],
           );
         },

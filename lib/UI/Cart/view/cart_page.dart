@@ -54,7 +54,7 @@ class CartPage extends StatelessWidget {
                   return const Center(child: Text("Cart is empty"));
                 }
                 return ListView.builder(
-                  //padding: EdgeInsets.only(bottom: 100),
+                  padding: const EdgeInsets.only(bottom: 80),
                   itemCount: state.items.length,
                   itemBuilder: (context, index) {
                     final item = state.items[index];
@@ -66,54 +66,115 @@ class CartPage extends StatelessWidget {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: CustomCardWidget(
-              child: Material(
-                color: theme.colorScheme.surface,
-                borderRadius: BorderRadius.circular(16),
-                child: InkWell(
+        ],
+      ),
+      //     Padding(
+      //       padding: const EdgeInsets.all(12.0),
+      //       child: CustomCardWidget(
+      //         child: Material(
+      //           color: theme.colorScheme.surface,
+      //           borderRadius: BorderRadius.circular(16),
+      //           child: InkWell(
+      //             borderRadius: BorderRadius.circular(16),
+      //             //Todo: implement the onPressed function
+      //             onTap: () {},
+      //             child: ListTile(
+      //               shape: RoundedRectangleBorder(
+      //                 borderRadius: BorderRadius.circular(16),
+      //               ),
+      //               title: Text(
+      //                 "Send as a gift",
+      //                 style: theme.textTheme.bodyLarge,
+      //               ),
+      //               tileColor: theme.colorScheme.surface,
+      //               leading: FaIcon(
+      //                 FontAwesomeIcons.gift,
+      //                 color: theme.colorScheme.onPrimary,
+      //               ),
+      //
+      //               trailing: Icon(
+      //                 Icons.arrow_forward_ios_outlined,
+      //                 color: theme.colorScheme.onPrimary,
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      // //Todo: fix the layout overlapping checkout button
+      // floatingActionButton: CheckoutButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, AppRoutes.checkout);
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(
+      //         content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
+      //       ),
+      //     );
+      //   },
+      // ),
+      // // TODO: Consider changing position if design updates (e.g., bottomNavigationBar)
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: CustomCardWidget(
+                child: Material(
+                  color: theme.colorScheme.surface,
                   borderRadius: BorderRadius.circular(16),
-                  //Todo: implement the onPressed function
-                  onTap: () {},
-                  child: ListTile(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    title: Text(
-                      "Send as a gift",
-                      style: theme.textTheme.bodyLarge,
-                    ),
-                    tileColor: theme.colorScheme.surface,
-                    leading: FaIcon(
-                      FontAwesomeIcons.gift,
-                      color: theme.colorScheme.onPrimary,
-                    ),
-
-                    trailing: Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      color: theme.colorScheme.onPrimary,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: () {
+                      // TODO: add your send as gift logic here
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.gift,
+                            size: 18,
+                            color: theme.colorScheme.onPrimary,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Send as a gift",
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-      //Todo: fix the layout overlapping checkout button
-      floatingActionButton: CheckoutButton(
-        onPressed: () {
-          Navigator.pushNamed(context, AppRoutes.checkout);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
+            const SizedBox(width: 12),
+            Expanded(
+              flex: 1,
+              child: CheckoutButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoutes.checkout);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        AppLocalizations.of(context)!.proceedingToCheckout,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
-      // TODO: Consider changing position if design updates (e.g., bottomNavigationBar)
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
     );
   }
 }

@@ -4,7 +4,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
-import "package:grabber_app/Services/Verification/Bloc/verfication_bloc.dart";
+import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
 import "package:grabber_app/UI/auth/components/verification_dialog.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
             showDialog(
               context: context,
               barrierDismissible: false,
-              builder: (context) {
+              builder: (dialogContext) {
                 return BlocProvider.value(
                   value: context.read<VerificationBloc>(),
                   child: const VerificationDialog(),

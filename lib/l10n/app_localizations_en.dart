@@ -140,6 +140,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resendEmailButton => 'Resend Verification Email';
 
   @override
+  String get verificationCooldown => 'Verification link valid for 10 seconds...';
+
+  @override
   String get checkOut => 'Check Out';
 
   @override

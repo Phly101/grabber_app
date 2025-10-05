@@ -140,6 +140,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resendEmailButton => 'إعادة إرسال رسالة التحقق';
 
   @override
+  String get verificationCooldown => 'رابط التحقق صالح لمدة 10 ثوانٍ...';
+
+  @override
   String get checkOut => 'إتمام الطلب';
 
   @override

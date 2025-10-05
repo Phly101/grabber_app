@@ -2,11 +2,11 @@ import "dart:async";
 
 import 'package:bloc/bloc.dart';
 import "package:equatable/equatable.dart";
-import "package:grabber_app/Services/Verification/verfication_service.dart";
+import "package:grabber_app/Services/Verification/verification_service.dart";
 import 'package:meta/meta.dart';
 
-part 'verfication_event.dart';
-part 'verfication_state.dart';
+part 'verification_event.dart';
+part 'verification_state.dart';
 
 class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   final VerificationService _verificationService;
@@ -18,6 +18,18 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
     on<StopAutoCheck>(_onStopAutoCheck);
   }
 
+  // Future<void> _onSendVerficationEmail(
+  //     SendVerificationEmail event,
+  //     Emitter<VerificationState> emit,
+  //     ) async {
+  //   emit(VerficationLoading());
+  //   try {
+  //     await _verificationService.sendEmailVerification();
+  //     emit(VerficationEmailSent());
+  //   } catch (e) {
+  //     emit(VerficationError(e.toString()));
+  //   }
+  // }
   Future<void> _onSendVerficationEmail(
       SendVerificationEmail event,
       Emitter<VerificationState> emit,
@@ -26,10 +38,14 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
     try {
       await _verificationService.sendEmailVerification();
       emit(VerficationEmailSent());
+      emit(VerficationEmailCooldown());
+      await Future.delayed(const Duration(seconds: 10));
+      emit(VerficationInitial()); // After 10 seconds the button will reappear.
     } catch (e) {
       emit(VerficationError(e.toString()));
     }
   }
+
 
   Future<void> _onCheckEmailVerfication(
       CheckEmailVerification event,
