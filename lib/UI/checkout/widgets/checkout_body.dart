@@ -180,7 +180,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                       ),
                       KeyValueTile.text(
                         label: AppLocalizations.of(context)!.total,
-                        value: "\$$finalTotal",
+                        value: "\$${finalTotal.toStringAsFixed(2)}",
                         color: theme.colorScheme.onPrimary,
                       ),
                       const Divider(
