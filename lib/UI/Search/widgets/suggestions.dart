@@ -1,6 +1,7 @@
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:fluttertoast/fluttertoast.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
@@ -38,74 +39,93 @@ class SuggestionsList extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
           final item = filteredProducts[index];
-          return CustomCardWidget(
-            elevation: 6,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 150,
-                  child: CachedNetworkImage(
-                    imageUrl: item["image_URL"],
-                    placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    fit: BoxFit.fill,
-                    width: 200,
+          return Padding(
+            padding: const EdgeInsets.only(right: 10.0,left: 10.0),
+            child: CustomCardWidget(
+              elevation: 6,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 380,
                     height: 150,
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    LocalizationHelper.getString(context, item["title_en"]),
-                    style: theme.textTheme.bodyLarge,
-                  ),
 
-                  trailing: ElevatedButton(
-                    onPressed: () {
-                      context.read<CartBloc>().add(
-                        AddItemEvent(
-                          CartItemModel(
-                            imagePath: item["image_URL"],
-                            name: item["title_en"],
-                            price: item["price"],
-                            quantity: 1,
+                    child: CachedNetworkImage(
+                      imageUrl: item["image_URL"],
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      fit: BoxFit.fill,
+
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      LocalizationHelper.localizedProductField(
+                        item,
+                        "title",
+                        context,
+                      ),
+                      style: theme.textTheme.bodyLarge,
+                    ),
+
+                    trailing: ElevatedButton(
+                      onPressed: () {
+                        context.read<CartBloc>().add(
+                          AddItemEvent(
+                            CartItemModel(
+                              imagePath: item["image_URL"],
+                              name: LocalizationHelper.localizedProductField(
+                                item,
+                                "title",
+                                context,
+                              ),
+                              price: item["price"],
+                              quantity: 1,
+                            ),
                           ),
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("${item["title_en"]} added to cart"),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(12),
+                        );
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   SnackBar(
+                        //     content: Text("${item["title_en"]} added to cart"),
+                        //   ),
+                        // );
+                        Fluttertoast.showToast(
+                          backgroundColor: Colors.green,
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.BOTTOM,
+                          textColor: Colors.white,
+                          msg:
+                              "${LocalizationHelper.localizedProductField(item, "title", context)} ${AppLocalizations.of(context)!.addedToCart}",
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(12),
 
-                      backgroundColor: AppColors.secondaryDarkColor,
-                    ),
-                    child: Image.asset("Assets/Icons/Icons (1).png"),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, bottom: 16),
-
-                  child: Text(
-                    LocalizationHelper.getString(
-                      context,
-                      'Price: ${item["price"].toString()}\$',
-                    ),
-                    style: theme.textTheme.bodyLarge!.copyWith(
-                      color: AppColors.textButtonColor,
+                        backgroundColor: AppColors.secondaryDarkColor,
+                      ),
+                      child: Image.asset("Assets/Icons/Icons (1).png"),
                     ),
                   ),
-                ),
-              ],
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, bottom: 16),
+
+                    child: Text(
+                      LocalizationHelper.getString(
+                        context,
+                        'Price: ${item["price"].toString()}\$',
+                      ),
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        color: AppColors.textButtonColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

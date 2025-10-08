@@ -15,9 +15,6 @@ class LocalizationHelper {
       ) {
     final langCode = context.read<LocaleBloc>().state.langCode;
 
-
-    // Option B: if product fields are flat
-    // { "name_en": "Apple", "name_ar": "تفاحة" }
     return item["${field}_$langCode"] ?? item["${field}_en"] ?? "";
   }
 

@@ -64,6 +64,7 @@ Future<void> main() async {
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
               BlocProvider(create: (_) => UserBloc(userServices: userServices)..add(const FetchUserData())),
               BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
+              BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
             ],
             child: const MyApp(),
           );
