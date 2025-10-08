@@ -12,6 +12,7 @@ class CartState extends Equatable {
   @override
   List<Object> get props => [items];
 
+  num get totalPrice => items.fold(0, (sum, item) => sum + (item.price*item.quantity));
 
 }
 

@@ -128,20 +128,17 @@ class PdfInvoiceApi {
       "Date",
       "Quantity",
       "Sub total",
-      "VAT",
       "Total",
     ];
 
     final data = invoice.items?.map((item) {
       final subTotal = item.unitPrice * item.quantity;
-      final total = subTotal * (1 + item.vat);
       return [
         item.description,
         Utils.formatDate(item.date),
         "${item.quantity}",
         Utils.formatPrice(subTotal),
-        "${(item.vat * 100).toStringAsFixed(0)} %",
-        Utils.formatPrice(total),
+        Utils.formatPrice(subTotal),
       ];
     }).toList();
 
@@ -158,24 +155,28 @@ class PdfInvoiceApi {
         2: pw.Alignment.centerRight,
         3: pw.Alignment.centerRight,
         4: pw.Alignment.centerRight,
-        5: pw.Alignment.centerRight,
       },
     );
   }
 
   /// ---------- TOTALS ----------
   static pw.Widget buildTotal(InvoiceData invoice) {
-    final netTotal = invoice.items
-        ?.map((item) => item.unitPrice * item.quantity)
-        .fold(0.0, (a, b) => a + b) ??
-        0.0;
+    double netTotal = 0.0;
 
-    final vat = invoice.items
-        ?.map((item) => item.unitPrice * item.quantity * item.vat)
-        .fold(0.0, (a, b) => a + b) ??
-        0.0;
+    if (invoice.items != null) {
+      for (int i = 0; i < invoice.items!.length-1; i++) {
+        final item = invoice.items![i];
+        final double unitPrice = item.unitPrice;
+        final int quantity = item.quantity;
+        netTotal += unitPrice * quantity;
+      }
+    }
 
-    final total = netTotal + vat;
+    final double total = netTotal;
+
+    double round2(double v) => (v * 100).roundToDouble() / 100.0;
+    final roundedNet = round2(netTotal);
+    final roundedTotal = round2(total);
 
     return pw.Container(
       alignment: pw.Alignment.centerRight,
@@ -189,12 +190,7 @@ class PdfInvoiceApi {
               children: [
                 buildText(
                   title: "Net total",
-                  value: Utils.formatPrice(netTotal),
-                  unite: true,
-                ),
-                buildText(
-                  title: "VAT",
-                  value: Utils.formatPrice(vat),
+                  value: Utils.formatPrice(roundedNet),
                   unite: true,
                 ),
                 pw.Divider(),
@@ -204,7 +200,7 @@ class PdfInvoiceApi {
                     fontSize: 14,
                     fontWeight: pw.FontWeight.bold,
                   ),
-                  value: Utils.formatPrice(total),
+                  value: Utils.formatPrice(roundedTotal),
                   unite: true,
                 ),
                 pw.SizedBox(height: 2 * PdfPageFormat.mm),
