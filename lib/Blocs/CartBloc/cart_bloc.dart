@@ -20,7 +20,20 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<AddItemEvent>((event, emit) async {
-      await userServices.addCart(event.item);
+      final exitingItemI = state.items.indexWhere(
+          (item) => item.name == event.item.name,
+      );
+
+      if(exitingItemI >= 0){
+        final existingItem = state.items[exitingItemI];
+        final updateItem = existingItem.copyWith(
+          quantity: existingItem.quantity + event.item.quantity,
+        );
+        await userServices.updateCart(updateItem);
+      }
+      else{
+        await userServices.addCart(event.item);
+      }
     });
 
     on<RemoveItemEvent>((event, emit) async {
