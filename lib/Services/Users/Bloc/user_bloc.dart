@@ -1,5 +1,6 @@
 
 import "package:equatable/equatable.dart";
+
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/Users/user_services.dart";
@@ -11,9 +12,9 @@ part "user_event.dart";
 part "user_state.dart";
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  final UserServices userServices = UserServices();
+  final UserServices userServices;
 
-  UserBloc() : super(const UserInitial()) {
+  UserBloc({required this.userServices}) : super(const UserInitial()) {
     on<FetchUserData>(_onFetchUserData);
     on<UpdateUserName>(_onUpdateUserName);
     on<UpdatePhoneNum>(_onUpdatePhoneNum);

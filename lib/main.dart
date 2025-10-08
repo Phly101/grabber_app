@@ -2,11 +2,13 @@
 // import "package:flutter/foundation.dart";
 
 // Flutter & Firebase
-import "package:cloud_firestore/cloud_firestore.dart";
+import "package:cloud_firestore/cloud_firestore.dart" show FirebaseFirestore;
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/Services/Users/user_services.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -18,7 +20,7 @@ import "package:grabber_app/l10n/app_localizations.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
 // Blocs
-import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
+import "package:grabber_app/Services/Users/Bloc/user_bloc.dart" hide User;
 import "Blocs/Theming/app_theme_bloc.dart";
 import "Blocs/localization/localization.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
@@ -27,6 +29,7 @@ import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 // Features (barrel files or grouped imports)
 import "package:grabber_app/UI/ui.dart";
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
@@ -34,30 +37,44 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final authService = AuthService();
+
+
+
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => AuthBloc(authService: authService)..add(AppStarted()),
-        ),
-        BlocProvider(
-          create: (_) => LocaleBloc(FirebaseFirestore.instance)
-            ..add(InitialLangEvent()),
-        ),
-        BlocProvider(
-          create: (_) => AppThemeBloc()..add(InitialEvent()),
-        ),
+    StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
 
-        BlocProvider(
-          create: (_) => UserBloc(),
-        ),
+        if (snapshot.hasData) {
+          final userServices = UserServices(snapshot.data!.uid);
 
-        BlocProvider(create: (_) => CartBloc()),
-
-      ],
-      child: const MyApp(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
+              BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
+              BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
+              BlocProvider(create: (_) => UserBloc(userServices: userServices)..add(const FetchUserData())),
+              BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
+            ],
+            child: const MyApp(),
+          );
+        } else {
+          // If no user → only provide AuthBloc, theme, locale
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
+              BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
+              BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
+            ],
+            child: const MyApp(),
+          );
+        }
+      },
     ),
+
   );
 }
 
@@ -93,7 +110,6 @@ class MyApp extends StatelessWidget {
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
                 ],
                 localeResolutionCallback: (deviceLocale, supportedLocales) {
                   for (var locale in supportedLocales) {
