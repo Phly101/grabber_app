@@ -96,6 +96,8 @@ class _CartPageState extends State<CartPage> {
                             Icon(Icons.swipe, size: 18, color: Colors.grey),
                             SizedBox(width: 6),
                             Text(
+
+                              //Todo: localize this text
                               "Swipe an item to delete",
                               style: TextStyle(
                                 color: Colors.grey,

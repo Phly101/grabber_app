@@ -54,14 +54,12 @@ class BuildProductCard extends StatelessWidget {
                       AddItemEvent(
                         CartItemModel(
                           imagePath: item["image_URL"],
-                          name: LocalizationHelper.localizedProductField(
-                            item,
-                            "title",
-                            context,
-                          ),
+                          nameEn: item["title_en"],
+                          nameAr: item["title_ar"],
                           price: item["price"],
+                          id:  item["id"],
                           quantity: 1,
-                        ),
+                        )
                       ),
                     );
                     // ScaffoldMessenger.of(context).showSnackBar(
