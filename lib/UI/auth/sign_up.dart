@@ -225,8 +225,8 @@ class _SignUpState extends State<SignUp> {
                                         .bodyLarge!
                                         .copyWith(
                                           color: themeBloc.state.appTheme == "L"
-                                              ? Colors.white
-                                              : Colors.black,
+                                              ? Colors.blue
+                                              :Colors.black,
                                         ),
                                   ),
 
@@ -256,8 +256,8 @@ class _SignUpState extends State<SignUp> {
                                                                   .state
                                                                   .appTheme ==
                                                               "L"
-                                                          ? Colors.white
-                                                          : Colors.black,
+                                                          ? Colors.blue
+                                                          : Colors.white,
                                                     ),
                                               ),
                                             ),
