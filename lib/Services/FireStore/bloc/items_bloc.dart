@@ -1,9 +1,9 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import "package:bloc/bloc.dart";
+import "package:equatable/equatable.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
-part 'items_event.dart';
-part 'items_state.dart';
+part "items_event.dart";
+part "items_state.dart";
 
 class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
   final FirestoreService firestoreService;

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
@@ -56,15 +57,28 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: FaIcon(
-                    FontAwesomeIcons.cartShopping,
-                    color: theme.colorScheme.onPrimary,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.cart);
+                BlocSelector<CartBloc, CartState, int>(
+                  selector: (state) => state.totalItems,
+                  builder: (context, totalItems) {
+                    return IconButton(
+                      icon: badges.Badge(
+                        badgeContent: Text(
+                          totalItems.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        showBadge: totalItems > 0,
+                        child: FaIcon(
+                          FontAwesomeIcons.cartShopping,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.cart);
+                      },
+                    );
                   },
-                ),
+                )
+
               ],
             ),
 

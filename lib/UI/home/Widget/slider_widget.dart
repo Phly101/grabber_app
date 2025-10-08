@@ -44,7 +44,7 @@ class SliderWidget extends StatelessWidget {
               //   child: CustomCardWidget(),
               // );
             } else if (state is ItemsLoaded) {
-              List<Map> sliderItems = state.items;
+              List<Map<String,dynamic>> sliderItems = state.items;
 
               return CarouselSlider.builder(
                 itemCount: sliderItems.length,
@@ -67,10 +67,7 @@ class SliderWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  LocalizationHelper.getString(
-                                    context,
-                                    slider["title_en"],
-                                  ),
+                                  LocalizationHelper.localizedProductField(slider, "title", context),
                                   style: Theme.of(context).textTheme.titleLarge!
                                       .copyWith(
                                         color: slider["isDark"]
@@ -82,10 +79,7 @@ class SliderWidget extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
-                                  LocalizationHelper.getString(
-                                    context,
-                                    slider["subTitle_en"] ?? "",
-                                  ),
+                                  LocalizationHelper.localizedProductField(slider, "subTitle", context),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: Theme.of(context).textTheme.titleLarge!

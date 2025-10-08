@@ -1,15 +1,20 @@
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:fluttertoast/fluttertoast.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
+
+
 
 class BuildProductCard extends StatelessWidget {
   final int index;
   final dynamic items;
+
   const BuildProductCard({super.key, required this.index, required this.items});
 
   @override
@@ -29,39 +34,48 @@ class BuildProductCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRect(
-                  child:
-                      CachedNetworkImage(
-                        imageUrl: item["image_URL"],
-                        placeholder: (context, url) =>
-                            const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.fill,
-                        width: 200,
-                        height: 150,
-                      ),
+                  child: CachedNetworkImage(
+                    imageUrl: item["image_URL"],
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    fit: BoxFit.fill,
+                    width: 200,
+                    height: 150,
+                  ),
                 ),
               ),
               Positioned(
                 bottom: 10,
                 right: 10,
-
                 child: ElevatedButton(
                   onPressed: () {
                     context.read<CartBloc>().add(
                       AddItemEvent(
                         CartItemModel(
                           imagePath: item["image_URL"],
-                          name: item["title_en"],
+                          name: LocalizationHelper.localizedProductField(
+                            item,
+                            "title",
+                            context,
+                          ),
                           price: item["price"],
-                          quantity: 1
-                        )
-                      )
+                          quantity: 1,
+                        ),
+                      ),
                     );
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Added to cart"))
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   const SnackBar(content: Text("Added to cart"))
+                    // );
+                    Fluttertoast.showToast(
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                      msg: AppLocalizations.of(context)!.addedToCart,
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -84,7 +98,11 @@ class BuildProductCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    LocalizationHelper.getString(context, item["title_en"]),
+                    LocalizationHelper.localizedProductField(
+                      item,
+                      "title",
+                      context,
+                    ),
                     style: theme.textTheme.bodyLarge,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -92,8 +110,8 @@ class BuildProductCard extends StatelessWidget {
                   Text(
                     LocalizationHelper.getString(
                       context,
-                      'Price: ${item["price"].toString()}\$',
-                    ),
+                      'Price: ${item["price"].toString()}\$' ,
+                    ) ,
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,
                     ),

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 class ButtonWidget extends StatelessWidget {
-  final String text;
+  final Widget text;
   final Color color;
 
   const ButtonWidget({super.key, required this.text, required this.color});
@@ -16,7 +16,7 @@ class ButtonWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.5),
-            blurRadius: 4,
+            blurRadius: 2,
             spreadRadius: 2,
           ),
         ],
@@ -25,10 +25,7 @@ class ButtonWidget extends StatelessWidget {
         horizontal: 14.0,
         vertical: 12.0,
       ),
-      child:  Text(
-        text,
-        style: const TextStyle(color: Colors.white),
-      ),
+      child:  text
     );
   }
 }

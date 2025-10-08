@@ -7,7 +7,11 @@ class AuthResult {
   final String? error;
   final String? message;
 
-  AuthResult({this.user, this.error,this.message,});
+  AuthResult({
+    this.user,
+    this.error,
+    this.message,
+  });
 
   bool get isSuccess => user != null && error == null;
 }
@@ -33,7 +37,6 @@ class AuthService {
     required String phone,
     required String city,
   }) async {
-
     try {
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -122,31 +125,56 @@ class AuthService {
   }
 
   // update password function
-  Future<void> updatePassword({
-    required String newPassword,
-    required String currentPassword,
-  }) async {
-    final user = _firebaseAuth.currentUser;
-    if (user != null && user.email != null) {
-      await reAuthenticate(
-        currentEmail: user.email!,
-        currentPassword: currentPassword,
-      );
-      await user.updatePassword(newPassword);
-    }
-  }
 
-  Future<AuthResult> forgotPassword(String email) async{
+  Future<AuthResult> forgotPassword(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
       return AuthResult(message: "Password reset email sent successfully.");
     } on FirebaseAuthException catch (e) {
-
-     return AuthResult(error: e.message ?? "An unknown Error occurred");
+      return AuthResult(error: e.message ?? "An unknown Error occurred.");
     }
-
   }
 
+  Future<AuthResult> updatePassword({
+    required String newPassword,
+    required String currentPassword,
+  }) async {
+    try {
+      final user = _firebaseAuth.currentUser;
+
+      if (user != null && user.email != null) {
+        try {
+          await reAuthenticate(
+            currentEmail: user.email!,
+            currentPassword: currentPassword,
+          );
+        } on FirebaseAuthException catch (e) {
+          if (e.code == "wrong-password") {
+            return AuthResult(error: "The current password is incorrect.");
+          }
+          return AuthResult(error: e.message ?? "Reauthentication failed.");
+        }
+
+        await user.updatePassword(newPassword);
+        return AuthResult(message: "Password Changed Successfully!");
+      } else {
+        return AuthResult(error: "Couldn't update your password.");
+      }
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case "weak-password":
+          return AuthResult(error: "The new password is too weak.");
+        case "requires-recent-login":
+          return AuthResult(
+            error: "Please sign in again before changing password.",
+          );
+        default:
+          return AuthResult(error: e.message ?? "An unknown error occurred.");
+      }
+    } catch (e) {
+      return AuthResult(error: e.toString());
+    }
+  }
 
   //_____________________________________________________________________Shared preferences code
 

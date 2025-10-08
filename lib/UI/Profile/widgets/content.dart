@@ -3,14 +3,26 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/Profile/widgets/change_password_form.dart";
 import "package:grabber_app/UI/Profile/widgets/logout_dialog.dart";
 import "../../../Services/Users/Bloc/user_bloc.dart";
 import "../../../l10n/app_localizations.dart";
 import "edit_dialog.dart";
 import "profile_item.dart";
 
-class ProfileContent extends StatelessWidget {
+class ProfileContent extends StatefulWidget {
   const ProfileContent({super.key});
+
+  @override
+  State<ProfileContent> createState() => _ProfileContentState();
+}
+
+class _ProfileContentState extends State<ProfileContent> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _currentPasswordController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _newConfirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +89,24 @@ class ProfileContent extends StatelessWidget {
                 AppLocalizations.of(context)!.makeChangesToYourAccount,
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              trailing: MaterialButton(
+              trailing: IconButton(
                 onPressed: () {
-                //  context.read<AuthBloc>().add(UpdatePasswordRequested(currentEmail: currentEmail, currentPassword: currentPassword, newPassword: newPassword));
+                  final showPasswordChangeForm = ChangePasswordForm(
+                    formKey: _formKey,
+                    emailController: _emailController,
+                    currentPasswordController: _currentPasswordController,
+                    newPasswordController: _newPasswordController,
+                    confirmPasswordController: _newConfirmPasswordController,
+                  );
+                  showPasswordChangeForm.showChangePasswordForm(context);
+                  _emailController.clear();
+                  _currentPasswordController.clear();
+                  _newPasswordController.clear();
+                  _newConfirmPasswordController.clear();
+                  _formKey.currentState!.reset();
+
                 },
-                child: ImageIcon(
+                icon: ImageIcon(
                   const AssetImage("Assets/Icons/penIcon.png"),
                   color: theme.colorScheme.onPrimary,
                 ),
@@ -103,9 +128,6 @@ class ProfileContent extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () {
-                // TODO: Navigate to password update screen
-              },
             ),
           ),
           ProfileItem(

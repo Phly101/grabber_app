@@ -3,12 +3,12 @@ import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Blocs/localization/app_locale_bloc.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 
-
 class CartItemCard extends StatelessWidget {
-  final dynamic item; // replace with your model
+  final dynamic item;
   final ThemeData theme;
 
   const CartItemCard({
@@ -19,7 +19,8 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc =context.read<AppThemeBloc>();
+    final themeBloc = context.read<AppThemeBloc>();
+    final localBloc = context.read<LocaleBloc>();
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -35,7 +36,7 @@ class CartItemCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
                 imageUrl: item.imagePath,
-                width: 120, // 👈 controlled size (change if needed)
+                width: 120,
                 height: 120,
                 fit: BoxFit.fill,
               ),
@@ -75,14 +76,17 @@ class CartItemCard extends StatelessWidget {
                   const SizedBox(height: 12),
 
                   // Quantity Controls
-
                   Align(
-                    alignment: Alignment.bottomRight,
+                    alignment: localBloc.state.langCode == "en"
+                        ? Alignment.bottomRight
+                        : Alignment.bottomLeft,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: theme.colorScheme.onPrimary.withValues(alpha: 0.3),
+                          color: theme.colorScheme.onPrimary.withValues(
+                            alpha: 0.3,
+                          ),
                         ),
                         borderRadius: BorderRadius.circular(20),
                         color: theme.colorScheme.surface,

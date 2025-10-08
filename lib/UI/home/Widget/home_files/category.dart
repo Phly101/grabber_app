@@ -45,11 +45,15 @@ class HomeCategory extends StatelessWidget {
                 itemCount: state.items.length,
                 itemBuilder: (context, index) {
                   final Map<String, dynamic> category = state.items[index];
-                  final String text = category["title_en"] ?? "";
+                  final String title = LocalizationHelper.localizedProductField(
+                    category,
+                    "title",
+                    context,
+                  );
+                  final String key = category["category"]?? "";
                   final String imageUrl = category["image_URL"] ?? "";
-
                   return InkWell(
-                    onTap: () => onCategoryTap(text),
+                    onTap: () => onCategoryTap(key),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 5,
@@ -60,8 +64,9 @@ class HomeCategory extends StatelessWidget {
                           ClipOval(
                             child: CachedNetworkImage(
                               imageUrl: imageUrl,
-                              placeholder: (context, url) =>
-                                  const Center(child: CircularProgressIndicator()),
+                              placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator(),
+                              ),
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error),
                               fit: BoxFit.cover,
@@ -71,7 +76,7 @@ class HomeCategory extends StatelessWidget {
                           ),
                           const SizedBox(height: 11),
                           Text(
-                            LocalizationHelper.getString(context, text),
+                            LocalizationHelper.getString(context, title),
                             style: theme.textTheme.bodyLarge!.copyWith(
                               color: themeBloc.state.appTheme == "L"
                                   ? AppColors.textButtonColor

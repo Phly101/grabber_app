@@ -119,7 +119,7 @@ class _CartPageState extends State<CartPage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     title: Text(
-                      "Send as a gift",
+                      AppLocalizations.of(context)!.SendAsAGift,
                       style: theme.textTheme.bodyLarge,
                     ),
                     tileColor: theme.colorScheme.surface,

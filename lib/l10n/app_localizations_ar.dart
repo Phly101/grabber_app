@@ -13,7 +13,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcomeBackToGrabber => 'مرحبًا بك مرة أخرى في جرابر';
 
   @override
-  String get pleaseSignInWithYourMail => 'الرجاء تسجيل الدخول باستخدام بريدك الإلكتروني';
+  String get pleaseSignInWithYourMail =>
+      'الرجاء تسجيل الدخول باستخدام بريدك الإلكتروني';
 
   @override
   String get userName => 'اسم المستخدم';
@@ -34,7 +35,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordIsRequired => 'كلمة المرور مطلوبة';
 
   @override
-  String get passwordMustBeAtLeast8Characters => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
+  String get passwordMustBeAtLeast8Characters =>
+      'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
 
   @override
   String get forgotPassword => 'نسيت كلمة المرور';
@@ -304,7 +306,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get logout => 'تسجيل الخروج';
 
   @override
-  String get furtherSecureYourAccountForSafety => 'قم بتأمين حسابك لمزيد من الأمان';
+  String get furtherSecureYourAccountForSafety =>
+      'قم بتأمين حسابك لمزيد من الأمان';
 
   @override
   String get areYouSureYouWantToLogout => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
@@ -472,10 +475,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appDescriptionLine1 => 'غرابر هو رفيقك الذكي لقائمة التسوق.';
 
   @override
-  String get appDescriptionLine2 => 'أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.';
+  String get appDescriptionLine2 =>
+      'أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.';
 
   @override
-  String get appDescriptionLine3 => 'سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.';
+  String get appDescriptionLine3 =>
+      'سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.';
 
   @override
   String get deliverToCurrentLocation => 'تسليم إلى موقعك الحالي';
@@ -515,4 +520,100 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get failedToUpdateData => 'خطأ في تعديل بيانات المستخدم';
+
+  @override
+  // TODO: implement SendAsAGift
+  String get SendAsAGift => "أرسل كهدية";
+
+  String get Confirm => "تأكيد";
+
+  String get Cancel => "إلغاء";
+
+  String get SendGift => "أرسل الهدية!";
+
+  String get currentPassword => "كلمة المرور الحالية";
+
+  String get enterCurrentPassword => "أدخل كلمة المرور الحالية";
+
+  String get currentPasswordEmpty =>
+      "لا يمكن أن تكون كلمة المرور الحالية فارغة";
+
+  String get passwordMustBeAtLeast6Characters =>
+      "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
+
+  String get newPassword => "كلمة مرور جديدة";
+
+  String get enterNewPassword => "أدخل كلمة مرور جديدة";
+
+  String get newPasswordEmpty => "لا يمكن أن تكون كلمة المرور الجديدة فارغة";
+
+  String get newPasswordDifferent =>
+      "يجب أن تكون كلمة المرور الجديدة مختلفة عن الحالية";
+
+  String get confirmNewPassword => "تأكيد كلمة المرور";
+
+  String get reEnterNewPassword => "أعد إدخال كلمة المرور الجديدة";
+
+  String get confirmPasswordEmpty => "لا يمكن أن يكون تأكيد كلمة المرور فارغًا";
+
+  String get sendingRequest => "جاري إرسال طلبك...";
+
+  String get passwordResetEmailSent =>
+      "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح";
+  @override
+  String get loggingIn => "جاري تسجيل الدخول ...";
+
+  @override
+  String get loginSuccessful => "تم تسجيل الدخول بنجاح 🎉";
+  @override
+  String get signingUp => "جاري إنشاء الحساب...";
+  @override
+
+  @override
+  String get enterGiftEmail => "أدخل بريد الشخص الذي تريد إهداءه";
+
+  @override
+  String get confirmGift => "تأكيد الهدية";
+
+  @override
+  String get areYouSureGift => "هل أنت متأكد أنك تريد إرسال هدية إلى";
+  @override
+  String get addedToCart => "تمت الإضافة إلى السلة";
+  @override
+  String get sendingGiftTo => "جارٍ إرسال الهدية إلى";
+
+  @override
+  String get emailAlreadyInUse => "هذا البريد الإلكتروني مسجل بالفعل.";
+  @override
+  String get invalidEmail => "عنوان البريد الإلكتروني غير صالح.";
+  @override
+  String get weakPassword => "كلمة المرور ضعيفة جدًا.";
+  @override
+  String get noUserFoundForThatEmail => "لم يتم العثور على مستخدم بهذا البريد الإلكتروني.";
+  @override
+  String get wrongPasswordProvided => "تم إدخال كلمة مرور غير صحيحة.";
+  @override
+  String get accountNotFound => "لم يتم العثور على الحساب. الرجاء إنشاء حساب جديد.";
+  @override
+  String get unknownErrorOccurred => "حدث خطأ غير معروف.";
+  @override
+  String get reauthenticationFailed => "فشلت إعادة المصادقة.";
+  @override
+  String get passwordChangedSuccessfully => "تم تغيير كلمة المرور بنجاح!";
+  @override
+  String get couldntUpdatePassword => "تعذر تحديث كلمة المرور الخاصة بك.";
+  @override
+  String get pleaseSignInAgainBeforeChangingPassword =>
+      "الرجاء تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.";
+
+  @override
+  String get updatePassword => "تحديث كلمة المرور";
+  @override
+  String get updatePasswordDescription => "قم بتغيير كلمة المرور الحالية إلى كلمة جديدة.";
+  String get LoggingOut => "جارٍ تسجيل الخروج";
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 import "package:grabber_app/UI/Cart/view/Widgets/cart_item_card.dart";
-import "package:grabber_app/common/custom_card_widget.dart";
+
 // import "shimmer_image.dart";
 
 class CartItem extends StatelessWidget {
