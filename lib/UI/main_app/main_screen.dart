@@ -48,7 +48,9 @@ class _MainScreenState extends State<MainScreen> {
               // centerTitle: true,
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.giftPage);
+                  },
                   icon: badges.Badge(
                     badgeContent: const Text(""),
                     child: FaIcon(

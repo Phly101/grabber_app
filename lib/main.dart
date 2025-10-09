@@ -7,6 +7,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
+import "package:grabber_app/gift/presentation/pages/gift_page.dart";
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -131,6 +132,7 @@ class MyApp extends StatelessWidget {
                   AppRoutes.language: (_) => const LanguagePage(),
                   AppRoutes.theme: (_) => const ThemePage(),
                   AppRoutes.aboutScreen: (_) => const AboutScreen(),
+                  AppRoutes.giftPage:(_)=>const GiftPage(),
                 },
                 home: Container(
                   decoration: BoxDecoration(

@@ -15,6 +15,5 @@ class AppRoutes{
   static const String theme = "/theme";
   static const String language = "/language";
   static const String aboutScreen = "/About";
-
-
+  static const String giftPage= "/giftpage";
 }
