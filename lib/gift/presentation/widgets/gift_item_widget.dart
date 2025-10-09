@@ -1,3 +1,4 @@
+import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
@@ -26,8 +27,8 @@ class GiftItem extends StatelessWidget {
             ),
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                item.image,
+              child: CachedNetworkImage(
+                imageUrl: item.image,
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,
