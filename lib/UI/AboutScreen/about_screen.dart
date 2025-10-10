@@ -122,13 +122,10 @@ class AboutScreen extends StatelessWidget {
                     subtitle: const Text("MSB"),
                   ),
                   Divider(height: 0, color: theme.colorScheme.onPrimary),
-                  Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: ListTile(
-                      leading: const Icon(Icons.email, color: Colors.green),
-                      title: Text(loc.developerEmail),
-                      subtitle: const Text("basel.10@gmail.com"),
-                    ),
+                  ListTile(
+                    leading: const Icon(Icons.email, color: Colors.green),
+                    title: Text(loc.developerEmail),
+                    subtitle: const Text("basel.10@gmail.com"),
                   ),
                   Divider(height: 0, color: theme.colorScheme.onPrimary),
                   ListTile(

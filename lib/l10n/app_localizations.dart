@@ -1114,6 +1114,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cash on Delivery'**
   String get cashOnDelivery;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @updateName.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Name'**
+  String get updateName;
+
+  /// No description provided for @updatePhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Phone Number'**
+  String get updatePhoneNumber;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @loadingProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Profile Data'**
+  String get loadingProfileData;
+
+  /// No description provided for @failedToLoadProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed To Load Profile Data'**
+  String get failedToLoadProfileData;
+
+  /// No description provided for @dataUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Updated Successfully'**
+  String get dataUpdatedSuccessfully;
+
+  /// No description provided for @failedToUpdateData.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed To Update Data'**
+  String get failedToUpdateData;
+  String get SendAsAGift;
+  String get Confirm;
+  String get Cancel;
+  String get SendGift;
+  String get currentPassword;
+  String get enterCurrentPassword;
+  String get currentPasswordEmpty;
+  String get passwordMustBeAtLeast6Characters;
+
+  String get newPassword;
+  String get enterNewPassword;
+  String get newPasswordEmpty;
+  String get newPasswordDifferent;
+
+  String get confirmNewPassword;
+  String get reEnterNewPassword;
+  String get confirmPasswordEmpty;
+
+  String get sendingRequest;
+  String get passwordResetEmailSent;
+  String get loggingIn;
+  String get loginSuccessful;
+  String get signingUp;
+  String get addedToCart;
+  String get enterGiftEmail;
+  String get confirmGift;
+  String get areYouSureGift;
+  String get sendingGiftTo;
+
+// 🔹 New error/auth messages
+  String get emailAlreadyInUse;
+  String get invalidEmail;
+  String get weakPassword;
+  String get noUserFoundForThatEmail;
+  String get wrongPasswordProvided;
+  String get accountNotFound;
+  String get unknownErrorOccurred;
+  String get reauthenticationFailed;
+  String get passwordChangedSuccessfully;
+  String get couldntUpdatePassword;
+  String get pleaseSignInAgainBeforeChangingPassword;
+  String get LoggingOut;
+
+// 🔹 New profile/update messages
+  String get updatePassword;
+  String get updatePasswordDescription;
+
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

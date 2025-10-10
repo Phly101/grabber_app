@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
@@ -10,6 +11,7 @@ import "package:grabber_app/UI/home/home_tab.dart";
 import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
+import "package:badges/badges.dart" as badges;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -46,11 +48,37 @@ class _MainScreenState extends State<MainScreen> {
               // centerTitle: true,
               actions: [
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.cartShopping,color: theme.colorScheme.onPrimary,),
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.cart);
-                  },
+                  onPressed: () {},
+                  icon: badges.Badge(
+                    badgeContent: const Text(""),
+                    child: FaIcon(
+                      FontAwesomeIcons.bell,
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
                 ),
+                BlocSelector<CartBloc, CartState, int>(
+                  selector: (state) => state.totalItems,
+                  builder: (context, totalItems) {
+                    return IconButton(
+                      icon: badges.Badge(
+                        badgeContent: Text(
+                          totalItems.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        showBadge: totalItems > 0,
+                        child: FaIcon(
+                          FontAwesomeIcons.cartShopping,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.cart);
+                      },
+                    );
+                  },
+                )
+
               ],
             ),
 

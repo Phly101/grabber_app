@@ -1,8 +1,13 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/customer_model.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/invoice_data.dart";
-import "package:grabber_app/UI/checkout/Model/InvoiceModel/supplier_model.dart" ;
+import "package:grabber_app/UI/checkout/Model/InvoiceModel/supplier_model.dart";
+
+// import "package:grabber_app/UI/checkout/ViewModel/invoice_bloc.dart";
+// import "package:grabber_app/UI/checkout/ViewModel/invoice_event.dart";
+
 import "package:grabber_app/UI/checkout/widgets/delivery_option_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_switch_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_value_tile.dart";
@@ -22,6 +27,12 @@ class BuildCheckOutBody extends StatefulWidget {
 class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
   String? deliveryType = "Standard";
   bool invoice = false;
+  final num bagFee = 0.25;
+
+  final num serviceFee = 3.45;
+
+  final num delivery = 5.00;
+  final num vat = 0.01;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +43,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DeliveryAndPayment(),
+            const DeliveryAndPayment(),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -113,142 +124,147 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
               height: 10,
             ),
 
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFFECECEC),
-                  width: 2,
-                ),
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Column(
-                children: [
-                  KeyValueTile.text(
-                    label: AppLocalizations.of(context)!.subtotal,
-                    value: "\$40.25",
-                    color: theme.colorScheme.onPrimary,
+            BlocBuilder<CartBloc, CartState>(
+              builder: (context, state) {
+                final num total = state.totalPrice;
+                final num finalTotal = total + bagFee + delivery + serviceFee;
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0xFFECECEC),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(6),
                   ),
-                  const Divider(
-                    height: 1,
-                    thickness: 2,
-                    color: Color(0xFFECECEC),
-                  ),
-                  KeyValueTile.text(
-                    label: AppLocalizations.of(context)!.bagFee,
-                    value: "\$0.25",
-                    color: theme.colorScheme.onPrimary,
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 2,
-                    color: Color(0xFFECECEC),
-                  ),
-                  KeyValueTile.text(
-                    label: AppLocalizations.of(context)!.serviceFee,
-                    value: "\$5.25",
-                    color: theme.colorScheme.onPrimary,
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 2,
-                    color: Color(0xFFECECEC),
-                  ),
-                  KeyValueTile.text(
-                    label: AppLocalizations.of(context)!.delivery,
-                    value: "\$0.00",
-                    color: theme.colorScheme.onPrimary,
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 2,
-                    color: Color(0xFFECECEC),
-                  ),
-                  KeyValueTile.text(
-                    label: AppLocalizations.of(context)!.total,
-                    value: "\$49.00",
-                    color: theme.colorScheme.onPrimary,
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 2,
-                    color: Color(0xFFECECEC),
-                  ),
-                  KeySwitchTile(
-                    label: AppLocalizations.of(
-                      context,
-                    )!.requestAnInvoice,
-                    value: invoice,
-                    onChanged: (val) {
-                      setState(() => invoice = val);
-                      if (val) {
-                        final invoiceData = InvoiceData(
-                          info: InvoiceInfo(
-                            description: "Grocery order",
-                            number: DateTime.now().millisecondsSinceEpoch
-                                .toString(),
-                            date: DateTime.now(),
-                            dueDate: DateTime.now().add(
-                              const Duration(days: 7),
-                            ),
-                          ),
-                          supplier: Supplier(
-                            name: "Grabber Supermarket",
-                            address: "123 Market Street",
-                            paymentInfo: "Bank XYZ, IBAN 123456789",
-                          ),
-                          customer: Customer(
-                            name: "Basel Rafei",
-                            address: "Cairo, Egypt",
-                          ),
-                          items: [
-                            InvoiceItem(
-                              description: "Service fee",
-                              date: DateTime.now(),
-                              quantity: 1,
-                              vat: 0,
-                              unitPrice: 5.25,
-                            ),
-                            InvoiceItem(
-                              description: "Bag fee",
-                              date: DateTime.now(),
-                              quantity: 1,
-                              vat: 0,
-                              unitPrice: 0.25,
-                            ),
-                            InvoiceItem(
-                              description: "Delivery",
-                              date: DateTime.now(),
-                              quantity: 1,
-                              vat: 0,
-                              unitPrice: 0.00,
-                            ),
-                            InvoiceItem(
-                              description: "Sub total",
-                              date: DateTime.now(),
-                              quantity: 1,
-                              vat: 0,
-                              unitPrice: 40.25,
-                            ),
-                            InvoiceItem(
-                              description: "Total",
-                              date: DateTime.now(),
-                              quantity: 1,
-                              vat: 0.12,
-                              unitPrice: 49.00,
-                            ),
-                          ],
-                        );
+                  child: Column(
+                    children: [
+                      KeyValueTile.text(
+                        label: AppLocalizations.of(context)!.subtotal,
+                        value: "\$${total.toStringAsFixed(2)}",
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                      const Divider(
+                        height: 1,
+                        thickness: 2,
+                        color: Color(0xFFECECEC),
+                      ),
+                      KeyValueTile.text(
+                        label: AppLocalizations.of(context)!.bagFee,
+                        value: "\$${bagFee.toString()}",
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                      const Divider(
+                        height: 1,
+                        thickness: 2,
+                        color: Color(0xFFECECEC),
+                      ),
+                      KeyValueTile.text(
+                        label: AppLocalizations.of(context)!.serviceFee,
+                        value: "\$${serviceFee.toString()}",
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                      const Divider(
+                        height: 1,
+                        thickness: 2,
+                        color: Color(0xFFECECEC),
+                      ),
+                      KeyValueTile.text(
+                        label: AppLocalizations.of(context)!.delivery,
+                        value: "\$${delivery.toString()}",
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                      const Divider(
+                        height: 1,
+                        thickness: 2,
+                        color: Color(0xFFECECEC),
+                      ),
+                      KeyValueTile.text(
+                        label: AppLocalizations.of(context)!.total,
+                        value: "\$${finalTotal.toStringAsFixed(2)}",
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                      const Divider(
+                        height: 1,
+                        thickness: 2,
+                        color: Color(0xFFECECEC),
+                      ),
+                      KeySwitchTile(
+                        label: AppLocalizations.of(
+                          context,
+                        )!.requestAnInvoice,
+                        value: invoice,
+                        onChanged: (val) {
+                          setState(() => invoice = val);
+                          if (val) {
+                            final invoiceData = InvoiceData(
+                              info: InvoiceInfo(
+                                description: "Grocery order",
+                                number: DateTime.now().millisecondsSinceEpoch
+                                    .toString(),
+                                date: DateTime.now(),
+                                dueDate: DateTime.now().add(
+                                  const Duration(days: 7),
+                                ),
+                              ),
+                              supplier: Supplier(
+                                name: "Grabber Supermarket",
+                                address: "123 Market Street",
+                                paymentInfo: "Bank XYZ, IBAN 123456789",
+                              ),
+                              customer: Customer(
+                                name: "Basel Rafei",
+                                address: "Cairo, Egypt",
+                              ),
+                              items: [
+                                InvoiceItem(
+                                  description: "Service fee",
+                                  date: DateTime.now(),
+                                  quantity: 1,
 
-                        context.read<InvoiceBloc>().add(
-                          GenerateInvoiceEvent(invoiceData),
-                        );
-                      }
-                    },
+                                  unitPrice: serviceFee as double,
+                                ),
+                                InvoiceItem(
+                                  description: "Bag fee",
+                                  date: DateTime.now(),
+                                  quantity: 1,
+
+                                  unitPrice: bagFee as double,
+                                ),
+                                InvoiceItem(
+                                  description: "Delivery",
+                                  date: DateTime.now(),
+                                  quantity: 1,
+
+                                  unitPrice: delivery as double,
+                                ),
+                                InvoiceItem(
+                                  description: "Sub total",
+                                  date: DateTime.now(),
+                                  quantity: 1,
+
+                                  unitPrice: total as double,
+                                ),
+                                InvoiceItem(
+                                  description: "Total",
+                                  date: DateTime.now(),
+                                  quantity: 1,
+
+                                  unitPrice: finalTotal as double,
+                                ),
+                              ],
+                            );
+
+                            context.read<InvoiceBloc>().add(
+                              GenerateInvoiceEvent(invoiceData),
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             ),
-
 
             SizedBox(
               width: double.infinity,
