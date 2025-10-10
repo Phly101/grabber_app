@@ -17,7 +17,7 @@ class VerificationService {
 
     try {
       await user.sendEmailVerification(ActionCodeSettings(
-        url: "https://your-app.firebaseapp.com", // Replace with your Firebase Dynamic Links URL
+        url: "https://grabber-7f649.firebaseapp.com", // Replace with your Firebase Dynamic Links URL
         handleCodeInApp: true,
       ));
       print("Verification email sent to: ${user.email}");
