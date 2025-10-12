@@ -118,6 +118,7 @@ class MyApp extends StatelessWidget {
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
                 ],
                 localeResolutionCallback: (deviceLocale, supportedLocales) {
                   for (var locale in supportedLocales) {
