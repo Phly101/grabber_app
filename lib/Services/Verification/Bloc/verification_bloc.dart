@@ -18,18 +18,6 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
     on<StopAutoCheck>(_onStopAutoCheck);
   }
 
-  // Future<void> _onSendVerficationEmail(
-  //     SendVerificationEmail event,
-  //     Emitter<VerificationState> emit,
-  //     ) async {
-  //   emit(VerficationLoading());
-  //   try {
-  //     await _verificationService.sendEmailVerification();
-  //     emit(VerficationEmailSent());
-  //   } catch (e) {
-  //     emit(VerficationError(e.toString()));
-  //   }
-  // }
   Future<void> _onSendVerficationEmail(
       SendVerificationEmail event,
       Emitter<VerificationState> emit,

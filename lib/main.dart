@@ -13,6 +13,8 @@ import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
 import "package:grabber_app/Services/Users/user_services.dart";
+import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
+import "package:grabber_app/Services/Verification/verification_service.dart";
 
 import "Services/Authentication/auth_service.dart";
 
@@ -65,6 +67,7 @@ Future<void> main() async {
               BlocProvider(create: (_) => UserBloc(userServices: userServices)..add(const FetchUserData())),
               BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
+              BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );
@@ -75,6 +78,7 @@ Future<void> main() async {
               BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
               BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
+              BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );

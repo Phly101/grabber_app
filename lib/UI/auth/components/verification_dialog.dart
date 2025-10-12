@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import "package:fluttertoast/fluttertoast.dart";
 import 'package:grabber_app/Services/Verification/Bloc/verification_bloc.dart';
 import 'package:grabber_app/Utils/routes.dart';
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
@@ -17,24 +18,44 @@ class VerificationDialog extends StatelessWidget {
       content: BlocConsumer<VerificationBloc, VerificationState>(
         listener: (context, state) {
           if (state is VerficationEmailSent) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(AppLocalizations.of(context)!.emailVerificationTitle)),
+            Fluttertoast.showToast(
+              msg: AppLocalizations.of(context)!.emailVerificationTitle,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0,
             );
           } else if (state is VerficationChecked) {
             if (state.isVerified) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                 SnackBar(content: Text(AppLocalizations.of(context)!.emailVerified)),
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.emailVerified,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.green,
+                textColor: Colors.white,
+                fontSize: 16.0,
               );
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, AppRoutes.mainApp);
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(AppLocalizations.of(context)!.emailNotVerified)),
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.emailNotVerified,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0,
               );
             }
           } else if (state is VerficationError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Error: ${state.message}")),
+            Fluttertoast.showToast(
+              msg: "Error: ${state.message}",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0,
             );
           }
         },
@@ -65,16 +86,6 @@ class VerificationDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              // const SizedBox(height: 10),
-              // TextButton(
-              //   onPressed: () {
-              //     context.read<VerificationBloc>().add(SendVerificationEmail());
-              //   },
-              //   style: TextButton.styleFrom(
-              //     foregroundColor: Theme.of(context).colorScheme.primary,
-              //   ),
-              //   child: Text(AppLocalizations.of(context)!.resendEmailButton),
-              // ),
               if (state is! VerficationEmailCooldown) ...[
                 const SizedBox(height: 10),
                 TextButton(
