@@ -65,6 +65,7 @@ Future<void> main() async {
               BlocProvider(create: (_) => UserBloc(userServices: userServices)..add(const FetchUserData())),
               BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
+              //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );
@@ -72,6 +73,7 @@ Future<void> main() async {
           // If no user → only provide AuthBloc, theme, locale
           return MultiBlocProvider(
             providers: [
+              // BlocProvider(create: (_) => VerificationBloc(VerificationService())), 
               BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
               BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),

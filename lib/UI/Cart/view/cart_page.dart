@@ -19,6 +19,16 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   final _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
+  bool _showHint = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 10), () {
+      if (mounted) setState(() => _showHint = false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +49,12 @@ class _CartPageState extends State<CartPage> {
         ),
         centerTitle: true,
         actions: [
-          // TODO: Replace with dynamic order icon or add navigation to Orders page
+
           const ImageIcon(AssetImage("Assets/Icons/penIcon.png")),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: Center(
-              // TODO: Localize "Orders" text for multi-language support
+
               child: Text(
                 AppLocalizations.of(context)!.cart,
                 style: const TextStyle(fontWeight: FontWeight.bold),
@@ -57,41 +67,82 @@ class _CartPageState extends State<CartPage> {
         children: [
           Expanded(
             flex: 8,
-            child: BlocBuilder<CartBloc, CartState>(
+            child: BlocConsumer<CartBloc, CartState>(
+              listener: (context,state){
+                if (state.items.isNotEmpty && !_showHint) {
+                  setState(() {
+                    _showHint = true;
+                  });
+                  Future.delayed(const Duration(seconds: 10), () {
+                    if (mounted) setState(() => _showHint = false);
+                  });
+                }
+
+              },
               builder: (context, state) {
                 if (state.items.isEmpty) {
                   return const Center(child: Text("Cart is empty"));
                 }
-                return ListView.builder(
-                  //padding: EdgeInsets.only(bottom: 100),
-                  itemCount: state.items.length,
-                  itemBuilder: (context, index) {
-                    final item = state.items[index];
-                    return Dismissible(
-                      key: ValueKey(item.name),
-                      direction: DismissDirection.endToStart,
-                      background: Container(
-                        color: Colors.red,
-                        alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
+                return  Column(
+                  children: [
+                    AnimatedOpacity(
+                      opacity: _showHint ? 1.0 : 0.0,
+                      duration: const Duration(milliseconds: 600),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.swipe, size: 18, color: Colors.grey),
+                            SizedBox(width: 6),
+                            Text(
+
+                              //Todo: localize this text
+                              "Swipe an item to delete",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      onDismissed: (_) {
-                        context.read<CartBloc>().add(
-                          RemoveItemEvent(item.name),
-                        );
-                      },
-                      child: CartItem(
-                        item: item,
+                    ),
+
+
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: state.items.length,
+                        itemBuilder: (context, index) {
+                          final item = state.items[index];
+                          return Dismissible(
+                            key: ValueKey(item.name),
+                            direction: DismissDirection.endToStart,
+                            background: Container(
+                              color: Colors.red,
+                              alignment: Alignment.centerRight,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20),
+                              child: const Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onDismissed: (_) {
+                              context.read<CartBloc>().add(
+                                  RemoveItemEvent(item.name));
+                            },
+                            child: CartItem(item: item),
+                          );
+                        },
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 );
-              },
-            ),
+
+              }),
+
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -106,7 +157,7 @@ class _CartPageState extends State<CartPage> {
                 borderRadius: BorderRadius.circular(16),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16),
-                  //Todo: implement the onPressed function
+
                   onTap: () {
                     final bottomDrawer = BottomDrawer(
                       formKey: _formKey,
@@ -139,7 +190,7 @@ class _CartPageState extends State<CartPage> {
           ),
         ],
       ),
-      //Todo: fix the layout overlapping checkout button
+
       floatingActionButton: CheckoutButton(
         onPressed: () {
           Navigator.pushNamed(context, AppRoutes.checkout);
@@ -150,7 +201,7 @@ class _CartPageState extends State<CartPage> {
           );
         },
       ),
-      // TODO: Consider changing position if design updates (e.g., bottomNavigationBar)
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

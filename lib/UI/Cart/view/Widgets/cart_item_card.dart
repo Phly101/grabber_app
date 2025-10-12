@@ -50,7 +50,7 @@ class CartItemCard extends StatelessWidget {
                 children: [
                   // Product Name
                   Text(
-                    LocalizationHelper.getString(context, item.name),
+                    LocalizationHelper.localizedItemName(item, context),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -101,11 +101,11 @@ class CartItemCard extends StatelessWidget {
                             onPressed: () {
                               if (item.quantity > 1) {
                                 context.read<CartBloc>().add(
-                                  DecreaseQtyEvent(item.name),
+                                  DecreaseQtyEvent(item.id),
                                 );
                               } else {
                                 context.read<CartBloc>().add(
-                                  RemoveItemEvent(item.name),
+                                  RemoveItemEvent(item.id),
                                 );
                               }
                             },
@@ -118,8 +118,9 @@ class CartItemCard extends StatelessWidget {
                             icon: const Icon(Icons.add),
                             onPressed: () {
                               context.read<CartBloc>().add(
-                                IncreaseQtyEvent(item.name),
+                                IncreaseQtyEvent(item.id),
                               );
+
                             },
                           ),
                         ],
