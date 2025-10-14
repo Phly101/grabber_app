@@ -33,3 +33,7 @@ class DecreaseQtyEvent extends CartEvent {
 
   const DecreaseQtyEvent(this.id);
 }
+class ClearUserCart extends CartEvent{
+  final String userId;
+  const ClearUserCart(this.userId);
+}

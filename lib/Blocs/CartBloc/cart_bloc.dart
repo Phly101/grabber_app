@@ -37,7 +37,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<RemoveItemEvent>((event, emit) async {
-      await userServices.removeCart(event.id);
+      await userServices.removeCartItem(event.id);
     });
 
     on<IncreaseQtyEvent>((event, emit) async {
@@ -52,8 +52,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         final updated = item.copyWith(quantity: item.quantity - 1);
         await userServices.updateCart(updated);
       } else {
-        await userServices.removeCart(item.id);
+        await userServices.removeCartItem(item.id);
       }
     });
+    on<ClearUserCart>(_onClearCart);
+  }
+  Future<void> _onClearCart(ClearUserCart event, Emitter<CartState> emit) async {
+    emit(state.copyWith(items: []));
+    try{
+     await userServices.clearUserCart(event.userId);
+     emit(CartCleared());
+   }
+   catch(e){
+     emit(CartError(e.toString()));
+   }
   }
 }
