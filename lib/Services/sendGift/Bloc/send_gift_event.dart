@@ -31,3 +31,14 @@ class SendGift extends GiftEvent {
 
   SendGift(this.receiverEmail);
 }
+class StartGiftPayment extends GiftEvent {
+  final String receiverEmail;
+  final String message;
+
+  StartGiftPayment(this.receiverEmail, this.message);
+}
+class EnableGiftMode extends GiftEvent {}
+
+class DisableGiftMode extends GiftEvent {}
+class CancelGiftPayment extends GiftEvent {}
+

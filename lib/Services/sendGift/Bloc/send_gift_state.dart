@@ -78,7 +78,9 @@ class SendGiftFailure extends SendGiftState {
   @override
   List<Object?> get props => [message];
 }
+class GiftModeEnabled extends SendGiftState {}
 
+class GiftModeDisabled extends SendGiftState {}
 // General error
 class GiftError extends SendGiftState {
   final String message;
@@ -88,3 +90,13 @@ class GiftError extends SendGiftState {
   @override
   List<Object?> get props => [message];
 }
+class GiftPaymentActive extends SendGiftState {
+  final String receiverEmail;
+  final String giftId;
+
+  GiftPaymentActive({required this.receiverEmail, required this.giftId});
+
+  @override
+  List<Object?> get props => [receiverEmail, giftId];
+}
+

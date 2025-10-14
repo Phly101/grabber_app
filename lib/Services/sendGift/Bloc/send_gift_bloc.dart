@@ -25,6 +25,18 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
     on<ListenToNotifications>(_onListenToNotifications);
     on<LoadNotifications>(_onLoadNotifications);
     on<SendGift>(_onSendGift);
+    on<EnableGiftMode>((event, emit) => emit(GiftModeEnabled()));
+    on<DisableGiftMode>((event, emit) => emit(GiftModeDisabled()));
+    on<StartGiftPayment>((event, emit) {
+      emit(GiftPaymentActive(
+        receiverEmail: event.receiverEmail,
+        giftId: event.message,
+      ));
+    });
+
+    on<CancelGiftPayment>((event, emit) {
+      emit(GiftInitial());
+    });
   }
 
   Future<void> _onListenToGifts(
