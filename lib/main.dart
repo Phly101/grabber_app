@@ -16,6 +16,8 @@ import "package:grabber_app/Services/Users/user_services.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
+import "package:grabber_app/UI/gift/gift_details_page.dart";
+import "package:grabber_app/UI/gift/gift_page.dart";
 
 import "Services/Authentication/auth_service.dart";
 
@@ -93,6 +95,7 @@ Future<void> main() async {
                 ),
               ),
               //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
+              
             ],
             child: const MyApp(),
           );
@@ -190,6 +193,7 @@ class MyApp extends StatelessWidget {
                   AppRoutes.language: (_) => const LanguagePage(),
                   AppRoutes.theme: (_) => const ThemePage(),
                   AppRoutes.aboutScreen: (_) => const AboutScreen(),
+                  AppRoutes.giftScreen:(_)=>const GiftsPage(),
                 },
                 home: Container(
                   decoration: BoxDecoration(
