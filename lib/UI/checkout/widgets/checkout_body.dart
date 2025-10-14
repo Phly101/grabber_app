@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:fluttertoast/fluttertoast.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/UI/Cart/view/Widgets/bottom_drawer.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/customer_model.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/invoice_data.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/supplier_model.dart";
@@ -13,6 +16,7 @@ import "package:grabber_app/UI/checkout/widgets/key_switch_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_value_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/Delivery/delivery.dart";
 import "package:grabber_app/Utils/routes.dart";
+import "package:grabber_app/common/custom_card_widget.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
 import "../Bloc/invoice_bloc.dart";
@@ -25,6 +29,8 @@ class BuildCheckOutBody extends StatefulWidget {
 }
 
 class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = TextEditingController();
   String? deliveryType = "Standard";
   bool invoice = false;
   final num bagFee = 0.25;
@@ -140,7 +146,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                     children: [
                       KeyValueTile.text(
                         label: AppLocalizations.of(context)!.subtotal,
-                        value: "\$${total.toStringAsFixed(2)}",
+                        value: total!=0? "\$${total.toStringAsFixed(2)}": "\$0.00",
                         color: theme.colorScheme.onPrimary,
                       ),
                       const Divider(
@@ -150,7 +156,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                       ),
                       KeyValueTile.text(
                         label: AppLocalizations.of(context)!.bagFee,
-                        value: "\$${bagFee.toString()}",
+                        value: total!=0? "\$${bagFee.toString()}": "\$0.00",
                         color: theme.colorScheme.onPrimary,
                       ),
                       const Divider(
@@ -160,7 +166,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                       ),
                       KeyValueTile.text(
                         label: AppLocalizations.of(context)!.serviceFee,
-                        value: "\$${serviceFee.toString()}",
+                        value: total!=0? "\$${serviceFee.toString()}": "\$0.00",
                         color: theme.colorScheme.onPrimary,
                       ),
                       const Divider(
@@ -170,7 +176,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                       ),
                       KeyValueTile.text(
                         label: AppLocalizations.of(context)!.delivery,
-                        value: "\$${delivery.toString()}",
+                        value: total!=0? "\$${delivery.toString()}": "\$0.00",
                         color: theme.colorScheme.onPrimary,
                       ),
                       const Divider(
@@ -180,7 +186,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                       ),
                       KeyValueTile.text(
                         label: AppLocalizations.of(context)!.total,
-                        value: "\$${finalTotal.toStringAsFixed(2)}",
+                        value: total!=0? "\$${finalTotal.toStringAsFixed(2)}": "\$0.00",
                         color: theme.colorScheme.onPrimary,
                       ),
                       const Divider(
@@ -266,12 +272,65 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
               },
             ),
 
+             CustomCardWidget(
+                color: Colors.transparent,
+                child: Material(
+                  color: theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(16),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+
+                    onTap: () {
+                      final bottomDrawer = BottomDrawer(
+                        formKey: _formKey,
+                        controller: _controller,
+                      );
+                      bottomDrawer.openBottomDrawer(context);
+                    },
+                    child: ListTile(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      title: Text(
+                        AppLocalizations.of(context)!.SendAsAGift,
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                      tileColor: theme.colorScheme.surface,
+                      leading: FaIcon(
+                        FontAwesomeIcons.gift,
+                        color: theme.colorScheme.onPrimary,
+                      ),
+
+                      trailing: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.payment);
+                 final totalPrice = context.read<CartBloc>().state.totalPrice;
+                 if(totalPrice==0){
+                   Fluttertoast.showToast(
+                     gravity: ToastGravity.BOTTOM,
+                     msg:
+                     "Can't go to payment while cart is Empty",
+                     timeInSecForIosWeb: 2,
+                     backgroundColor: Colors.yellow,
+                     textColor: Colors.black,
+                     fontSize: 16.0,
+                   );
+                 }
+                 else{
+                   Navigator.pushNamed(context, AppRoutes.payment);
+                 }
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(
