@@ -13,6 +13,9 @@ import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
 import "package:grabber_app/Services/Users/user_services.dart";
+import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
+import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
+import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
 
 import "Services/Authentication/auth_service.dart";
 
@@ -50,7 +53,17 @@ Future<void> main() async {
         }
 
         if (snapshot.hasData) {
+          final fireStore = FirebaseFirestore.instance;
+          final authProvider = FirebaseAuth.instance;
           final userServices = UserServices(snapshot.data!.uid);
+          final giftListenerService = GiftListenerService(
+            fireStore: fireStore,
+            authProvider: authProvider,
+          );
+          final sendGiftService = SendGiftService(
+            fireStore: fireStore,
+            authProvider: authProvider,
+          );
 
           return MultiBlocProvider(
             providers: [
@@ -73,6 +86,12 @@ Future<void> main() async {
                 create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
               ),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
+              BlocProvider(
+                create: (_) => GiftBloc(
+                  giftListenerService: giftListenerService,
+                  sendGiftService: sendGiftService,
+                ),
+              ),
               //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),

@@ -1,22 +1,23 @@
-import 'package:equatable/equatable.dart';
-import 'package:grabber_app/Services/sendGift/Models/gift_model.dart';
-import 'package:grabber_app/Services/sendGift/Models/notification_model.dart';
+part of "send_gift_bloc.dart";
 
 // Base abstract class for all states
-abstract class GiftState extends Equatable {
+abstract class SendGiftState extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
 // Initial
-class GiftInitial extends GiftState {}
+class GiftInitial extends SendGiftState {}
 
 // Loading
-class GiftLoading extends GiftState {}
+class GiftLoading extends SendGiftState {}
+
+class NotificationsLoading extends SendGiftState {}
 
 // Gifts stream updates
-class GiftStreamUpdated extends GiftState {
+class GiftStreamUpdated extends SendGiftState {
   final List<GiftModel> gifts;
+
   GiftStreamUpdated(this.gifts);
 
   @override
@@ -24,8 +25,9 @@ class GiftStreamUpdated extends GiftState {
 }
 
 // Notifications stream updates
-class NotificationStreamUpdated extends GiftState {
+class NotificationStreamUpdated extends SendGiftState {
   final List<NotificationModel> notifications;
+
   NotificationStreamUpdated(this.notifications);
 
   @override
@@ -33,8 +35,9 @@ class NotificationStreamUpdated extends GiftState {
 }
 
 // Notifications loaded once
-class NotificationsLoaded extends GiftState {
+class NotificationsLoaded extends SendGiftState {
   final List<NotificationModel> notifications;
+
   NotificationsLoaded(this.notifications);
 
   @override
@@ -42,11 +45,34 @@ class NotificationsLoaded extends GiftState {
 }
 
 // Send gift success
-class SendGiftSuccess extends GiftState {}
+class SendGiftSuccess extends SendGiftState {}
+
+class SendNotificationsSuccess extends SendGiftState {}
+
+// Send notification failure
+class SendNotificationFailure extends SendGiftState {
+  final String message;
+
+  SendNotificationFailure(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+// General notification error
+class NotificationError extends SendGiftState {
+  final String message;
+
+  NotificationError(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
 
 // Send gift failure
-class SendGiftFailure extends GiftState {
+class SendGiftFailure extends SendGiftState {
   final String message;
+
   SendGiftFailure(this.message);
 
   @override
@@ -54,8 +80,9 @@ class SendGiftFailure extends GiftState {
 }
 
 // General error
-class GiftError extends GiftState {
+class GiftError extends SendGiftState {
   final String message;
+
   GiftError(this.message);
 
   @override

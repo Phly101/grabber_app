@@ -1,17 +1,16 @@
-
 import "dart:async";
-
+import "package:equatable/equatable.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:grabber_app/Services/sendGift/Bloc/send_gift_event.dart";
-import "package:grabber_app/Services/sendGift/Bloc/send_gift_state.dart";
 import "package:grabber_app/Services/sendGift/Models/gift_model.dart";
 import "package:grabber_app/Services/sendGift/Models/notification_model.dart";
 import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
 
+part "send_gift_event.dart";
 
+part "send_gift_state.dart";
 
-class GiftBloc extends Bloc<GiftEvent, GiftState> {
+class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
   final GiftListenerService giftListenerService;
   final SendGiftService sendGiftService;
 
@@ -28,33 +27,47 @@ class GiftBloc extends Bloc<GiftEvent, GiftState> {
     on<SendGift>(_onSendGift);
   }
 
-  Future<void> _onListenToGifts(ListenToGifts event, Emitter<GiftState> emit) async {
+  Future<void> _onListenToGifts(
+    ListenToGifts event,
+    Emitter<SendGiftState> emit,
+  ) async {
     await _giftSubscription?.cancel();
-    _giftSubscription = giftListenerService.listenToIncomingGifts(event.userId).listen(
-      (gifts) => emit(GiftStreamUpdated(gifts)),
-      onError: (error) => emit(GiftError("Gift stream error: $error")),
-    );
+    _giftSubscription = giftListenerService
+        .listenToIncomingGifts(event.userId)
+        .listen(
+          (gifts) => emit(GiftStreamUpdated(gifts)),
+          onError: (error) => emit(GiftError("Gift stream error: $error")),
+        );
   }
 
-  Future<void> _onListenToNotifications(ListenToNotifications event, Emitter<GiftState> emit) async {
+  Future<void> _onListenToNotifications(
+    ListenToNotifications event,
+    Emitter<SendGiftState> emit,
+  ) async {
     await _notificationSubscription?.cancel();
-    _notificationSubscription = giftListenerService.listenToNotifications(event.userId).listen(
-      (notifications) => emit(NotificationStreamUpdated(notifications)),
-      onError: (error) => emit(GiftError("Notification stream error: $error")),
-    );
+    _notificationSubscription = giftListenerService
+        .listenToNotifications(event.userId)
+        .listen(
+          (notifications) => emit(NotificationStreamUpdated(notifications)),
+          onError: (error) =>
+              emit(NotificationError("Notification stream error: $error")),
+        );
   }
 
-  Future<void> _onLoadNotifications(LoadNotifications event, Emitter<GiftState> emit) async {
-    emit(GiftLoading());
+  Future<void> _onLoadNotifications(
+    LoadNotifications event,
+    Emitter<SendGiftState> emit,
+  ) async {
+    emit(NotificationsLoading());
     final result = await giftListenerService.getNotifications(event.userId);
     if (result.isSuccess) {
       emit(NotificationsLoaded(result.data ?? []));
     } else {
-      emit(GiftError(result.message ?? "Failed to load notifications"));
+      emit(NotificationError(result.message ?? "Failed to load notifications"));
     }
   }
 
-  Future<void> _onSendGift(SendGift event, Emitter<GiftState> emit) async {
+  Future<void> _onSendGift(SendGift event, Emitter<SendGiftState> emit) async {
     emit(GiftLoading());
     final result = await sendGiftService.sendGift(event.receiverEmail);
     if (result.isSuccess) {
