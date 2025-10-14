@@ -34,7 +34,6 @@ import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 // Features (barrel files or grouped imports)
 import "package:grabber_app/UI/ui.dart";
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
@@ -42,11 +41,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
-
-
   runApp(
-
     StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
@@ -59,11 +54,24 @@ Future<void> main() async {
 
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
-              BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
+              BlocProvider(
+                create: (_) =>
+                    AuthBloc(authService: AuthService())..add(AppStarted()),
+              ),
+              BlocProvider(
+                create: (_) =>
+                    LocaleBloc(FirebaseFirestore.instance)
+                      ..add(InitialLangEvent()),
+              ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
-              BlocProvider(create: (_) => UserBloc(userServices: userServices)..add(const FetchUserData())),
-              BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
+              BlocProvider(
+                create: (_) =>
+                    UserBloc(userServices: userServices)
+                      ..add(const FetchUserData()),
+              ),
+              BlocProvider(
+                create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
+              ),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
               //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
@@ -73,18 +81,23 @@ Future<void> main() async {
           // If no user → only provide AuthBloc, theme, locale
           return MultiBlocProvider(
             providers: [
-              // BlocProvider(create: (_) => VerificationBloc(VerificationService())), 
-              BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
-              BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
+              // BlocProvider(create: (_) => VerificationBloc(VerificationService())),
+              BlocProvider(
+                create: (_) =>
+                    AuthBloc(authService: AuthService())..add(AppStarted()),
+              ),
+              BlocProvider(
+                create: (_) =>
+                    LocaleBloc(FirebaseFirestore.instance)
+                      ..add(InitialLangEvent()),
+              ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
             ],
             child: const MyApp(),
           );
         }
       },
-
     ),
-
   );
 }
 

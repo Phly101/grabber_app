@@ -117,7 +117,7 @@ class _CartPageState extends State<CartPage> {
                         itemBuilder: (context, index) {
                           final item = state.items[index];
                           return Dismissible(
-                            key: ValueKey(item.name),
+                            key: ValueKey(item.id),
                             direction: DismissDirection.endToStart,
                             background: Container(
                               color: Colors.red,
@@ -131,7 +131,7 @@ class _CartPageState extends State<CartPage> {
                             ),
                             onDismissed: (_) {
                               context.read<CartBloc>().add(
-                                  RemoveItemEvent(item.name));
+                                  RemoveItemEvent(item.id));
                             },
                             child: CartItem(item: item),
                           );
