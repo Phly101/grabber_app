@@ -75,12 +75,28 @@ class UserServices {
     }
   }
 
-  Future<void> removeCart(String name) async {
+  Future<void> removeCartItem(String id) async {
     try {
-      await _cart.doc(name).delete();
+      await _cart.doc(id).delete();
     } catch (e) {
       throw Exception("Failed to remove cart item: $e");
     }
+  }
+  Future<void> clearUserCart(String userId) async {
+    final cartCollection = FirebaseFirestore.instance
+        .collection("users")
+        .doc(userId)
+        .collection("cart");
+
+    final snapshot = await cartCollection.get();
+
+    final batch = FirebaseFirestore.instance.batch();
+
+    for (final doc in snapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    await batch.commit();
   }
 
   Stream<List<CartItemModel>> getCart() {
