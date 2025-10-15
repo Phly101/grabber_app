@@ -49,27 +49,46 @@ class _MainScreenState extends State<MainScreen> {
                   : Image.asset("Assets/Images/Grabber.png"),
               // centerTitle: true,
               actions: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                          value: context.read<GiftBloc>(),
-                          child: const GiftsPage(),
+                BlocBuilder<GiftBloc, SendGiftState>(
+                  builder: (context, state) {
+                    int notificationCount = 0;
+
+                    if (state is GiftStreamUpdated) {
+                      notificationCount = state.gifts.length;
+                    } else if (state is NotificationsLoaded) {
+                      notificationCount = state.notifications.length;
+                    }
+
+                    return IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value: context.read<GiftBloc>(),
+                              child: const GiftsPage(),
+                            ),
+                          ),
+                        );
+                      },
+                      icon: badges.Badge(
+                        badgeContent: Text(
+                          notificationCount.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                        ),
+                        showBadge: notificationCount > 0,
+                        child: FaIcon(
+                          FontAwesomeIcons.bell,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     );
-
                   },
-                  icon: badges.Badge(
-                    badgeContent: const Text(""),
-                    child: FaIcon(
-                      FontAwesomeIcons.bell,
-                      color: theme.colorScheme.onPrimary,
-                    ),
-                  ),
                 ),
+                const SizedBox(width: 10),
                 BlocSelector<CartBloc, CartState, int>(
                   selector: (state) => state.totalItems,
                   builder: (context, totalItems) {
