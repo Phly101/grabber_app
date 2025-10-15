@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
-import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+//import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
-import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
-import "package:grabber_app/Utils/routes.dart";
+//import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+// import "package:grabber_app/Utils/routes.dart";
 import "../../../../l10n/app_localizations.dart";
 import "package:grabber_app/Theme/theme.dart";
 
@@ -15,9 +15,9 @@ class PaymentConfirmDialog {
     String? receiverEmail,
   }) async {
     final loc = AppLocalizations.of(context)!;
-    final cartBloc = context.read<CartBloc>();
+   // final cartBloc = context.read<CartBloc>();
     final giftBloc = context.read<GiftBloc>();
-    final authState = context.read<AuthBloc>().state;
+   // final authState = context.read<AuthBloc>().state;
 
     final confirm = await showDialog<bool>(
       context: context,
@@ -66,6 +66,7 @@ class PaymentConfirmDialog {
           textColor: Colors.white,
         );
         giftBloc.add(SendGift(receiverEmail));
+
       } else {
         Fluttertoast.showToast(
           msg: "Couldn't find the user",
@@ -75,11 +76,12 @@ class PaymentConfirmDialog {
         );
         return;
       }
+
     }
 
-    if (authState is AuthAuthenticated) {
-      cartBloc.add(ClearUserCart(authState.user.uid));
-    }
+    // if (authState is AuthAuthenticated) {
+    //   cartBloc.add(ClearUserCart(authState.user.uid));
+    // }
 
     Fluttertoast.showToast(
       msg: "Payment Successful",
@@ -87,14 +89,15 @@ class PaymentConfirmDialog {
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
-
-    // Still safe to navigate
-    if (context.mounted) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        AppRoutes.mainApp,
-        (route) => false,
-      );
-    }
+    //
+    // // Still safe to navigate
+    // if (context.mounted) {
+    //
+    //   Navigator.pushNamedAndRemoveUntil(
+    //     context,
+    //     AppRoutes.mainApp,
+    //     (route) => false,
+    //   );
+    // }
   }
 }
