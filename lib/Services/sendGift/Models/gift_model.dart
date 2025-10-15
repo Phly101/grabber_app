@@ -1,6 +1,7 @@
 import "package:cloud_firestore/cloud_firestore.dart";
+import "package:equatable/equatable.dart";
 
-class GiftModel {
+class GiftModel extends Equatable {
   final String id;
   final String senderUID;
   final String senderEmail;
@@ -9,7 +10,7 @@ class GiftModel {
   final List<dynamic> items;
   final DateTime? timestamp;
 
-  GiftModel({
+  const GiftModel({
     required this.id,
     required this.senderUID,
     required this.senderEmail,
@@ -31,4 +32,6 @@ class GiftModel {
       timestamp: (data["timestamp"] as Timestamp?)?.toDate(),
     );
   }
+  @override
+  List<Object?> get props => [senderName, message, items];
 }

@@ -5,7 +5,7 @@ import "package:grabber_app/UI/gift/gift_details_page.dart";
 class GiftCard extends StatelessWidget {
   final GiftModel gift;
 
-  const GiftCard({required this.gift});
+  const GiftCard({super.key, required this.gift});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class GiftCard extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 28,
-                
+
                 child: Icon(Icons.card_giftcard, size: 28),
               ),
               const SizedBox(width: 14),

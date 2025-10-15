@@ -15,11 +15,16 @@ class _GiftsPageState extends State<GiftsPage> {
   void initState() {
     super.initState();
 
+    // Debug: check if bloc instance is consistent
     final bloc = context.read<GiftBloc>();
-    final currentUserId = bloc.sendGiftService.authProvider.currentUser?.uid;
+    print("GiftBloc hash in initState: ${bloc.hashCode}");
 
+    final currentUserId = bloc.sendGiftService.authProvider.currentUser?.uid;
     if (currentUserId != null) {
+      print("Listening to gifts for user: $currentUserId");
       bloc.add(ListenToGifts(currentUserId));
+    } else {
+      print("⚠️ No current user found!");
     }
   }
 
@@ -31,16 +36,24 @@ class _GiftsPageState extends State<GiftsPage> {
         centerTitle: true,
       ),
       body: BlocBuilder<GiftBloc, SendGiftState>(
+        buildWhen: (previous, current) {
+          print("📦 Rebuilding GiftsPage with state: $current");
+          return true; // Always rebuild (for now)
+        },
         builder: (context, state) {
+          print("GiftBloc hash in builder: ${context.read<GiftBloc>().hashCode}");
+          print("🧱 Current state type: ${state.runtimeType}");
+
           if (state is GiftLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is GiftStreamUpdated) {
             final gifts = state.gifts;
+            print("🎁 Received ${gifts.length} gifts");
 
             if (gifts.isEmpty) {
               return const Center(
                 child: Text(
-                  "No gifts yet ",
+                  "No gifts yet 🎀",
                   style: TextStyle(fontSize: 18),
                 ),
               );
@@ -50,10 +63,13 @@ class _GiftsPageState extends State<GiftsPage> {
               padding: const EdgeInsets.all(12),
               itemCount: gifts.length,
               itemBuilder: (context, index) {
-                return GiftCard(gift: gifts[index]);
+                final gift = gifts[index];
+                print("Gift[$index] -> ${gift.senderName} (${gift.items.length} items)");
+                return GiftCard(gift: gift);
               },
             );
           } else if (state is GiftError) {
+            print("❌ Error: ${state.message}");
             return Center(
               child: Text(
                 state.message,
