@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
-import "package:grabber_app/UI/gift/gift_card.dart";
+import "package:grabber_app/Theme/theme.dart";
+import "package:grabber_app/UI/gift/widgets/gift_card.dart";
 
 class GiftsPage extends StatefulWidget {
   const GiftsPage({super.key});
@@ -15,73 +16,127 @@ class _GiftsPageState extends State<GiftsPage> {
   void initState() {
     super.initState();
 
-    // Debug: check if bloc instance is consistent
     final bloc = context.read<GiftBloc>();
-    print("GiftBloc hash in initState: ${bloc.hashCode}");
 
     final currentUserId = bloc.sendGiftService.authProvider.currentUser?.uid;
     if (currentUserId != null) {
-      print("Listening to gifts for user: $currentUserId");
       bloc.add(ListenToGifts(currentUserId));
-    } else {
-      print("⚠️ No current user found!");
-    }
+    } else {}
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("🎁 My Gifts"),
+        title: Text(
+          "🎁 My Gifts",
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
         centerTitle: true,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
+        elevation: Theme.of(context).appBarTheme.elevation,
       ),
       body: BlocBuilder<GiftBloc, SendGiftState>(
-        buildWhen: (previous, current) {
-          print("📦 Rebuilding GiftsPage with state: $current");
-          return true; // Always rebuild (for now)
-        },
         builder: (context, state) {
-          print("GiftBloc hash in builder: ${context.read<GiftBloc>().hashCode}");
-          print("🧱 Current state type: ${state.runtimeType}");
-
           if (state is GiftLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is GiftStreamUpdated) {
             final gifts = state.gifts;
-            print("🎁 Received ${gifts.length} gifts");
 
             if (gifts.isEmpty) {
-              return const Center(
-                child: Text(
-                  "No gifts yet 🎀",
-                  style: TextStyle(fontSize: 18),
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.card_giftcard,
+                      size: 80,
+                      color: AppColors.mediumGrey,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "No gifts yet!",
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.8),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      "Start sharing the love!",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
                 ),
               );
             }
 
             return ListView.builder(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               itemCount: gifts.length,
               itemBuilder: (context, index) {
                 final gift = gifts[index];
-                print("Gift[$index] -> ${gift.senderName} (${gift.items.length} items)");
                 return GiftCard(gift: gift);
               },
             );
           } else if (state is GiftError) {
-            print("❌ Error: ${state.message}");
             return Center(
-              child: Text(
-                state.message,
-                style: const TextStyle(color: Colors.red),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.error_outline,
+                    size: 80,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Error loading gifts:",
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    state.message,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.7),
+                    ),
+                  ),
+                ],
               ),
             );
           }
 
-          return const Center(
-            child: Text(
-              "Loading gifts...",
-              style: TextStyle(fontSize: 16),
+          // Initial state or unexpected state
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Theme.of(context).primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Preparing your gifts...",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.8),
+                  ),
+                ),
+              ],
             ),
           );
         },
