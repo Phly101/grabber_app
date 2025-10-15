@@ -28,7 +28,7 @@
 ## Team members:
 ### Mark Ayman
 ### Marian Makram
-### Mariana Essam
+### Marina Essam
 ### Martina Wageeh
 ### Simon Abd El Malak.
 
@@ -49,7 +49,7 @@
 ### Marian Makram: Firstore database (SLider, categories, products) and fetching into UI.
 ### Simon Abd EL Malak: Firstore database(loaclization english & arabic) and Crud functions of cart.
 ### Martina Wageeh: Verification.
-### Marina Essam: Fetching user data into profile UI.
+### Marina Essam: Fetching user data into profile UI and update user data.
 
 # Phase 3 Responsibilites:
 ## State Management phase:
