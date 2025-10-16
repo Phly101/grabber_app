@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
-import "package:fluttertoast/fluttertoast.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/UI/Cart/view/Widgets/button_widget.dart";
+import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
 class BottomDrawer {
@@ -53,39 +55,52 @@ class BottomDrawer {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // confirm
                         TextButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               showDialog(
                                 context: context,
                                 builder: (_) => AlertDialog(
-                                  title: Text(AppLocalizations.of(context)!.confirmGift),
+                                  title: Text(
+                                    AppLocalizations.of(context)!.confirmGift,
+                                  ),
                                   content: Text(
                                     "${AppLocalizations.of(context)!.areYouSureGift} ${controller.text}?",
                                   ),
                                   actions: [
+                                    // confirm
                                     ElevatedButton(
                                       onPressed: () {
-                                        Navigator.pop(context); // close dialog
-                                        Fluttertoast.showToast(
-                                          gravity: ToastGravity.BOTTOM,
-                                          msg: "${AppLocalizations.of(context)!.sendingGiftTo} ${controller.text}",
-                                          timeInSecForIosWeb: 2,
-                                          backgroundColor: Colors.green,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0,
+                                        context.read<GiftBloc>().add(
+                                          EnableGiftMode(),
+                                        );
+                                        Navigator.pop(
+                                          context,
+                                        ); // close dialog
+                                        Navigator.pushNamed(
+                                          context,
+                                          AppRoutes.payment,
+                                          arguments: controller.text,
                                         );
                                         controller.clear();
-                                        Navigator.pop(context);
+
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.green,
                                       ),
                                       child: Text(
-                                        AppLocalizations.of(context)!.Confirm,
-                                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                                        AppLocalizations.of(
+                                          context,
+                                        )!.Confirm,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(color: Colors.white),
                                       ),
                                     ),
+
+                                    // cancel
                                     ElevatedButton(
                                       onPressed: () {
                                         Navigator.pop(context);
@@ -95,7 +110,10 @@ class BottomDrawer {
                                       ),
                                       child: Text(
                                         AppLocalizations.of(context)!.Cancel,
-                                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .copyWith(color: Colors.white),
                                       ),
                                     ),
                                   ],
@@ -106,11 +124,14 @@ class BottomDrawer {
                           child: ButtonWidget(
                             text: Text(
                               AppLocalizations.of(context)!.Confirm,
-                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                              style: Theme.of(context).textTheme.bodyLarge!
+                                  .copyWith(color: Colors.white),
                             ),
                             color: Colors.green,
                           ),
                         ),
+
+                        // cancel
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -118,7 +139,8 @@ class BottomDrawer {
                           child: ButtonWidget(
                             text: Text(
                               AppLocalizations.of(context)!.Cancel,
-                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                              style: Theme.of(context).textTheme.bodyLarge!
+                                  .copyWith(color: Colors.white),
                             ),
                             color: Colors.redAccent,
                           ),

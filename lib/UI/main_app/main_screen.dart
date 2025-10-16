@@ -3,10 +3,12 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/profile_tab.dart";
 import "package:grabber_app/UI/Search/search_tab.dart";
 import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
+import "package:grabber_app/UI/gift/gift_page.dart";
 import "package:grabber_app/UI/home/home_tab.dart";
 import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
 import "package:grabber_app/Utils/routes.dart";
@@ -47,16 +49,46 @@ class _MainScreenState extends State<MainScreen> {
                   : Image.asset("Assets/Images/Grabber.png"),
               // centerTitle: true,
               actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: badges.Badge(
-                    badgeContent: const Text(""),
-                    child: FaIcon(
-                      FontAwesomeIcons.bell,
-                      color: theme.colorScheme.onPrimary,
-                    ),
-                  ),
+                BlocBuilder<GiftBloc, SendGiftState>(
+                  builder: (context, state) {
+                    int notificationCount = 0;
+
+                    if (state is GiftStreamUpdated) {
+                      notificationCount = state.gifts.length;
+                    } else if (state is NotificationsLoaded) {
+                      notificationCount = state.notifications.length;
+                    }
+
+                    return IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value: context.read<GiftBloc>(),
+                              child: const GiftsPage(),
+                            ),
+                          ),
+                        );
+                      },
+                      icon: badges.Badge(
+                        badgeContent: Text(
+                          notificationCount.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                        ),
+                        showBadge: notificationCount > 0,
+                        child: FaIcon(
+                          FontAwesomeIcons.bell,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    );
+                  },
                 ),
+                const SizedBox(width: 10),
                 BlocSelector<CartBloc, CartState, int>(
                   selector: (state) => state.totalItems,
                   builder: (context, totalItems) {
@@ -77,8 +109,7 @@ class _MainScreenState extends State<MainScreen> {
                       },
                     );
                   },
-                )
-
+                ),
               ],
             ),
 

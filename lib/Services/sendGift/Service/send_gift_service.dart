@@ -30,11 +30,12 @@ class SendGiftService {
       }
 
       await _createGift(senderUID, receiverUID);
-      await _createNotification(receiverUID, senderUID);
+      await _createNotification(senderUID,receiverUID);
 
       return Result.success(null);
     } catch (e) {
       return Result.failure("unexpected_error");
+
     }
   }
 
@@ -48,6 +49,7 @@ class SendGiftService {
 
   // create notification collection for users
   Future<void> _createNotification(String senderUID, String receiverUID) async {
+
     final senderDoc = await fireStore.collection("users").doc(senderUID).get();
     final senderEmail = senderDoc.get("email");
     final senderName = senderDoc.data()?["name"] ?? senderEmail;
