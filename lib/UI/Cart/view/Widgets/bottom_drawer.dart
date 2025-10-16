@@ -92,7 +92,7 @@ class BottomDrawer {
                                       child: Text(
                                         AppLocalizations.of(
                                           context,
-                                        )!.Confirm,
+                                        )!.confirm,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge!
@@ -109,7 +109,7 @@ class BottomDrawer {
                                         backgroundColor: Colors.redAccent,
                                       ),
                                       child: Text(
-                                        AppLocalizations.of(context)!.Cancel,
+                                        AppLocalizations.of(context)!.cancel,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge!
@@ -123,7 +123,7 @@ class BottomDrawer {
                           },
                           child: ButtonWidget(
                             text: Text(
-                              AppLocalizations.of(context)!.Confirm,
+                              AppLocalizations.of(context)!.confirm,
                               style: Theme.of(context).textTheme.bodyLarge!
                                   .copyWith(color: Colors.white),
                             ),
@@ -138,7 +138,7 @@ class BottomDrawer {
                           },
                           child: ButtonWidget(
                             text: Text(
-                              AppLocalizations.of(context)!.Cancel,
+                              AppLocalizations.of(context)!.cancel,
                               style: Theme.of(context).textTheme.bodyLarge!
                                   .copyWith(color: Colors.white),
                             ),

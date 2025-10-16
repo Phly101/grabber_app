@@ -28,13 +28,13 @@ class PaymentConfirmDialog {
             borderRadius: BorderRadius.circular(16),
           ),
           title: Text(
-            loc.Confirm,
+            loc.confirm,
             style: Theme.of(ctx).textTheme.titleLarge,
           ),
           content: Text(
             isGiftMode
                 ? "${loc.sendingGiftTo} $receiverEmail"
-                : loc.Confirm,
+                : loc.confirm,
             style: Theme.of(ctx).textTheme.bodyMedium,
           ),
           actions: [
@@ -47,7 +47,7 @@ class PaymentConfirmDialog {
                 backgroundColor: AppColors.textButtonColor,
               ),
               onPressed: () => Navigator.pop(ctx, true),
-              child: Text(loc.Confirm),
+              child: Text(loc.confirm),
             ),
           ],
         );

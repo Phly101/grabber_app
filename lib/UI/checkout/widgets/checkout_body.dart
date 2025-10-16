@@ -292,7 +292,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       title: Text(
-                        AppLocalizations.of(context)!.SendAsAGift,
+                        AppLocalizations.of(context)!.sendAsAGift,
                         style: theme.textTheme.bodyLarge,
                       ),
                       tileColor: theme.colorScheme.surface,

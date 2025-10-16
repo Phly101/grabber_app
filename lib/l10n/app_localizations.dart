@@ -1088,7 +1088,7 @@ abstract class AppLocalizations {
   /// No description provided for @loadingProfileData.
   ///
   /// In en, this message translates to:
-  /// **'Loading Profile Data'**
+  /// **'Loading Profile Data...'**
   String get loadingProfileData;
 
   /// No description provided for @failedToLoadProfileData.
@@ -1108,54 +1108,276 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed To Update Data'**
   String get failedToUpdateData;
-  String get SendAsAGift;
-  String get Confirm;
-  String get Cancel;
-  String get SendGift;
+
+  /// No description provided for @sendAsAGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Send as a gift'**
+  String get sendAsAGift;
+
+  /// No description provided for @sendGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Gift!'**
+  String get sendGift;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @currentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
   String get currentPassword;
+
+  /// No description provided for @enterCurrentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter current password'**
   String get enterCurrentPassword;
+
+  /// No description provided for @currentPasswordEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password cannot be empty'**
   String get currentPasswordEmpty;
+
+  /// No description provided for @passwordMustBeAtLeast6Characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
   String get passwordMustBeAtLeast6Characters;
 
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
   String get newPassword;
+
+  /// No description provided for @enterNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new password'**
   String get enterNewPassword;
+
+  /// No description provided for @newPasswordEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'New password cannot be empty'**
   String get newPasswordEmpty;
+
+  /// No description provided for @newPasswordDifferent.
+  ///
+  /// In en, this message translates to:
+  /// **'New password must be different from current password'**
   String get newPasswordDifferent;
 
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
   String get confirmNewPassword;
+
+  /// No description provided for @reEnterNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-enter new password'**
   String get reEnterNewPassword;
+
+  /// No description provided for @confirmPasswordEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password cannot be empty'**
   String get confirmPasswordEmpty;
 
+  /// No description provided for @sendingRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending your request ...'**
   String get sendingRequest;
-  String get passwordResetEmailSent;
+
+  /// No description provided for @loggingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Logging in ...'**
   String get loggingIn;
+
+  /// No description provided for @loginSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successful 🎉'**
   String get loginSuccessful;
+
+  /// No description provided for @signingUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing up...'**
   String get signingUp;
+
+  /// No description provided for @addedToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to cart'**
   String get addedToCart;
+
+  /// No description provided for @enterGiftEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the email of whom you want to gift'**
   String get enterGiftEmail;
+
+  /// No description provided for @passwordResetEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent successfully!'**
+  String get passwordResetEmailSent;
+
+  /// No description provided for @emailCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Email cannot be empty'**
+  String get emailCannotBeEmpty;
+
+  /// No description provided for @confirmGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Gift'**
   String get confirmGift;
+
+  /// No description provided for @areYouSureGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to send a gift to'**
   String get areYouSureGift;
+
+  /// No description provided for @sendingGiftTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending gift to'**
   String get sendingGiftTo;
 
-// 🔹 New error/auth messages
+  /// No description provided for @emailAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'This email is already registered.'**
   String get emailAlreadyInUse;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'The email address is not valid.'**
   String get invalidEmail;
+
+  /// No description provided for @weakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password is too weak.'**
   String get weakPassword;
-  String get noUserFoundForThatEmail;
-  String get wrongPasswordProvided;
-  String get accountNotFound;
-  String get unknownErrorOccurred;
+
+  /// No description provided for @noUserSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'No user is currently signed in.'**
+  String get noUserSignedIn;
+
+  /// No description provided for @userNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No user found for that email.'**
+  String get userNotFound;
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password provided.'**
+  String get wrongPassword;
+
+  /// No description provided for @invalidCredential.
+  ///
+  /// In en, this message translates to:
+  /// **'Account not found. Please, sign up.'**
+  String get invalidCredential;
+
+  /// No description provided for @unknownError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred.'**
+  String get unknownError;
+
+  /// No description provided for @passwordResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent successfully.'**
+  String get passwordResetSent;
+
+  /// No description provided for @reauthenticationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reauthentication failed.'**
   String get reauthenticationFailed;
+
+  /// No description provided for @currentPasswordIncorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'The current password is incorrect.'**
+  String get currentPasswordIncorrect;
+
+  /// No description provided for @passwordChangedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed Successfully!'**
   String get passwordChangedSuccessfully;
-  String get couldntUpdatePassword;
-  String get pleaseSignInAgainBeforeChangingPassword;
-  String get LoggingOut;
 
-// 🔹 New profile/update messages
-  String get updatePassword;
-  String get updatePasswordDescription;
+  /// No description provided for @couldNotUpdatePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update your password.'**
+  String get couldNotUpdatePassword;
 
+  /// No description provided for @requiresRecentLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in again before changing password.'**
+  String get requiresRecentLogin;
 
+  /// No description provided for @loggingOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Logging out ...'**
+  String get loggingOut;
+
+  /// No description provided for @myGifts.
+  ///
+  /// In en, this message translates to:
+  /// **'🎁 My Gifts'**
+  String get myGifts;
+
+  /// No description provided for @noGiftsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No gifts yet!'**
+  String get noGiftsYet;
+
+  /// No description provided for @startSharingGifts.
+  ///
+  /// In en, this message translates to:
+  /// **'Start sharing the gifts!'**
+  String get startSharingGifts;
+
+  /// No description provided for @errorLoadingGifts.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading gifts:'**
+  String get errorLoadingGifts;
+
+  /// No description provided for @preparingYourGifts.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your gifts...'**
+  String get preparingYourGifts;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

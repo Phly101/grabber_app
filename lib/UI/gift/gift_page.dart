@@ -3,6 +3,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/gift_card.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 
 class GiftsPage extends StatefulWidget {
   const GiftsPage({super.key});
@@ -26,10 +27,11 @@ class _GiftsPageState extends State<GiftsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "🎁 My Gifts",
+          loc.myGifts,
           style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
         centerTitle: true,
@@ -56,7 +58,7 @@ class _GiftsPageState extends State<GiftsPage> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      "No gifts yet!",
+                      loc.noGiftsYet,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Theme.of(
                           context,
@@ -65,7 +67,7 @@ class _GiftsPageState extends State<GiftsPage> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Start sharing the love!",
+                      loc.startSharingGifts,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Theme.of(
                           context,
@@ -97,7 +99,7 @@ class _GiftsPageState extends State<GiftsPage> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Error loading gifts:",
+                    loc.errorLoadingGifts,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Theme.of(context).colorScheme.error,
                     ),
@@ -129,7 +131,7 @@ class _GiftsPageState extends State<GiftsPage> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "Preparing your gifts...",
+                 loc.preparingYourGifts,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(
                       context,
