@@ -1378,6 +1378,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Preparing your gifts...'**
   String get preparingYourGifts;
+
+  /// No description provided for @noUserFoundForThatEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'No user found for that email.'**
+  String get noUserFoundForThatEmail;
+
+  /// No description provided for @wrongPasswordProvided.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password provided.'**
+  String get wrongPasswordProvided;
+
+  /// No description provided for @accountNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Account not found.'**
+  String get accountNotFound;
+
+  /// No description provided for @pleaseSignInAgainBeforeChangingPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in again before changing your password.'**
+  String get pleaseSignInAgainBeforeChangingPassword;
+
+  /// No description provided for @unknownErrorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred.'**
+  String get unknownErrorOccurred;
+
+  /// No description provided for @confirmAndPayGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm and Pay Gift'**
+  String get confirmAndPayGift;
+
+  /// No description provided for @failedToSendGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send gift.'**
+  String get failedToSendGift;
+
+  /// No description provided for @giftSentSuccessfullyCartCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift sent successfully! Cart cleared.'**
+  String get giftSentSuccessfullyCartCleared;
+
+  /// No description provided for @invalidExpiryFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid format. Use MM/YY or MM/YYYY.'**
+  String get invalidExpiryFormat;
+
+  /// No description provided for @cardExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Card expired.'**
+  String get cardExpired;
+
+  /// No description provided for @expiryYearTooFar.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiry year too far in the future.'**
+  String get expiryYearTooFar;
+
+  /// No description provided for @cvcRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'CVC is required.'**
+  String get cvcRequired;
+
+  /// No description provided for @invalidCvc.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid CVC. Must be 3 or 4 digits.'**
+  String get invalidCvc;
+
+  /// No description provided for @mmYY.
+  ///
+  /// In en, this message translates to:
+  /// **'MM/YY'**
+  String get mmYY;
+
+  /// No description provided for @paymentSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Successful'**
+  String get paymentSuccessful;
+
+  /// No description provided for @couldntFindTheUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t find the user'**
+  String get couldntFindTheUser;
+
+  /// No description provided for @cardNumberIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Card number is required.'**
+  String get cardNumberIsRequired;
+
+  /// No description provided for @cardNumberMustContainOnlyDigits.
+  ///
+  /// In en, this message translates to:
+  /// **'Card number must contain only digits.'**
+  String get cardNumberMustContainOnlyDigits;
+
+  /// No description provided for @invalidCardNumberLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid card number length.'**
+  String get invalidCardNumberLength;
+
+  /// No description provided for @onlyVisaOrMasterCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Only Visa or MasterCard are accepted.'**
+  String get onlyVisaOrMasterCard;
+
+  /// No description provided for @invalidCardNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid card number.'**
+  String get invalidCardNumber;
+
+  /// No description provided for @qty.
+  ///
+  /// In en, this message translates to:
+  /// **'Qty: '**
+  String get qty;
+
+  /// No description provided for @price.
+  ///
+  /// In en, this message translates to:
+  /// **'Price:'**
+  String get price;
+
+  /// No description provided for @unknownTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown time'**
+  String get unknownTime;
+
+  /// No description provided for @giftDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift Details'**
+  String get giftDetails;
+
+  /// No description provided for @giftItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift Items:'**
+  String get giftItems;
+
+  /// No description provided for @noItemsInGift.
+  ///
+  /// In en, this message translates to:
+  /// **'No items in this gift.'**
+  String get noItemsInGift;
+
+  /// No description provided for @from.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get from;
+
+  /// No description provided for @message.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// No description provided for @receivedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Received on'**
+  String get receivedOn;
+
+  /// No description provided for @enjoyYourGift.
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoy your gift!'**
+  String get enjoyYourGift;
+
+  /// No description provided for @swipeToDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe an item to delete'**
+  String get swipeToDelete;
+
+  /// No description provided for @cartIsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart is empty'**
+  String get cartIsEmpty;
+
+  /// No description provided for @unknownDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown date'**
+  String get unknownDate;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

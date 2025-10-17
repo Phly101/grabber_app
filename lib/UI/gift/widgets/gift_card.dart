@@ -3,6 +3,8 @@ import "package:grabber_app/Services/sendGift/Models/gift_model.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/gift_details_page.dart";
 
+import "../../../l10n/app_localizations.dart";
+
 class GiftCard extends StatelessWidget {
   final GiftModel gift;
 
@@ -10,9 +12,16 @@ class GiftCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc=AppLocalizations.of(context)!;
+    String translatedMessage;
+    if (gift.message == "enjoyYourGift") {
+      translatedMessage = loc.enjoyYourGift;
+    } else {
+      translatedMessage = gift.message;
+    }
     final date = gift.timestamp != null
         ? "${gift.timestamp!.day}/${gift.timestamp!.month}/${gift.timestamp!.year}"
-        : "Unknown date";
+        : loc.unknownDate;
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -59,7 +68,7 @@ class GiftCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      gift.message,
+                      translatedMessage,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(

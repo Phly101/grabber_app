@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_multi_formatter/flutter_multi_formatter.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
+import "package:grabber_app/l10n/app_localizations_ar.dart";
 
 class CardNumberField extends StatelessWidget {
   final TextEditingController controller;
@@ -10,12 +12,13 @@ class CardNumberField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc= AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         controller: controller,
-        validator: (value) => validateCardNumber(value ?? ""),
+        validator: (value) => validateCardNumber(context,value ?? ""),
         cursorColor: theme.colorScheme.primary,
         keyboardType: TextInputType.number,
         inputFormatters: [
@@ -23,7 +26,7 @@ class CardNumberField extends StatelessWidget {
           CreditCardNumberInputFormatter(),
         ],
         decoration: InputDecoration(
-          labelText: "Card Number",
+          labelText: loc.cardNumber,
           hintText: "xxxx xxxx xxxx xxxx",
           prefixIcon: const Icon(Icons.credit_card_rounded),
           suffixIcon: Row(
@@ -50,21 +53,22 @@ class CardNumberField extends StatelessWidget {
     );
   }
 
-  String? validateCardNumber(String input) {
+  String? validateCardNumber(BuildContext context,String input) {
+    final loc= AppLocalizations.of(context)!;
     final number = input.replaceAll(RegExp(r"\s+"), "");
 
-    if (number.isEmpty) return "Card number is required.";
+    if (number.isEmpty) return loc.cardNumberIsRequired;
     if (!RegExp(r"^[0-9]+$").hasMatch(number)) {
-      return "Card number must contain only digits.";
+      return loc.cardNumberMustContainOnlyDigits;
     }
     if (number.length < 13 || number.length > 19) {
-      return "Invalid card number length.";
+      return loc.invalidCardNumberLength;
     }
     if (!_isVisa(number) && !_isMasterCard(number)) {
-      return "Only Visa or MasterCard are accepted.";
+      return loc.onlyVisaOrMasterCard;
     }
     if (!_passesLuhnCheck(number)) {
-      return "Invalid card number.";
+      return loc.invalidCardNumber;
     }
     return null;
   }

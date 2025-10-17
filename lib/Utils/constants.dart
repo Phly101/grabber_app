@@ -20,8 +20,6 @@ String mapAuthErrorToMessage(AppLocalizations loc, String? code) {
       return loc.accountNotFound;
     case "requires-recent-login":
       return loc.pleaseSignInAgainBeforeChangingPassword;
-    case "The supplied auth credential is incorrect, malformed or has expired.":
-      return "this is zeet";
     default:
       return loc.unknownErrorOccurred;
   }

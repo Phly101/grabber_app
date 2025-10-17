@@ -72,24 +72,23 @@ class _CartPageState extends State<CartPage> {
               },
               builder: (context, state) {
                 if (state.items.isEmpty) {
-                  return const Center(child: Text("Cart is empty"));
+                  return Center(child: Text(AppLocalizations.of(context)!.cartIsEmpty));
                 }
                 return Column(
                   children: [
                     AnimatedOpacity(
                       opacity: _showHint ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 600),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.swipe, size: 18, color: Colors.grey),
-                            SizedBox(width: 6),
+                            const Icon(Icons.swipe, size: 18, color: Colors.grey),
+                            const SizedBox(width: 6),
                             Text(
-                              //Todo: localize this text
-                              "Swipe an item to delete",
-                              style: TextStyle(
+                              AppLocalizations.of(context)!.swipeToDelete,
+                              style: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,

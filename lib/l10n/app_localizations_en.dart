@@ -649,4 +649,106 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get preparingYourGifts => 'Preparing your gifts...';
+
+  @override
+  String get noUserFoundForThatEmail => 'No user found for that email.';
+
+  @override
+  String get wrongPasswordProvided => 'Wrong password provided.';
+
+  @override
+  String get accountNotFound => 'Account not found.';
+
+  @override
+  String get pleaseSignInAgainBeforeChangingPassword => 'Please sign in again before changing your password.';
+
+  @override
+  String get unknownErrorOccurred => 'An unknown error occurred.';
+
+  @override
+  String get confirmAndPayGift => 'Confirm and Pay Gift';
+
+  @override
+  String get failedToSendGift => 'Failed to send gift.';
+
+  @override
+  String get giftSentSuccessfullyCartCleared => 'Gift sent successfully! Cart cleared.';
+
+  @override
+  String get invalidExpiryFormat => 'Invalid format. Use MM/YY or MM/YYYY.';
+
+  @override
+  String get cardExpired => 'Card expired.';
+
+  @override
+  String get expiryYearTooFar => 'Expiry year too far in the future.';
+
+  @override
+  String get cvcRequired => 'CVC is required.';
+
+  @override
+  String get invalidCvc => 'Invalid CVC. Must be 3 or 4 digits.';
+
+  @override
+  String get mmYY => 'MM/YY';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful';
+
+  @override
+  String get couldntFindTheUser => 'Couldn\'t find the user';
+
+  @override
+  String get cardNumberIsRequired => 'Card number is required.';
+
+  @override
+  String get cardNumberMustContainOnlyDigits => 'Card number must contain only digits.';
+
+  @override
+  String get invalidCardNumberLength => 'Invalid card number length.';
+
+  @override
+  String get onlyVisaOrMasterCard => 'Only Visa or MasterCard are accepted.';
+
+  @override
+  String get invalidCardNumber => 'Invalid card number.';
+
+  @override
+  String get qty => 'Qty: ';
+
+  @override
+  String get price => 'Price:';
+
+  @override
+  String get unknownTime => 'Unknown time';
+
+  @override
+  String get giftDetails => 'Gift Details';
+
+  @override
+  String get giftItems => 'Gift Items:';
+
+  @override
+  String get noItemsInGift => 'No items in this gift.';
+
+  @override
+  String get from => 'From';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get receivedOn => 'Received on';
+
+  @override
+  String get enjoyYourGift => 'Enjoy your gift!';
+
+  @override
+  String get swipeToDelete => 'Swipe an item to delete';
+
+  @override
+  String get cartIsEmpty => 'Cart is empty';
+
+  @override
+  String get unknownDate => 'Unknown date';
 }

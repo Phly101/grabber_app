@@ -69,7 +69,7 @@ class PaymentConfirmDialog {
 
       } else {
         Fluttertoast.showToast(
-          msg: "Couldn't find the user",
+          msg: loc.couldntFindTheUser,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
           textColor: Colors.white,
@@ -84,7 +84,7 @@ class PaymentConfirmDialog {
     // }
 
     Fluttertoast.showToast(
-      msg: "Payment Successful",
+      msg: loc.paymentSuccessful,
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.green,
       textColor: Colors.white,

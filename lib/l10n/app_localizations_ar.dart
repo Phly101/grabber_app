@@ -576,7 +576,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enterGiftEmail => 'أدخل البريد الإلكتروني للشخص الذي تريد إهداؤه';
 
   @override
-  String get passwordResetEmailSent => 'تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح';
+  String get passwordResetEmailSent => 'تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح!';
 
   @override
   String get emailCannotBeEmpty => 'لا يمكن أن يكون البريد الإلكتروني فارغًا';
@@ -649,4 +649,106 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get preparingYourGifts => 'يتم تجهيز هداياك...';
+
+  @override
+  String get noUserFoundForThatEmail => 'لا يوجد مستخدم مسجّل بهذا البريد الإلكتروني.';
+
+  @override
+  String get wrongPasswordProvided => 'كلمة المرور غير صحيحة.';
+
+  @override
+  String get accountNotFound => 'لم يتم العثور على الحساب.';
+
+  @override
+  String get pleaseSignInAgainBeforeChangingPassword => 'يرجى تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.';
+
+  @override
+  String get unknownErrorOccurred => 'حدث خطأ غير معروف.';
+
+  @override
+  String get confirmAndPayGift => 'تأكيد ودفع الهدية';
+
+  @override
+  String get failedToSendGift => 'فشل في إرسال الهدية.';
+
+  @override
+  String get giftSentSuccessfullyCartCleared => 'تم إرسال الهدية بنجاح! تم تفريغ السلة.';
+
+  @override
+  String get invalidExpiryFormat => 'تنسيق غير صالح. استخدم شهر/سنة.';
+
+  @override
+  String get cardExpired => 'انتهت صلاحية البطاقة.';
+
+  @override
+  String get expiryYearTooFar => 'سنة الانتهاء بعيدة جدًا في المستقبل.';
+
+  @override
+  String get cvcRequired => 'رمز التحقق مطلوب.';
+
+  @override
+  String get invalidCvc => 'رمز رمز التحقق غير صالح. يجب أن يتكون من 3 أو 4 أرقام.';
+
+  @override
+  String get mmYY => 'شهر/سنة';
+
+  @override
+  String get paymentSuccessful => 'تم الدفع بنجاح';
+
+  @override
+  String get couldntFindTheUser => 'لا يوجد مستخدم بهذا الاسم';
+
+  @override
+  String get cardNumberIsRequired => 'رقم البطاقه مطلوب';
+
+  @override
+  String get cardNumberMustContainOnlyDigits => 'رقم البطاقه يجب ان يكون ارقام فقط';
+
+  @override
+  String get invalidCardNumberLength => 'طول رقم البطاقة غير صالح.';
+
+  @override
+  String get onlyVisaOrMasterCard => 'يُقبل فقط بطاقات فيزا أو ماستركارد.';
+
+  @override
+  String get invalidCardNumber => 'رقم البطاقة غير صالح.';
+
+  @override
+  String get qty => 'الكمية: ';
+
+  @override
+  String get price => 'السعر:';
+
+  @override
+  String get unknownTime => 'وقت غير معروف';
+
+  @override
+  String get giftDetails => 'تفاصيل الهدية';
+
+  @override
+  String get giftItems => 'عناصر الهدية:';
+
+  @override
+  String get noItemsInGift => 'لا توجد عناصر في هذه الهدية.';
+
+  @override
+  String get from => 'من';
+
+  @override
+  String get message => 'الرسالة';
+
+  @override
+  String get receivedOn => 'تاريخ الاستلام';
+
+  @override
+  String get enjoyYourGift => 'استمتع بهديتك!';
+
+  @override
+  String get swipeToDelete => 'اسحب العنصر للحذف';
+
+  @override
+  String get cartIsEmpty => 'السلة فارغة';
+
+  @override
+  String get unknownDate => 'تاريخ غير معروف';
 }
