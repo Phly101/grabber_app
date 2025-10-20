@@ -20,9 +20,7 @@ import "package:grabber_app/Services/Verification/verification_service.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
-import "package:grabber_app/UI/gift/widgets/gift_details_page.dart";
 import "package:grabber_app/UI/gift/gift_page.dart";
-
 
 import "Services/Authentication/auth_service.dart";
 
@@ -94,7 +92,9 @@ Future<void> main() async {
               ),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
 
-              BlocProvider(create: (_) => VerificationBloc(VerificationService())),
+              BlocProvider(
+                create: (_) => VerificationBloc(VerificationService()),
+              ),
 
               BlocProvider(
                 create: (_) => GiftBloc(
@@ -102,9 +102,8 @@ Future<void> main() async {
                   sendGiftService: sendGiftService,
                 ),
               ),
-              //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
-              
 
+              //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );
@@ -112,7 +111,6 @@ Future<void> main() async {
           // If no user → only provide AuthBloc, theme, locale
           return MultiBlocProvider(
             providers: [
-              // BlocProvider(create: (_) => VerificationBloc(VerificationService())),
               BlocProvider(
                 create: (_) =>
                     AuthBloc(authService: AuthService())..add(AppStarted()),
@@ -123,7 +121,8 @@ Future<void> main() async {
                       ..add(InitialLangEvent()),
               ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
-              BlocProvider(create: (_) => VerificationBloc(VerificationService())),
+              BlocProvider(create: (_) => VerificationBloc(VerificationService()),
+              ),
             ],
             child: const MyApp(),
           );
@@ -203,7 +202,7 @@ class MyApp extends StatelessWidget {
                   AppRoutes.language: (_) => const LanguagePage(),
                   AppRoutes.theme: (_) => const ThemePage(),
                   AppRoutes.aboutScreen: (_) => const AboutScreen(),
-                  AppRoutes.giftScreen:(_)=>const GiftsPage(),
+                  AppRoutes.giftScreen: (_) => const GiftsPage(),
                 },
                 home: Container(
                   decoration: BoxDecoration(

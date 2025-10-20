@@ -9,7 +9,6 @@ import "package:grabber_app/UI/auth/components/verification_dialog.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../l10n/app_localizations.dart";
-import "../../Utils/constants.dart";
 import "components/button.dart";
 import "components/text_field.dart";
 

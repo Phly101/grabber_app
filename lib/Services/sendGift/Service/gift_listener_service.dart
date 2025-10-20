@@ -24,13 +24,11 @@ class GiftListenerService {
         )
         .handleError((error) {
          // Result.failure("Notification Stream error: $error");
-      print("Gift Stream error: $error");
       throw error; // <-- IMPORTANT: Rethrow the error
         });
   }
 
   Stream<List<GiftModel>> listenToIncomingGifts(String userId) {
-    print("Listening to gifts for user: $userId");
     return fireStore
         .collection("users")
         .doc(userId)
@@ -38,9 +36,7 @@ class GiftListenerService {
         .snapshots()
         .map(
           (snapshot) {
-        print("Gift snapshot size: ${snapshot.docs.length}");
         return snapshot.docs.map((doc) {
-          print("Gift doc: ${doc.data()}");
           return GiftModel.fromFirestore(doc);
         }).toList();
       },

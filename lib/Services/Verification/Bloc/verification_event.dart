@@ -1,3 +1,4 @@
+// ignore: prefer_double_quotes
 part of 'verification_bloc.dart';
 
 // @immutable

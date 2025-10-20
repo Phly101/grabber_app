@@ -45,22 +45,17 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
 
     await _giftSubscription?.cancel(); // cancel previous stream if any
 
-    print("zeet is here before forEach");
 
     await emit.forEach<List<GiftModel>>(
       giftListenerService.listenToIncomingGifts(event.userId),
       onData: (gifts) {
-        print("zeet is here in success");
-        print("Gift snapshot size: ${gifts.length}");
         return GiftStreamUpdated(gifts);
       },
       onError: (error, stackTrace) {
-        print("zeet is here in error: $error");
         return GiftError(error.toString());
       },
     );
 
-    print("zeet is here after forEach");
   }
 
   Future<void> _onListenToNotifications(

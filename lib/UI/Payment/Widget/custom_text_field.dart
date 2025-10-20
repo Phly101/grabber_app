@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_multi_formatter/flutter_multi_formatter.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
-import "package:grabber_app/l10n/app_localizations_ar.dart";
 
 class CardNumberField extends StatelessWidget {
   final TextEditingController controller;

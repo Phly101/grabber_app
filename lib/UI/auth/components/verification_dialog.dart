@@ -1,10 +1,9 @@
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
-import 'package:grabber_app/Services/Verification/Bloc/verification_bloc.dart';
-import 'package:grabber_app/Utils/routes.dart';
-import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
+import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
 class VerificationDialog extends StatelessWidget {
@@ -66,7 +65,7 @@ class VerificationDialog extends StatelessWidget {
                Text(
                 AppLocalizations.of(context)!.verificationInstruction,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
