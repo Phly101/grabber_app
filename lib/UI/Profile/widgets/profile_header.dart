@@ -1,4 +1,7 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
+import "package:grabber_app/UI/Profile/widgets/edit_dialog.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 
 import "../../../Theme/theme.dart";
@@ -26,24 +29,39 @@ class ProfileHeader extends StatelessWidget {
               ),
             ),
           ),
-          title: Text(
-            "Itunuoluwa Abidoye",
-            // TODO: Replace with dynamic username from state/provider/auth service
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary,
-              fontWeight: FontWeight.bold, // Added bold for better emphasis
-            ),
+          title: BlocSelector<UserBloc, UserState, String>(
+            selector: (state) => state.user.name,
+            builder: (context, name) {
+              return Text(
+                name,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            },
           ),
-          subtitle: Text(
-            "@Itunuoluwa",
-            // TODO: Replace with dynamic handle/ID
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary,
-            ),
+          subtitle: BlocSelector<UserBloc, UserState, String>(
+            selector: (state) => state.user.email.split("@").first,
+            builder: (context, nickName) {
+              return Text(
+                "@$nickName",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            },
           ),
           trailing: MaterialButton(
             onPressed: () {
-              // TODO: Add navigation to settings/profile editing screen
+              showDialog(
+                context: context,
+                builder: (context) => EditDialog(
+                  field: "name",
+                  currentValue: context.read<UserBloc>().state.user.name,
+                ),
+              );
             },
             shape: const CircleBorder(),
             minWidth: 0,

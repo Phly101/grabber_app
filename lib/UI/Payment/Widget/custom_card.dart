@@ -1,129 +1,88 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/UI/Payment/Widget/card_input_field.dart";
 import "../../../l10n/app_localizations.dart";
+
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key});
+  final TextEditingController expiryController;
+  final TextEditingController cvcController;
+
+  const CustomCard({
+    super.key,
+    required this.expiryController,
+    required this.cvcController,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context)!;
+
     return Row(
       children: [
-        SizedBox(
-          width: 200,
-          height: 120,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                      AppLocalizations.of(context)!.expiry,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.bold,)
-                  ),
-                ),
-                Container(
-                  width: 185,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.surface,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: theme.colorScheme.onPrimary.withValues(
-                        alpha: 0.7,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      maxLength: 5,
-                      cursorColor: Theme.of(
-                        context,
-                      ).colorScheme.primary,
-                      decoration: InputDecoration(
-                        counterText: "",
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.primary,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+        Expanded(
+          child: CardInputField(
+            label: loc.expiry,
+            controller: expiryController,
+            validator: (value) => validateCardExpiry(context,value ?? ""),
+            hintText: loc.mmYY,
+            keyboardType: TextInputType.number,
           ),
         ),
-        SizedBox(
-          width: 200,
-          height: 120,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                      AppLocalizations.of(context)!.cvc,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.bold,)
-                  ),
-                ),
-                Container(
-                  width: 185,
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.surface,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: theme.colorScheme.onPrimary.withValues(
-                        alpha: 0.7,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            maxLength: 3,
-                            obscuringCharacter: "*",
-                            obscureText: true,
-                            cursorColor: Theme.of(
-                              context,
-                            ).colorScheme.primary,
-                            decoration: InputDecoration(
-
-                              counterText: "",
-                              hint: Text(
-                                "***",
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ),
-                              border: InputBorder.none,
-
-                            ),
-                          ),
-                        ),
-                        Image.asset("Assets/Icons/card-shield.png",color: theme.colorScheme.onPrimary,),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+        const SizedBox(width: 16),
+        Expanded(
+          child: CardInputField(
+            label: loc.cvc,
+            controller: cvcController,
+            validator: (value) => validateCardCVC(context,value ?? ""),
+            hintText: "***",
+            keyboardType: TextInputType.number,
+            obscureText: true,
+            suffixIcon: Image.asset(
+              "Assets/Icons/card-shield.png",
+              height: 24,
+              width: 24,
+              color: theme.colorScheme.onPrimary,
             ),
           ),
         ),
       ],
     );
   }
+
+  String? validateCardExpiry(BuildContext context,String input) {
+    final loc =AppLocalizations.of(context)!;
+    final s = input.trim();
+    final regex = RegExp(r"^(0[1-9]|1[0-2])\s*[/\-]?\s*(\d{2}|\d{4})$");
+    final match = regex.firstMatch(s);
+
+    if (match == null) return  loc.invalidExpiryFormat;
+
+    final month = int.parse(match.group(1)!);
+    var year = int.parse(match.group(2)!);
+    if (match.group(2)!.length == 2) year += 2000;
+
+    final now = DateTime.now();
+    final currentYm = now.year * 100 + now.month;
+    final cardYm = year * 100 + month;
+
+    if (cardYm < currentYm) return loc.cardExpired;
+    if (cardYm > (now.year + 20) * 100 + now.month) {
+      return loc.expiryYearTooFar;
+    }
+
+    return null;
+  }
+
+  String? validateCardCVC(BuildContext context,String input) {
+    final cvc = input.trim();
+    if (cvc.isEmpty) return AppLocalizations.of(context)!.cvcRequired;
+    if (!RegExp(r"^[0-9]{3,4}$").hasMatch(cvc)) {
+      return AppLocalizations.of(context)!.invalidCvc;
+    }
+    return null;
+  }
+
+  bool isExpiryValid(BuildContext context,String input) => validateCardExpiry( context ,input) == null;
 }
+
+

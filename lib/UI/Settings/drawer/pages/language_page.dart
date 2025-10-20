@@ -17,7 +17,11 @@ class _LanguagePageState extends State<LanguagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.chooseLanguage)),
+      appBar: AppBar(
+          leading: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: const Icon(Icons.arrow_back_ios)),
+          title: Text(AppLocalizations.of(context)!.chooseLanguage)),
       body: BlocBuilder<LocaleBloc, LocaleState>(
         builder: (context, state) {
           return Padding(
@@ -26,17 +30,19 @@ class _LanguagePageState extends State<LanguagePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomListTile(
-
                   localId: state.langCode,
                   onTap: () {
-                    BlocProvider.of<LocaleBloc>(context).add(EnglishLangEvent());
+                    BlocProvider.of<LocaleBloc>(
+                      context,
+                    ).add(EnglishLangEvent());
                   },
                   title: AppLocalizations.of(context)!.english,
                   widget: Image.asset(
                     "Assets/Icons/english-language.png",
                     scale: 15,
                   ),
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.orangeAccent, Colors.blue],
                   isLocal: true,
                   id: 0,
                 ),
@@ -52,7 +58,8 @@ class _LanguagePageState extends State<LanguagePage> {
                     "Assets/Icons/arabic.png",
                     scale: 15,
                   ),
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.orangeAccent, Colors.blue],
                   id: 1,
                   isLocal: true,
                 ),

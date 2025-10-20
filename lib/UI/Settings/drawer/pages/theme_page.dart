@@ -3,6 +3,8 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 
+import "package:grabber_app/l10n/app_localizations.dart";
+
 import "../components/custom_list_tile.dart";
 
 class ThemePage extends StatefulWidget {
@@ -18,7 +20,11 @@ class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Choose Theme")),
+      appBar: AppBar(
+          leading: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: const Icon(Icons.arrow_back_ios)),
+          title:  Text(AppLocalizations.of(context)!.chooseTheme)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -31,9 +37,10 @@ class _ThemePageState extends State<ThemePage> {
                   onTap: () {
                     BlocProvider.of<AppThemeBloc>(context).add(LightEvent());
                   },
-                  title: "Light",
+                  title: AppLocalizations.of(context)!.light,
                   icons: FontAwesomeIcons.solidSun,
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.blue.withValues(alpha: 0.5),Colors.orangeAccent],
                   id: 0,
                   isLocal: false,
                 );
@@ -49,9 +56,10 @@ class _ThemePageState extends State<ThemePage> {
                     BlocProvider.of<AppThemeBloc>(context).add(DarkEvent());
                   },
                   isLocal: false,
-                  title: "Dark",
+                  title: AppLocalizations.of(context)!.dark,
                   icons: FontAwesomeIcons.moon,
-                  iconColors: [Colors.white, Colors.orangeAccent],
+                  iconColors: [Colors.blue, Colors.orangeAccent],
+                  textColors: [Colors.blue.withValues(alpha: 0.5),Colors.orangeAccent],
                   id: 1,
                 );
               },

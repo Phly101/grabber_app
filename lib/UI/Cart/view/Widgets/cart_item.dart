@@ -1,72 +1,17 @@
 import "package:flutter/material.dart";
-import "package:grabber_app/common/custom_card_widget.dart";
-import "shimmer_image.dart";
-import "../../../../l10n/app_localizations.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
+import "package:grabber_app/UI/Cart/view/Widgets/cart_item_card.dart";
+
+// import "shimmer_image.dart";
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  final CartItemModel item;
+
+  const CartItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return CustomCardWidget(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.5),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(12),
-        leading: const ShimmerImage(size: 50), 
-        // TODO: Replace static shimmer with product image from network or local cache
-        title:  Text(
-            AppLocalizations.of(context)!.bananaBundle300g,
-          // TODO: Make product name dynamic from cart model
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "\$3.45", 
-              // TODO: Replace hardcoded price with value from cart item model
-              style: TextStyle(fontSize: 16),
-            ),
-            Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: theme.colorScheme.onPrimary.withValues(alpha: 0.3),),
-                    borderRadius: BorderRadius.circular(20),
-                    color: theme.colorScheme.surface,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: const ImageIcon(
-                          AssetImage("Assets/Icons/trash-2.png"),
-                        ),
-                        onPressed: () {
-                          // TODO: Implement remove item from cart functionality
-                        },
-                      ),
-                      const Text("1"), 
-                      // TODO: Bind quantity dynamically from cart item model
-                      IconButton(
-                        icon: const Icon(Icons.add),
-                        onPressed: () {
-                          // TODO: Implement increase quantity functionality
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+    return CartItemCard(item: item, theme: theme);
   }
 }

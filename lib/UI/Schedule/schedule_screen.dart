@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
+import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Schedule/Widget/custom_time_slot.dart";
 import "package:grabber_app/UI/Schedule/Widget/table_widget.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
-import "../../LocalizationHelper/localizationHelper.dart";
+
 import "../../l10n/app_localizations.dart";
 class ScheduleScreen extends StatefulWidget {
 
@@ -18,13 +19,16 @@ class ScheduleScreen extends StatefulWidget {
 class _ScheduleScreenState extends State<ScheduleScreen> {
   DateTime today = DateTime.now();
   List<Map<String, dynamic>> timeSlotData = [
-    {"time": "time0800to0930", "price": "\$3.50", "isFree": false},
-    {"time": "time1000to1115", "price": "free", "isFree": true},
-    {"time": "time1230to0145v", "price": "\$4.99", "isFree": false},
-    {"time": "time0300to0415", "price": "\$6.25", "isFree": false},
-    {"time": "time0530to0645", "price": "\$7.75", "isFree": false},
-    {"time": "time0800to0915", "price": "\$9.99", "isFree": false},
-    {"time": "time0630to0700", "price": "free", "isFree": true},
+
+      {"time": "08:00 AM - 09:30 AM", "price": "\$3.50", "isFree": false},
+      {"time": "10:00 AM - 11:15 AM", "price": "Free", "isFree": true},
+      {"time": "12:30 PM - 01:45 PM", "price": "\$4.99", "isFree": false},
+      {"time": "03:00 PM - 04:15 PM", "price": "\$6.25", "isFree": false},
+      {"time": "05:30 PM - 06:45 PM", "price": "\$7.75", "isFree": false},
+      {"time": "08:00 PM - 09:15 PM", "price": "\$9.99", "isFree": false},
+      {"time": "09:30 PM - 10:00 PM", "price": "Free", "isFree": true}
+
+
   ];
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
@@ -52,7 +56,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   child: IconButton(
                     onPressed: () {
         
-                      Navigator.pushNamed(context, AppRoutes.checkout);
+                      Navigator.pop(context);
         
                     },
                     icon: const Icon(Icons.arrow_back_ios_new),
