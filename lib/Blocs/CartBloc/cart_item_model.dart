@@ -1,12 +1,17 @@
+
 class CartItemModel {
+  final String id;
   final String imagePath;
-  final String name;
+  final String nameEn;
+  final String? nameAr;
   final num price;
   final int quantity;
 
-  CartItemModel({
+  CartItemModel( {
+    required this.id,
     required this.imagePath,
-    required this.name,
+    required this.nameEn,
+     this.nameAr,
     required this.price,
     required this.quantity,
   });
@@ -14,9 +19,13 @@ class CartItemModel {
   CartItemModel copyWith({int? quantity}) {
     return CartItemModel(
       imagePath: imagePath,
-      name: name,
+      nameEn: nameEn,
+      nameAr: nameAr,
       price: price,
-      quantity: quantity ?? this.quantity,
+      quantity: quantity ?? this.quantity, id: id,
     );
   }
+  String get name => nameEn;
+
+
 }

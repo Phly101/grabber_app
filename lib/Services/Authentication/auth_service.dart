@@ -124,7 +124,7 @@ class AuthService {
     await user.reauthenticateWithCredential(credential);
   }
 
-  // update password function
+
 
   Future<AuthResult> forgotPassword(String email) async {
     try {
@@ -134,7 +134,7 @@ class AuthService {
       return AuthResult(error: e.message ?? "An unknown Error occurred.");
     }
   }
-
+// update password function
   Future<AuthResult> updatePassword({
     required String newPassword,
     required String currentPassword,

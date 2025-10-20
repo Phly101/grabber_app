@@ -9,8 +9,6 @@ import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
-
-
 class BuildProductCard extends StatelessWidget {
   final int index;
   final dynamic items;
@@ -21,6 +19,7 @@ class BuildProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = items[index];
     final theme = Theme.of(context);
+    final loc=AppLocalizations.of(context)!;
     return CustomCardWidget(
       elevation: 6,
       margin: const EdgeInsets.all(10),
@@ -56,14 +55,12 @@ class BuildProductCard extends StatelessWidget {
                       AddItemEvent(
                         CartItemModel(
                           imagePath: item["image_URL"],
-                          name: LocalizationHelper.localizedProductField(
-                            item,
-                            "title",
-                            context,
-                          ),
+                          nameEn: item["title_en"],
+                          nameAr: item["title_ar"],
                           price: item["price"],
+                          id:  item["id"],
                           quantity: 1,
-                        ),
+                        )
                       ),
                     );
                     // ScaffoldMessenger.of(context).showSnackBar(
@@ -75,7 +72,8 @@ class BuildProductCard extends StatelessWidget {
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
                       fontSize: 16.0,
-                      msg: AppLocalizations.of(context)!.addedToCart,
+                      msg:
+                          "${LocalizationHelper.localizedProductField(item, "title", context)} ${AppLocalizations.of(context)!.addedToCart}",
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -110,8 +108,8 @@ class BuildProductCard extends StatelessWidget {
                   Text(
                     LocalizationHelper.getString(
                       context,
-                      'Price: ${item["price"].toString()}\$' ,
-                    ) ,
+                      '${loc.price}${item["price"].toString()}\$',
+                    ),
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,
                     ),

@@ -21,7 +21,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     on<AddItemEvent>((event, emit) async {
       final exitingItemI = state.items.indexWhere(
-          (item) => item.name == event.item.name,
+          (item) => item.id == event.item.id,
       );
 
       if(exitingItemI >= 0){
@@ -37,23 +37,34 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<RemoveItemEvent>((event, emit) async {
-      await userServices.removeCart(event.name);
+      await userServices.removeCartItem(event.id);
     });
 
     on<IncreaseQtyEvent>((event, emit) async {
-      final item = state.items.firstWhere((i) => i.name == event.name);
+      final item = state.items.firstWhere((i) => i.id == event.id);
       final updated = item.copyWith(quantity: item.quantity + 1);
       await userServices.updateCart(updated);
     });
 
     on<DecreaseQtyEvent>((event, emit) async {
-      final item = state.items.firstWhere((i) => i.name == event.name);
+      final item = state.items.firstWhere((i) => i.id == event.id);
       if (item.quantity > 1) {
         final updated = item.copyWith(quantity: item.quantity - 1);
         await userServices.updateCart(updated);
       } else {
-        await userServices.removeCart(item.name);
+        await userServices.removeCartItem(item.id);
       }
     });
+    on<ClearUserCart>(_onClearCart);
+  }
+  Future<void> _onClearCart(ClearUserCart event, Emitter<CartState> emit) async {
+    emit(state.copyWith(items: []));
+    try{
+     await userServices.clearUserCart(event.userId);
+     emit(CartCleared());
+   }
+   catch(e){
+     emit(CartError(e.toString()));
+   }
   }
 }

@@ -1,51 +1,100 @@
-
-
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_multi_formatter/flutter_multi_formatter.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
+import "package:grabber_app/l10n/app_localizations_ar.dart";
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
+class CardNumberField extends StatelessWidget {
+  final TextEditingController controller;
+
+  const CardNumberField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc= AppLocalizations.of(context)!;
+
     return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Container(
-          width: 400,
-          height: 60,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-              border: BoxBorder.all(color: theme.colorScheme.onPrimary.withValues(alpha: 0.7),
-              ),
-              borderRadius: BorderRadius.circular(10)
-          ),
-          child: Row(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        controller: controller,
+        validator: (value) => validateCardNumber(context,value ?? ""),
+        cursorColor: theme.colorScheme.primary,
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          CreditCardNumberInputFormatter(),
+        ],
+        decoration: InputDecoration(
+          labelText: loc.cardNumber,
+          hintText: "xxxx xxxx xxxx xxxx",
+          prefixIcon: const Icon(Icons.credit_card_rounded),
+          suffixIcon: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    cursorColor: Theme.of(context).colorScheme.primary,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2),
-                      ),
-
-                    ),
-                  ),
-                ),
-              ),
-
-              Image.asset("Assets/Icons/masterCard.png"),
-              Image.asset("Assets/Icons/visa.png"),
-              const SizedBox(width: 10,),
-
-
+              Image.asset("Assets/Icons/masterCard.png", width: 28, height: 28),
+              const SizedBox(width: 6),
+              Image.asset("Assets/Icons/visa.png", width: 28, height: 28),
+              const SizedBox(width: 10),
             ],
-          )
-
+          ),
+          filled: true,
+          fillColor: theme.colorScheme.surface,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
+          ),
+        ),
       ),
     );
+  }
+
+  String? validateCardNumber(BuildContext context,String input) {
+    final loc= AppLocalizations.of(context)!;
+    final number = input.replaceAll(RegExp(r"\s+"), "");
+
+    if (number.isEmpty) return loc.cardNumberIsRequired;
+    if (!RegExp(r"^[0-9]+$").hasMatch(number)) {
+      return loc.cardNumberMustContainOnlyDigits;
+    }
+    if (number.length < 13 || number.length > 19) {
+      return loc.invalidCardNumberLength;
+    }
+    if (!_isVisa(number) && !_isMasterCard(number)) {
+      return loc.onlyVisaOrMasterCard;
+    }
+    if (!_passesLuhnCheck(number)) {
+      return loc.invalidCardNumber;
+    }
+    return null;
+  }
+
+  bool _isVisa(String number) => number.startsWith("4");
+
+  bool _isMasterCard(String number) {
+    final prefix = int.tryParse(number.substring(0, 4)) ?? 0;
+    final prefix2 = int.tryParse(number.substring(0, 2)) ?? 0;
+    return (prefix2 >= 51 && prefix2 <= 55) || (prefix >= 2221 && prefix <= 2720);
+  }
+
+  bool _passesLuhnCheck(String number) {
+    int sum = 0;
+    bool alternate = false;
+
+    for (int i = number.length - 1; i >= 0; i--) {
+      int digit = int.parse(number[i]);
+      if (alternate) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+      sum += digit;
+      alternate = !alternate;
+    }
+
+    return sum % 10 == 0;
   }
 }
