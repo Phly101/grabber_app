@@ -64,11 +64,26 @@
 ### Marina Essam: User Bloc.
 
 # Phase 4 Responsibilites:
-## Unit Testing phase: Under Discussion.
+## Unit Testing phase: 
+### Basel EL Rafei: Auth_Bloc, Theme_Bloc.
+### Mark Ayman: Send_Gift_BLoc, FireStore_Bloc. 
+### Marian Makram: local_bloc.
+### Marina Essam: Users_bloc.
+### Martina Wageeh:verification_bloc Cart_Bloc.
+### Simon Abd El Malak: Invoice_bloc.
+
 
 
 # Phase 5 Responsibilites:
-## Final phase: Under Discussion.
+## Final phase: 
+ ## Integration Testing phase: 
+   ### Basel EL Rafei: Pyament.
+   ### Marian Makram: Home.
+   ### Marina Essam: checkout.
+   ### Martina Wageeh: Home.
+   ### Simon Abd El Malak: login, sign up.
+
+## Deployment: under disscusion.
 
 
 
