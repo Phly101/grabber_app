@@ -304,7 +304,7 @@ class ChangePasswordForm {
                                 },
                                 child: ButtonWidget(
                                   text: Text(
-                                    AppLocalizations.of(context)!.Confirm,
+                                    AppLocalizations.of(context)!.confirm,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge!
@@ -319,7 +319,7 @@ class ChangePasswordForm {
                                 },
                                 child: ButtonWidget(
                                   text: Text(
-                                    AppLocalizations.of(context)!.Cancel,
+                                    AppLocalizations.of(context)!.cancel,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge!

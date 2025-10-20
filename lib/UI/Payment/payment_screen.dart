@@ -2,12 +2,16 @@
 
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:fluttertoast/fluttertoast.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Payment/Widget/confirm_payment_dialog.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_card.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_row.dart";
 import "package:grabber_app/UI/Payment/Widget/custom_text_field.dart";
+import "package:grabber_app/Utils/routes.dart";
 import "package:shimmer/shimmer.dart";
 import "../../../../l10n/app_localizations.dart";
 
@@ -38,7 +42,38 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
+    return BlocListener<GiftBloc, SendGiftState>(
+  listener: (context, state) {
+    if (state is SendGiftSuccess) {
+      final authState = context.read<AuthBloc>().state;
+      if (authState is AuthAuthenticated) {
+        context.read<CartBloc>().add(ClearUserCart(authState.user.uid));
+      }
+
+      Fluttertoast.showToast(
+        msg: AppLocalizations.of(context)!.giftSentSuccessfullyCartCleared,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.mainApp,
+            (route) => false,
+      );
+    }
+
+    if (state is SendGiftFailure) {
+      Fluttertoast.showToast(
+        msg: AppLocalizations.of(context)!.failedToSendGift,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
+    }
+  },
+  child: Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
         leading: IconButton(
@@ -131,14 +166,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               padding: const EdgeInsets.all(12.0),
                               child: InkWell(
                                 onTap: () {
-                                  PaymentConfirmDialog.show(
-                                    context: context,
-                                    isGiftMode: isGiftMode,
-                                    receiverEmail: receiverEmail,
-                                  );
-                                  _cardCvcController.clear();
-                                  _cardExpiryController.clear();
-                                  _cardNumberController.clear();
+                                  if (_formKey.currentState!.validate()) {
+                                    PaymentConfirmDialog.show(
+                                      context: context,
+                                      isGiftMode: isGiftMode,
+                                      receiverEmail: receiverEmail,
+                                    );
+                                    _cardCvcController.clear();
+                                    _cardExpiryController.clear();
+                                    _cardNumberController.clear();
+
+                                  }
                                 },
                                 child: Stack(
                                   children: [
@@ -168,7 +206,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       padding: const EdgeInsets.only(top: 20.0),
                                       child: Center(
                                         child: Text(
-                                          "Confirm and Pay Gift",
+                                          AppLocalizations.of(context)!.confirmAndPayGift,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleMedium!
@@ -228,6 +266,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         ),
       ),
-    );
+    ),
+);
   }
 }

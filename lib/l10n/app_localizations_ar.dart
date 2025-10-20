@@ -1,6 +1,5 @@
 // ignore: unused_import
-import "package:grabber_app/Services/Users/Bloc/user_bloc.dart";
-
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -13,8 +12,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcomeBackToGrabber => 'مرحبًا بك مرة أخرى في جرابر';
 
   @override
-  String get pleaseSignInWithYourMail =>
-      'الرجاء تسجيل الدخول باستخدام بريدك الإلكتروني';
+  String get pleaseSignInWithYourMail => 'الرجاء تسجيل الدخول باستخدام بريدك الإلكتروني';
 
   @override
   String get userName => 'اسم المستخدم';
@@ -35,8 +33,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordIsRequired => 'كلمة المرور مطلوبة';
 
   @override
-  String get passwordMustBeAtLeast8Characters =>
-      'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
+  String get passwordMustBeAtLeast8Characters => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
 
   @override
   String get forgotPassword => 'نسيت كلمة المرور';
@@ -115,6 +112,35 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get signUp => 'إنشاء حساب';
+
+  @override
+  String get emailVerificationTitle => 'تأكيد البريد الإلكتروني';
+
+  @override
+  String get verificationEmailSent => 'تم إرسال رسالة التحقق!';
+
+  @override
+  String get emailVerified => 'تم التحقق من البريد ✅';
+
+  @override
+  String get emailNotVerified => 'لم يتم التحقق من البريد ❌';
+
+  @override
+  String errorWithMessage(Object message) {
+    return 'خطأ: $message';
+  }
+
+  @override
+  String get verificationInstruction => 'لقد أرسلنا رابط تحقق إلى بريدك الإلكتروني.\nمن فضلك تحقق من صندوق الوارد.';
+
+  @override
+  String get checkNowButton => 'لقد تحققت، افحص الآن';
+
+  @override
+  String get resendEmailButton => 'إعادة إرسال رسالة التحقق';
+
+  @override
+  String get verificationCooldown => 'رابط التحقق صالح لمدة 10 ثوانٍ...';
 
   @override
   String get checkOut => 'إتمام الطلب';
@@ -306,8 +332,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get logout => 'تسجيل الخروج';
 
   @override
-  String get furtherSecureYourAccountForSafety =>
-      'قم بتأمين حسابك لمزيد من الأمان';
+  String get furtherSecureYourAccountForSafety => 'قم بتأمين حسابك لمزيد من الأمان';
 
   @override
   String get areYouSureYouWantToLogout => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
@@ -475,12 +500,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appDescriptionLine1 => 'غرابر هو رفيقك الذكي لقائمة التسوق.';
 
   @override
-  String get appDescriptionLine2 =>
-      'أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.';
+  String get appDescriptionLine2 => 'أضف المواد الغذائية بسهولة، وتتبع الكميات، وحافظ على تنظيمك.';
 
   @override
-  String get appDescriptionLine3 =>
-      'سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.';
+  String get appDescriptionLine3 => 'سواء في المنزل أو في المتجر، يجعل غرابر عملية التسوق خالية من المتاعب.';
 
   @override
   String get deliverToCurrentLocation => 'تسليم إلى موقعك الحالي';
@@ -510,7 +533,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'إلغاء';
 
   @override
-  String get loadingProfileData => 'تحميل بيانات الملف الشخصي...';
+  String get loadingProfileData => '...تحميل بيانات الملف الشخصي';
 
   @override
   String get failedToLoadProfileData => 'خطأ في تحميل بيانات الملف الشخصي';
@@ -522,112 +545,239 @@ class AppLocalizationsAr extends AppLocalizations {
   String get failedToUpdateData => 'خطأ في تعديل بيانات المستخدم';
 
   @override
-  // TODO: implement SendAsAGift
-  String get SendAsAGift => "أرسل كهدية";
-
-  String get Confirm => "تأكيد";
-
-  String get Cancel => "إلغاء";
-
-  String get SendGift => "أرسل الهدية!";
-
-  String get currentPassword => "كلمة المرور الحالية";
-
-  String get enterCurrentPassword => "أدخل كلمة المرور الحالية";
-
-  String get currentPasswordEmpty =>
-      "لا يمكن أن تكون كلمة المرور الحالية فارغة";
-
-  String get passwordMustBeAtLeast6Characters =>
-      "يجب أن تكون كلمة المرور 6 أحرف على الأقل";
-
-  String get newPassword => "كلمة مرور جديدة";
-
-  String get enterNewPassword => "أدخل كلمة مرور جديدة";
-
-  String get newPasswordEmpty => "لا يمكن أن تكون كلمة المرور الجديدة فارغة";
-
-  String get newPasswordDifferent =>
-      "يجب أن تكون كلمة المرور الجديدة مختلفة عن الحالية";
-
-  String get confirmNewPassword => "تأكيد كلمة المرور";
-
-  String get reEnterNewPassword => "أعد إدخال كلمة المرور الجديدة";
-
-  String get confirmPasswordEmpty => "لا يمكن أن يكون تأكيد كلمة المرور فارغًا";
-
-  String get sendingRequest => "جاري إرسال طلبك...";
-
-  String get passwordResetEmailSent =>
-      "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح";
+  String get sendAsAGift => 'أرسل كهدية';
 
   @override
-  String get loggingIn => "جاري تسجيل الدخول ...";
+  String get sendGift => 'أرسل الهدية';
 
   @override
-  String get loginSuccessful => "تم تسجيل الدخول بنجاح 🎉";
+  String get confirm => 'تأكيد';
 
   @override
-  String get signingUp => "جاري إنشاء الحساب...";
+  String get currentPassword => 'كلمة المرور الحالية';
 
   @override
-  @override
-  String get enterGiftEmail => "أدخل بريد الشخص الذي تريد إهداءه";
+  String get enterCurrentPassword => 'أدخل كلمة المرور الحالية';
 
   @override
-  String get confirmGift => "تأكيد الهدية";
+  String get currentPasswordEmpty => 'لا يمكن أن تكون كلمة المرور الحالية فارغة';
 
   @override
-  String get areYouSureGift => "هل أنت متأكد أنك تريد إرسال هدية إلى";
+  String get passwordMustBeAtLeast6Characters => 'يجب أن تكون كلمة المرور 6 أحرف على الأقل';
 
   @override
-  String get addedToCart => "تمت الإضافة إلى السلة";
+  String get newPassword => 'كلمة مرور جديدة';
 
   @override
-  String get sendingGiftTo => "جارٍ إرسال الهدية إلى";
+  String get enterNewPassword => 'أدخل كلمة مرور جديدة';
 
   @override
-  String get emailAlreadyInUse => "هذا البريد الإلكتروني مسجل بالفعل.";
+  String get newPasswordEmpty => 'لا يمكن أن تكون كلمة المرور الجديدة فارغة';
 
   @override
-  String get invalidEmail => "عنوان البريد الإلكتروني غير صالح.";
+  String get newPasswordDifferent => 'يجب أن تكون كلمة المرور الجديدة مختلفة عن الحالية';
 
   @override
-  String get weakPassword => "كلمة المرور ضعيفة جدًا.";
+  String get confirmNewPassword => 'تأكيد كلمة المرور';
 
   @override
-  String get noUserFoundForThatEmail =>
-      "لم يتم العثور على مستخدم بهذا البريد الإلكتروني.";
+  String get reEnterNewPassword => 'أعد إدخال كلمة المرور الجديدة';
 
   @override
-  String get wrongPasswordProvided => "تم إدخال كلمة مرور غير صحيحة.";
+  String get confirmPasswordEmpty => 'لا يمكن أن يكون تأكيد كلمة المرور فارغًا';
 
   @override
-  String get accountNotFound =>
-      "لم يتم العثور على الحساب. الرجاء إنشاء حساب جديد.";
+  String get sendingRequest => 'جاري إرسال طلبك...';
 
   @override
-  String get unknownErrorOccurred => "حدث خطأ غير معروف.";
+  String get loggingIn => 'جاري تسجيل الدخول ...';
 
   @override
-  String get reauthenticationFailed => "فشلت إعادة المصادقة.";
+  String get loginSuccessful => 'تم تسجيل الدخول بنجاح 🎉';
 
   @override
-  String get passwordChangedSuccessfully => "تم تغيير كلمة المرور بنجاح!";
+  String get signingUp => 'جاري إنشاء الحساب...';
 
   @override
-  String get couldntUpdatePassword => "تعذر تحديث كلمة المرور الخاصة بك.";
+  String get addedToCart => 'تمت الإضافة إلى السلة';
 
   @override
-  String get pleaseSignInAgainBeforeChangingPassword =>
-      "الرجاء تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.";
+  String get enterGiftEmail => 'أدخل البريد الإلكتروني للشخص الذي تريد إهداؤه';
 
   @override
-  String get updatePassword => "تحديث كلمة المرور";
+  String get passwordResetEmailSent => 'تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح!';
 
   @override
-  String get updatePasswordDescription =>
-      "قم بتغيير كلمة المرور الحالية إلى كلمة جديدة.";
+  String get emailCannotBeEmpty => 'لا يمكن أن يكون البريد الإلكتروني فارغًا';
 
-  String get LoggingOut => "جارٍ تسجيل الخروج";
+  @override
+  String get confirmGift => 'تأكيد الهدية';
+
+  @override
+  String get areYouSureGift => 'هل أنت متأكد أنك تريد إرسال هدية إلى';
+
+  @override
+  String get sendingGiftTo => 'جاري إرسال الهدية إلى';
+
+  @override
+  String get emailAlreadyInUse => 'هذا البريد الإلكتروني مسجل بالفعل.';
+
+  @override
+  String get invalidEmail => 'عنوان البريد الإلكتروني غير صالح.';
+
+  @override
+  String get weakPassword => 'كلمة المرور ضعيفة جدًا.';
+
+  @override
+  String get noUserSignedIn => 'لا يوجد مستخدم مسجل دخول حاليًا.';
+
+  @override
+  String get userNotFound => 'لم يتم العثور على مستخدم لهذا البريد الإلكتروني.';
+
+  @override
+  String get wrongPassword => 'كلمة المرور غير صحيحة.';
+
+  @override
+  String get invalidCredential => 'الحساب غير موجود. من فضلك قم بإنشاء حساب.';
+
+  @override
+  String get unknownError => 'حدث خطأ غير معروف.';
+
+  @override
+  String get passwordResetSent => 'تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح.';
+
+  @override
+  String get reauthenticationFailed => 'فشل في إعادة المصادقة.';
+
+  @override
+  String get currentPasswordIncorrect => 'كلمة المرور الحالية غير صحيحة.';
+
+  @override
+  String get passwordChangedSuccessfully => 'تم تغيير كلمة المرور بنجاح!';
+
+  @override
+  String get couldNotUpdatePassword => 'تعذر تحديث كلمة المرور.';
+
+  @override
+  String get requiresRecentLogin => 'يرجى تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.';
+
+  @override
+  String get loggingOut => ' جارٍ تسجيل الخروج...';
+
+  @override
+  String get myGifts => '🎁 هداياي';
+
+  @override
+  String get noGiftsYet => 'لا توجد هدايا بعد!';
+
+  @override
+  String get startSharingGifts => 'ابدأ بمشاركة الهدايا!';
+
+  @override
+  String get errorLoadingGifts => 'حدث خطأ أثناء تحميل الهدايا:';
+
+  @override
+  String get preparingYourGifts => 'يتم تجهيز هداياك...';
+
+  @override
+  String get noUserFoundForThatEmail => 'لا يوجد مستخدم مسجّل بهذا البريد الإلكتروني.';
+
+  @override
+  String get wrongPasswordProvided => 'كلمة المرور غير صحيحة.';
+
+  @override
+  String get accountNotFound => 'لم يتم العثور على الحساب.';
+
+  @override
+  String get pleaseSignInAgainBeforeChangingPassword => 'يرجى تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.';
+
+  @override
+  String get unknownErrorOccurred => 'حدث خطأ غير معروف.';
+
+  @override
+  String get confirmAndPayGift => 'تأكيد ودفع الهدية';
+
+  @override
+  String get failedToSendGift => 'فشل في إرسال الهدية.';
+
+  @override
+  String get giftSentSuccessfullyCartCleared => 'تم إرسال الهدية بنجاح! تم تفريغ السلة.';
+
+  @override
+  String get invalidExpiryFormat => 'تنسيق غير صالح. استخدم شهر/سنة.';
+
+  @override
+  String get cardExpired => 'انتهت صلاحية البطاقة.';
+
+  @override
+  String get expiryYearTooFar => 'سنة الانتهاء بعيدة جدًا في المستقبل.';
+
+  @override
+  String get cvcRequired => 'رمز التحقق مطلوب.';
+
+  @override
+  String get invalidCvc => 'رمز رمز التحقق غير صالح. يجب أن يتكون من 3 أو 4 أرقام.';
+
+  @override
+  String get mmYY => 'شهر/سنة';
+
+  @override
+  String get paymentSuccessful => 'تم الدفع بنجاح';
+
+  @override
+  String get couldntFindTheUser => 'لا يوجد مستخدم بهذا الاسم';
+
+  @override
+  String get cardNumberIsRequired => 'رقم البطاقه مطلوب';
+
+  @override
+  String get cardNumberMustContainOnlyDigits => 'رقم البطاقه يجب ان يكون ارقام فقط';
+
+  @override
+  String get invalidCardNumberLength => 'طول رقم البطاقة غير صالح.';
+
+  @override
+  String get onlyVisaOrMasterCard => 'يُقبل فقط بطاقات فيزا أو ماستركارد.';
+
+  @override
+  String get invalidCardNumber => 'رقم البطاقة غير صالح.';
+
+  @override
+  String get qty => 'الكمية: ';
+
+  @override
+  String get price => 'السعر:';
+
+  @override
+  String get unknownTime => 'وقت غير معروف';
+
+  @override
+  String get giftDetails => 'تفاصيل الهدية';
+
+  @override
+  String get giftItems => 'عناصر الهدية:';
+
+  @override
+  String get noItemsInGift => 'لا توجد عناصر في هذه الهدية.';
+
+  @override
+  String get from => 'من';
+
+  @override
+  String get message => 'الرسالة';
+
+  @override
+  String get receivedOn => 'تاريخ الاستلام';
+
+  @override
+  String get enjoyYourGift => 'استمتع بهديتك!';
+
+  @override
+  String get swipeToDelete => 'اسحب العنصر للحذف';
+
+  @override
+  String get cartIsEmpty => 'السلة فارغة';
+
+  @override
+  String get unknownDate => 'تاريخ غير معروف';
 }

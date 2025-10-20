@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
-import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+//import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
-import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
-import "package:grabber_app/Utils/routes.dart";
+//import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+// import "package:grabber_app/Utils/routes.dart";
 import "../../../../l10n/app_localizations.dart";
 import "package:grabber_app/Theme/theme.dart";
 
@@ -15,9 +15,9 @@ class PaymentConfirmDialog {
     String? receiverEmail,
   }) async {
     final loc = AppLocalizations.of(context)!;
-    final cartBloc = context.read<CartBloc>();
+   // final cartBloc = context.read<CartBloc>();
     final giftBloc = context.read<GiftBloc>();
-    final authState = context.read<AuthBloc>().state;
+   // final authState = context.read<AuthBloc>().state;
 
     final confirm = await showDialog<bool>(
       context: context,
@@ -28,13 +28,13 @@ class PaymentConfirmDialog {
             borderRadius: BorderRadius.circular(16),
           ),
           title: Text(
-            loc.Confirm,
+            loc.confirm,
             style: Theme.of(ctx).textTheme.titleLarge,
           ),
           content: Text(
             isGiftMode
                 ? "${loc.sendingGiftTo} $receiverEmail"
-                : loc.Confirm,
+                : loc.confirm,
             style: Theme.of(ctx).textTheme.bodyMedium,
           ),
           actions: [
@@ -47,7 +47,7 @@ class PaymentConfirmDialog {
                 backgroundColor: AppColors.textButtonColor,
               ),
               onPressed: () => Navigator.pop(ctx, true),
-              child: Text(loc.Confirm),
+              child: Text(loc.confirm),
             ),
           ],
         );
@@ -66,35 +66,38 @@ class PaymentConfirmDialog {
           textColor: Colors.white,
         );
         giftBloc.add(SendGift(receiverEmail));
+
       } else {
         Fluttertoast.showToast(
-          msg: "Couldn't find the user",
+          msg: loc.couldntFindTheUser,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
           textColor: Colors.white,
         );
         return;
       }
+
     }
 
-    if (authState is AuthAuthenticated) {
-      cartBloc.add(ClearUserCart(authState.user.uid));
-    }
+    // if (authState is AuthAuthenticated) {
+    //   cartBloc.add(ClearUserCart(authState.user.uid));
+    // }
 
     Fluttertoast.showToast(
-      msg: "Payment Successful",
+      msg: loc.paymentSuccessful,
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
-
-    // Still safe to navigate
-    if (context.mounted) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        AppRoutes.mainApp,
-        (route) => false,
-      );
-    }
+    //
+    // // Still safe to navigate
+    // if (context.mounted) {
+    //
+    //   Navigator.pushNamedAndRemoveUntil(
+    //     context,
+    //     AppRoutes.mainApp,
+    //     (route) => false,
+    //   );
+    // }
   }
 }

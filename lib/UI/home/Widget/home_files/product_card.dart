@@ -19,6 +19,7 @@ class BuildProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = items[index];
     final theme = Theme.of(context);
+    final loc=AppLocalizations.of(context)!;
     return CustomCardWidget(
       elevation: 6,
       margin: const EdgeInsets.all(10),
@@ -107,7 +108,7 @@ class BuildProductCard extends StatelessWidget {
                   Text(
                     LocalizationHelper.getString(
                       context,
-                      'Price: ${item["price"].toString()}\$',
+                      '${loc.price}${item["price"].toString()}\$',
                     ),
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: AppColors.textButtonColor,

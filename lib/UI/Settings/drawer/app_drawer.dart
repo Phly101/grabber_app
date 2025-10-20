@@ -20,7 +20,7 @@ class AppDrawer extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSignOutLoading) {
           Fluttertoast.showToast(
-            msg: AppLocalizations.of(context)!.LoggingOut,
+            msg: AppLocalizations.of(context)!.loggingOut,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.green,

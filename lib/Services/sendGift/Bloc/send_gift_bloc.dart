@@ -7,7 +7,6 @@ import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
 
 part "send_gift_event.dart";
-
 part "send_gift_state.dart";
 
 class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
@@ -38,18 +37,30 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
       emit(GiftInitial());
     });
   }
-
   Future<void> _onListenToGifts(
-    ListenToGifts event,
-    Emitter<SendGiftState> emit,
-  ) async {
-    await _giftSubscription?.cancel();
-    _giftSubscription = giftListenerService
-        .listenToIncomingGifts(event.userId)
-        .listen(
-          (gifts) => emit(GiftStreamUpdated(gifts)),
-          onError: (error) => emit(GiftError("Gift stream error: $error")),
-        );
+      ListenToGifts event,
+      Emitter<SendGiftState> emit,
+      ) async {
+    emit(GiftLoading());
+
+    await _giftSubscription?.cancel(); // cancel previous stream if any
+
+    print("zeet is here before forEach");
+
+    await emit.forEach<List<GiftModel>>(
+      giftListenerService.listenToIncomingGifts(event.userId),
+      onData: (gifts) {
+        print("zeet is here in success");
+        print("Gift snapshot size: ${gifts.length}");
+        return GiftStreamUpdated(gifts);
+      },
+      onError: (error, stackTrace) {
+        print("zeet is here in error: $error");
+        return GiftError(error.toString());
+      },
+    );
+
+    print("zeet is here after forEach");
   }
 
   Future<void> _onListenToNotifications(

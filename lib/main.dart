@@ -13,9 +13,16 @@ import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
 import "package:grabber_app/Services/Users/user_services.dart";
+
+import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
+import "package:grabber_app/Services/Verification/verification_service.dart";
+
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
+import "package:grabber_app/UI/gift/widgets/gift_details_page.dart";
+import "package:grabber_app/UI/gift/gift_page.dart";
+
 
 import "Services/Authentication/auth_service.dart";
 
@@ -86,6 +93,9 @@ Future<void> main() async {
                 create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
               ),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
+
+              BlocProvider(create: (_) => VerificationBloc(VerificationService())),
+
               BlocProvider(
                 create: (_) => GiftBloc(
                   giftListenerService: giftListenerService,
@@ -93,6 +103,8 @@ Future<void> main() async {
                 ),
               ),
               //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
+              
+
             ],
             child: const MyApp(),
           );
@@ -111,6 +123,7 @@ Future<void> main() async {
                       ..add(InitialLangEvent()),
               ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
+              BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );
@@ -190,6 +203,7 @@ class MyApp extends StatelessWidget {
                   AppRoutes.language: (_) => const LanguagePage(),
                   AppRoutes.theme: (_) => const ThemePage(),
                   AppRoutes.aboutScreen: (_) => const AboutScreen(),
+                  AppRoutes.giftScreen:(_)=>const GiftsPage(),
                 },
                 home: Container(
                   decoration: BoxDecoration(

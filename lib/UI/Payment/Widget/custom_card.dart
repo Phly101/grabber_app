@@ -15,25 +15,25 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final t = AppLocalizations.of(context)!;
+    final loc = AppLocalizations.of(context)!;
 
     return Row(
       children: [
         Expanded(
           child: CardInputField(
-            label: t.expiry,
+            label: loc.expiry,
             controller: expiryController,
-            validator: (value) => validateCardExpiry(value ?? ""),
-            hintText: "MM/YY",
+            validator: (value) => validateCardExpiry(context,value ?? ""),
+            hintText: loc.mmYY,
             keyboardType: TextInputType.number,
           ),
         ),
         const SizedBox(width: 16),
         Expanded(
           child: CardInputField(
-            label: t.cvc,
+            label: loc.cvc,
             controller: cvcController,
-            validator: (value) => validateCardCVC(value ?? ""),
+            validator: (value) => validateCardCVC(context,value ?? ""),
             hintText: "***",
             keyboardType: TextInputType.number,
             obscureText: true,
@@ -49,12 +49,13 @@ class CustomCard extends StatelessWidget {
     );
   }
 
-  String? validateCardExpiry(String input) {
+  String? validateCardExpiry(BuildContext context,String input) {
+    final loc =AppLocalizations.of(context)!;
     final s = input.trim();
     final regex = RegExp(r"^(0[1-9]|1[0-2])\s*[/\-]?\s*(\d{2}|\d{4})$");
     final match = regex.firstMatch(s);
 
-    if (match == null) return "Invalid format. Use MM/YY or MM/YYYY.";
+    if (match == null) return  loc.invalidExpiryFormat;
 
     final month = int.parse(match.group(1)!);
     var year = int.parse(match.group(2)!);
@@ -64,24 +65,24 @@ class CustomCard extends StatelessWidget {
     final currentYm = now.year * 100 + now.month;
     final cardYm = year * 100 + month;
 
-    if (cardYm < currentYm) return "Card expired.";
+    if (cardYm < currentYm) return loc.cardExpired;
     if (cardYm > (now.year + 20) * 100 + now.month) {
-      return "Expiry year too far in the future.";
+      return loc.expiryYearTooFar;
     }
 
     return null;
   }
 
-  String? validateCardCVC(String input) {
+  String? validateCardCVC(BuildContext context,String input) {
     final cvc = input.trim();
-    if (cvc.isEmpty) return "CVC is required.";
+    if (cvc.isEmpty) return AppLocalizations.of(context)!.cvcRequired;
     if (!RegExp(r"^[0-9]{3,4}$").hasMatch(cvc)) {
-      return "Invalid CVC. Must be 3 or 4 digits.";
+      return AppLocalizations.of(context)!.invalidCvc;
     }
     return null;
   }
 
-  bool isExpiryValid(String input) => validateCardExpiry(input) == null;
+  bool isExpiryValid(BuildContext context,String input) => validateCardExpiry( context ,input) == null;
 }
 
 
