@@ -89,7 +89,7 @@ class SendGiftService {
           "senderUID": senderUID,
           "senderEmail": senderEmail,
           "senderName": senderName,
-          "message": "Enjoy your gift!",
+          "message": "enjoyYourGift",
           "items": cartItems,
           "timestamp": FieldValue.serverTimestamp(),
         });

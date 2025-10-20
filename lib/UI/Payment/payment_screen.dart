@@ -51,7 +51,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       }
 
       Fluttertoast.showToast(
-        msg: "Gift sent successfully! Cart cleared.",
+        msg: AppLocalizations.of(context)!.giftSentSuccessfullyCartCleared,
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.green,
         textColor: Colors.white,
@@ -66,7 +66,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
     if (state is SendGiftFailure) {
       Fluttertoast.showToast(
-        msg: "Failed to send gift.",
+        msg: AppLocalizations.of(context)!.failedToSendGift,
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.red,
         textColor: Colors.white,
@@ -206,7 +206,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       padding: const EdgeInsets.only(top: 20.0),
                                       child: Center(
                                         child: Text(
-                                          "Confirm and Pay Gift",
+                                          AppLocalizations.of(context)!.confirmAndPayGift,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleMedium!

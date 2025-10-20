@@ -16,7 +16,7 @@ import "package:grabber_app/Services/Users/user_services.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
-import "package:grabber_app/UI/gift/gift_details_page.dart";
+import "package:grabber_app/UI/gift/widgets/gift_details_page.dart";
 import "package:grabber_app/UI/gift/gift_page.dart";
 
 import "Services/Authentication/auth_service.dart";
