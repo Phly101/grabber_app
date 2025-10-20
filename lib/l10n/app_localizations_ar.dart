@@ -560,15 +560,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   String get passwordResetEmailSent =>
       "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح";
+
   @override
   String get loggingIn => "جاري تسجيل الدخول ...";
 
   @override
   String get loginSuccessful => "تم تسجيل الدخول بنجاح 🎉";
+
   @override
   String get signingUp => "جاري إنشاء الحساب...";
-  @override
 
+  @override
   @override
   String get enterGiftEmail => "أدخل بريد الشخص الذي تريد إهداءه";
 
@@ -577,43 +579,55 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get areYouSureGift => "هل أنت متأكد أنك تريد إرسال هدية إلى";
+
   @override
   String get addedToCart => "تمت الإضافة إلى السلة";
+
   @override
   String get sendingGiftTo => "جارٍ إرسال الهدية إلى";
 
   @override
   String get emailAlreadyInUse => "هذا البريد الإلكتروني مسجل بالفعل.";
+
   @override
   String get invalidEmail => "عنوان البريد الإلكتروني غير صالح.";
+
   @override
   String get weakPassword => "كلمة المرور ضعيفة جدًا.";
+
   @override
-  String get noUserFoundForThatEmail => "لم يتم العثور على مستخدم بهذا البريد الإلكتروني.";
+  String get noUserFoundForThatEmail =>
+      "لم يتم العثور على مستخدم بهذا البريد الإلكتروني.";
+
   @override
   String get wrongPasswordProvided => "تم إدخال كلمة مرور غير صحيحة.";
+
   @override
-  String get accountNotFound => "لم يتم العثور على الحساب. الرجاء إنشاء حساب جديد.";
+  String get accountNotFound =>
+      "لم يتم العثور على الحساب. الرجاء إنشاء حساب جديد.";
+
   @override
   String get unknownErrorOccurred => "حدث خطأ غير معروف.";
+
   @override
   String get reauthenticationFailed => "فشلت إعادة المصادقة.";
+
   @override
   String get passwordChangedSuccessfully => "تم تغيير كلمة المرور بنجاح!";
+
   @override
   String get couldntUpdatePassword => "تعذر تحديث كلمة المرور الخاصة بك.";
+
   @override
   String get pleaseSignInAgainBeforeChangingPassword =>
       "الرجاء تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.";
 
   @override
   String get updatePassword => "تحديث كلمة المرور";
+
   @override
-  String get updatePasswordDescription => "قم بتغيير كلمة المرور الحالية إلى كلمة جديدة.";
+  String get updatePasswordDescription =>
+      "قم بتغيير كلمة المرور الحالية إلى كلمة جديدة.";
+
   String get LoggingOut => "جارٍ تسجيل الخروج";
-
-
-
-
-
 }
