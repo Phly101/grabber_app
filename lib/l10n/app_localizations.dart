@@ -305,6 +305,60 @@ abstract class AppLocalizations {
   /// **'Sign up'**
   String get signUp;
 
+  /// No description provided for @emailVerificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verification'**
+  String get emailVerificationTitle;
+
+  /// No description provided for @verificationEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent!'**
+  String get verificationEmailSent;
+
+  /// No description provided for @emailVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verified ✅'**
+  String get emailVerified;
+
+  /// No description provided for @emailNotVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email not verified yet ❌'**
+  String get emailNotVerified;
+
+  /// No description provided for @errorWithMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorWithMessage(Object message);
+
+  /// No description provided for @verificationInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a verification link to your email.\nPlease check your inbox.'**
+  String get verificationInstruction;
+
+  /// No description provided for @checkNowButton.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve verified, Check now'**
+  String get checkNowButton;
+
+  /// No description provided for @resendEmailButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Verification Email'**
+  String get resendEmailButton;
+
+  /// No description provided for @verificationCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification link valid for 10 seconds...'**
+  String get verificationCooldown;
+
   /// No description provided for @checkOut.
   ///
   /// In en, this message translates to:

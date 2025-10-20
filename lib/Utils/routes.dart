@@ -16,4 +16,4 @@ class AppRoutes {
   static const String language = "/language";
   static const String aboutScreen = "/About";
   static const String giftScreen = "/gift";
-}
+

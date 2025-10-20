@@ -114,6 +114,35 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signUp => 'إنشاء حساب';
 
   @override
+  String get emailVerificationTitle => 'تأكيد البريد الإلكتروني';
+
+  @override
+  String get verificationEmailSent => 'تم إرسال رسالة التحقق!';
+
+  @override
+  String get emailVerified => 'تم التحقق من البريد ✅';
+
+  @override
+  String get emailNotVerified => 'لم يتم التحقق من البريد ❌';
+
+  @override
+  String errorWithMessage(Object message) {
+    return 'خطأ: $message';
+  }
+
+  @override
+  String get verificationInstruction => 'لقد أرسلنا رابط تحقق إلى بريدك الإلكتروني.\nمن فضلك تحقق من صندوق الوارد.';
+
+  @override
+  String get checkNowButton => 'لقد تحققت، افحص الآن';
+
+  @override
+  String get resendEmailButton => 'إعادة إرسال رسالة التحقق';
+
+  @override
+  String get verificationCooldown => 'رابط التحقق صالح لمدة 10 ثوانٍ...';
+
+  @override
   String get checkOut => 'إتمام الطلب';
 
   @override
