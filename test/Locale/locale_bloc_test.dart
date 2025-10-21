@@ -43,6 +43,7 @@ void main() {
       );
     });
 
+
     test("If translation document not found, returns empty translations", () async {
       final firestore2 = FakeFirebaseFirestore();
       final localebloc2 = LocaleBloc(firestore2);
