@@ -58,19 +58,21 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
 
   }
 
-  Future<void> _onListenToNotifications(
-    ListenToNotifications event,
-    Emitter<SendGiftState> emit,
-  ) async {
-    await _notificationSubscription?.cancel();
-    _notificationSubscription = giftListenerService
-        .listenToNotifications(event.userId)
-        .listen(
-          (notifications) => emit(NotificationStreamUpdated(notifications)),
-          onError: (error) =>
-              emit(NotificationError("Notification stream error: $error")),
-        );
-  }
+Future<void> _onListenToNotifications(
+  ListenToNotifications event,
+  Emitter<SendGiftState> emit,
+) async {
+  await _notificationSubscription?.cancel();
+  await emit.forEach<List<NotificationModel>>(
+    giftListenerService.listenToNotifications(event.userId),
+    onData: (notifications) {
+      return NotificationStreamUpdated(notifications);
+    },
+    onError: (error, stackTrace) {
+      return NotificationError("Notification stream error: $error");
+    },
+  );
+}
 
   Future<void> _onLoadNotifications(
     LoadNotifications event,
