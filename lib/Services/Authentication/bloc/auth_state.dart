@@ -3,6 +3,7 @@ part of "auth_bloc.dart";
 abstract class AuthState extends Equatable {
   @override
   List<Object?> get props => [];
+
 }
 
 final class AuthInitial extends AuthState {}
@@ -18,6 +19,7 @@ final class AuthSignOutLoading extends AuthState {}
 
 // Loading for sign-up
 final class AuthSignUpLoading extends AuthState {}
+final class AuthUpdatePasswordLoading extends AuthState {}
 
 // Loading for forgot-password
 final class AuthForgotPasswordLoading extends AuthState {}
@@ -43,3 +45,12 @@ final class AuthError extends AuthState {
 }
 
 final class AuthForgotPassword extends AuthState {}
+final class AuthUpdatePassword extends AuthState{
+  final String message;
+
+  AuthUpdatePassword({this.message = "Password changed successfully"});
+
+  @override
+  List<Object?> get props => [message];
+}
+

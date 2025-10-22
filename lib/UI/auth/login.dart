@@ -1,8 +1,11 @@
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
+import "package:grabber_app/UI/auth/components/verification_dialog.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/common/gradient_widget_container.dart";
 import "../../l10n/app_localizations.dart";
@@ -28,7 +31,7 @@ class _LoginState extends State<Login> {
       listener: (context, state) {
         if (state is AuthSignInLoading) {
           Fluttertoast.showToast(
-            msg: "Logging in ...",
+            msg: AppLocalizations.of(context)!.loggingIn,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.green,
@@ -36,19 +39,35 @@ class _LoginState extends State<Login> {
             fontSize: 16.0,
           );
         } else if (state is AuthAuthenticated) {
-          Fluttertoast.showToast(
-            msg: "Login successful 🎉",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
+          final user = FirebaseAuth.instance.currentUser;
 
-          Navigator.pushReplacementNamed(context, AppRoutes.mainApp);
-        } else if (state is AuthForgotPassword) {
+          if (user != null && !user.emailVerified) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (dialogContext) {
+                return BlocProvider.value(
+                  value: context.read<VerificationBloc>(),
+                  child: const VerificationDialog(),
+                );
+              },
+            );
+          } else {
+            Fluttertoast.showToast(
+              msg: AppLocalizations.of(context)!.loginSuccessful,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+
+            Navigator.pushReplacementNamed(context, AppRoutes.mainApp);
+          }
+        }
+        else if (state is AuthForgotPassword) {
           Fluttertoast.showToast(
-            msg: "Password reset email sent successfully",
+            msg: AppLocalizations.of(context)!.passwordResetEmailSent,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.green,
@@ -56,6 +75,16 @@ class _LoginState extends State<Login> {
             fontSize: 16.0,
           );
         } else if (state is AuthError) {
+ //         final loc = AppLocalizations.of(context)!;
+//           final errorMessage = mapAuthErrorToMessage(loc, state.error);
+//           Fluttertoast.showToast(
+//             msg: errorMessage,
+//             toastLength: Toast.LENGTH_SHORT,
+//             gravity: ToastGravity.BOTTOM,
+//             backgroundColor: Colors.red,
+//             textColor: Colors.white,
+//             fontSize: 16.0,
+//           );
           Fluttertoast.showToast(
             msg: state.error,
             toastLength: Toast.LENGTH_SHORT,
@@ -102,11 +131,11 @@ class _LoginState extends State<Login> {
                                   )!.welcomeBackToGrabber,
                                   style: Theme.of(context).textTheme.titleLarge
                                       ?.copyWith(
-                                        color: themeBloc.state.appTheme == "L"
-                                            ? const Color(0xFF5A5555)
-                                            : Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    color: themeBloc.state.appTheme == "L"
+                                        ? const Color(0xFF5A5555)
+                                        : Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
@@ -115,12 +144,12 @@ class _LoginState extends State<Login> {
                                   )!.pleaseSignInWithYourMail,
                                   style: Theme.of(context).textTheme.titleMedium
                                       ?.copyWith(
-                                        color: themeBloc.state.appTheme == "L"
-                                            ? const Color(0xFF5A5555)
-                                            : Colors.white.withValues(
-                                                alpha: 0.5,
-                                              ),
-                                      ),
+                                    color: themeBloc.state.appTheme == "L"
+                                        ? const Color(0xFF5A5555)
+                                        : Colors.white.withValues(
+                                      alpha: 0.5,
+                                    ),
+                                  ),
                                 ),
                                 const SizedBox(height: 40),
                                 ATextField(

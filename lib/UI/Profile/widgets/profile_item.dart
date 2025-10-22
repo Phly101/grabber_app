@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 
 class ProfileItem extends StatelessWidget {
-  final String title;
-  final String subtitle;
+  final Widget title;
+  final Widget subtitle;
   final Widget? leading;
   final Widget? trailing;
   final VoidCallback? onTap;
@@ -25,25 +25,13 @@ class ProfileItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: leading ,
-          title: Text(
-            title,
-            style: const TextStyle(
-              
-              fontWeight: FontWeight.bold,
-              
-            ),
-          ),
-          subtitle: Text(
-            subtitle,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
-            ),
-          ),
+          leading: leading,
+          title: title,
+          subtitle: subtitle,
           trailing: trailing,
         ),
       ),
     );
   }
 }
+

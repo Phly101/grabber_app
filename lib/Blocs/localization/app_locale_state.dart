@@ -1,15 +1,14 @@
 abstract class LocaleState {
   final String langCode;
-  LocaleState({required this.langCode});
+  final Map<String, String> translations;
+
+  LocaleState({required this.langCode, required this.translations});
 }
 
 class InitialLangState extends LocaleState {
-  InitialLangState({required super.langCode});
+  InitialLangState({required super.langCode}) : super(translations: {});
 }
 
 class ChangeLang extends LocaleState {
-  @override
-  final String langCode;
-
-  ChangeLang({required this.langCode}) : super(langCode: "");
+  ChangeLang({required super.langCode, required super.translations});
 }

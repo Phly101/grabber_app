@@ -1,10 +1,8 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/UI/home/Widget/home_files/category.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
-import "package:grabber_app/UI/home/Widget/home_files/slider.dart";
 import "../../l10n/app_localizations.dart";
-
-
+import "Widget/slider_widget.dart";
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -35,23 +33,23 @@ class _HomeTabState extends State<HomeTab> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const HomeSlider(),
+           const SliderWidget(),
           HomeCategory(
             onCategoryTap: (category) {
               switch (category) {
-                case "fruits":
+                case "Fruits":
                   scrollTo(fruitKey);
                   break;
-                case "milkAndEgg":
+                case "Milk & egg":
                   scrollTo(milkKey);
                   break;
-                case "beverages":
+                case "Beverages":
                   scrollTo(beveragesKey);
                   break;
-                case "laundry":
+                case "Laundry":
                   scrollTo(laundryKey);
                   break;
-                case "vegetables":
+                case "Vegetables":
                   scrollTo(vegetablesKey);
                   break;
                 case "Biscuit":
@@ -68,34 +66,45 @@ class _HomeTabState extends State<HomeTab> {
             child: Column(
               children: [
                 ProductListView(
+                  key: fruitKey,
+                  product: "Fruits",
+                  title: AppLocalizations.of(context)!.fruits,
+                  collectionName: "Fruits list",
+                ),ProductListView(
                   key: milkKey,
                   product: "Milk & egg",
                   title: AppLocalizations.of(context)!.milkAndEgg,
+                  collectionName: "egg&milk",
                 ),
                 ProductListView(
                   key: beveragesKey,
                   product: "Beverages",
                   title: AppLocalizations.of(context)!.beverages,
+                  collectionName: "Beverages list",
                 ),
                 ProductListView(
                   key: laundryKey,
                   product: "laundry",
                   title: AppLocalizations.of(context)!.laundry,
+                  collectionName: "Laundry list",
                 ),
                 ProductListView(
                   key: vegetablesKey,
                   product: "vegetables",
                   title: AppLocalizations.of(context)!.vegetables,
+                  collectionName: "vegetables list",
                 ),
                 ProductListView(
                   key: biscuitKey,
                   product: "biscuit",
                   title: AppLocalizations.of(context)!.biscuit,
+                  collectionName: "Biscuit list",
                 ),
                 ProductListView(
                   key: detergentKey,
                   product: "Detergent",
                   title: AppLocalizations.of(context)!.detergent,
+                  collectionName: "Detergent list",
                 ),
               ],
             ),

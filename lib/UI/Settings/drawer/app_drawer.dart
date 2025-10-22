@@ -3,6 +3,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
 import "package:fluttertoast/fluttertoast.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
+import "package:grabber_app/UI/Cart/view/Widgets/button_widget.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "../../../Theme/theme.dart";
 import "components/drawer_item.dart";
@@ -17,25 +18,22 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-         if( state is AuthSignOutLoading){
-           Fluttertoast.showToast(
-             msg: "Logging out....",
-             toastLength: Toast.LENGTH_SHORT,
-             gravity: ToastGravity.BOTTOM,
-             backgroundColor: Colors.green,
-             textColor: Colors.white,
-             fontSize: 16.0,
-           );
-        }
-        else if (state is AuthUnauthenticated) {
+        if (state is AuthSignOutLoading) {
+          Fluttertoast.showToast(
+            msg: AppLocalizations.of(context)!.loggingOut,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        } else if (state is AuthUnauthenticated) {
           Navigator.pushNamedAndRemoveUntil(
             context,
             AppRoutes.login,
             (route) => false,
           );
-        }
-
-        else if (state is AuthError) {
+        } else if (state is AuthError) {
           Fluttertoast.showToast(
             msg: state.error,
             toastLength: Toast.LENGTH_LONG,
@@ -95,7 +93,7 @@ class AppDrawer extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: const Text("Confirm Log Out"),
+                        title: Text(AppLocalizations.of(context)!.logout),
                         content: Text(
                           AppLocalizations.of(
                             context,
@@ -104,13 +102,27 @@ class AppDrawer extends StatelessWidget {
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.of(context).pop(false),
-                            child: Text(AppLocalizations.of(context)!.no),
+                            child: ButtonWidget(
+                              text: Padding(
+                                padding: const EdgeInsets.only(left: 12.0,right: 12.0),
+                                child: Text(
+                                  AppLocalizations.of(context)!.no,
+                                  style: Theme.of(context).textTheme.bodyLarge!
+                                      .copyWith(color: Colors.white),
+                                ),
+                              ),
+                              color: Colors.green,
+                            ),
                           ),
                           TextButton(
                             onPressed: () => Navigator.of(context).pop(true),
-                            child: Text(
-                              AppLocalizations.of(context)!.logout,
-                              style: const TextStyle(color: Colors.red),
+                            child: ButtonWidget(
+                              text: Text(
+                                AppLocalizations.of(context)!.logout,
+                                style: Theme.of(context).textTheme.bodyLarge!
+                                    .copyWith(color: Colors.white),
+                              ),
+                              color: Colors.red,
                             ),
                           ),
                         ],
