@@ -3,13 +3,26 @@ import "package:flutter_test/flutter_test.dart";
 import "package:grabber_app/Blocs/localization/app_locale_bloc.dart";
 import "package:grabber_app/Blocs/localization/app_locale_event.dart";
 import "package:grabber_app/Blocs/localization/app_locale_state.dart";
+import "package:grabber_app/Utils/constants.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
 void main() {
   group("LocaleBloc with fake_cloud_firestore", () {
-    final firestore = FakeFirebaseFirestore();
-    final localebloc = LocaleBloc(firestore);
+    late FakeFirebaseFirestore firestore;
+    late LocaleBloc localebloc;
 
-    test("InitialLangEvent loads default en when no saved lang", () async {
+    setUp(() async {
+      firestore = FakeFirebaseFirestore();
+      localebloc = LocaleBloc(firestore);
+      SharedPreferences.setMockInitialValues({});
+      sharedPreferences = await SharedPreferences.getInstance();
+    });
+
+    tearDown(() async {
+      await localebloc.close();
+    });
+
+    test("should load default 'en' when no saved lang exists", () async {
       await firestore.collection("localization").doc("en").set({
         "home": "Home",
         "hello": "Hello",
@@ -26,7 +39,7 @@ void main() {
       );
     });
 
-    test("ArabicLangEvent loads Arabic translations", () async {
+    test("should load Arabic translations when ArabicLangEvent added", () async {
       await firestore.collection("localization").doc("ar").set({
         "hello": "مرحبا",
       });
@@ -43,21 +56,40 @@ void main() {
       );
     });
 
+    test("should load saved language from SharedPreferences", () async {
+      SharedPreferences.setMockInitialValues({"lang": "ar"});
+      final prefs = await SharedPreferences.getInstance();
+      sharedPreferences = prefs;
 
-    test("If translation document not found, returns empty translations", () async {
-      final firestore2 = FakeFirebaseFirestore();
-      final localebloc2 = LocaleBloc(firestore2);
-      localebloc2.add(EnglishLangEvent());
+      await firestore.collection("localization").doc("ar").set({
+        "hello": "مرحبا",
+      });
+      localebloc.add(InitialLangEvent());
 
       await expectLater(
-        localebloc2.stream,
+        localebloc.stream,
         emits(
           isA<ChangeLang>()
-              .having((s) => s.langCode, "langCode", "en")
-              .having((s) => s.translations.isEmpty, "translations", true),
+              .having((s) => s.langCode, "langCode", "ar")
+              .having((s) => s.translations["hello"], "hello", "مرحبا"),
         ),
       );
     });
 
+    test(
+      "should return empty translations if document not found",
+      () async {
+        localebloc.add(EnglishLangEvent());
+
+        await expectLater(
+          localebloc.stream,
+          emits(
+            isA<ChangeLang>()
+                .having((s) => s.langCode, "langCode", "en")
+                .having((s) => s.translations.isEmpty, "translations", true),
+          ),
+        );
+      },
+    );
   });
 }
