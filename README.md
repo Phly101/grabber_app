@@ -78,7 +78,7 @@
  ## Integration Testing phase: 
    ### Basel EL Rafei: Pyament.
    ### Marian Makram: Home.
-   ### Marina Essam: checkout.
+   ### Marina Essam: Search.
    ### Martina Wageeh: Home.
    ### Simon Abd El Malak: login, sign up.
 
