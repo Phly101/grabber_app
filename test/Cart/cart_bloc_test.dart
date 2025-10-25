@@ -26,7 +26,7 @@ void main() {
   });
 
   group("CartBloc Tests", () {
-    // 1) Test:  LoadCartEvent
+    //1)Test:Load cart event
     blocTest<CartBloc, CartState>(
       "emits items from getCart stream when LoadCartEvent added",
       build: () {
@@ -50,7 +50,7 @@ void main() {
         isA<CartState>().having((s) => s.items.first.nameEn, "item name", "Apple"),
       ],
     );
-    // 2) Test: AddItemEvent new item
+    //2)Test:Add item event (new item)
     blocTest<CartBloc, CartState>(
       "calls addCart when AddItemEvent with new item",
       build: () {
@@ -71,7 +71,7 @@ void main() {
         verify(() => mockUserServices.addCart(any())).called(1);
       },
     );
-    // 3) Test: AddItemEvent existing item
+    //3)Test:Add item event (existing item)
     blocTest<CartBloc, CartState>(
       "calls updateCart when AddItemEvent with existing item",
       build: () {
@@ -101,7 +101,7 @@ void main() {
         verify(() => mockUserServices.updateCart(any())).called(1);
       },
     );
-    // 4) Test: RemoveItemEvent
+    //4)Test:Remove item event
     blocTest<CartBloc, CartState>(
       "calls removeCartItem when RemoveItemEvent added",
       build: () {
@@ -113,7 +113,7 @@ void main() {
         verify(() => mockUserServices.removeCartItem("4")).called(1);
       },
     );
-    // 5) Test: IncreaseQtyEvent
+    //5)Test:IncreaseQty event
     blocTest<CartBloc, CartState>(
       "calls updateCart when IncreaseQtyEvent added",
       build: () {
@@ -134,15 +134,15 @@ void main() {
         verify(() => mockUserServices.updateCart(any())).called(1);
       },
     );
-    // 6) Test: DecreaseQtyEvent (quantity > 1)
+    //6)Test:DecreaseQty event (quantity > 1)
     blocTest<CartBloc, CartState>(
       "calls updateCart when DecreaseQtyEvent reduces quantity > 1",
       build: () {
         when(() => mockUserServices.updateCart(any())).thenAnswer((_) async {});
         final item = CartItemModel(
           id: "6",
-          nameEn: "Pear",
-          nameAr: "كمثرى",
+          nameEn: "Strawberry",
+          nameAr: "فراولة",
           price: 3.5,
           quantity: 2,
           imagePath: "",
@@ -155,7 +155,7 @@ void main() {
         verify(() => mockUserServices.updateCart(any())).called(1);
       },
     );
-    // 7) Test: DecreaseQtyEvent (quantity == 1)
+    //7)Test:DecreaseQty event (quantity == 1)
     blocTest<CartBloc, CartState>(
       "calls removeCartItem when DecreaseQtyEvent and quantity == 1",
       build: () {
@@ -176,15 +176,15 @@ void main() {
         verify(() => mockUserServices.removeCartItem("7")).called(1);
       },
     );
-    // 8) Test: ClearUserCart (success)
+    //8)Test:Clear user cart (success)
     blocTest<CartBloc, CartState>(
       "emits [empty, CartCleared] when ClearUserCart succeeds",
       build: () {
         when(() => mockUserServices.clearUserCart("uid123")).thenAnswer((_) async {});
         final item = CartItemModel(
           id: "8",
-          nameEn: "Kiwi",
-          nameAr: "كيوي",
+          nameEn: "WaterMelon",
+          nameAr: "بطيخ",
           price: 2.0,
           quantity: 1,
           imagePath: "",
@@ -198,7 +198,7 @@ void main() {
         isA<CartCleared>(),
       ],
     );
-    // 9) Test: ClearUserCart (failure)
+    //9)Test:Clear user cart (failure)
     blocTest<CartBloc, CartState>(
       "emits [empty, CartError] when ClearUserCart throws",
       build: () {
