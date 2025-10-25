@@ -5,16 +5,19 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceAPI/pdf_invocie_api.dart";
 
 import "../Model/InvoiceModel/invoice_data.dart";
+import "../Model/InvoiceRepository/invoice_repository.dart";
 part "invoice_event.dart";
 part "invoice_state.dart";
 
 
 class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
-  InvoiceBloc() : super(InvoiceInitial()) {
+  final InvoiceRepository repo;
+
+  InvoiceBloc(this.repo) : super(InvoiceInitial()) {
     on<GenerateInvoiceEvent>((event, emit) async {
       emit(InvoiceLoading());
       try {
-        final pdfFile = await PdfInvoiceApi.generate(event.data);
+        final pdfFile = await repo.generate(event.data);
         emit(InvoiceGenerated(pdfFile));
       } catch (e) {
         emit(InvoiceError("Failed to generate invoice: $e"));
