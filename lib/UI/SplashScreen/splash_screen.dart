@@ -7,6 +7,8 @@ import "package:grabber_app/UI/auth/login.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:page_transition/page_transition.dart";
 
+import "../home/home_tab.dart";
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
