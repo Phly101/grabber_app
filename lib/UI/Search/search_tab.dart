@@ -67,6 +67,7 @@ class _SearchTabState extends State<SearchTab> {
                   trailing: [
                     if (searchText != "")
                       IconButton(
+                        key: const Key("clearButton"),
                         onPressed: () {
                           setState(() {
                             searchText = "";
