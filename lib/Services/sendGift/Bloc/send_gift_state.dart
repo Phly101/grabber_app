@@ -46,6 +46,7 @@ class NotificationsLoaded extends SendGiftState {
 
 // Send gift success
 class SendGiftSuccess extends SendGiftState {}
+class DeleteGiftsAndNotifSuccess extends SendGiftState{}
 
 class SendNotificationsSuccess extends SendGiftState {}
 
