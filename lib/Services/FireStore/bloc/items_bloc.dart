@@ -21,5 +21,18 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
         emit(ItemsError(e.toString()));
       }
     });
+    on<FilterItems>((event, emit) async {
+      emit(ItemsLoading());
+      try {
+        final filteredItems = await firestoreService.getFilteredItems(
+          event.minPrice,
+          event.maxPrice,
+          event.selectedCategories,
+        );
+        emit(ItemsLoaded(filteredItems));
+      } catch (e) {
+        emit(ItemsError(e.toString()));
+      }
+    });
   }
 }

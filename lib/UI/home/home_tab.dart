@@ -74,7 +74,7 @@ class _HomeTabState extends State<HomeTab> {
                   key: milkKey,
                   product: "Milk & egg",
                   title: AppLocalizations.of(context)!.milkAndEgg,
-                  collectionName: "egg&milk",
+                  collectionName: "Milk & egg list",
                 ),
                 ProductListView(
                   key: beveragesKey,
@@ -92,7 +92,7 @@ class _HomeTabState extends State<HomeTab> {
                   key: vegetablesKey,
                   product: "vegetables",
                   title: AppLocalizations.of(context)!.vegetables,
-                  collectionName: "vegetables list",
+                  collectionName: "Vegetables list",
                 ),
                 ProductListView(
                   key: biscuitKey,

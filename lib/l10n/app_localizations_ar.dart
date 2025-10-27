@@ -206,7 +206,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get seeAll => 'عرض الكل';
 
   @override
-  String get fruits => 'فاكهة';
+  String get fruits => 'فواكه';
 
   @override
   String get milkAndEgg => 'لبن وبيض';
@@ -215,7 +215,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get beverages => 'مشروبات';
 
   @override
-  String get laundry => 'منظفات';
+  String get laundry => 'ملابس';
 
   @override
   String get vegetables => 'خضروات';
@@ -251,7 +251,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pawPaw => 'بابايا';
 
   @override
-  String get detergent => 'منظف';
+  String get detergent => 'منظفات';
 
   @override
   String get biscuit => 'بسكويت';
@@ -279,6 +279,30 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tuc => 'توك';
+
+  @override
+  String get filter_products => 'تصفية المنتجات';
+
+  @override
+  String get price_range => 'نطاق السعر';
+
+  @override
+  String get category => 'الفئة';
+
+  @override
+  String get apply_filter => 'تطبيق التصفية';
+
+  @override
+  String get milk_egg => 'حليب وبيض';
+
+  @override
+  String get filtered_results => 'النتائج المفلترة';
+
+  @override
+  String get no_products_match_filter => 'لا توجد منتجات تطابق التصفية';
+
+  @override
+  String get error => 'خطأ';
 
   @override
   String get rating48With287 => '٤٫٨ (٢٨٧)';

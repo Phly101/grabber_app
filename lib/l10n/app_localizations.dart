@@ -635,6 +635,54 @@ abstract class AppLocalizations {
   /// **'TUC'**
   String get tuc;
 
+  /// No description provided for @filter_products.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Products'**
+  String get filter_products;
+
+  /// No description provided for @price_range.
+  ///
+  /// In en, this message translates to:
+  /// **'Price Range'**
+  String get price_range;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @apply_filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Filter'**
+  String get apply_filter;
+
+  /// No description provided for @milk_egg.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk & Egg'**
+  String get milk_egg;
+
+  /// No description provided for @filtered_results.
+  ///
+  /// In en, this message translates to:
+  /// **'Filtered Results'**
+  String get filtered_results;
+
+  /// No description provided for @no_products_match_filter.
+  ///
+  /// In en, this message translates to:
+  /// **'No products match your filter'**
+  String get no_products_match_filter;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
   /// No description provided for @rating48With287.
   ///
   /// In en, this message translates to:

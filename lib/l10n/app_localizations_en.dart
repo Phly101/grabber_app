@@ -281,6 +281,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tuc => 'TUC';
 
   @override
+  String get filter_products => 'Filter Products';
+
+  @override
+  String get price_range => 'Price Range';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get apply_filter => 'Apply Filter';
+
+  @override
+  String get milk_egg => 'Milk & Egg';
+
+  @override
+  String get filtered_results => 'Filtered Results';
+
+  @override
+  String get no_products_match_filter => 'No products match your filter';
+
+  @override
+  String get error => 'Error';
+
+  @override
   String get rating48With287 => '4.8 (287)';
 
   @override
