@@ -34,9 +34,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
     super.didChangeDependencies();
     option = AppLocalizations.of(context)!.payWithCard;
     currentOption = option;
-    // NOTE: If this ModalRoute.of(context)!.settings.arguments is null
-    // when running the test, it would cause a Null Check crash (which you fixed
-    // by adding the L10n delegates, suggesting the argument wasn't the issue).
     receiverEmail = ModalRoute.of(context)!.settings.arguments as String?;
   }
 
@@ -86,7 +83,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
           title: Text(
             AppLocalizations.of(context)!.payment,
             style: Theme.of(context).textTheme.titleLarge,
-            // 🔑 KEY 1: paymentScreenTitle is correct here
             key: const Key("paymentScreenTitle"),
           ),
           centerTitle: true,
@@ -110,13 +106,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
-                    // ⚠️ REMOVED KEY: The key was incorrectly placed on the Text label
-                    // key: const Key(("cardNumberField")),
+
                   ),
                 ),
                 CardNumberField(
                   controller: _cardNumberController,
-                  // 🔑 KEY 2: Placed key on the actual input widget
+
                   key: const Key("cardNumberField"),
                 ),
                 CustomCard(
@@ -145,7 +140,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 _cardNumberController.clear();
                               }
                             },
-                            // NOTE: This button is not found in the initial state of the test
+
                             child: Container(
                               width: double.infinity,
                               height: 60,
@@ -246,7 +241,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             _cardNumberController.clear();
                           }
                         },
-                        // 🔑 KEY 3: This is the button visible when GiftMode is OFF (initial state in test)
+
                         key: const Key("confirmAndPayButton"),
                         child: Container(
                           width: double.infinity,
