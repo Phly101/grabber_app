@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:fluttertoast/fluttertoast.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/gift_card.dart";
@@ -79,13 +81,82 @@ class _GiftsPageState extends State<GiftsPage> {
               );
             }
 
-            return ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              itemCount: gifts.length,
-              itemBuilder: (context, index) {
-                final gift = gifts[index];
-                return GiftCard(gift: gift);
-              },
+            return Stack(
+              children: [
+                ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  itemCount: gifts.length,
+                  itemBuilder: (context, index) {
+                    final gift = gifts[index];
+                    return GiftCard(gift: gift);
+                  },
+                ),
+                Align(
+                  alignment: AlignmentGeometry.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: BlocListener<GiftBloc, SendGiftState>(
+                      listener: (context, state) {
+                        if (state is DeleteGiftsAndNotifSuccess) {
+                          Fluttertoast.showToast(
+                            msg: "All gifts and notifications deleted!",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: const Color(0xFF4CAF50),
+                            // green success
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                        } else if (state is SendGiftFailure) {
+                          Fluttertoast.showToast(
+                            msg: state.message,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: const Color(0xFFF44336),
+                            // red error
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                        }
+                      },
+                      child: InkWell(
+                        onTap: () {
+                          final currentUserId = context
+                              .read<GiftBloc>()
+                              .sendGiftService
+                              .authProvider
+                              .currentUser
+                              ?.uid;
+                          context.read<GiftBloc>().add(
+                            DeleteAllGiftsAndNotif(currentUserId!),
+                          );
+                        },
+                        child: Card(
+                          color: Colors.red,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Tap to clear notifications",
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 5.0),
+                                  child: FaIcon(
+                                    FontAwesomeIcons.trash,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             );
           } else if (state is GiftError) {
             return Center(
@@ -131,7 +202,7 @@ class _GiftsPageState extends State<GiftsPage> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                 loc.preparingYourGifts,
+                  loc.preparingYourGifts,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(
                       context,
