@@ -9,7 +9,7 @@ import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
-import "../../product_detail.dart";
+import "../../product_details.dart";
 
 class BuildProductCard extends StatelessWidget {
   final int index;
@@ -27,7 +27,7 @@ class BuildProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetail(product: item),
+            builder: (context) => ProductDetails(product: item),
           ),
         );
       },

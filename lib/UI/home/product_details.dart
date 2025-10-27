@@ -13,16 +13,16 @@ import "../../Blocs/localization/app_locale_bloc.dart";
 import "package:badges/badges.dart" as badges;
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
-class ProductDetail extends StatefulWidget {
+class ProductDetails extends StatefulWidget {
   final Map<String, dynamic> product;
 
-  const ProductDetail({super.key, required this.product});
+  const ProductDetails({super.key, required this.product});
 
   @override
-  State<ProductDetail> createState() => _ProductDetailState();
+  State<ProductDetails> createState() => _ProductDetailsState();
 }
 
-class _ProductDetailState extends State<ProductDetail> {
+class _ProductDetailsState extends State<ProductDetails> {
   int quantity = 0;
 
   @override
@@ -344,7 +344,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ProductDetail(product: item),
+                                          ProductDetails(product: item),
                                     ),
                                   );
                                 },
