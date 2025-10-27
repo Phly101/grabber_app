@@ -23,7 +23,7 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
-  int quantity = 1;
+  int quantity = 0;
 
   @override
   void initState() {
