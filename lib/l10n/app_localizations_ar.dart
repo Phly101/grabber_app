@@ -599,7 +599,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signingUp => 'جاري إنشاء الحساب...';
 
   @override
-  String get addedToCart => 'تمت الإضافة إلى السلة';
+  String get addedToCart => 'تمت الإضافة للسلة';
 
   @override
   String get enterGiftEmail => 'أدخل البريد الإلكتروني للشخص الذي تريد إهداؤه';
@@ -780,4 +780,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unknownDate => 'تاريخ غير معروف';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get addToCart => 'إضافة للسلة';
+
+  @override
+  String get otherProducts => 'منتجات أخرى';
+
+  @override
+  String get noProductsAvailable => 'لا توجد منتجات متاح';
+
+  @override
+  String get errorLoadingProducts => 'خطأ في تحميل المنتجات';
+
+  @override
+  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.';
 }

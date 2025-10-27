@@ -780,4 +780,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknownDate => 'Unknown date';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get addToCart => 'Add tO cart';
+
+  @override
+  String get otherProducts => 'Other products';
+
+  @override
+  String get noProductsAvailable => 'No products available';
+
+  @override
+  String get errorLoadingProducts => 'Error loading products';
+
+  @override
+  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
 }
