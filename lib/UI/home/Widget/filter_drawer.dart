@@ -4,7 +4,7 @@ import "package:grabber_app/UI/home/Widget/filtered_products_screen.dart";
 import "package:grabber_app/UI/home/Widget/home_files/components/filter_drawer_footer.dart";
 
 import "package:grabber_app/UI/home/Widget/home_files/components/filter_drawer_header.dart";
-import "package:grabber_app/l10n/app_localizations.dart"; // 🌟 استدعاء ال component
+import "package:grabber_app/l10n/app_localizations.dart";
 
 class FilterDrawer extends StatefulWidget {
   const FilterDrawer({super.key});

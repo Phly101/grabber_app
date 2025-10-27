@@ -20,11 +20,8 @@ class FirestoreService {
       double maxPrice,
       List<String> categories,
       ) async {
-    print("🔥 START FILTER: min=$minPrice, max=$maxPrice, categories=$categories");
-
     Query<Map<String, dynamic>> q =
     FirebaseFirestore.instance.collection('products');
-
     q = q
         .where('price', isGreaterThanOrEqualTo: minPrice)
         .where('price', isLessThanOrEqualTo: maxPrice);
@@ -32,15 +29,7 @@ class FirestoreService {
     if (categories.isNotEmpty) {
       q = q.where('category', whereIn: categories);
     }
-
     final snapshot = await q.get();
-
-    print("📦 Found ${snapshot.docs.length} docs");
-
-    for (var doc in snapshot.docs) {
-      print("🧾 ${doc.data()}");
-    }
-
     return snapshot.docs.map((doc) {
       return {
         "id": doc.id,
