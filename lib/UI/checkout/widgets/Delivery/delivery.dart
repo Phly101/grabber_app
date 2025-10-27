@@ -1,14 +1,17 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/UI/checkout/widgets/key_value_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/optionTile.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
-
 class DeliveryAndPayment extends StatelessWidget {
   const DeliveryAndPayment({super.key});
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final themeBloc = context.read<AppThemeBloc>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,7 +30,7 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: ListTile(
             leading: Image.asset("Assets/Icons/home-address 1.png"),
             title: Text(
@@ -41,7 +44,7 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/gps-svgrepo-com 3.png"),
             label: AppLocalizations.of(context)!.deliverToCurrentLocation,
@@ -50,18 +53,18 @@ class DeliveryAndPayment extends StatelessWidget {
           ),
         ),
 
-         ListTile(
+        ListTile(
           leading: Text(
             AppLocalizations.of(context)!.other,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+            style: theme.textTheme.bodyLarge!.copyWith(
+              color: themeBloc.state.appTheme == "L"
+                  ? Colors.black
+                  : Colors.white,
             ),
           ),
         ),
         OptionTile(
-          onTap:  () {},
+          onTap: () {},
           child: KeyValueTile.icon(
             leading: Image.asset("Assets/Icons/money.png"),
             label: AppLocalizations.of(context)!.cashOnDelivery,
