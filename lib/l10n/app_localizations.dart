@@ -1636,6 +1636,8 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown date'**
   String get unknownDate;
+  String get allGiftsDeleted;
+  String get tapToClearNotifications;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

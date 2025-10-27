@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Services/sendGift/Models/gift_model.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/gift_details_page.dart";
@@ -50,11 +51,7 @@ class GiftCard extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: const Center(
-                  child: Icon(
-                    Icons.card_giftcard,
-                    size: 32,
-                    color: AppColors.primaryGreen,
-                  ),
+                  child: FaIcon(FontAwesomeIcons.gift,color: AppColors.primaryGreen,),
                 ),
               ),
               const SizedBox(width: 16),

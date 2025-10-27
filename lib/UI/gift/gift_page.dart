@@ -3,7 +3,6 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:fluttertoast/fluttertoast.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
-import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/gift_card.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
@@ -53,11 +52,7 @@ class _GiftsPageState extends State<GiftsPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.card_giftcard,
-                      size: 80,
-                      color: AppColors.mediumGrey,
-                    ),
+                    const FaIcon(FontAwesomeIcons.gift),
                     const SizedBox(height: 20),
                     Text(
                       loc.noGiftsYet,
@@ -99,7 +94,7 @@ class _GiftsPageState extends State<GiftsPage> {
                       listener: (context, state) {
                         if (state is DeleteGiftsAndNotifSuccess) {
                           Fluttertoast.showToast(
-                            msg: "All gifts and notifications deleted!",
+                            msg: AppLocalizations.of(context)!.allGiftsDeleted,
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             backgroundColor: const Color(0xFF4CAF50),
@@ -139,7 +134,9 @@ class _GiftsPageState extends State<GiftsPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Tap to clear notifications",
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.tapToClearNotifications,
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 const Padding(
@@ -190,7 +187,6 @@ class _GiftsPageState extends State<GiftsPage> {
             );
           }
 
-          // Initial state or unexpected state
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

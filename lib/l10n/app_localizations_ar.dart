@@ -780,4 +780,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unknownDate => 'تاريخ غير معروف';
+
+  @override
+
+  String get allGiftsDeleted => 'تم حذف جميع الهدايا والإشعارات!';
+
+  @override
+
+  String get tapToClearNotifications =>'اضغط لمسح الإشعارات';
 }
