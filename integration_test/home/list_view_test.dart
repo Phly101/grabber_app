@@ -1,178 +1,97 @@
-// // import "package:flutter/material.dart";
-// // import "package:flutter_bloc/flutter_bloc.dart";
-// // import "package:flutter_test/flutter_test.dart";
-// // import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
-// // import "package:integration_test/integration_test.dart";
-// // import "package:grabber_app/UI/home/Widget/home_files/product_list_view.dart";
-// // import "utils/test_utils.dart";
-// //
-// // void main() {
-// //   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-// //
-// //   testWidgets("Test user actions on ProductListView: tap Add to Cart and scroll ListView", (WidgetTester tester) async {
-// //     await tester.pumpWidget(createWidgetForTesting(child: ProductListView(title: 'Fruits', collectionName: 'Fruits list', product: null,)));
-// //     await tester.pumpAndSettle();
-// //     final itemsBloc = BlocProvider.of<ItemsBloc>(tester.element(find.byType(ProductListView)));
-// //     print("ItemsBloc state: ${itemsBloc.state}");
-// //     print("Current state: ${tester.widget(find.byType(ProductListView)).toString()}");
-// //     bool listViewFound = false;
-// //     for (int i = 0; i < 10; i++) {
-// //       await tester.pump(const Duration(seconds: 1));
-// //       final listView = find.byKey(const Key('product_listview'));
-// //       if (listView.evaluate().isNotEmpty) {
-// //         listViewFound = true;
-// //         break;
-// //       }
-// //       print("Waiting for ListView... iteration $i");
-// //     }
-// //     expect(listViewFound, true, reason: "ListView not found after waiting. Check mock data.");
-// //     final listView = find.byKey(const Key('product_listview'));
-// //     expect(listView, findsOneWidget);
-// //     final addButton = find.byKey(const Key('add_to_cart_button')).first;
-// //     expect(addButton, findsOneWidget);
-// //     await tester.tap(addButton);
-// //     await tester.pump();
-// //     expect(addButton, findsOneWidget);
-// //     await tester.drag(listView, const Offset(-200.0, 0.0));
-// //     await tester.pump();
-// //     expect(listView, findsOneWidget);
-// //   }, timeout: const Timeout(Duration(minutes: 2)));  // timeout أقل عشان mock.
-// // }
-//
-// import "package:flutter/foundation.dart";
-// import 'package:flutter_test/flutter_test.dart';
-// import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
-// import 'package:integration_test/integration_test.dart';
-// import 'package:grabber_app/UI/home/home_tab.dart';
-// import "package:mocktail/mocktail.dart";
-// import "utils/test_utils.dart"; // لو ملفك موجود في integration_test/utils/
-//
-// class FakeItemsEvent extends Fake implements ItemsEvent {}
-// void main() {
-//
-//   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-//   setUpAll(() {
-//     registerMockFallbacks();
-//   });
-//   setUpAll(() {
-//         registerFallbackValue('create a dummy instance of `ItemsEvent`' );
-//     });
-//
-//
-// testWidgets(
-//     'Test user actions on HomeTab: tap Add to Cart and scroll ListView',
-//         (WidgetTester tester) async {
-//       // ✅ هنا التعديل الأساسي
-//       await tester.pumpWidget(
-//         await createWidgetForTesting(
-//           child: const HomeTab(), // تبدأي من الـ HomeTab زي ما انتي عايزة
-//         ),
-//       );
-//
-//       await tester.pumpAndSettle();
-//
-//       print("Current state: HomeTab");
-//
-//       bool listViewFound = false;
-//
-//       // ننتظر لحد ما تظهر الـ ListView
-//       for (int i = 0; i < 10; i++) {
-//         await tester.pump(const Duration(seconds: 1));
-//         final listView = find.byKey(const Key('product_listview'));
-//         if (listView.evaluate().isNotEmpty) {
-//           listViewFound = true;
-//           break;
-//         }
-//         print("Waiting for ListView... iteration $i");
-//       }
-//
-//       // ✅ تأكيد وجود الـ ListView
-//       expect(listViewFound, true, reason: "ListView not found after waiting. Check mock data.");
-//
-//       final listView = find.byKey(const Key('product_listview'));
-//       expect(listView, findsOneWidget);
-//
-//       final addButton = find.byKey(const Key('add_to_cart_button')).first;
-//       expect(addButton, findsOneWidget);
-//
-//       await tester.tap(addButton);
-//       await tester.pump();
-//
-//       await tester.drag(listView, const Offset(0, -300));
-//       await tester.pump();
-//
-//       expect(listView, findsOneWidget);
-//     },
-//     timeout: const Timeout(Duration(minutes: 2)),
-//   );
-// }
-//
-
-import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
+import 'package:grabber_app/Blocs/CartBloc/cart_bloc.dart';
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
+import 'package:grabber_app/Blocs/localization/localization.dart';
+import 'package:grabber_app/Services/FireStore/bloc/items_bloc.dart';
+import 'package:grabber_app/Services/FireStore/firestore_service.dart';
 import 'package:grabber_app/UI/home/home_tab.dart';
-import 'package:mocktail/mocktail.dart';
-
-import "utils/test_utils.dart"; // المسار حسب مكان المجلد
+import 'package:grabber_app/l10n/app_localizations.dart';
+import 'package:integration_test/integration_test.dart';
+import '../mocks/mock_user_services.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  setUpAll(() {
-    registerMockFallbacks();
+  late ItemsBloc itemsBloc;
+  late CartBloc cartBloc;
+  late LocaleBloc localeBloc;
+  late AppThemeBloc themeBloc;
+  late MockUserServices mockUserServices;
+
+  setUp(() async {
+    await Firebase.initializeApp();
+    final firestore = FirebaseFirestore.instance;
+    mockUserServices = MockUserServices();
+
+    itemsBloc = ItemsBloc(FirestoreService());
+    cartBloc = CartBloc(mockUserServices);
+    localeBloc = LocaleBloc(firestore);
+    themeBloc = AppThemeBloc();
+
+    final collections = [
+      'Fruits list',
+      'egg&milk',
+      'Beverages list',
+      'Laundry list',
+      'vegetables list',
+      'Biscuit list',
+      'Detergent list',
+    ];
+
+    for (final collection in collections) {
+      itemsBloc.add(LoadItems(collection));
+    }
+
+    localeBloc.add(InitialLangEvent());
   });
 
-  testWidgets(
-    'Test user actions on HomeTab: tap Add to Cart and scroll ListView',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        await createWidgetForTesting(
-          child: const HomeTab(),
-        ),
-      );
+  tearDown(() async {
+    await itemsBloc.close();
+    await cartBloc.close();
+    await localeBloc.close();
+    await themeBloc.close();
+  });
 
-      await tester.pumpAndSettle();
-
-      print("✅ HomeTab loaded successfully");
-
-      bool listViewFound = false;
-
-      // انتظار ظهور الـ ListView
-      for (int i = 0; i < 10; i++) {
-        await tester.pump(const Duration(seconds: 1));
-        final listView = find.byKey(const Key('product_listview'));
-        if (listView.evaluate().isNotEmpty) {
-          listViewFound = true;
-          break;
-        }
-        print("Waiting for ListView... iteration $i");
-      }
-
-      expect(listViewFound, true,
-          reason: "❌ ListView not found after waiting. Check mock data.");
-
-      // final listView = find.byKey(const Key('product_listview'));
-      // expect(listView, findsOneWidget);
-
-      final listView = find.byKey(const Key('product_listview'));
-      expect(listView, findsAtLeastNWidgets(1)); // بدل واحدة بالظبط
-      final firstList = listView.first;
-
-      final addButton = find.byKey(const Key('add_to_cart_button')).first;
-      expect(addButton, findsOneWidget);
-
-      await tester.tap(addButton);
-      await tester.pump();
-      await tester.drag(firstList, const Offset(0, -300));
-
-      //await tester.drag(listView, const Offset(0, -300));
-      await tester.pump();
-
-      expect(listView, findsOneWidget);
-      print("✅ ListView scroll and Add to Cart action tested successfully");
-    },
-    timeout: const Timeout(Duration(minutes: 2)),
-  );
+  group("ProductListView - Integration Tests", () {
+    testWidgets(
+      "should load products, scroll horizontally, and add item to cart",
+          (WidgetTester tester) async {
+        await tester.pumpWidget(
+          MultiBlocProvider(
+            providers: [
+              BlocProvider<ItemsBloc>.value(value: itemsBloc),
+              BlocProvider<CartBloc>.value(value: cartBloc),
+              BlocProvider<LocaleBloc>.value(value: localeBloc),
+              BlocProvider<AppThemeBloc>.value(value: themeBloc),
+            ],
+            child: const MaterialApp(
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: Scaffold(body: HomeTab()),
+            ),
+          ),
+        );
+        await tester.pump(const Duration(seconds: 2));
+        await tester.pump(const Duration(seconds: 15));
+        final firstListView = find.byKey(const Key("product_listview")).first;
+        expect(firstListView, findsOneWidget);
+        final addButtons = find.descendant(
+          of: firstListView,
+          matching: find.byKey(const Key("add_icon")),
+        );
+        expect(addButtons, findsAtLeastNWidgets(1));
+        await tester.drag(firstListView, const Offset(-400, 0));
+        await tester.pump(const Duration(milliseconds: 500));
+        await tester.drag(firstListView, const Offset(400, 0));
+        await tester.pump(const Duration(milliseconds: 500));
+        final firstAddButton = addButtons.first;
+        await tester.tap(firstAddButton);
+        await tester.pump(const Duration(seconds: 2));
+      },
+    );
+  });
 }
