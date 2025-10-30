@@ -63,9 +63,7 @@ class BuildProductCard extends StatelessWidget {
                         )
                       ),
                     );
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   const SnackBar(content: Text("Added to cart"))
-                    // );
+
                     Fluttertoast.showToast(
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,

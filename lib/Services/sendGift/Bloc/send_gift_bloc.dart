@@ -7,6 +7,7 @@ import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
 
 part "send_gift_event.dart";
+
 part "send_gift_state.dart";
 
 class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
@@ -26,25 +27,28 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
     on<SendGift>(_onSendGift);
     on<EnableGiftMode>((event, emit) => emit(GiftModeEnabled()));
     on<DisableGiftMode>((event, emit) => emit(GiftModeDisabled()));
+    on<DeleteAllGiftsAndNotif>(_onDeleteAllGiftsAndNotif);
     on<StartGiftPayment>((event, emit) {
-      emit(GiftPaymentActive(
-        receiverEmail: event.receiverEmail,
-        giftId: event.message,
-      ));
+      emit(
+        GiftPaymentActive(
+          receiverEmail: event.receiverEmail,
+          giftId: event.message,
+        ),
+      );
     });
 
     on<CancelGiftPayment>((event, emit) {
       emit(GiftInitial());
     });
   }
+
   Future<void> _onListenToGifts(
-      ListenToGifts event,
-      Emitter<SendGiftState> emit,
-      ) async {
+    ListenToGifts event,
+    Emitter<SendGiftState> emit,
+  ) async {
     emit(GiftLoading());
 
     await _giftSubscription?.cancel(); // cancel previous stream if any
-
 
     await emit.forEach<List<GiftModel>>(
       giftListenerService.listenToIncomingGifts(event.userId),
@@ -55,22 +59,23 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
         return GiftError(error.toString());
       },
     );
-
   }
 
-  Future<void> _onListenToNotifications(
-    ListenToNotifications event,
-    Emitter<SendGiftState> emit,
-  ) async {
-    await _notificationSubscription?.cancel();
-    _notificationSubscription = giftListenerService
-        .listenToNotifications(event.userId)
-        .listen(
-          (notifications) => emit(NotificationStreamUpdated(notifications)),
-          onError: (error) =>
-              emit(NotificationError("Notification stream error: $error")),
-        );
-  }
+Future<void> _onListenToNotifications(
+  ListenToNotifications event,
+  Emitter<SendGiftState> emit,
+) async {
+  await _notificationSubscription?.cancel();
+  await emit.forEach<List<NotificationModel>>(
+    giftListenerService.listenToNotifications(event.userId),
+    onData: (notifications) {
+      return NotificationStreamUpdated(notifications);
+    },
+    onError: (error, stackTrace) {
+      return NotificationError("Notification stream error: $error");
+    },
+  );
+}
 
   Future<void> _onLoadNotifications(
     LoadNotifications event,
@@ -100,5 +105,19 @@ class GiftBloc extends Bloc<GiftEvent, SendGiftState> {
     _giftSubscription?.cancel();
     _notificationSubscription?.cancel();
     return super.close();
+  }
+
+  Future<void> _onDeleteAllGiftsAndNotif(
+    DeleteAllGiftsAndNotif event,
+    Emitter<SendGiftState> emit,
+  ) async {
+    try {
+      emit(GiftLoading());
+      await sendGiftService.deleteAllGiftsAndNotif(event.userId);
+      add(ListenToGifts(event.userId));
+      emit(DeleteGiftsAndNotifSuccess());
+    } catch (e) {
+      emit(SendGiftFailure("Failed to delete gift"));
+    }
   }
 }

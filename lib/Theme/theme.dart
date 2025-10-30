@@ -30,7 +30,7 @@ class AppColors {
     static const Color textButtonColor = primaryGreen;
 }
 
-// Defines the text styles for both light and dark typography
+// text styles for both light and dark typography
 const TextTheme appTextTheme = TextTheme(
   headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
   titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.darkBackground),
@@ -44,7 +44,7 @@ class AppThemes {
     primaryColor: AppColors.primaryGreen,
     useMaterial3: false,
     scaffoldBackgroundColor: AppColors.lightGrey,
-    //colorScheme
+    //light colorScheme
     colorScheme: const ColorScheme(
       primary: AppColors.primaryGreen,
       onPrimary: AppColors.black,
@@ -107,7 +107,7 @@ class AppThemes {
     primaryColor: AppColors.primaryGreen,
     useMaterial3: false,
     scaffoldBackgroundColor: AppColors.darkBackground,
-    //colorScheme
+    //dark colorScheme
     colorScheme: const ColorScheme(
       primary: AppColors.primaryGreen,
       onPrimary: AppColors.white,

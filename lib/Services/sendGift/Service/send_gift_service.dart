@@ -30,12 +30,11 @@ class SendGiftService {
       }
 
       await _createGift(senderUID, receiverUID);
-      await _createNotification(senderUID,receiverUID);
+      await _createNotification(senderUID, receiverUID);
 
       return Result.success(null);
     } catch (e) {
       return Result.failure("unexpected_error");
-
     }
   }
 
@@ -49,7 +48,6 @@ class SendGiftService {
 
   // create notification collection for users
   Future<void> _createNotification(String senderUID, String receiverUID) async {
-
     final senderDoc = await fireStore.collection("users").doc(senderUID).get();
     final senderEmail = senderDoc.get("email");
     final senderName = senderDoc.data()?["name"] ?? senderEmail;
@@ -93,5 +91,42 @@ class SendGiftService {
           "items": cartItems,
           "timestamp": FieldValue.serverTimestamp(),
         });
+  }
+
+  Future<void> deleteAllGifts(String userID) async {
+    final giftRef = fireStore
+        .collection("users")
+        .doc(userID)
+        .collection("gifts");
+    final snapShot = await giftRef.get();
+    final batch = fireStore.batch();
+
+    for (var doc in snapShot.docs) {
+      batch.delete(doc.reference);
+    }
+    await batch.commit();
+  }
+
+  Future<void> deleteAllNotifications(String userID) async {
+    final notiRef = fireStore
+        .collection("users")
+        .doc(userID)
+        .collection("notifications");
+    final snapshot = await notiRef.get();
+
+    final batch = fireStore.batch();
+
+    for (var doc in snapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    await batch.commit();
+  }
+
+  Future<void> deleteAllGiftsAndNotif(String userID) async {
+    await Future.wait([
+      deleteAllGifts(userID),
+      deleteAllNotifications(userID),
+    ]);
   }
 }
