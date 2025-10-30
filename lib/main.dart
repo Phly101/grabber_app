@@ -1,6 +1,3 @@
-// import "package:device_preview/device_preview.dart";
-// import "package:flutter/foundation.dart";
-
 // Flutter & Firebase
 import "package:cloud_firestore/cloud_firestore.dart" show FirebaseFirestore;
 import "package:firebase_auth/firebase_auth.dart";
@@ -102,13 +99,10 @@ Future<void> main() async {
                   sendGiftService: sendGiftService,
                 ),
               ),
-
-              //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );
         } else {
-          // If no user → only provide AuthBloc, theme, locale
           return MultiBlocProvider(
             providers: [
               BlocProvider(
@@ -121,7 +115,8 @@ Future<void> main() async {
                       ..add(InitialLangEvent()),
               ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
-              BlocProvider(create: (_) => VerificationBloc(VerificationService()),
+              BlocProvider(
+                create: (_) => VerificationBloc(VerificationService()),
               ),
             ],
             child: const MyApp(),
