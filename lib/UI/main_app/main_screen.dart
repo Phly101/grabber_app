@@ -43,8 +43,6 @@ class _MainScreenState extends State<MainScreen> {
     final themeBloc = context.read<AppThemeBloc>();
     return Scaffold(
       key: _scaffoldKey,
-
-      // Create a GlobalKey for Scaffold
       appBar: selectedIndex == 1
           ? null
           : AppBar(
@@ -58,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
               title: themeBloc.state.appTheme == "L"
                   ? Image.asset("Assets/Images/Grabber1.png")
                   : Image.asset("Assets/Images/Grabber.png"),
-              // centerTitle: true,
+
               actions: [
                 BlocBuilder<GiftBloc, SendGiftState>(
                   builder: (context, state) {
@@ -103,21 +101,24 @@ class _MainScreenState extends State<MainScreen> {
                 BlocSelector<CartBloc, CartState, int>(
                   selector: (state) => state.totalItems,
                   builder: (context, totalItems) {
-                    return IconButton(
-                      icon: badges.Badge(
-                        badgeContent: Text(
-                          totalItems.toString(),
-                          style: const TextStyle(color: Colors.white),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: IconButton(
+                        icon: badges.Badge(
+                          badgeContent: Text(
+                            totalItems.toString(),
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          showBadge: totalItems > 0,
+                          child: FaIcon(
+                            FontAwesomeIcons.cartShopping,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
-                        showBadge: totalItems > 0,
-                        child: FaIcon(
-                          FontAwesomeIcons.cartShopping,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.cart);
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.cart);
-                      },
                     );
                   },
                 ),
