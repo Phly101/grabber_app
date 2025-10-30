@@ -36,8 +36,9 @@
 ## UI Phase: 
 ### Basel EL Rafei: initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen, about app screen, schedule screen and order summary screen in this phase.
 ### Marian Makram & Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
-### Marian Makram Added UI to the Checkout screen. 
-### Simon Abd EL Malak: implemented the UI of the login and the sign up screen.
+### Marian Makram Added UI to the Checkout screen.
+### Martina Wageeh: created the drawer UI for the filter feature, and filtered items screen.
+### Simon Abd EL Malak: implemented the UI of the login and the sign up screen, product screen details.
 ### Marina Essam: did the UI of search screen as well as the check out screen.
 ### Mark Ayman: did Cart,settings,profile screens.
 
@@ -82,7 +83,7 @@
    ### Martina Wageeh: Home.
    ### Simon Abd El Malak: login, sign up.
 
-## Deployment: under disscusion.
+
 
 
 
