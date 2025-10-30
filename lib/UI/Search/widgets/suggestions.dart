@@ -85,11 +85,6 @@ class SuggestionsList extends StatelessWidget {
                             ),
                           ),
                         );
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   SnackBar(
-                        //     content: Text("${item["title_en"]} added to cart"),
-                        //   ),
-                        // );
                         Fluttertoast.showToast(
                           backgroundColor: Colors.green,
                           toastLength: Toast.LENGTH_LONG,

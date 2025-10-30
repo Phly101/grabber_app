@@ -22,7 +22,6 @@ class ProfileHeader extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               width: 50,
               height: 50,
-              // TODO: Replace static AssetImage with a NetworkImage if user has a profile picture
               child: const ImageIcon(
                 AssetImage("Assets/Icons/Profile.png"),
                 color: AppColors.black,
