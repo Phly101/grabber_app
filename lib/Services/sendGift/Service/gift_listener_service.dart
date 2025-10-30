@@ -23,7 +23,8 @@ class GiftListenerService {
               .toList(),
         )
         .handleError((error) {
-         Result.failure("Notification Stream error: $error");
+         // Result.failure("Notification Stream error: $error");
+      throw error; // <-- IMPORTANT: Rethrow the error
         });
   }
 
@@ -32,15 +33,16 @@ class GiftListenerService {
         .collection("users")
         .doc(userId)
         .collection("gifts")
-        .orderBy("timestamp", descending: true)
         .snapshots()
         .map(
-          (snapshot) =>
-              snapshot.docs.map((doc) => GiftModel.fromFirestore(doc)).toList(),
-        ).handleError((error) {
-      Result.failure("Gift Stream error: $error");
-    });
+          (snapshot) {
+        return snapshot.docs.map((doc) {
+          return GiftModel.fromFirestore(doc);
+        }).toList();
+      },
+    );
   }
+
   Future<Result<List<NotificationModel>>> getNotifications(String userId) async {
     try {
       final snapshot = await fireStore

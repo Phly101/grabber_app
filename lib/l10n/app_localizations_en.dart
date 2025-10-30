@@ -33,8 +33,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordIsRequired => 'Password is required';
 
   @override
-  String get passwordMustBeAtLeast8Characters =>
-      'Password must be at least 8 characters';
+  String get passwordMustBeAtLeast8Characters => 'Password must be at least 8 characters';
 
   @override
   String get forgotPassword => 'Forgot password';
@@ -113,6 +112,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signUp => 'Sign up';
+
+  @override
+  String get emailVerificationTitle => 'Email Verification';
+
+  @override
+  String get verificationEmailSent => 'Verification email sent!';
+
+  @override
+  String get emailVerified => 'Email verified ✅';
+
+  @override
+  String get emailNotVerified => 'Email not verified yet ❌';
+
+  @override
+  String errorWithMessage(Object message) {
+    return 'Error: $message';
+  }
+
+  @override
+  String get verificationInstruction => 'We sent a verification link to your email.\nPlease check your inbox.';
+
+  @override
+  String get checkNowButton => 'I\'ve verified, Check now';
+
+  @override
+  String get resendEmailButton => 'Resend Verification Email';
+
+  @override
+  String get verificationCooldown => 'Verification link valid for 10 seconds...';
 
   @override
   String get checkOut => 'Check Out';
@@ -304,8 +332,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Logout';
 
   @override
-  String get furtherSecureYourAccountForSafety =>
-      'Further secure your account for safety';
+  String get furtherSecureYourAccountForSafety => 'Further secure your account for safety';
 
   @override
   String get areYouSureYouWantToLogout => 'Are you sure you want to log out?';
@@ -470,16 +497,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get viewOpenSourceLicenses => 'View Open Source Licenses';
 
   @override
-  String get appDescriptionLine1 =>
-      'Grabber is your smart shopping list companion.';
+  String get appDescriptionLine1 => 'Grabber is your smart shopping list companion.';
 
   @override
-  String get appDescriptionLine2 =>
-      'Easily add groceries, track quantities, and stay organized.';
+  String get appDescriptionLine2 => 'Easily add groceries, track quantities, and stay organized.';
 
   @override
-  String get appDescriptionLine3 =>
-      'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
+  String get appDescriptionLine3 => 'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
 
   @override
   String get deliverToCurrentLocation => 'Deliver to your current location';
@@ -521,110 +545,247 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToUpdateData => 'Failed To Update Data';
 
   @override
-  String get SendAsAGift => "Send as a gift";
+  String get sendAsAGift => 'Send as a gift';
 
   @override
-  String get Cancel => "Cancel";
+  String get sendGift => 'Send Gift!';
 
   @override
-  String get Confirm => "Confirm";
+  String get confirm => 'Confirm';
 
   @override
-  String get SendGift => "Send Gift!";
-
-  String get currentPassword => "Current Password";
-
-  String get enterCurrentPassword => "Enter current password";
-
-  String get currentPasswordEmpty => "Current password cannot be empty";
-
-  String get passwordMustBeAtLeast6Characters =>
-      "Password must be at least 6 characters";
-
-  String get newPassword => "New Password";
-
-  String get enterNewPassword => "Enter new password";
-
-  String get newPasswordEmpty => "New password cannot be empty";
-
-  String get newPasswordDifferent =>
-      "New password must be different from current password";
-
-  String get confirmNewPassword => "Confirm Password";
-
-  String get reEnterNewPassword => "Re-enter new password";
-
-  String get confirmPasswordEmpty => "Confirm password cannot be empty";
-
-  String get sendingRequest => "Sending your request ...";
-
-  String get passwordResetEmailSent => "Password reset email sent successfully";
+  String get currentPassword => 'Current Password';
 
   @override
-  String get loggingIn => "Logging in ...";
+  String get enterCurrentPassword => 'Enter current password';
 
   @override
-  String get loginSuccessful => "Login successful 🎉";
+  String get currentPasswordEmpty => 'Current password cannot be empty';
 
   @override
-  String get signingUp => "Signing up...";
+  String get passwordMustBeAtLeast6Characters => 'Password must be at least 6 characters';
 
   @override
-  String get addedToCart => "Added to cart";
+  String get newPassword => 'New Password';
 
   @override
-  String get enterGiftEmail => "Enter the email of whom you want to gift";
+  String get enterNewPassword => 'Enter new password';
 
   @override
-  String get confirmGift => "Confirm Gift";
+  String get newPasswordEmpty => 'New password cannot be empty';
 
   @override
-  String get areYouSureGift => "Are you sure you want to send a gift to";
+  String get newPasswordDifferent => 'New password must be different from current password';
 
   @override
-  String get sendingGiftTo => "Sending gift to";
+  String get confirmNewPassword => 'Confirm Password';
 
   @override
-  String get emailAlreadyInUse => "This email is already registered.";
+  String get reEnterNewPassword => 'Re-enter new password';
 
   @override
-  String get invalidEmail => "The email address is not valid.";
+  String get confirmPasswordEmpty => 'Confirm password cannot be empty';
 
   @override
-  String get weakPassword => "The password is too weak.";
+  String get sendingRequest => 'Sending your request ...';
 
   @override
-  String get noUserFoundForThatEmail => "No user found for that email.";
+  String get loggingIn => 'Logging in ...';
 
   @override
-  String get wrongPasswordProvided => "Wrong password provided.";
+  String get loginSuccessful => 'Login successful 🎉';
 
   @override
-  String get accountNotFound => "Account not found. Please, sign up.";
+  String get signingUp => 'Signing up...';
 
   @override
-  String get unknownErrorOccurred => "An unknown error occurred.";
+  String get addedToCart => 'Added to cart';
 
   @override
-  String get reauthenticationFailed => "Reauthentication failed.";
+  String get enterGiftEmail => 'Enter the email of whom you want to gift';
 
   @override
-  String get passwordChangedSuccessfully => "Password Changed Successfully!";
+  String get passwordResetEmailSent => 'Password reset email sent successfully!';
 
   @override
-  String get couldntUpdatePassword => "Couldn't update your password.";
+  String get emailCannotBeEmpty => 'Email cannot be empty';
 
   @override
-  String get pleaseSignInAgainBeforeChangingPassword =>
-      "Please sign in again before changing password.";
+  String get confirmGift => 'Confirm Gift';
 
   @override
-  String get updatePassword => "Update Password";
+  String get areYouSureGift => 'Are you sure you want to send a gift to';
 
   @override
-  String get updatePasswordDescription =>
-      "Change your current password to a new one.";
+  String get sendingGiftTo => 'Sending gift to';
 
   @override
-  String get LoggingOut => "Logging Out";
+  String get emailAlreadyInUse => 'This email is already registered.';
+
+  @override
+  String get invalidEmail => 'The email address is not valid.';
+
+  @override
+  String get weakPassword => 'The password is too weak.';
+
+  @override
+  String get noUserSignedIn => 'No user is currently signed in.';
+
+  @override
+  String get userNotFound => 'No user found for that email.';
+
+  @override
+  String get wrongPassword => 'Wrong password provided.';
+
+  @override
+  String get invalidCredential => 'Account not found. Please, sign up.';
+
+  @override
+  String get unknownError => 'An unknown error occurred.';
+
+  @override
+  String get passwordResetSent => 'Password reset email sent successfully.';
+
+  @override
+  String get reauthenticationFailed => 'Reauthentication failed.';
+
+  @override
+  String get currentPasswordIncorrect => 'The current password is incorrect.';
+
+  @override
+  String get passwordChangedSuccessfully => 'Password Changed Successfully!';
+
+  @override
+  String get couldNotUpdatePassword => 'Couldn\'t update your password.';
+
+  @override
+  String get requiresRecentLogin => 'Please sign in again before changing password.';
+
+  @override
+  String get loggingOut => 'Logging out ...';
+
+  @override
+  String get myGifts => '🎁 My Gifts';
+
+  @override
+  String get noGiftsYet => 'No gifts yet!';
+
+  @override
+  String get startSharingGifts => 'Start sharing the gifts!';
+
+  @override
+  String get errorLoadingGifts => 'Error loading gifts:';
+
+  @override
+  String get preparingYourGifts => 'Preparing your gifts...';
+
+  @override
+  String get noUserFoundForThatEmail => 'No user found for that email.';
+
+  @override
+  String get wrongPasswordProvided => 'Wrong password provided.';
+
+  @override
+  String get accountNotFound => 'Account not found.';
+
+  @override
+  String get pleaseSignInAgainBeforeChangingPassword => 'Please sign in again before changing your password.';
+
+  @override
+  String get unknownErrorOccurred => 'An unknown error occurred.';
+
+  @override
+  String get confirmAndPayGift => 'Confirm and Pay Gift';
+
+  @override
+  String get failedToSendGift => 'Failed to send gift.';
+
+  @override
+  String get giftSentSuccessfullyCartCleared => 'Gift sent successfully! Cart cleared.';
+
+  @override
+  String get invalidExpiryFormat => 'Invalid format. Use MM/YY or MM/YYYY.';
+
+  @override
+  String get cardExpired => 'Card expired.';
+
+  @override
+  String get expiryYearTooFar => 'Expiry year too far in the future.';
+
+  @override
+  String get cvcRequired => 'CVC is required.';
+
+  @override
+  String get invalidCvc => 'Invalid CVC. Must be 3 or 4 digits.';
+
+  @override
+  String get mmYY => 'MM/YY';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful';
+
+  @override
+  String get couldntFindTheUser => 'Couldn\'t find the user';
+
+  @override
+  String get cardNumberIsRequired => 'Card number is required.';
+
+  @override
+  String get cardNumberMustContainOnlyDigits => 'Card number must contain only digits.';
+
+  @override
+  String get invalidCardNumberLength => 'Invalid card number length.';
+
+  @override
+  String get onlyVisaOrMasterCard => 'Only Visa or MasterCard are accepted.';
+
+  @override
+  String get invalidCardNumber => 'Invalid card number.';
+
+  @override
+  String get qty => 'Qty: ';
+
+  @override
+  String get price => 'Price:';
+
+  @override
+  String get unknownTime => 'Unknown time';
+
+  @override
+  String get giftDetails => 'Gift Details';
+
+  @override
+  String get giftItems => 'Gift Items:';
+
+  @override
+  String get noItemsInGift => 'No items in this gift.';
+
+  @override
+  String get from => 'From';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get receivedOn => 'Received on';
+
+  @override
+  String get enjoyYourGift => 'Enjoy your gift!';
+
+  @override
+  String get swipeToDelete => 'Swipe an item to delete';
+
+  @override
+  String get cartIsEmpty => 'Cart is empty';
+
+  @override
+  String get unknownDate => 'Unknown date';
+
+  @override
+
+  String get allGiftsDeleted =>  'allGiftsDeleted';
+
+  @override
+
+  String get tapToClearNotifications => 'tapToClearNotifications';
 }

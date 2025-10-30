@@ -14,6 +14,14 @@ import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
 import "package:grabber_app/Services/Users/user_services.dart";
 
+import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
+import "package:grabber_app/Services/Verification/verification_service.dart";
+
+import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
+import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
+import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
+import "package:grabber_app/UI/gift/gift_page.dart";
+
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -34,7 +42,6 @@ import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 // Features (barrel files or grouped imports)
 import "package:grabber_app/UI/ui.dart";
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
@@ -42,11 +49,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
-
-
   runApp(
-
     StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
@@ -55,16 +58,51 @@ Future<void> main() async {
         }
 
         if (snapshot.hasData) {
+          final fireStore = FirebaseFirestore.instance;
+          final authProvider = FirebaseAuth.instance;
           final userServices = UserServices(snapshot.data!.uid);
+          final giftListenerService = GiftListenerService(
+            fireStore: fireStore,
+            authProvider: authProvider,
+          );
+          final sendGiftService = SendGiftService(
+            fireStore: fireStore,
+            authProvider: authProvider,
+          );
 
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
-              BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
+              BlocProvider(
+                create: (_) =>
+                    AuthBloc(authService: AuthService())..add(AppStarted()),
+              ),
+              BlocProvider(
+                create: (_) =>
+                    LocaleBloc(FirebaseFirestore.instance)
+                      ..add(InitialLangEvent()),
+              ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
-              BlocProvider(create: (_) => UserBloc(userServices: userServices)..add(const FetchUserData())),
-              BlocProvider(create: (_) => CartBloc(userServices)..add(LoadCartEvent())),
+              BlocProvider(
+                create: (_) =>
+                    UserBloc(userServices: userServices)
+                      ..add(const FetchUserData()),
+              ),
+              BlocProvider(
+                create: (_) => CartBloc(userServices)..add(LoadCartEvent()),
+              ),
               BlocProvider(create: (_) => ItemsBloc(FirestoreService())),
+
+              BlocProvider(
+                create: (_) => VerificationBloc(VerificationService()),
+              ),
+
+              BlocProvider(
+                create: (_) => GiftBloc(
+                  giftListenerService: giftListenerService,
+                  sendGiftService: sendGiftService,
+                ),
+              ),
+
               //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
@@ -73,18 +111,24 @@ Future<void> main() async {
           // If no user → only provide AuthBloc, theme, locale
           return MultiBlocProvider(
             providers: [
-              // BlocProvider(create: (_) => VerificationBloc(VerificationService())), 
-              BlocProvider(create: (_) => AuthBloc(authService: AuthService())..add(AppStarted())),
-              BlocProvider(create: (_) => LocaleBloc(FirebaseFirestore.instance)..add(InitialLangEvent())),
+              BlocProvider(
+                create: (_) =>
+                    AuthBloc(authService: AuthService())..add(AppStarted()),
+              ),
+              BlocProvider(
+                create: (_) =>
+                    LocaleBloc(FirebaseFirestore.instance)
+                      ..add(InitialLangEvent()),
+              ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
+              BlocProvider(create: (_) => VerificationBloc(VerificationService()),
+              ),
             ],
             child: const MyApp(),
           );
         }
       },
-
     ),
-
   );
 }
 
@@ -158,6 +202,7 @@ class MyApp extends StatelessWidget {
                   AppRoutes.language: (_) => const LanguagePage(),
                   AppRoutes.theme: (_) => const ThemePage(),
                   AppRoutes.aboutScreen: (_) => const AboutScreen(),
+                  AppRoutes.giftScreen: (_) => const GiftsPage(),
                 },
                 home: Container(
                   decoration: BoxDecoration(

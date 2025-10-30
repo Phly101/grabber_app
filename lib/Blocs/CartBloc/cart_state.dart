@@ -15,4 +15,8 @@ class CartState extends Equatable {
   num get totalPrice => items.fold(0, (sum, item) => sum + (item.price*item.quantity));
 
 }
-
+class CartCleared extends CartState {}
+class CartError extends CartState {
+  final String message;
+  const CartError(this.message);
+}
