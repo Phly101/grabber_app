@@ -65,10 +65,8 @@ dependencies:
   badges: ^3.1.2
   flutter_multi_formatter: ^2.13.10
   bloc_test: ^10.0.0
-  mockito: ^5.5.0
-
-  bloc_test: ^10.0.0
   mocktail: ^1.0.4
+
 
 
 
