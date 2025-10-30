@@ -53,7 +53,7 @@ class ProductListView extends StatelessWidget {
                 } else if (state is ItemsLoaded) {
                   final items = state.items;
                   return ListView.builder(
-                    key: const Key('product_listview'),
+                   key: const Key("product_listview"),
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: items.length,

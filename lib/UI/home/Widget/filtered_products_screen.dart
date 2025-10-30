@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
-import 'package:grabber_app/Services/FireStore/bloc/items_bloc.dart';
-import 'package:grabber_app/Services/FireStore/firestore_service.dart';
-import 'package:grabber_app/UI/home/Widget/home_files/product_card.dart';
+import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
+import "package:grabber_app/Services/FireStore/firestore_service.dart";
+import "package:grabber_app/UI/home/Widget/home_files/product_card.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
 
 class FilteredProductsScreen extends StatelessWidget {
