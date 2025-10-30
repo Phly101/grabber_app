@@ -258,6 +258,16 @@
   "swipeToDelete": "اسحب العنصر للحذف",
   "cartIsEmpty": "السلة فارغة",
   "unknownDate": "تاريخ غير معروف",
+  "description": "الوصف",
+  "addToCart": "إضافة للسلة",
+  "addedToCart": "تمت الإضافة للسلة",
+  "otherProducts": "منتجات أخرى",
+  "noProductsAvailable": "لا توجد منتجات متاح",
+  "errorLoadingProducts": "خطأ في تحميل المنتجات",
+  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة."
+}
+
   "allGiftsDeleted": "تم حذف جميع الهدايا والإشعارات!",
   "tapToClearNotifications": "اضغط لمسح الإشعارات"
 }
+

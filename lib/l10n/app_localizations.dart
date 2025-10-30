@@ -1636,8 +1636,47 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown date'**
   String get unknownDate;
+
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @addToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tO cart'**
+  String get addToCart;
+
+  /// No description provided for @otherProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Other products'**
+  String get otherProducts;
+
+  /// No description provided for @noProductsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No products available'**
+  String get noProductsAvailable;
+
+  /// No description provided for @errorLoadingProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading products'**
+  String get errorLoadingProducts;
+
+  /// No description provided for @aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness.
+  ///
+  /// In en, this message translates to:
+  /// **'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.'**
+  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness;
+
   String get allGiftsDeleted;
   String get tapToClearNotifications;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
