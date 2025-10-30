@@ -5,11 +5,11 @@ import "package:fluttertoast/fluttertoast.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
+import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/Utils/routes.dart";
 import "package:grabber_app/l10n/app_localizations.dart";
-import "../../Blocs/localization/app_locale_bloc.dart";
 import "package:badges/badges.dart" as badges;
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
@@ -79,13 +79,10 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
-    final isArabic = context.select<LocaleBloc, bool>(
-            (bloc) => bloc.state.langCode == "ar"
-    );
-
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
+    final blocTheme = context.read<AppThemeBloc>();
 
     final backgroundColor = colorScheme.surface;
     final cardColor = isDark ? AppColors.darkSurface : const Color(0xFFF5F5F5);
@@ -139,7 +136,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Product image
+
               Container(
                 width: double.infinity,
                 color: backgroundColor,
@@ -172,7 +169,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
               const SizedBox(height: 20),
 
-              // Details Card
+
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 padding: const EdgeInsets.all(20),
@@ -207,7 +204,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     const SizedBox(height: 10),
 
-                    //Price/Quantity
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -260,7 +257,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                     const SizedBox(height: 5),
 
-                    // Description
+
                     Text(
                       loc.description,
                       style: TextStyle(
@@ -291,7 +288,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                     const SizedBox(height: 15),
 
-                    // Other Products
+
                     Text(
                       loc.otherProducts,
                       style: TextStyle(
@@ -332,101 +329,103 @@ class _ProductDetailsState extends State<ProductDetails> {
                         final otherProducts = snapshot.data!;
 
                         return SizedBox(
-                          height: 80,
+                          height: 100,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: otherProducts.length,
                             itemBuilder: (context, index) {
                               final item = otherProducts[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProductDetails(product: item),
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProductDetails(product: item),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 200,
+
+                                    margin:
+                                    const EdgeInsets.symmetric(horizontal: 6),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: relatedCardColor,
+                                      borderRadius: BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: blocTheme.state.appTheme == "L" ? Colors.black.withValues(alpha: 0.6):Colors.grey,
+                                          blurRadius: 6,
+                                          offset: const Offset(0, 3),
+                                        ),
+                                      ],
                                     ),
-                                  );
-                                },
-                                child: Container(
-                                  width: 200,
-                                  margin:
-                                  const EdgeInsets.symmetric(horizontal: 6),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: relatedCardColor,
-                                    borderRadius: BorderRadius.circular(16),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: isDark
-                                            ? Colors.black.withAlpha(3)
-                                            : Colors.grey.withAlpha(1),
-                                        blurRadius: 6,
-                                        offset: const Offset(0, 3),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: CachedNetworkImage(
-                                          imageUrl: item["image_URL"],
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
-                                          placeholder: (context, url) =>
-                                          const Center(
-                                            child: SizedBox(
-                                              width: 25,
-                                              height: 25,
-                                              child:
-                                              CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                color: Color(0xFF4CAF50),
+                                    child: Row(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: CachedNetworkImage(
+                                            imageUrl: item["image_URL"],
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                            placeholder: (context, url) =>
+                                            const Center(
+                                              child: SizedBox(
+                                                width: 25,
+                                                height: 25,
+                                                child:
+                                                CircularProgressIndicator(
+                                                  strokeWidth: 2,
+                                                  color: Color(0xFF4CAF50),
+                                                ),
                                               ),
                                             ),
+                                            errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error, color: Colors.grey),
                                           ),
-                                          errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error, color: Colors.grey),
                                         ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              LocalizationHelper
-                                                  .localizedProductField(
-                                                item,
-                                                "title",
-                                                context,
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                LocalizationHelper
+                                                    .localizedProductField(
+                                                  item,
+                                                  "title",
+                                                  context,
+                                                ),
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                  color: textColor,
+                                                ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18,
-                                                color: textColor,
+                                              const SizedBox(height: 4),
+                                              Text(
+                                                "\$${item["price"]}",
+                                                style: const TextStyle(
+                                                  color: Color(0xFF4CAF50),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            const SizedBox(height: 4),
-                                            Text(
-                                              "\$${item["price"]}",
-                                              style: const TextStyle(
-                                                color: Color(0xFF4CAF50),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
@@ -438,7 +437,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                     const SizedBox(height: 24),
 
-                    // Add to cart button
+
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(

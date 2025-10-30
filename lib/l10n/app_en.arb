@@ -110,8 +110,6 @@
   "areYouSureYouWantToLogout": "Are you sure you want to log out?",
   "yes": "Yes",
   "no": "No",
-  "itunuoluwaAbidoye": "Itunuoluwa Abidoye",
-  "itunuoluwaHandle": "@Itunuoluwa",
   "more": "More",
   "scheduleDelivery": "Schedule Delivery",
   "timeSlots": "Time Slots",
@@ -236,15 +234,15 @@
   "cvcRequired": "CVC is required.",
   "invalidCvc": "Invalid CVC. Must be 3 or 4 digits.",
   "mmYY": "MM/YY",
-  "paymentSuccessful":"Payment Successful",
-  "couldntFindTheUser":"Couldn't find the user",
-  "cardNumberIsRequired":"Card number is required.",
-  "cardNumberMustContainOnlyDigits":"Card number must contain only digits.",
+  "paymentSuccessful": "Payment Successful",
+  "couldntFindTheUser": "Couldn't find the user",
+  "cardNumberIsRequired": "Card number is required.",
+  "cardNumberMustContainOnlyDigits": "Card number must contain only digits.",
   "invalidCardNumberLength": "Invalid card number length.",
   "onlyVisaOrMasterCard": "Only Visa or MasterCard are accepted.",
   "invalidCardNumber": "Invalid card number.",
   "qty": "Qty: ",
-  "price":"Price:",
+  "price": "Price:",
   "unknownTime": "Unknown time",
   "giftDetails": "Gift Details",
   "giftItems": "Gift Items:",
@@ -256,16 +254,13 @@
   "swipeToDelete": "Swipe an item to delete",
   "cartIsEmpty": "Cart is empty",
   "unknownDate": "Unknown date",
-
   "description": "Description",
   "addToCart": "Add to cart",
-  "addedToCart": "Added to cart",
+
   "otherProducts": "Other products",
   "noProductsAvailable": "No products available",
   "errorLoadingProducts": "Error loading products",
-  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness."
-}
-
+  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.",
   "allGiftsDeleted": "All gifts and notifications deleted!",
   "tapToClearNotifications": "Tap to clear notifications"
 }

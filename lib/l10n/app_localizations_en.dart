@@ -786,7 +786,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get description => 'Description';
 
   @override
-  String get addToCart => 'Add tO cart';
+  String get addToCart => 'Add to cart';
 
   @override
   String get otherProducts => 'Other products';
