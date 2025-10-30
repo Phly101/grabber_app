@@ -272,7 +272,10 @@
   "tapToClearNotifications": "Tap to clear notifications",
   "filterProducts": "filter products",
   "applyFilter": "apply filter",
-  "passwordChangedMsg": "Password Changed Successfully!"
+  "passwordChangedMsg": "Password Changed Successfully!",
+  "pleaseSelectQuantity": "Please select quantity first",
+  "itemAlreadyInCart": "Item already in cart with same quantity"
+
 
 }
 

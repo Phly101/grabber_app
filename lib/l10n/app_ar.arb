@@ -271,6 +271,8 @@
   "tapToClearNotifications": "اضغط لمسح الإشعارات",
   "filterProducts": "تصفية المنتجات",
   "applyFilter": "تطبيق التصفية",
-  "passwordChangedMsg": " تم تغيير كلمة المرور بنجاح!"
+  "passwordChangedMsg": " تم تغيير كلمة المرور بنجاح!",
+  "pleaseSelectQuantity": "الرجاء اختيار الكمية أولاً",
+  "itemAlreadyInCart": "المنتج موجود في السلة بنفس الكمية"
 }
 

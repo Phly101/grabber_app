@@ -1722,12 +1722,26 @@ abstract class AppLocalizations {
   /// **'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.'**
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness;
 
+
   String get allGiftsDeleted;
   String get tapToClearNotifications;
   String get  applyFilter;
   String get  filterProducts;
   String get  PasswordChangedSuccessfully;
 
+
+
+  /// No description provided for @pleaseSelectQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select quantity first'**
+  String get pleaseSelectQuantity;
+
+  /// No description provided for @itemAlreadyInCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Item already in cart with same quantity'**
+  String get itemAlreadyInCart;
 
 }
 

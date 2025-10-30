@@ -825,6 +825,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
 
 
+
   String get allGiftsDeleted =>  'allGiftsDeleted';
 
   @override
@@ -841,5 +842,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
 
   String get PasswordChangedSuccessfully => "Password Changed Successfully!";
+
+
+  @override
+  String get pleaseSelectQuantity => 'Please select quantity first';
+
+  @override
+  String get itemAlreadyInCart => 'Item already in cart with same quantity';
 
 }

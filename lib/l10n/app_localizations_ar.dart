@@ -825,6 +825,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.';
 
 
+
   String get allGiftsDeleted => 'تم حذف جميع الهدايا والإشعارات!';
 
   @override
@@ -842,5 +843,12 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
 
   String get PasswordChangedSuccessfully => " تم تغيير كلمة المرور بنجاح!";
+
+
+  @override
+  String get pleaseSelectQuantity => 'الرجاء اختيار الكمية أولاً';
+
+  @override
+  String get itemAlreadyInCart => 'المنتج موجود في السلة بنفس الكمية';
 
 }
