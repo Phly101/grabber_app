@@ -1,17 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:grabber_app/Blocs/CartBloc/cart_bloc.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:firebase_core/firebase_core.dart";
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:flutter_test/flutter_test.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
-import 'package:grabber_app/Blocs/localization/localization.dart';
-import 'package:grabber_app/Services/FireStore/bloc/items_bloc.dart';
-import 'package:grabber_app/Services/FireStore/firestore_service.dart';
-import 'package:grabber_app/UI/home/home_tab.dart';
-import 'package:grabber_app/l10n/app_localizations.dart';
-import 'package:integration_test/integration_test.dart';
-import '../../mocks/mock_user_services.dart';
+import "package:grabber_app/Blocs/localization/localization.dart";
+import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
+import "package:grabber_app/Services/FireStore/firestore_service.dart";
+import "package:grabber_app/UI/home/home_tab.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
+import "package:integration_test/integration_test.dart";
+import "../../mocks/mock_user_services.dart";
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

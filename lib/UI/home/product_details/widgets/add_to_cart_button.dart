@@ -24,7 +24,7 @@ class AddToCartButton extends StatelessWidget {
 
       if (quantity <= 0) {
         Fluttertoast.showToast(
-          msg: loc.pleaseSelectQuantity ?? "Please select quantity first",
+          msg: loc.pleaseSelectQuantity ,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
@@ -67,7 +67,7 @@ class AddToCartButton extends StatelessWidget {
           }
         } else {
           Fluttertoast.showToast(
-            msg: loc.itemAlreadyInCart ?? "Item already in cart with same quantity",
+            msg: loc.itemAlreadyInCart,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.white,
