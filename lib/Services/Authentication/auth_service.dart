@@ -178,7 +178,7 @@ class AuthService {
 
   //_____________________________________________________________________Shared preferences code
 
-  // Save user data in SharedPreferences
+  // Save user data in SharedPreferences function
   Future<void> saveUserLocally(User user) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool("isLoggedIn", true);
@@ -186,7 +186,7 @@ class AuthService {
     await prefs.setString("email", user.email ?? "");
   }
 
-  // Check if user is already logged in
+  // Check if user is already logged in function
   Future<bool> isUserLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
     final isLoggedIn = prefs.getBool("isLoggedIn") ?? false;

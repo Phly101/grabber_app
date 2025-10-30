@@ -40,9 +40,6 @@ class _ProfileTabState extends State<ProfileTab> {
         listener: (context, state) {
           if (state is UserInitial) {
             showToast(AppLocalizations.of(context)!.loadingProfileData);
-            // } else if (state is UserLoading) {
-            //   showToast(AppLocalizations.of(context)!.loadingProfileData);
-            // }
           } else if (state is UserUpdateError) {
             showToast(AppLocalizations.of(context)!.failedToLoadProfileData);
           }

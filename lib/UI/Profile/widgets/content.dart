@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_svg/svg.dart";
-import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/Profile/widgets/change_password_form.dart";
 import "package:grabber_app/UI/Profile/widgets/logout_dialog.dart";
@@ -72,15 +71,12 @@ class _ProfileContentState extends State<ProfileContent> {
                   ),
                   color: AppColors.black,
                 ),
-                // TODO: Replace static asset with user profile picture
+
               ),
             ),
           ),
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              // TODO: implement listener
-            },
-            child: ProfileItem(
+
+             ProfileItem(
               title: Text(
                 AppLocalizations.of(context)!.password,
                 style: const TextStyle(fontWeight: FontWeight.bold),
@@ -129,7 +125,7 @@ class _ProfileContentState extends State<ProfileContent> {
                 ),
               ),
             ),
-          ),
+
           ProfileItem(
             title: Text(AppLocalizations.of(context)!.phoneNumber),
             subtitle: BlocSelector<UserBloc, UserState, String>(
@@ -177,9 +173,7 @@ class _ProfileContentState extends State<ProfileContent> {
                 ),
               ),
             ),
-            onTap: () {
-              // TODO: Navigate to phone number update screen
-            },
+
           ),
 
           ProfileItem(

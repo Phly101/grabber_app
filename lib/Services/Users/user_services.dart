@@ -8,12 +8,7 @@ class UserServices {
     "users",
   );
 
-  // final uid = FirebaseAuth.instance.currentUser!.uid;
-
-  // String get uid => FirebaseAuth.instance.currentUser!.uid;
   UserServices(this.uid);
-
-  //CollectionReference get _cart1 => users.doc(uid).collection("cart");
 
   Stream<QuerySnapshot> getCart1() {
     return _cart.snapshots();

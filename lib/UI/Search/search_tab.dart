@@ -55,6 +55,7 @@ class _SearchTabState extends State<SearchTab> {
             child: Column(
               children: [
                 SearchBar(
+                  key: const Key("searchText"),
                   controller: searchController,
 
                   hintText: AppLocalizations.of(context)!.search,
@@ -66,6 +67,7 @@ class _SearchTabState extends State<SearchTab> {
                   trailing: [
                     if (searchText != "")
                       IconButton(
+                        key: const Key("clearButton"),
                         onPressed: () {
                           setState(() {
                             searchText = "";

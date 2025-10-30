@@ -19,8 +19,8 @@ class TableWidget extends StatelessWidget {
     return TableCalendar(
       locale: sharedPreferences?.getString("lang") ?? "en",
       daysOfWeekStyle: const DaysOfWeekStyle(
-        weekdayStyle: TextStyle(color: Colors.white), // Mon–Fri
-        weekendStyle: TextStyle(color: Colors.red), // Sat–Sun
+        weekdayStyle: TextStyle(color: Colors.white),
+        weekendStyle: TextStyle(color: Colors.red),
       ),
 
       calendarStyle: CalendarStyle(
@@ -30,9 +30,9 @@ class TableWidget extends StatelessWidget {
           color: theme.colorScheme.surface.withValues(alpha: 0.4),
         ),
         outsideTextStyle: const TextStyle(color: Colors.red),
-        // change grey to red
+
         disabledTextStyle: const TextStyle(color: Colors.grey),
-        // style disabled days
+
 
         selectedDecoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,

@@ -31,18 +31,6 @@ class SliderWidget extends StatelessWidget {
           builder: (BuildContext context, state) {
             if (state is ItemsLoading) {
               return const Center(child: CircularProgressIndicator());
-              // Shimmer(
-              //   gradient: LinearGradient(
-              //     colors: [
-              //       AppColors.primaryLightColor,
-              //       AppColors.secondaryLightColor,
-              //       AppColors.secondaryDarkColor,
-              //     ],
-              //     begin: Alignment.centerLeft,
-              //     end: Alignment.centerRight,
-              //   ),
-              //   child: CustomCardWidget(),
-              // );
             } else if (state is ItemsLoaded) {
               List<Map<String,dynamic>> sliderItems = state.items;
 

@@ -281,6 +281,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tuc => 'TUC';
 
   @override
+  String get filter_products => 'Filter Products';
+
+  @override
+  String get price_range => 'Price Range';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get apply_filter => 'Apply Filter';
+
+  @override
+  String get milk_egg => 'Milk & Egg';
+
+  @override
+  String get filtered_results => 'Filtered Results';
+
+  @override
+  String get no_products_match_filter => 'No products match your filter';
+
+  @override
+  String get error => 'Error';
+
+  @override
   String get rating48With287 => '4.8 (287)';
 
   @override
@@ -780,4 +804,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknownDate => 'Unknown date';
+
+  @override
+
+  String get description => 'Description';
+
+  @override
+  String get addToCart => 'Add to cart';
+
+  @override
+  String get otherProducts => 'Other products';
+
+  @override
+  String get noProductsAvailable => 'No products available';
+
+  @override
+  String get errorLoadingProducts => 'Error loading products';
+
+  @override
+  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
+
+
+
+  String get allGiftsDeleted =>  'allGiftsDeleted';
+
+  @override
+
+  String get tapToClearNotifications => 'tapToClearNotifications';
+
+  @override
+
+  String get applyFilter => "apply filter";
+
+  @override
+  String get filterProducts => "filter products";
+
+  @override
+
+  String get PasswordChangedSuccessfully => "Password Changed Successfully!";
+
+
+  @override
+  String get pleaseSelectQuantity => 'Please select quantity first';
+
+  @override
+  String get itemAlreadyInCart => 'Item already in cart with same quantity';
+
 }

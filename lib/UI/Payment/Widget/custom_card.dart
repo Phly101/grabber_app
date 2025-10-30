@@ -26,11 +26,13 @@ class CustomCard extends StatelessWidget {
             validator: (value) => validateCardExpiry(context,value ?? ""),
             hintText: loc.mmYY,
             keyboardType: TextInputType.number,
+            key: const Key("expiryDateField"),
           ),
         ),
         const SizedBox(width: 16),
         Expanded(
           child: CardInputField(
+            key: const Key("cvcField"),
             label: loc.cvc,
             controller: cvcController,
             validator: (value) => validateCardCVC(context,value ?? ""),

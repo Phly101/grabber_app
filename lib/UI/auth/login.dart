@@ -75,16 +75,6 @@ class _LoginState extends State<Login> {
             fontSize: 16.0,
           );
         } else if (state is AuthError) {
- //         final loc = AppLocalizations.of(context)!;
-//           final errorMessage = mapAuthErrorToMessage(loc, state.error);
-//           Fluttertoast.showToast(
-//             msg: errorMessage,
-//             toastLength: Toast.LENGTH_SHORT,
-//             gravity: ToastGravity.BOTTOM,
-//             backgroundColor: Colors.red,
-//             textColor: Colors.white,
-//             fontSize: 16.0,
-//           );
           Fluttertoast.showToast(
             msg: state.error,
             toastLength: Toast.LENGTH_SHORT,

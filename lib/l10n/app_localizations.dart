@@ -635,6 +635,54 @@ abstract class AppLocalizations {
   /// **'TUC'**
   String get tuc;
 
+  /// No description provided for @filter_products.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Products'**
+  String get filter_products;
+
+  /// No description provided for @price_range.
+  ///
+  /// In en, this message translates to:
+  /// **'Price Range'**
+  String get price_range;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @apply_filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Filter'**
+  String get apply_filter;
+
+  /// No description provided for @milk_egg.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk & Egg'**
+  String get milk_egg;
+
+  /// No description provided for @filtered_results.
+  ///
+  /// In en, this message translates to:
+  /// **'Filtered Results'**
+  String get filtered_results;
+
+  /// No description provided for @no_products_match_filter.
+  ///
+  /// In en, this message translates to:
+  /// **'No products match your filter'**
+  String get no_products_match_filter;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
   /// No description provided for @rating48With287.
   ///
   /// In en, this message translates to:
@@ -1636,6 +1684,65 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown date'**
   String get unknownDate;
+
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @addToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tO cart'**
+  String get addToCart;
+
+  /// No description provided for @otherProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Other products'**
+  String get otherProducts;
+
+  /// No description provided for @noProductsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No products available'**
+  String get noProductsAvailable;
+
+  /// No description provided for @errorLoadingProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading products'**
+  String get errorLoadingProducts;
+
+  /// No description provided for @aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness.
+  ///
+  /// In en, this message translates to:
+  /// **'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.'**
+  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness;
+
+
+  String get allGiftsDeleted;
+  String get tapToClearNotifications;
+  String get  applyFilter;
+  String get  filterProducts;
+  String get  PasswordChangedSuccessfully;
+
+
+
+  /// No description provided for @pleaseSelectQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select quantity first'**
+  String get pleaseSelectQuantity;
+
+  /// No description provided for @itemAlreadyInCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Item already in cart with same quantity'**
+  String get itemAlreadyInCart;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

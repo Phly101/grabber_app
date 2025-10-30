@@ -35,7 +35,7 @@ android {
 
 
 
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
 
 
 

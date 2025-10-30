@@ -7,6 +7,8 @@ import "package:grabber_app/UI/auth/login.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:page_transition/page_transition.dart";
 
+
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -15,12 +17,12 @@ class SplashScreen extends StatelessWidget {
     final themeBloc = context.read<AppThemeBloc>();
     final authBloc = context.read<AuthBloc>();
 
-    // Fire AppStarted to check persistent login
+
     authBloc.add(AppStarted());
     return BlocBuilder<AuthBloc,AuthState>(
       builder: (context, state) {
-        // While checking login, show splash
-        Widget nextScreen = const Login(); // default
+
+        Widget nextScreen = const Login();
         if (state is AuthAuthenticated) {
           nextScreen = const MainScreen();
         } else if (state is AuthUnauthenticated || state is AuthInitial) {

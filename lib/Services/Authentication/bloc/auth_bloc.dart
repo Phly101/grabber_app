@@ -9,8 +9,13 @@ part "auth_state.dart";
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthService authService;
+  final FirebaseAuth firebaseAuth;
 
-  AuthBloc({required this.authService}) : super(AuthInitial()) {
+  AuthBloc({
+    required this.authService,
+    FirebaseAuth? firebaseAuth,
+  })  : firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+        super(AuthInitial()) {
     on<AppStarted>(_onAppStarted);
     on<SignUpRequested>(_onSignUpRequested);
     on<SignInRequested>(_onSignInRequested);
@@ -25,8 +30,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
 
     final isLoggedIn = await authService.isUserLoggedIn();
-    if (isLoggedIn && FirebaseAuth.instance.currentUser != null) {
-      emit(AuthAuthenticated(FirebaseAuth.instance.currentUser!));
+    final currentUser = firebaseAuth.currentUser;
+    if (isLoggedIn && currentUser != null) {
+      emit(AuthAuthenticated(currentUser));
     } else {
       emit(AuthUnauthenticated());
     }
@@ -45,7 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       city: event.city,
     );
     if (result?.isSuccess ?? false) {
-      await authService.saveUserLocally(result!.user!); // persist login
+      await authService.saveUserLocally(result!.user!);
       emit(AuthAuthenticated(result.user!));
     } else {
       emit(AuthError(result?.error ?? "Unknown Error"));
@@ -62,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       password: event.password,
     );
     if (result.isSuccess) {
-      await authService.saveUserLocally(result.user!); // persist login
+      await authService.saveUserLocally(result.user!);
       emit(AuthAuthenticated(result.user!));
     } else {
       emit(AuthError(result.error ?? "Unknown error"));

@@ -15,14 +15,7 @@ class SummaryScreen extends StatefulWidget {
 }
 
 class _SummaryScreenState extends State<SummaryScreen> {
-  List<List> items = [
-    ["bananaBundle300g", 3.45, 3],
-    ["bellPeppers400g", 1.70, 2],
-    ["oranges500g", 6.30, 2],
-    ["purex250ml", 2.90, 1],
-    ["lemons1kg", 7.88, 1],
-    ["quadratiniBiscuit", 1.45, 1],
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -113,9 +106,3 @@ class _SummaryScreenState extends State<SummaryScreen> {
   }
 }
 
-// num subTotal(List<List> prices) {
-//   num subTotal = 0;
-//   for (int i = 0; i < prices.length; i++) {
-//     subTotal += prices[i][1] * prices[i][2];
-//   }
-//   return subTotal;

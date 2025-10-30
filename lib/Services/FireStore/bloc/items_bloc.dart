@@ -1,5 +1,6 @@
-import "package:bloc/bloc.dart";
+
 import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
 part "items_event.dart";
@@ -17,6 +18,19 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
           onData: (items) => ItemsLoaded(items),
           onError: (error, _) => ItemsError(error.toString()),
         );
+      } catch (e) {
+        emit(ItemsError(e.toString()));
+      }
+    });
+    on<FilterItems>((event, emit) async {
+      emit(ItemsLoading());
+      try {
+        final filteredItems = await firestoreService.getFilteredItems(
+          event.minPrice,
+          event.maxPrice,
+          event.selectedCategories,
+        );
+        emit(ItemsLoaded(filteredItems));
       } catch (e) {
         emit(ItemsError(e.toString()));
       }

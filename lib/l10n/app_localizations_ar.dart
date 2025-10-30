@@ -206,7 +206,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get seeAll => 'عرض الكل';
 
   @override
-  String get fruits => 'فاكهة';
+  String get fruits => 'فواكه';
 
   @override
   String get milkAndEgg => 'لبن وبيض';
@@ -215,7 +215,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get beverages => 'مشروبات';
 
   @override
-  String get laundry => 'منظفات';
+  String get laundry => 'ملابس';
 
   @override
   String get vegetables => 'خضروات';
@@ -251,7 +251,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pawPaw => 'بابايا';
 
   @override
-  String get detergent => 'منظف';
+  String get detergent => 'منظفات';
 
   @override
   String get biscuit => 'بسكويت';
@@ -279,6 +279,30 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tuc => 'توك';
+
+  @override
+  String get filter_products => 'تصفية المنتجات';
+
+  @override
+  String get price_range => 'نطاق السعر';
+
+  @override
+  String get category => 'الفئة';
+
+  @override
+  String get apply_filter => 'تطبيق التصفية';
+
+  @override
+  String get milk_egg => 'حليب وبيض';
+
+  @override
+  String get filtered_results => 'النتائج المفلترة';
+
+  @override
+  String get no_products_match_filter => 'لا توجد منتجات تطابق التصفية';
+
+  @override
+  String get error => 'خطأ';
 
   @override
   String get rating48With287 => '٤٫٨ (٢٨٧)';
@@ -599,7 +623,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signingUp => 'جاري إنشاء الحساب...';
 
   @override
-  String get addedToCart => 'تمت الإضافة إلى السلة';
+  String get addedToCart => 'تمت الإضافة للسلة';
 
   @override
   String get enterGiftEmail => 'أدخل البريد الإلكتروني للشخص الذي تريد إهداؤه';
@@ -780,4 +804,51 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unknownDate => 'تاريخ غير معروف';
+
+  @override
+
+  String get description => 'الوصف';
+
+  @override
+  String get addToCart => 'إضافة للسلة';
+
+  @override
+  String get otherProducts => 'منتجات أخرى';
+
+  @override
+  String get noProductsAvailable => 'لا توجد منتجات متاح';
+
+  @override
+  String get errorLoadingProducts => 'خطأ في تحميل المنتجات';
+
+  @override
+  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.';
+
+
+
+  String get allGiftsDeleted => 'تم حذف جميع الهدايا والإشعارات!';
+
+  @override
+
+  String get tapToClearNotifications =>'اضغط لمسح الإشعارات';
+
+  @override
+
+  String get applyFilter => "تطبيق التصفية";
+
+  @override
+
+  String get filterProducts => "تصفية المنتجات";
+
+  @override
+
+  String get PasswordChangedSuccessfully => " تم تغيير كلمة المرور بنجاح!";
+
+
+  @override
+  String get pleaseSelectQuantity => 'الرجاء اختيار الكمية أولاً';
+
+  @override
+  String get itemAlreadyInCart => 'المنتج موجود في السلة بنفس الكمية';
+
 }
