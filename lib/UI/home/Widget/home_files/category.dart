@@ -41,6 +41,7 @@ class HomeCategory extends StatelessWidget {
               );
             } else if (state is ItemsLoaded) {
               return ListView.builder(
+                key: const Key("category_listview"),
                 scrollDirection: Axis.horizontal,
                 itemCount: state.items.length,
                 itemBuilder: (context, index) {
@@ -52,38 +53,42 @@ class HomeCategory extends StatelessWidget {
                   );
                   final String key = category["category"]?? "";
                   final String imageUrl = category["image_URL"] ?? "";
-                  return InkWell(
-                    onTap: () => onCategoryTap(key),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5,
-                        horizontal: 11,
-                      ),
-                      child: Column(
-                        children: [
-                          ClipOval(
-                            child: CachedNetworkImage(
-                              imageUrl: imageUrl,
-                              placeholder: (context, url) => const Center(
-                                child: CircularProgressIndicator(),
+                  return Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      key: Key("${key}_category"),
+                      onTap: () => onCategoryTap(key),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5,
+                          horizontal: 11,
+                        ),
+                        child: Column(
+                          children: [
+                            ClipOval(
+                              child: CachedNetworkImage(
+                                imageUrl: imageUrl,
+                                placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                fit: BoxFit.cover,
+                                width: 80,
+                                height: 80,
                               ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              fit: BoxFit.cover,
-                              width: 80,
-                              height: 80,
                             ),
-                          ),
-                          const SizedBox(height: 11),
-                          Text(
-                            LocalizationHelper.getString(context, title),
-                            style: theme.textTheme.bodyLarge!.copyWith(
-                              color: themeBloc.state.appTheme == "L"
-                                  ? AppColors.textButtonColor
-                                  : AppColors.white,
+                            const SizedBox(height: 11),
+                            Text(
+                              LocalizationHelper.getString(context, title),
+                              style: theme.textTheme.bodyLarge!.copyWith(
+                                color: themeBloc.state.appTheme == "L"
+                                    ? AppColors.textButtonColor
+                                    : AppColors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
