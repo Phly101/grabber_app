@@ -782,6 +782,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unknownDate => 'تاريخ غير معروف';
 
   @override
+
   String get description => 'الوصف';
 
   @override
@@ -798,4 +799,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.';
+
+
+  String get allGiftsDeleted => 'تم حذف جميع الهدايا والإشعارات!';
+
+  @override
+
+  String get tapToClearNotifications =>'اضغط لمسح الإشعارات';
+
 }

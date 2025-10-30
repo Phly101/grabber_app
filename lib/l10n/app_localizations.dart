@@ -1637,6 +1637,7 @@ abstract class AppLocalizations {
   /// **'Unknown date'**
   String get unknownDate;
 
+
   /// No description provided for @description.
   ///
   /// In en, this message translates to:
@@ -1672,6 +1673,10 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.'**
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness;
+
+  String get allGiftsDeleted;
+  String get tapToClearNotifications;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

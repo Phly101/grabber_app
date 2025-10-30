@@ -49,12 +49,14 @@ class BuildProductCard extends StatelessWidget {
                       placeholder: (context, url) => const Center(
                         child: CircularProgressIndicator(),
                       ),
+
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                       fit: BoxFit.fill,
                       width: 200,
                       height: 150,
                     ),
+
                   ),
                 ),
                 Positioned(
