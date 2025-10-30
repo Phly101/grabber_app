@@ -780,4 +780,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknownDate => 'Unknown date';
+
+  @override
+
+  String get allGiftsDeleted =>  'allGiftsDeleted';
+
+  @override
+
+  String get tapToClearNotifications => 'tapToClearNotifications';
 }

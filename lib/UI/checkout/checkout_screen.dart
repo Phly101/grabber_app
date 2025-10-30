@@ -4,6 +4,7 @@ import "package:grabber_app/UI/checkout/Model/InvoiceAPI/pdf_api.dart";
 import "package:grabber_app/UI/checkout/widgets/checkout_body.dart";
 import "../../../l10n/app_localizations.dart";
 import "Bloc/invoice_bloc.dart";
+import "Model/InvoiceRepository/invoice_repository.dart";
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -20,7 +21,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
 
     return BlocProvider(
-      create: (context) => InvoiceBloc(),
+      create: (context) => InvoiceBloc(InvoiceRepository()),
       child: BlocConsumer<InvoiceBloc, InvoiceState>(
         listener: (context, state) {
           if (state is InvoiceError) {

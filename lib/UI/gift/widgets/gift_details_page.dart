@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Services/sendGift/Models/gift_model.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/build_info_tile.dart";
@@ -12,7 +13,7 @@ class GiftDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loc=AppLocalizations.of(context)!;
+    final loc = AppLocalizations.of(context)!;
     String translatedMessage;
     if (gift.message == "enjoyYourGift") {
       translatedMessage = loc.enjoyYourGift;
@@ -43,18 +44,38 @@ class GiftDetailsPage extends StatelessWidget {
                   color: AppColors.primaryLightColor,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.card_giftcard,
-                  size: 60,
+                child: const FaIcon(
+                  FontAwesomeIcons.gift,
                   color: AppColors.primaryGreen,
+                  size: 55,
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            BuildInfoTile(context: context, icon: Icons.person_outline, label: loc.from, value: gift.senderName),
-            BuildInfoTile(context: context, icon: Icons.email_outlined, label: loc.email, value: gift.senderEmail),
-            BuildInfoTile(context: context, icon: Icons.message_outlined, label: loc.message, value: translatedMessage),
-            BuildInfoTile(context: context, icon: Icons.calendar_today_outlined, label: loc.receivedOn, value: date),
+            BuildInfoTile(
+              context: context,
+              icon: Icons.person_outline,
+              label: loc.from,
+              value: gift.senderName,
+            ),
+            BuildInfoTile(
+              context: context,
+              icon: Icons.email_outlined,
+              label: loc.email,
+              value: gift.senderEmail,
+            ),
+            BuildInfoTile(
+              context: context,
+              icon: Icons.message_outlined,
+              label: loc.message,
+              value: translatedMessage,
+            ),
+            BuildInfoTile(
+              context: context,
+              icon: Icons.calendar_today_outlined,
+              label: loc.receivedOn,
+              value: date,
+            ),
             const Divider(height: 40, thickness: 1),
             Text(
               loc.giftItems,
@@ -90,7 +111,12 @@ class GiftDetailsPage extends StatelessWidget {
                   final int itemQuantity = item["quantity"] ?? 1;
                   final String itemPrice = item["price"].toString();
 
-                  return ContentOfDetailsPage(imageUrl: imageUrl, itemName: itemName, itemQuantity: itemQuantity, itemPrice: itemPrice);
+                  return ContentOfDetailsPage(
+                    imageUrl: imageUrl,
+                    itemName: itemName,
+                    itemQuantity: itemQuantity,
+                    itemPrice: itemPrice,
+                  );
                 },
               ),
           ],
