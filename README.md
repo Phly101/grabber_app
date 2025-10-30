@@ -89,6 +89,15 @@
 
 
 # License:
+## 📄 Licenses
+
+This project uses several open-source packages.  
+All licenses for third-party dependencies are included in the [LICENSES.txt](./LICENSES.txt) file.
+
+### Main License
+This project itself is licensed under the **MIT License** (or whichever license you choose).
+
+See the [LICENSES.txt](./LICENSES.txt) file for details on third-party package licenses.
 
 
 
