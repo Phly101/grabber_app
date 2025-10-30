@@ -4,6 +4,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Services/Authentication/bloc/auth_bloc.dart";
 import "package:grabber_app/UI/auth/login.dart";
+import "package:grabber_app/UI/home/home_tab.dart";
 import "package:grabber_app/UI/main_app/main_screen.dart";
 import "package:page_transition/page_transition.dart";
 
