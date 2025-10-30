@@ -1,6 +1,6 @@
-import 'package:grabber_app/Blocs/CartBloc/cart_item_model.dart';
-import 'package:grabber_app/Services/Users/user_services.dart';
-import 'package:mockito/mockito.dart';
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
+import "package:grabber_app/Services/Users/user_services.dart";
+import "package:mockito/mockito.dart";
 
 class MockUserServices extends Mock implements UserServices {
   @override
