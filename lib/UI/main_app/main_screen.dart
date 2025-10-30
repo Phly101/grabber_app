@@ -10,6 +10,7 @@ import "package:grabber_app/UI/Profile/profile_tab.dart";
 import "package:grabber_app/UI/Search/search_tab.dart";
 import "package:grabber_app/UI/Settings/drawer/app_drawer.dart";
 import "package:grabber_app/UI/gift/gift_page.dart";
+import "package:grabber_app/UI/home/Widget/filter_drawer.dart";
 import "package:grabber_app/UI/home/home_tab.dart";
 import "package:bottom_navbar_with_indicator/bottom_navbar_with_indicator.dart";
 import "package:grabber_app/Utils/routes.dart";
@@ -46,84 +47,85 @@ class _MainScreenState extends State<MainScreen> {
       appBar: selectedIndex == 1
           ? null
           : AppBar(
-              toolbarHeight: 120,
-              leading: Center(
-                child: FaIcon(
-                  FontAwesomeIcons.motorcycle,
-                  color: theme.colorScheme.onPrimary,
-                ),
-              ),
-              title: themeBloc.state.appTheme == "L"
-                  ? Image.asset("Assets/Images/Grabber1.png")
-                  : Image.asset("Assets/Images/Grabber.png"),
+        toolbarHeight: 120,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.filter_list,
+            size: 28,
+          ),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
 
-              actions: [
-                BlocBuilder<GiftBloc, SendGiftState>(
-                  builder: (context, state) {
-                    int notificationCount = 0;
+          },
+        ),
+        title: themeBloc.state.appTheme == "L"
+            ? Image.asset("Assets/Images/Grabber1.png")
+            : Image.asset("Assets/Images/Grabber.png"),
+        actions: [
+          BlocBuilder<GiftBloc, SendGiftState>(
+            builder: (context, state) {
+              int notificationCount = 0;
 
-                    if (state is GiftStreamUpdated) {
-                      notificationCount = state.gifts.length;
-                    } else if (state is NotificationsLoaded) {
-                      notificationCount = state.notifications.length;
-                    }
+              if (state is GiftStreamUpdated) {
+                notificationCount = state.gifts.length;
+              } else if (state is NotificationsLoaded) {
+                notificationCount = state.notifications.length;
+              }
 
-                    return IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => BlocProvider.value(
-                              value: context.read<GiftBloc>(),
-                              child: const GiftsPage(),
-                            ),
-                          ),
-                        );
-                      },
-                      icon: badges.Badge(
-                        badgeContent: Text(
-                          notificationCount.toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                        showBadge: notificationCount > 0,
-                        child: FaIcon(
-                          FontAwesomeIcons.bell,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
+              return IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<GiftBloc>(),
+                        child: const GiftsPage(),
                       ),
-                    );
-                  },
+                    ),
+                  );
+                },
+                icon: badges.Badge(
+                  badgeContent: Text(
+                    notificationCount.toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                  showBadge: notificationCount > 0,
+                  child: FaIcon(
+                    FontAwesomeIcons.bell,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
-                const SizedBox(width: 10),
-                BlocSelector<CartBloc, CartState, int>(
-                  selector: (state) => state.totalItems,
-                  builder: (context, totalItems) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: IconButton(
-                        icon: badges.Badge(
-                          badgeContent: Text(
-                            totalItems.toString(),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                          showBadge: totalItems > 0,
-                          child: FaIcon(
-                            FontAwesomeIcons.cartShopping,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.cart);
-                        },
-                      ),
-                    );
-                  },
+              );
+            },
+          ),
+          const SizedBox(width: 10),
+          BlocSelector<CartBloc, CartState, int>(
+            selector: (state) => state.totalItems,
+            builder: (context, totalItems) {
+              return IconButton(
+                icon: badges.Badge(
+                  badgeContent: Text(
+                    totalItems.toString(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  showBadge: totalItems > 0,
+                  child: FaIcon(
+                    FontAwesomeIcons.cartShopping,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
-              ],
-            ),
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoutes.cart);
+                },
+              );
+            },
+          ),
+        ],
+      ),
+
 
       body: tabs[selectedIndex],
 
@@ -180,7 +182,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-
+      drawer: const FilterDrawer(),
       endDrawer: const AppDrawer(),
     );
   }
