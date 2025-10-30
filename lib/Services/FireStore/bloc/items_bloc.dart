@@ -1,5 +1,6 @@
-import "package:bloc/bloc.dart";
+
 import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 
 part "items_event.dart";

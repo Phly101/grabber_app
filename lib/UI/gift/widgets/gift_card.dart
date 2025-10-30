@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:grabber_app/Services/sendGift/Models/gift_model.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/UI/gift/widgets/gift_details_page.dart";
@@ -12,7 +13,7 @@ class GiftCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loc=AppLocalizations.of(context)!;
+    final loc = AppLocalizations.of(context)!;
     String translatedMessage;
     if (gift.message == "enjoyYourGift") {
       translatedMessage = loc.enjoyYourGift;
@@ -25,9 +26,11 @@ class GiftCard extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       elevation: 4,
-      color: Theme.of(context).cardTheme.color, // Use theme card color
+      color: Theme.of(context).cardTheme.color,
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -44,15 +47,11 @@ class GiftCard extends StatelessWidget {
                 width: 56,
                 height: 56,
                 decoration: const BoxDecoration(
-                  color: AppColors.primaryLightColor, // Light green background
+                  color: AppColors.primaryLightColor,
                   shape: BoxShape.circle,
                 ),
                 child: const Center(
-                  child: Icon(
-                    Icons.card_giftcard,
-                    size: 32,
-                    color: AppColors.primaryGreen, // Primary green icon
-                  ),
+                  child: FaIcon(FontAwesomeIcons.gift,color: AppColors.primaryGreen,),
                 ),
               ),
               const SizedBox(width: 16),
@@ -83,9 +82,12 @@ class GiftCard extends StatelessWidget {
                       child: Text(
                         date,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withValues(alpha: 0.6),
+                          color:
+                              Theme.of(
+                                context,
+                              ).colorScheme.onSurface.withValues(
+                                alpha: 0.6,
+                              ),
                         ),
                       ),
                     ),
@@ -96,6 +98,8 @@ class GiftCard extends StatelessWidget {
           ),
         ),
       ),
+
+
     );
   }
 }
