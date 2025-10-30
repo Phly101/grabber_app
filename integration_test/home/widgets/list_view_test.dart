@@ -26,7 +26,6 @@ void main() {
   late MockUserServices mockUserServices;
 
   setUp(() async {
-    await Firebase.initializeApp();
     final firestore = FirebaseFirestore.instance;
     mockUserServices = MockUserServices();
 
