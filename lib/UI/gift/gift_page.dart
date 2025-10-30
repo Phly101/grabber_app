@@ -87,7 +87,7 @@ class _GiftsPageState extends State<GiftsPage> {
                   },
                 ),
                 Align(
-                  alignment: AlignmentGeometry.bottomCenter,
+                  //alignment: AlignmentGeometry.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: BlocListener<GiftBloc, SendGiftState>(

@@ -1,10 +1,5 @@
 part of "verification_bloc.dart";
 
-// @immutable
-// sealed class VerficationState {}
-//
-// final class VerficationInitial extends VerficationState {}
-
 abstract class VerificationState extends Equatable{
   @override
   List<Object?> get props => [];

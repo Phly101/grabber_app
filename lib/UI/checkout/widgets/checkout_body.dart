@@ -7,10 +7,6 @@ import "package:grabber_app/UI/Cart/view/Widgets/bottom_drawer.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/customer_model.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/invoice_data.dart";
 import "package:grabber_app/UI/checkout/Model/InvoiceModel/supplier_model.dart";
-
-// import "package:grabber_app/UI/checkout/ViewModel/invoice_bloc.dart";
-// import "package:grabber_app/UI/checkout/ViewModel/invoice_event.dart";
-
 import "package:grabber_app/UI/checkout/widgets/delivery_option_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_switch_tile.dart";
 import "package:grabber_app/UI/checkout/widgets/key_value_tile.dart";

@@ -42,7 +42,6 @@ class AboutApp extends StatelessWidget {
                       AssetImage("Assets/Icons/Heart.png"),
                       color: Colors.red,
                     ),
-                    // TODO: Replace static asset with a proper app-related icon
                   ),
                 ),
               ),
