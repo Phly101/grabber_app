@@ -16,7 +16,6 @@ void main(){
     verificationBloc.close();
   });
   group("VerificationBloc Tests",(){
-    //1)Test:send verification email (success)
     blocTest<VerificationBloc, VerificationState>(
       "emits [Loading, EmailSent, EmailCooldown, Initial] when SendVerificationEmail succeeds",
       build: () {
@@ -32,7 +31,7 @@ void main(){
         isA<VerficationInitial>(),
       ],
     );
-    //2)Test:send verification email (failure)
+
     blocTest<VerificationBloc, VerificationState>(
       "emits [Loading, Error] when SendVerificationEmail throws",
       build: () {
