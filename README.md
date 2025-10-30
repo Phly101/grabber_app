@@ -10,7 +10,7 @@
 ### Basel EL Rafei 
 ### Mark Ayman
 ### Marian Makram
-### Mariana Essam
+### Marina Essam
 ### Martina Wageeh
 ### Simon Abd El Malak.
 
@@ -28,15 +28,15 @@
 ## Team members:
 ### Mark Ayman
 ### Marian Makram
-### Mariana Essam
+### Marina Essam
 ### Martina Wageeh
 ### Simon Abd El Malak.
 
 # Phase 1 Responsibilites:
 ## UI Phase: 
 ### Basel EL Rafei: initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen, about app screen, schedule screen and order summary screen in this phase.
-### Marian Makram And Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
-### Marian Makram Added UI to the Checout screen. 
+### Marian Makram & Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
+### Marian Makram Added UI to the Checkout screen. 
 ### Simon Abd EL Malak: implemented the UI of the login and the sign up screen.
 ### Marina Essam: did the UI of search screen as well as the check out screen.
 ### Mark Ayman: did Cart,settings,profile screens.
@@ -49,26 +49,40 @@
 ### Marian Makram: Firstore database (SLider, categories, products) and fetching into UI.
 ### Simon Abd EL Malak: Firstore database(loaclization english & arabic) and Crud functions of cart.
 ### Martina Wageeh: Verification.
-### Marina Essam: Fetching user data into profile UI.
+### Marina Essam: Fetching user data into profile UI and update user data.
 
 # Phase 3 Responsibilites:
 ## State Management phase:
 ### Basel El Rafei: Theme Bloc, AuthBloc, Invoice Bloc.
 ### Mark Ayman & Basel El Rafei: sharing Bloc.
-### Mark Ayman & Martina Wageeh : Cart Bloc.
+### Mark Ayman & Martina Wageeh: Cart Bloc.
 ### Simon Abd EL Malak: create/update/delete functions in CartBloc.
 ### Martina Wageeh: Verfication Bloc.
-### Mark Ayman:  Firstore Bloc. 
-### Marian Makram Locale Bloc.
-### Mark Ayman & Simon Abd EL Malak: Sharing Cart Bloc.
+### Mark Ayman:  Firstore Bloc, Sharing Cart Bloc. 
+### Marian Makram: Locale Bloc.
 ### Marina Essam: User Bloc.
 
 # Phase 4 Responsibilites:
-## Unit Testing phase: Under Discussion.
+## Unit Testing phase: 
+### Basel EL Rafei: Auth_Bloc, Theme_Bloc.
+### Mark Ayman: Send_Gift_BLoc, FireStore_Bloc. 
+### Marian Makram: locale_bloc.
+### Marina Essam: Users_bloc.
+### Martina Wageeh: Verification_bloc, Cart_Bloc.
+### Simon Abd El Malak: Invoice_bloc.
+
 
 
 # Phase 5 Responsibilites:
-## Final phase: Under Discussion.
+## Final phase: 
+ ## Integration Testing phase: 
+   ### Basel EL Rafei: Pyament.
+   ### Marian Makram: Home.
+   ### Marina Essam: checkout.
+   ### Martina Wageeh: Home.
+   ### Simon Abd El Malak: login, sign up.
+
+## Deployment: under disscusion.
 
 
 
