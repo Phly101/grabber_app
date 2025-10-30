@@ -12,16 +12,16 @@ final class AuthStart extends AuthState {}
 
 final class AuthLoading extends AuthState {}
 
-// Loading for sign-in
+
 final class AuthSignInLoading extends AuthState {}
-// Loading for sign-out
+
 final class AuthSignOutLoading extends AuthState {}
 
-// Loading for sign-up
+
 final class AuthSignUpLoading extends AuthState {}
 final class AuthUpdatePasswordLoading extends AuthState {}
 
-// Loading for forgot-password
+
 final class AuthForgotPasswordLoading extends AuthState {}
 
 final class AuthAuthenticated extends AuthState {

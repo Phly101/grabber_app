@@ -51,7 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       city: event.city,
     );
     if (result?.isSuccess ?? false) {
-      await authService.saveUserLocally(result!.user!); // persist login
+      await authService.saveUserLocally(result!.user!);
       emit(AuthAuthenticated(result.user!));
     } else {
       emit(AuthError(result?.error ?? "Unknown Error"));
@@ -68,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       password: event.password,
     );
     if (result.isSuccess) {
-      await authService.saveUserLocally(result.user!); // persist login
+      await authService.saveUserLocally(result.user!);
       emit(AuthAuthenticated(result.user!));
     } else {
       emit(AuthError(result.error ?? "Unknown error"));

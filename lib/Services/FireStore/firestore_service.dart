@@ -21,13 +21,13 @@ class FirestoreService {
       List<String> categories,
       ) async {
     Query<Map<String, dynamic>> q =
-    FirebaseFirestore.instance.collection('products');
+    FirebaseFirestore.instance.collection("products");
     q = q
-        .where('price', isGreaterThanOrEqualTo: minPrice)
-        .where('price', isLessThanOrEqualTo: maxPrice);
+        .where("price", isGreaterThanOrEqualTo: minPrice)
+        .where("price", isLessThanOrEqualTo: maxPrice);
 
     if (categories.isNotEmpty) {
-      q = q.where('category', whereIn: categories);
+      q = q.where("category", whereIn: categories);
     }
     final snapshot = await q.get();
     return snapshot.docs.map((doc) {

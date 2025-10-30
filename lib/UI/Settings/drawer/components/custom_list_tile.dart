@@ -32,7 +32,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // final blocTheme =context.read<AppThemeBloc>();
+
 
     return Container(
       decoration: BoxDecoration(

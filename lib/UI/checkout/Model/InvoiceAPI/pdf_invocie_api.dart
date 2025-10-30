@@ -28,7 +28,7 @@ class PdfInvoiceApi {
     return PdfApi.saveDocument(name: "my_invoice.pdf", pdf: pdf);
   }
 
-  /// ---------- HEADER ----------
+  // ---------- HEADER ----------
   static pw.Widget buildHeader(InvoiceData invoice) => pw.Column(
     crossAxisAlignment: pw.CrossAxisAlignment.start,
     children: [
@@ -105,7 +105,7 @@ class PdfInvoiceApi {
     ],
   );
 
-  /// ---------- TITLE ----------
+  // ---------- TITLE ----------
   static pw.Widget buildTitle(InvoiceData invoice) => pw.Column(
     children: [
       pw.Text(
@@ -121,7 +121,7 @@ class PdfInvoiceApi {
     ],
   );
 
-  /// ---------- TABLE ----------
+  // ---------- TABLE ----------
   static pw.Widget buildInvoice(InvoiceData invoice) {
     final headers = [
       "Description",
@@ -159,7 +159,7 @@ class PdfInvoiceApi {
     );
   }
 
-  /// ---------- TOTALS ----------
+  // ---------- TOTALS ----------
   static pw.Widget buildTotal(InvoiceData invoice) {
     double netTotal = 0.0;
 
@@ -215,7 +215,7 @@ class PdfInvoiceApi {
     );
   }
 
-  /// ---------- HELPERS ----------
+
   static pw.Widget buildText({
     required String title,
     required String value,

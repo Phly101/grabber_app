@@ -9,11 +9,11 @@ class GradientWidgetContainer extends StatelessWidget {
   final Widget? child;
   final EdgeInsetsGeometry? padding;
   final BoxShadow? boxShadow;
-  final LinearGradient? gradient; // optional override gradient
-  final Color? solidColor; // optional override solid color
+  final LinearGradient? gradient;
+  final Color? solidColor;
   final bool? enableGradient;
   final AlignmentGeometry? begin;
-  final AlignmentGeometry? end; // if false => force solid
+  final AlignmentGeometry? end;
   final BoxDecoration? decoration;
   final BorderRadiusGeometry? borderRadiusGeometry;
 
@@ -35,7 +35,7 @@ class GradientWidgetContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppThemeBloc, AppThemeState>(
       builder: (context, state) {
-        // default theme-based gradient
+
         final defaultGradient = (state.appTheme == "L")
             ?  LinearGradient(
                 colors: [
@@ -56,7 +56,7 @@ class GradientWidgetContainer extends StatelessWidget {
                 end: end ?? Alignment.centerRight,
               );
 
-        // default theme-based solid color
+
         final defaultSolid = (state.appTheme == "L")
             ? Colors.white
             : AppColors.darkSurface;
