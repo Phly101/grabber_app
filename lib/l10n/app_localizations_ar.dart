@@ -840,7 +840,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get filterProducts => "تصفية المنتجات";
 
   @override
-  // TODO: implement PasswordChangedSuccessfully
+
   String get PasswordChangedSuccessfully => " تم تغيير كلمة المرور بنجاح!";
 
 }
