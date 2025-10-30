@@ -64,11 +64,7 @@
   "paymentMethod": "Payment method",
   "placeOrder": "Place Order",
   "seeAll": "See All",
-  "fruits": "Fruits",
   "milkAndEgg": "Milk & egg",
-  "beverages": "Beverages",
-  "laundry": "Laundry",
-  "vegetables": "Vegetables",
   "banana": "Banana",
   "pepper": "Pepper",
   "orange": "Orange",
@@ -79,8 +75,6 @@
   "mango": "Mango",
   "grapes": "Grapes",
   "pawPaw": "Paw Paw",
-  "detergent": "Detergent",
-  "biscuit": "Biscuit",
   "purex": "Purex",
   "varnish": "Varnish",
   "tide": "Tide",
@@ -92,7 +86,7 @@
   "filter_products": "Filter Products",
   "price_range": "Price Range",
   "category": "Category",
-  "apply_filter": "Apply Filter",
+
   "beverages": "Beverages",
   "detergent": "Detergent",
   "vegetables": "Vegetables",
@@ -114,7 +108,7 @@
   "payWithCard": "Pay with card",
   "payment": "Payment",
   "cardNumber": "Card number",
-  "confirmAndPay49": "Confirm and Pay ($49.00)",
+  "confirmAndPay49": "Confirm and Pay",
   "aboutApp": "About App",
   "email": "Email",
   "userExample": "user@example.com",
@@ -270,12 +264,15 @@
   "unknownDate": "Unknown date",
   "description": "Description",
   "addToCart": "Add to cart",
-
   "otherProducts": "Other products",
   "noProductsAvailable": "No products available",
   "errorLoadingProducts": "Error loading products",
   "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.",
   "allGiftsDeleted": "All gifts and notifications deleted!",
-  "tapToClearNotifications": "Tap to clear notifications"
+  "tapToClearNotifications": "Tap to clear notifications",
+  "filterProducts": "filter products",
+  "applyFilter": "apply filter",
+  "passwordChangedMsg": "Password Changed Successfully!"
+
 }
 

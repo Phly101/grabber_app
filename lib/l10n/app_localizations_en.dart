@@ -831,4 +831,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   String get tapToClearNotifications => 'tapToClearNotifications';
 
+  @override
+
+  String get applyFilter => "apply filter";
+
+  @override
+  String get filterProducts => "filter products";
+
+  @override
+
+  String get PasswordChangedSuccessfully => "Password Changed Successfully!";
+
 }

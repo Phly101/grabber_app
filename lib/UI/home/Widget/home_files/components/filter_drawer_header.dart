@@ -8,7 +8,7 @@ class FilterDrawerHeader extends StatelessWidget {
 
   const FilterDrawerHeader({
     super.key,
-    this.titleKey = "filter_products",
+    required this.titleKey,
     this.icon = Icons.filter_list,
   });
 

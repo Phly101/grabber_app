@@ -79,8 +79,6 @@
   "mango": "مانجو",
   "grapes": "عنب",
   "pawPaw": "بابايا",
-  "detergent": "منظف",
-  "biscuit": "بسكويت",
   "purex": "بيوريكس",
   "varnish": "فانيش",
   "tide": "تايد",
@@ -92,13 +90,6 @@
   "filter_products": "تصفية المنتجات",
   "price_range": "نطاق السعر",
   "category": "الفئة",
-  "apply_filter": "تطبيق التصفية",
-  "beverages": "مشروبات",
-  "detergent": "منظفات",
-  "vegetables": "خضروات",
-  "biscuit": "بسكويت",
-  "fruits": "فواكه",
-  "laundry": "ملابس",
   "milk_egg": "حليب وبيض",
   "filtered_results": "النتائج المفلترة",
   "no_products_match_filter": "لا توجد منتجات تطابق التصفية",
@@ -114,7 +105,7 @@
   "payWithCard": "الدفع بالبطاقة",
   "payment": "الدفع",
   "cardNumber": "رقم البطاقة",
-  "confirmAndPay49": "تأكيد والدفع ($49.00)",
+  "confirmAndPay49": "تأكيد والدفع",
   "aboutApp": "عن التطبيق",
   "email": "البريد الإلكتروني",
   "userExample": "user@example.com",
@@ -277,6 +268,9 @@
   "errorLoadingProducts": "خطأ في تحميل المنتجات",
   "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.",
   "allGiftsDeleted": "تم حذف جميع الهدايا والإشعارات!",
-  "tapToClearNotifications": "اضغط لمسح الإشعارات"
+  "tapToClearNotifications": "اضغط لمسح الإشعارات",
+  "filterProducts": "تصفية المنتجات",
+  "applyFilter": "تطبيق التصفية",
+  "passwordChangedMsg": " تم تغيير كلمة المرور بنجاح!"
 }
 

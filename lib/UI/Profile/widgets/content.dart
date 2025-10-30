@@ -72,7 +72,7 @@ class _ProfileContentState extends State<ProfileContent> {
                   ),
                   color: AppColors.black,
                 ),
-                // TODO: Replace static asset with user profile picture
+
               ),
             ),
           ),
@@ -177,9 +177,7 @@ class _ProfileContentState extends State<ProfileContent> {
                 ),
               ),
             ),
-            onTap: () {
-              // TODO: Navigate to phone number update screen
-            },
+
           ),
 
           ProfileItem(

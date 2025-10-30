@@ -172,7 +172,7 @@ class ChangePasswordForm {
                               );
                             } else if (state is AuthUpdatePassword) {
                               Fluttertoast.showToast(
-                                msg: state.message,
+                                msg: AppLocalizations.of(context)!.passwordChangedSuccessfully,
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 backgroundColor: Colors.green,

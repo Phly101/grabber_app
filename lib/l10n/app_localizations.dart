@@ -1724,6 +1724,10 @@ abstract class AppLocalizations {
 
   String get allGiftsDeleted;
   String get tapToClearNotifications;
+  String get  applyFilter;
+  String get  filterProducts;
+  String get  PasswordChangedSuccessfully;
+
 
 }
 

@@ -831,4 +831,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   String get tapToClearNotifications =>'اضغط لمسح الإشعارات';
 
+  @override
+
+  String get applyFilter => "تطبيق التصفية";
+
+  @override
+
+  String get filterProducts => "تصفية المنتجات";
+
+  @override
+  // TODO: implement PasswordChangedSuccessfully
+  String get PasswordChangedSuccessfully => " تم تغيير كلمة المرور بنجاح!";
+
 }
