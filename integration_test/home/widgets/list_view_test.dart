@@ -11,11 +11,14 @@ import 'package:grabber_app/Services/FireStore/firestore_service.dart';
 import 'package:grabber_app/UI/home/home_tab.dart';
 import 'package:grabber_app/l10n/app_localizations.dart';
 import 'package:integration_test/integration_test.dart';
-import '../mocks/mock_user_services.dart';
+import '../../mocks/mock_user_services.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+  setUpAll(() async {
+    await Firebase.initializeApp();
+  });
   late ItemsBloc itemsBloc;
   late CartBloc cartBloc;
   late LocaleBloc localeBloc;
@@ -33,13 +36,13 @@ void main() {
     themeBloc = AppThemeBloc();
 
     final collections = [
-      'Fruits list',
-      'egg&milk',
-      'Beverages list',
-      'Laundry list',
-      'vegetables list',
-      'Biscuit list',
-      'Detergent list',
+      "Fruits list",
+      "egg&milk",
+      "Beverages list",
+      "Laundry list",
+      "vegetables list",
+      "Biscuit list",
+      "Detergent list",
     ];
 
     for (final collection in collections) {
@@ -59,7 +62,7 @@ void main() {
   group("ProductListView - Integration Tests", () {
     testWidgets(
       "should load products, scroll horizontally, and add item to cart",
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         await tester.pumpWidget(
           MultiBlocProvider(
             providers: [
@@ -76,7 +79,7 @@ void main() {
           ),
         );
         await tester.pump(const Duration(seconds: 2));
-        await tester.pump(const Duration(seconds: 15));
+        await tester.pump(const Duration(seconds: 2));
         final firstListView = find.byKey(const Key("product_listview")).first;
         expect(firstListView, findsOneWidget);
         final addButtons = find.descendant(
