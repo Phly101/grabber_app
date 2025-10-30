@@ -179,7 +179,6 @@
   "failedToUpdateData": "Failed To Update Data",
   "sendAsAGift": "Send as a gift",
   "sendGift": "Send Gift!",
-  "cancel": "Cancel",
   "confirm": "Confirm",
   "currentPassword": "Current Password",
   "enterCurrentPassword": "Enter current password",
@@ -198,7 +197,6 @@
   "signingUp": "Signing up...",
   "addedToCart": "Added to cart",
   "enterGiftEmail": "Enter the email of whom you want to gift",
-  "passwordResetEmailSent": "Password reset email sent successfully!",
   "emailCannotBeEmpty": "Email cannot be empty",
   "confirmGift": "Confirm Gift",
   "areYouSureGift": "Are you sure you want to send a gift to",
@@ -257,5 +255,7 @@
   "enjoyYourGift": "Enjoy your gift!",
   "swipeToDelete": "Swipe an item to delete",
   "cartIsEmpty": "Cart is empty",
-  "unknownDate": "Unknown date"
+  "unknownDate": "Unknown date",
+  "allGiftsDeleted": "All gifts and notifications deleted!",
+  "tapToClearNotifications": "Tap to clear notifications"
 }
