@@ -264,5 +264,7 @@
   "otherProducts": "Other products",
   "noProductsAvailable": "No products available",
   "errorLoadingProducts": "Error loading products",
-  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness."
+  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.",
+  "pleaseSelectQuantity": "Please select quantity first",
+  "itemAlreadyInCart": "Item already in cart with same quantity"
 }

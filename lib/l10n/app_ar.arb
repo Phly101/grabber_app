@@ -267,5 +267,7 @@
   "otherProducts": "منتجات أخرى",
   "noProductsAvailable": "لا توجد منتجات متاح",
   "errorLoadingProducts": "خطأ في تحميل المنتجات",
-  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة."
+  "aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness": "منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.",
+  "pleaseSelectQuantity": "الرجاء اختيار الكمية أولاً",
+  "itemAlreadyInCart": "المنتج موجود في السلة بنفس الكمية"
 }

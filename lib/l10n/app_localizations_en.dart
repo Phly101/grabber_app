@@ -798,4 +798,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
+
+  @override
+  String get pleaseSelectQuantity => 'Please select quantity first';
+
+  @override
+  String get itemAlreadyInCart => 'Item already in cart with same quantity';
 }
