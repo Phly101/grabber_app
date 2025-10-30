@@ -1,8 +1,4 @@
-// ignore: prefer_double_quotes
 part of 'verification_bloc.dart';
-
-// @immutable
-// sealed class VerficationEvent {}
 
 abstract class VerificationEvent extends Equatable{
   @override

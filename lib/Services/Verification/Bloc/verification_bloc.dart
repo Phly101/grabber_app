@@ -28,7 +28,7 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
       emit(VerficationEmailSent());
       emit(VerficationEmailCooldown());
       await Future.delayed(const Duration(seconds: 10));
-      emit(VerficationInitial()); // After 10 seconds the button will reappear.
+      emit(VerficationInitial()); // b3d 10 sec the button will reappear
     } catch (e) {
       emit(VerficationError(e.toString()));
     }

@@ -16,7 +16,6 @@ void main(){
     verificationBloc.close();
   });
   group("VerificationBloc Tests",(){
-    // 1)Test:send verification email (success)
     blocTest<VerificationBloc, VerificationState>(
       "emits [Loading, EmailSent, EmailCooldown, Initial] when SendVerificationEmail succeeds",
       build: () {
@@ -32,7 +31,6 @@ void main(){
         isA<VerficationInitial>(),
       ],
     );
-    // 2)Test:send verification email (failure)
     blocTest<VerificationBloc, VerificationState>(
       "emits [Loading, Error] when SendVerificationEmail throws",
       build: () {
@@ -46,7 +44,6 @@ void main(){
         predicate<VerficationError>((state) => state.message.contains("Failed to send")),
       ],
     );
-    //3)Test:check email verified (true)
     blocTest<VerificationBloc, VerificationState>(
       "emits [Loading, Checked(true)] when CheckEmailVerification returns true",
       build: () {
@@ -59,7 +56,6 @@ void main(){
         VerficationChecked(true),
       ],
     );
-    //4)Test:check email verified (false)
     blocTest<VerificationBloc, VerificationState>(
       "emits [Loading, Checked(false)] when CheckEmailVerification returns false",
       build: () {
