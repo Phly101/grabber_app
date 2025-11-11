@@ -36,8 +36,9 @@
 ## UI Phase: 
 ### Basel EL Rafei: initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen, about app screen, schedule screen and order summary screen in this phase.
 ### Marian Makram & Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
-### Marian Makram Added UI to the Checkout screen. 
-### Simon Abd EL Malak: implemented the UI of the login and the sign up screen.
+### Marian Makram Added UI to the Checkout screen.
+### Martina Wageeh: created the drawer UI for the filter feature, and filtered items screen.
+### Simon Abd EL Malak: implemented the UI of the login and the sign up screen, product screen details.
 ### Marina Essam: did the UI of search screen as well as the check out screen.
 ### Mark Ayman: did Cart,settings,profile screens.
 
@@ -78,22 +79,25 @@
  ## Integration Testing phase: 
    ### Basel EL Rafei: Pyament.
    ### Marian Makram: Home.
-   ### Marina Essam: checkout.
+   ### Marina Essam: Search.
    ### Martina Wageeh: Home.
    ### Simon Abd El Malak: login, sign up.
-
-## Deployment: under disscusion.
 
 
 
 # Instructor: Michael Hany
 
 
-
-# Porject Files:
-
-
 # License:
+## 📄 Licenses
+
+This project uses several open-source packages.  
+All licenses for third-party dependencies are included in the [LICENSES.txt](./LICENSES.txt) file.
+
+### Main License
+This project itself is licensed under the **MIT License** (or whichever license you choose).
+
+See the [LICENSES.txt](./LICENSES.txt) file for details on third-party package licenses.
 
 
 
