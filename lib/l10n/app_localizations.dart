@@ -1728,6 +1728,7 @@ abstract class AppLocalizations {
   String get  applyFilter;
   String get  filterProducts;
   String get  PasswordChangedSuccessfully;
+  String get    cannotGoToPaymentWithEmptyCart;
 
 
 

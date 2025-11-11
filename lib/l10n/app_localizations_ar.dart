@@ -851,4 +851,8 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get itemAlreadyInCart => 'المنتج موجود في السلة بنفس الكمية';
 
+  @override
+
+  String get cannotGoToPaymentWithEmptyCart => "لا يمكنك الانتقال إلى الدفع بينما السلة فارغة";
+
 }

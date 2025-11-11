@@ -1,6 +1,3 @@
-// import "package:device_preview/device_preview.dart";
-// import "package:flutter/foundation.dart";
-
 // Flutter & Firebase
 import "package:cloud_firestore/cloud_firestore.dart" show FirebaseFirestore;
 import "package:firebase_auth/firebase_auth.dart";
@@ -8,20 +5,15 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
-
 import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
-
 import "package:grabber_app/Services/Users/user_services.dart";
-
 import "package:grabber_app/Services/Verification/Bloc/verification_bloc.dart";
 import "package:grabber_app/Services/Verification/verification_service.dart";
-
 import "package:grabber_app/Services/sendGift/Bloc/send_gift_bloc.dart";
 import "package:grabber_app/Services/sendGift/Service/gift_listener_service.dart";
 import "package:grabber_app/Services/sendGift/Service/send_gift_service.dart";
 import "package:grabber_app/UI/gift/gift_page.dart";
-
 import "Services/Authentication/auth_service.dart";
 
 // App core
@@ -102,13 +94,10 @@ Future<void> main() async {
                   sendGiftService: sendGiftService,
                 ),
               ),
-
-              //  BlocProvider(create: (_) => VerificationBloc(VerificationService())),
             ],
             child: const MyApp(),
           );
         } else {
-          // If no user → only provide AuthBloc, theme, locale
           return MultiBlocProvider(
             providers: [
               BlocProvider(
@@ -121,7 +110,8 @@ Future<void> main() async {
                       ..add(InitialLangEvent()),
               ),
               BlocProvider(create: (_) => AppThemeBloc()..add(InitialEvent())),
-              BlocProvider(create: (_) => VerificationBloc(VerificationService()),
+              BlocProvider(
+                create: (_) => VerificationBloc(VerificationService()),
               ),
             ],
             child: const MyApp(),

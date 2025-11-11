@@ -273,6 +273,7 @@
   "applyFilter": "تطبيق التصفية",
   "passwordChangedMsg": " تم تغيير كلمة المرور بنجاح!",
   "pleaseSelectQuantity": "الرجاء اختيار الكمية أولاً",
-  "itemAlreadyInCart": "المنتج موجود في السلة بنفس الكمية"
+  "itemAlreadyInCart": "المنتج موجود في السلة بنفس الكمية",
+  "cannotGoToPaymentWithEmptyCart": "لا يمكنك الانتقال إلى الدفع بينما السلة فارغة"
 }
 

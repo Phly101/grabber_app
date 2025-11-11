@@ -1,4 +1,5 @@
-part of 'verification_bloc.dart';
+
+part of "verification_bloc.dart";
 
 abstract class VerificationEvent extends Equatable{
   @override
