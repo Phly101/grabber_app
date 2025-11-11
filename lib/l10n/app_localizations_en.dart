@@ -850,4 +850,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get itemAlreadyInCart => 'Item already in cart with same quantity';
 
+  @override
+
+  String get cannotGoToPaymentWithEmptyCart =>   "cannotGoToPaymentWithEmptyCart";
+
 }

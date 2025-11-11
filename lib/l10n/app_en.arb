@@ -274,7 +274,8 @@
   "applyFilter": "apply filter",
   "passwordChangedMsg": "Password Changed Successfully!",
   "pleaseSelectQuantity": "Please select quantity first",
-  "itemAlreadyInCart": "Item already in cart with same quantity"
+  "itemAlreadyInCart": "Item already in cart with same quantity",
+  "cannotGoToPaymentWithEmptyCart": "Can't go to payment while cart is Empty"
 
 
 }

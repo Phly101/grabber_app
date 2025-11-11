@@ -317,7 +317,7 @@ class _BuildCheckOutBodyState extends State<BuildCheckOutBody> {
                    Fluttertoast.showToast(
                      gravity: ToastGravity.BOTTOM,
                      msg:
-                     "Can't go to payment while cart is Empty",
+                     AppLocalizations.of(context)!.cannotGoToPaymentWithEmptyCart,
                      timeInSecForIosWeb: 2,
                      backgroundColor: Colors.yellow,
                      textColor: Colors.black,
