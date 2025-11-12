@@ -17,24 +17,6 @@ class FilterDrawer extends StatefulWidget {
 
 class _FilterDrawerState extends State<FilterDrawer> {
   RangeValues _priceRange = const RangeValues(0, 600);
-  final List<String> categoriesEn = const [
-    "Beverages list",
-    "Detergent list",
-    "Vegetables list",
-    "Biscuit list",
-    "Fruits list",
-    "Laundry list",
-    "Milk & egg list",
-  ];
-  final List<String> categoriesAr = const [
-    "قائمة المشروبات",
-    "قائمة المنظفات",
-    "قائمة الخضروات",
-    "قائمة البسكويت",
-    "قائمة الفواكه",
-    "قائمة الغسيل",
-    "قائمة الحليب والبيض",
-  ];
 
   final Map<String, String> categoryKeysEn = {
     "Beverages list": "beverages",
@@ -46,15 +28,23 @@ class _FilterDrawerState extends State<FilterDrawer> {
     "Milk & egg list": "milk_egg",
   };
   final Map<String, String> categoryKeysAr = {
-    "قائمة المشروبات": "المشروبات",
-    "قائمة المنظفات": "المنظفات",
-    "قائمة الخضروات": "الخضروات",
-    "قائمة البسكويت": "البسكويت",
-    "قائمة الفواكه": "الفواكه",
-    "قائمة الغسيل": "الغسيل",
-    "قائمة الحليب والبيض": "الحليب والبيض",
+    "Beverages list": "مشروبات",
+    "Detergent list": "منظفات",
+    "Vegetables list": "خضروات",
+    "Biscuit list": "بسكويت",
+    "Fruits list": "فواكه",
+    "Laundry list": "غسيل",
+    "Milk & egg list": "حليب و بيض",
   };
-
+  final List<String> allCategoryKeys = const [
+    "Beverages list",
+    "Detergent list",
+    "Vegetables list",
+    "Biscuit list",
+    "Fruits list",
+    "Laundry list",
+    "Milk & egg list",
+  ];
 
   final Set<String> selectedCategories = {};
 
@@ -100,7 +90,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                     ),
                     Expanded(
                       child: ListView(
-                        children: local.state.langCode =="en" ? categoriesEn.map((cat) {
+                        children: local.state.langCode =="en" ? allCategoryKeys.map((cat) {
                           return CheckboxListTile(
                             value: selectedCategories.contains(cat),
                             title: Text(
@@ -118,7 +108,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
                             },
                           );
                         }).toList():
-                        categoriesAr.map((cat) {
+                        allCategoryKeys.map((cat) {
                           return CheckboxListTile(
                             value: selectedCategories.contains(cat),
                             title: Text(
