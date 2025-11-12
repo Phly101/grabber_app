@@ -485,35 +485,11 @@ abstract class AppLocalizations {
   /// **'See All'**
   String get seeAll;
 
-  /// No description provided for @fruits.
-  ///
-  /// In en, this message translates to:
-  /// **'Fruits'**
-  String get fruits;
-
   /// No description provided for @milkAndEgg.
   ///
   /// In en, this message translates to:
   /// **'Milk & egg'**
   String get milkAndEgg;
-
-  /// No description provided for @beverages.
-  ///
-  /// In en, this message translates to:
-  /// **'Beverages'**
-  String get beverages;
-
-  /// No description provided for @laundry.
-  ///
-  /// In en, this message translates to:
-  /// **'Laundry'**
-  String get laundry;
-
-  /// No description provided for @vegetables.
-  ///
-  /// In en, this message translates to:
-  /// **'Vegetables'**
-  String get vegetables;
 
   /// No description provided for @banana.
   ///
@@ -574,18 +550,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Paw Paw'**
   String get pawPaw;
-
-  /// No description provided for @detergent.
-  ///
-  /// In en, this message translates to:
-  /// **'Detergent'**
-  String get detergent;
-
-  /// No description provided for @biscuit.
-  ///
-  /// In en, this message translates to:
-  /// **'Biscuit'**
-  String get biscuit;
 
   /// No description provided for @purex.
   ///
@@ -653,11 +617,41 @@ abstract class AppLocalizations {
   /// **'Category'**
   String get category;
 
-  /// No description provided for @apply_filter.
+  /// No description provided for @beverages.
   ///
   /// In en, this message translates to:
-  /// **'Apply Filter'**
-  String get apply_filter;
+  /// **'Beverages'**
+  String get beverages;
+
+  /// No description provided for @detergent.
+  ///
+  /// In en, this message translates to:
+  /// **'Detergent'**
+  String get detergent;
+
+  /// No description provided for @vegetables.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetables'**
+  String get vegetables;
+
+  /// No description provided for @biscuit.
+  ///
+  /// In en, this message translates to:
+  /// **'Biscuit'**
+  String get biscuit;
+
+  /// No description provided for @fruits.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruits'**
+  String get fruits;
+
+  /// No description provided for @laundry.
+  ///
+  /// In en, this message translates to:
+  /// **'Laundry'**
+  String get laundry;
 
   /// No description provided for @milk_egg.
   ///
@@ -752,7 +746,7 @@ abstract class AppLocalizations {
   /// No description provided for @confirmAndPay49.
   ///
   /// In en, this message translates to:
-  /// **'Confirm and Pay (\$49.00)'**
+  /// **'Confirm and Pay'**
   String get confirmAndPay49;
 
   /// No description provided for @aboutApp.
@@ -808,18 +802,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No'**
   String get no;
-
-  /// No description provided for @itunuoluwaAbidoye.
-  ///
-  /// In en, this message translates to:
-  /// **'Itunuoluwa Abidoye'**
-  String get itunuoluwaAbidoye;
-
-  /// No description provided for @itunuoluwaHandle.
-  ///
-  /// In en, this message translates to:
-  /// **'@Itunuoluwa'**
-  String get itunuoluwaHandle;
 
   /// No description provided for @more.
   ///
@@ -1331,12 +1313,6 @@ abstract class AppLocalizations {
   /// **'Enter the email of whom you want to gift'**
   String get enterGiftEmail;
 
-  /// No description provided for @passwordResetEmailSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Password reset email sent successfully!'**
-  String get passwordResetEmailSent;
-
   /// No description provided for @emailCannotBeEmpty.
   ///
   /// In en, this message translates to:
@@ -1480,6 +1456,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Preparing your gifts...'**
   String get preparingYourGifts;
+
+  /// No description provided for @passwordResetEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent successfully!'**
+  String get passwordResetEmailSent;
 
   /// No description provided for @noUserFoundForThatEmail.
   ///
@@ -1685,7 +1667,6 @@ abstract class AppLocalizations {
   /// **'Unknown date'**
   String get unknownDate;
 
-
   /// No description provided for @description.
   ///
   /// In en, this message translates to:
@@ -1695,7 +1676,7 @@ abstract class AppLocalizations {
   /// No description provided for @addToCart.
   ///
   /// In en, this message translates to:
-  /// **'Add tO cart'**
+  /// **'Add to cart'**
   String get addToCart;
 
   /// No description provided for @otherProducts.
@@ -1722,15 +1703,35 @@ abstract class AppLocalizations {
   /// **'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.'**
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness;
 
-
+  /// No description provided for @allGiftsDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'All gifts and notifications deleted!'**
   String get allGiftsDeleted;
+
+  /// No description provided for @tapToClearNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to clear notifications'**
   String get tapToClearNotifications;
-  String get  applyFilter;
-  String get  filterProducts;
-  String get  PasswordChangedSuccessfully;
-  String get    cannotGoToPaymentWithEmptyCart;
 
+  /// No description provided for @filterProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'filter products'**
+  String get filterProducts;
 
+  /// No description provided for @applyFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'apply filter'**
+  String get applyFilter;
+
+  /// No description provided for @passwordChangedMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed Successfully!'**
+  String get passwordChangedMsg;
 
   /// No description provided for @pleaseSelectQuantity.
   ///
@@ -1744,6 +1745,11 @@ abstract class AppLocalizations {
   /// **'Item already in cart with same quantity'**
   String get itemAlreadyInCart;
 
+  /// No description provided for @cannotGoToPaymentWithEmptyCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t go to payment while cart is Empty'**
+  String get cannotGoToPaymentWithEmptyCart;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

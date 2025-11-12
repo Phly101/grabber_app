@@ -48,7 +48,7 @@ class FilteredProductsScreen extends StatelessWidget {
               if (filteredItems.isEmpty) {
                 return Center(
                   child: Text(
-                    LocalizationHelper.getString(context, "no_products_match_filter"),
+                    AppLocalizations.of(context)!.no_products_match_filter,
                     style: theme.textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),

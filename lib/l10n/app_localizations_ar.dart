@@ -206,19 +206,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get seeAll => 'عرض الكل';
 
   @override
-  String get fruits => 'فواكه';
-
-  @override
   String get milkAndEgg => 'لبن وبيض';
-
-  @override
-  String get beverages => 'مشروبات';
-
-  @override
-  String get laundry => 'ملابس';
-
-  @override
-  String get vegetables => 'خضروات';
 
   @override
   String get banana => 'موز';
@@ -249,12 +237,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pawPaw => 'بابايا';
-
-  @override
-  String get detergent => 'منظفات';
-
-  @override
-  String get biscuit => 'بسكويت';
 
   @override
   String get purex => 'بيوريكس';
@@ -290,7 +272,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get category => 'الفئة';
 
   @override
-  String get apply_filter => 'تطبيق التصفية';
+  String get beverages => 'مشروبات';
+
+  @override
+  String get detergent => 'منظفات';
+
+  @override
+  String get vegetables => 'خضروات';
+
+  @override
+  String get biscuit => 'بسكويت';
+
+  @override
+  String get fruits => 'فاكهة';
+
+  @override
+  String get laundry => 'منظفات';
 
   @override
   String get milk_egg => 'حليب وبيض';
@@ -338,7 +335,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cardNumber => 'رقم البطاقة';
 
   @override
-  String get confirmAndPay49 => 'تأكيد والدفع (\$49.00)';
+  String get confirmAndPay49 => 'تأكيد والدفع';
 
   @override
   String get aboutApp => 'عن التطبيق';
@@ -366,12 +363,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get no => 'لا';
-
-  @override
-  String get itunuoluwaAbidoye => 'Itunuoluwa Abidoye';
-
-  @override
-  String get itunuoluwaHandle => '@Itunuoluwa';
 
   @override
   String get more => 'المزيد';
@@ -629,9 +620,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enterGiftEmail => 'أدخل البريد الإلكتروني للشخص الذي تريد إهداؤه';
 
   @override
-  String get passwordResetEmailSent => 'تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح!';
-
-  @override
   String get emailCannotBeEmpty => 'لا يمكن أن يكون البريد الإلكتروني فارغًا';
 
   @override
@@ -702,6 +690,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get preparingYourGifts => 'يتم تجهيز هداياك...';
+
+  @override
+  String get passwordResetEmailSent => 'تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح!';
 
   @override
   String get noUserFoundForThatEmail => 'لا يوجد مستخدم مسجّل بهذا البريد الإلكتروني.';
@@ -806,7 +797,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unknownDate => 'تاريخ غير معروف';
 
   @override
-
   String get description => 'الوصف';
 
   @override
@@ -824,26 +814,20 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'منتج موثوق وعالي الجودة مصمم ليجعل حياتك اليومية أسهل وأفضل. مثالي للاستخدام اليومي ويتميز بالقيمة العالية والنظافة.';
 
-
-
+  @override
   String get allGiftsDeleted => 'تم حذف جميع الهدايا والإشعارات!';
 
   @override
-
-  String get tapToClearNotifications =>'اضغط لمسح الإشعارات';
-
-  @override
-
-  String get applyFilter => "تطبيق التصفية";
+  String get tapToClearNotifications => 'اضغط لمسح الإشعارات';
 
   @override
-
-  String get filterProducts => "تصفية المنتجات";
+  String get filterProducts => 'تصفية المنتجات';
 
   @override
+  String get applyFilter => 'تطبيق التصفية';
 
-  String get PasswordChangedSuccessfully => " تم تغيير كلمة المرور بنجاح!";
-
+  @override
+  String get passwordChangedMsg => ' تم تغيير كلمة المرور بنجاح!';
 
   @override
   String get pleaseSelectQuantity => 'الرجاء اختيار الكمية أولاً';
@@ -852,7 +836,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get itemAlreadyInCart => 'المنتج موجود في السلة بنفس الكمية';
 
   @override
-
-  String get cannotGoToPaymentWithEmptyCart => "لا يمكنك الانتقال إلى الدفع بينما السلة فارغة";
-
+  String get cannotGoToPaymentWithEmptyCart => 'لا يمكنك الانتقال إلى الدفع بينما السلة فارغة';
 }
