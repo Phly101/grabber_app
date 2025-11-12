@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
+import "../../LocalizationHelper/localization_helper.dart";
 import "widgets/suggestions.dart";
 import "../../l10n/app_localizations.dart";
 
@@ -41,14 +42,24 @@ class _SearchTabState extends State<SearchTab> {
           );
         } else if (state is ItemsLoaded) {
           allProducts = state.items;
-
           filteredProducts = allProducts
-              .where(
-                (item) => item["title_en"].toString().toLowerCase().contains(
-                  searchText.toLowerCase(),
-                ),
-              )
+              .where((item) {
+            final localizedTitle = LocalizationHelper.localizedProductField(
+              item,
+              "title",
+              context,
+            ).toLowerCase();
+
+            final titleEn = (item["title_en"] ?? "").toString().toLowerCase();
+            final titleAr = (item["title_ar"] ?? "").toString().toLowerCase();
+            final query = searchText.toLowerCase();
+
+            return localizedTitle.contains(query) ||
+                titleEn.contains(query) ||
+                titleAr.contains(query);
+          })
               .toList();
+
 
           return Padding(
             padding: const EdgeInsets.only(left: 16, top: 50, right: 16),

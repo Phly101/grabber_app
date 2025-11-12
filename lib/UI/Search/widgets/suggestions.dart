@@ -8,6 +8,7 @@ import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 import "package:grabber_app/common/custom_card_widget.dart";
 import "../../../l10n/app_localizations.dart";
+import "../../home/product_details/product_details.dart";
 
 class SuggestionsList extends StatelessWidget {
   final String searchText;
@@ -41,83 +42,93 @@ class SuggestionsList extends StatelessWidget {
           final item = filteredProducts[index];
           return Padding(
             padding: const EdgeInsets.only(right: 10.0,left: 10.0),
-            child: CustomCardWidget(
-              elevation: 6,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 380,
-                    height: 150,
-
-                    child: CachedNetworkImage(
-                      imageUrl: item["image_URL"],
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                      fit: BoxFit.fill,
-
-                    ),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetails(product: item),
                   ),
-                  ListTile(
-                    title: Text(
-                      LocalizationHelper.localizedProductField(
-                        item,
-                        "title",
-                        context,
-                      ),
-                      style: theme.textTheme.bodyLarge,
-                    ),
+                );
+              },
+              child: CustomCardWidget(
+                elevation: 6,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 380,
+                      height: 150,
 
-                    trailing: ElevatedButton(
-                      onPressed: () {
-                        context.read<CartBloc>().add(
-                          AddItemEvent(
-                            CartItemModel(
-                              imagePath: item["image_URL"],
-                              nameEn: item["title_en"],
-                              nameAr: item["title_ar"],
-                              price: item["price"],
-                              id:  item["id"],
-                              quantity: 1,
+                      child: CachedNetworkImage(
+                        imageUrl: item["image_URL"],
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                        fit: BoxFit.fill,
+
+                      ),
+                    ),
+                    ListTile(
+                      title: Text(
+                        LocalizationHelper.localizedProductField(
+                          item,
+                          "title",
+                          context,
+                        ),
+                        style: theme.textTheme.bodyLarge,
+                      ),
+
+                      trailing: ElevatedButton(
+                        onPressed: () {
+                          context.read<CartBloc>().add(
+                            AddItemEvent(
+                              CartItemModel(
+                                imagePath: item["image_URL"],
+                                nameEn: item["title_en"],
+                                nameAr: item["title_ar"],
+                                price: item["price"],
+                                id:  item["id"],
+                                quantity: 1,
+                              ),
                             ),
-                          ),
-                        );
-                        Fluttertoast.showToast(
-                          backgroundColor: Colors.green,
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.BOTTOM,
-                          textColor: Colors.white,
-                          msg:
-                              "${LocalizationHelper.localizedProductField(item, "title", context)} ${AppLocalizations.of(context)!.addedToCart}",
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        padding: const EdgeInsets.all(12),
+                          );
+                          Fluttertoast.showToast(
+                            backgroundColor: Colors.green,
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.BOTTOM,
+                            textColor: Colors.white,
+                            msg:
+                                "${LocalizationHelper.localizedProductField(item, "title", context)} ${AppLocalizations.of(context)!.addedToCart}",
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(12),
 
-                        backgroundColor: AppColors.secondaryDarkColor,
-                      ),
-                      child: Image.asset("Assets/Icons/Icons (1).png"),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, bottom: 16),
-
-                    child: Text(
-                      LocalizationHelper.getString(
-                        context,
-                        'Price: ${item["price"].toString()}\$',
-                      ),
-                      style: theme.textTheme.bodyLarge!.copyWith(
-                        color: AppColors.textButtonColor,
+                          backgroundColor: AppColors.secondaryDarkColor,
+                        ),
+                        child: Image.asset("Assets/Icons/Icons (1).png"),
                       ),
                     ),
-                  ),
-                ],
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, bottom: 16),
+
+                      child: Text(
+                        LocalizationHelper.getString(
+                          context,
+                          'Price: ${item["price"].toString()}\$',
+                        ),
+                        style: theme.textTheme.bodyLarge!.copyWith(
+                          color: AppColors.textButtonColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
