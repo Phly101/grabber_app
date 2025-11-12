@@ -16,7 +16,7 @@ class VerificationDialog extends StatelessWidget {
       title: const Text("Email Verification"),
       content: BlocConsumer<VerificationBloc, VerificationState>(
         listener: (context, state) {
-          if (state is VerficationEmailSent) {
+          if (state is VerificationEmailSent) {
             Fluttertoast.showToast(
               msg: AppLocalizations.of(context)!.emailVerificationTitle,
               toastLength: Toast.LENGTH_SHORT,
@@ -25,7 +25,7 @@ class VerificationDialog extends StatelessWidget {
               textColor: Colors.white,
               fontSize: 16.0,
             );
-          } else if (state is VerficationChecked) {
+          } else if (state is VerificationChecked) {
             if (state.isVerified) {
               Fluttertoast.showToast(
                 msg: AppLocalizations.of(context)!.emailVerified,
@@ -47,7 +47,7 @@ class VerificationDialog extends StatelessWidget {
                 fontSize: 16.0,
               );
             }
-          } else if (state is VerficationError) {
+          } else if (state is VerificationError) {
             Fluttertoast.showToast(
               msg: "Error: ${state.message}",
               toastLength: Toast.LENGTH_SHORT,
@@ -72,7 +72,7 @@ class VerificationDialog extends StatelessWidget {
                 onPressed: () {
                   context.read<VerificationBloc>().add(CheckEmailVerification());
                 },
-                child: state is VerficationLoading
+                child: state is VerificationLoading
                     ? CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
                     Theme.of(context).colorScheme.onPrimary,
@@ -85,7 +85,7 @@ class VerificationDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              if (state is! VerficationEmailCooldown) ...[
+              if (state is! VerificationEmailCooldown) ...[
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
