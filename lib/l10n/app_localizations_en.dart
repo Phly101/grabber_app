@@ -206,19 +206,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seeAll => 'See All';
 
   @override
-  String get fruits => 'Fruits';
-
-  @override
   String get milkAndEgg => 'Milk & egg';
-
-  @override
-  String get beverages => 'Beverages';
-
-  @override
-  String get laundry => 'Laundry';
-
-  @override
-  String get vegetables => 'Vegetables';
 
   @override
   String get banana => 'Banana';
@@ -249,12 +237,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pawPaw => 'Paw Paw';
-
-  @override
-  String get detergent => 'Detergent';
-
-  @override
-  String get biscuit => 'Biscuit';
 
   @override
   String get purex => 'Purex';
@@ -290,7 +272,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get category => 'Category';
 
   @override
-  String get apply_filter => 'Apply Filter';
+  String get beverages => 'Beverages';
+
+  @override
+  String get detergent => 'Detergent';
+
+  @override
+  String get vegetables => 'Vegetables';
+
+  @override
+  String get biscuit => 'Biscuit';
+
+  @override
+  String get fruits => 'Fruits';
+
+  @override
+  String get laundry => 'Laundry';
 
   @override
   String get milk_egg => 'Milk & Egg';
@@ -338,7 +335,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cardNumber => 'Card number';
 
   @override
-  String get confirmAndPay49 => 'Confirm and Pay (\$49.00)';
+  String get confirmAndPay49 => 'Confirm and Pay';
 
   @override
   String get aboutApp => 'About App';
@@ -366,12 +363,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get no => 'No';
-
-  @override
-  String get itunuoluwaAbidoye => 'Itunuoluwa Abidoye';
-
-  @override
-  String get itunuoluwaHandle => '@Itunuoluwa';
 
   @override
   String get more => 'More';
@@ -629,9 +620,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterGiftEmail => 'Enter the email of whom you want to gift';
 
   @override
-  String get passwordResetEmailSent => 'Password reset email sent successfully!';
-
-  @override
   String get emailCannotBeEmpty => 'Email cannot be empty';
 
   @override
@@ -702,6 +690,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get preparingYourGifts => 'Preparing your gifts...';
+
+  @override
+  String get passwordResetEmailSent => 'Password reset email sent successfully!';
 
   @override
   String get noUserFoundForThatEmail => 'No user found for that email.';
@@ -806,7 +797,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknownDate => 'Unknown date';
 
   @override
-
   String get description => 'Description';
 
   @override
@@ -824,25 +814,20 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
 
-
-
-  String get allGiftsDeleted =>  'allGiftsDeleted';
+  @override
+  String get allGiftsDeleted => 'All gifts and notifications deleted!';
 
   @override
-
-  String get tapToClearNotifications => 'tapToClearNotifications';
-
-  @override
-
-  String get applyFilter => "apply filter";
+  String get tapToClearNotifications => 'Tap to clear notifications';
 
   @override
-  String get filterProducts => "filter products";
+  String get filterProducts => 'filter products';
 
   @override
+  String get applyFilter => 'apply filter';
 
-  String get PasswordChangedSuccessfully => "Password Changed Successfully!";
-
+  @override
+  String get passwordChangedMsg => 'Password Changed Successfully!';
 
   @override
   String get pleaseSelectQuantity => 'Please select quantity first';
@@ -851,7 +836,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemAlreadyInCart => 'Item already in cart with same quantity';
 
   @override
-
-  String get cannotGoToPaymentWithEmptyCart =>   "cannotGoToPaymentWithEmptyCart";
-
+  String get cannotGoToPaymentWithEmptyCart => 'Can\'t go to payment while cart is Empty';
 }
