@@ -44,12 +44,6 @@ class ProductListView extends StatelessWidget {
               builder: (context, state) {
                 if (state is ItemsLoading) {
                    return const Center(child: CircularProgressIndicator());
-                  // return  Shimmer(
-                  //   color: Colors.blue,
-                  //   child: const CustomCardWidget(
-                  //
-                  //   ),
-                  // );
                 } else if (state is ItemsLoaded) {
                   final items = state.items;
                   return ListView.builder(

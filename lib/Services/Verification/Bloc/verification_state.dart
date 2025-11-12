@@ -4,19 +4,19 @@ abstract class VerificationState extends Equatable{
   @override
   List<Object?> get props => [];
 }
-class VerficationInitial extends VerificationState{}
-class VerficationLoading extends VerificationState{}
-class VerficationEmailCooldown extends VerificationState {}
-class VerficationError extends VerificationState {
+class VerificationInitial extends VerificationState{}
+class VerificationLoading extends VerificationState{}
+class VerificationEmailCooldown extends VerificationState {}
+class VerificationError extends VerificationState {
   final String message;
-  VerficationError(this.message);
+  VerificationError(this.message);
   @override
   List<Object?> get props => [message];
 }
-class VerficationEmailSent extends VerificationState {}
-class VerficationChecked extends VerificationState {
+class VerificationEmailSent extends VerificationState {}
+class VerificationChecked extends VerificationState {
   final bool isVerified;
-  VerficationChecked(this.isVerified);
+  VerificationChecked(this.isVerified);
   @override
   List<Object?> get props => [isVerified];
 }

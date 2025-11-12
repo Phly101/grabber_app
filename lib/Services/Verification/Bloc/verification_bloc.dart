@@ -11,40 +11,40 @@ part "verification_state.dart";
 class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   final VerificationService _verificationService;
   Timer? _timer; // Timer for polling
-  VerificationBloc(this._verificationService) : super(VerficationInitial()) {
-    on<SendVerificationEmail>(_onSendVerficationEmail);
-    on<CheckEmailVerification>(_onCheckEmailVerfication);
+  VerificationBloc(this._verificationService) : super(VerificationInitial()) {
+    on<SendVerificationEmail>(_onSendVerificationEmail);
+    on<CheckEmailVerification>(_onCheckEmailVerification);
     on<StartAutoCheck>(_onStartAutoCheck);
     on<StopAutoCheck>(_onStopAutoCheck);
   }
 
-  Future<void> _onSendVerficationEmail(
+  Future<void> _onSendVerificationEmail(
       SendVerificationEmail event,
       Emitter<VerificationState> emit,
       ) async {
-    emit(VerficationLoading());
+    emit(VerificationLoading());
     try {
       await _verificationService.sendEmailVerification();
-      emit(VerficationEmailSent());
-      emit(VerficationEmailCooldown());
+      emit(VerificationEmailSent());
+      emit(VerificationEmailCooldown());
       await Future.delayed(const Duration(seconds: 10));
-      emit(VerficationInitial()); // b3d 10 sec the button will reappear
+      emit(VerificationInitial()); // b3d 10 sec the button will reappear
     } catch (e) {
-      emit(VerficationError(e.toString()));
+      emit(VerificationError(e.toString()));
     }
   }
 
 
-  Future<void> _onCheckEmailVerfication(
+  Future<void> _onCheckEmailVerification(
       CheckEmailVerification event,
       Emitter<VerificationState> emit
       ) async {
-    emit(VerficationLoading());
+    emit(VerificationLoading());
     try {
       final isVerified = await _verificationService.checkEmailVerified();
-      emit(VerficationChecked(isVerified));
+      emit(VerificationChecked(isVerified));
     } catch (e) {
-      emit(VerficationError(e.toString()));
+      emit(VerificationError(e.toString()));
     }
   }
 
@@ -53,10 +53,10 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
       Emitter<VerificationState> emit
       ) async {
     if (_timer != null) return; // Prevent multiple timers
-    emit(VerficationLoading()); // Indicate polling is starting
+    emit(VerificationLoading()); // Indicate polling is starting
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
       add(CheckEmailVerification()); // Trigger verification check
-      if (state is VerficationChecked && (state as VerficationChecked).isVerified) {
+      if (state is VerificationChecked && (state as VerificationChecked).isVerified) {
         timer.cancel();
         _timer = null; // Clear timer
       }
@@ -71,7 +71,7 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
       _timer!.cancel();
       _timer = null;
     }
-    emit(VerficationInitial());
+    emit(VerificationInitial());
   }
 }
 

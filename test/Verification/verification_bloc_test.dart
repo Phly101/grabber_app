@@ -25,10 +25,10 @@ void main(){
       act: (bloc) => bloc.add(SendVerificationEmail()),
       wait: const Duration(seconds: 11),
       expect: () => [
-        isA<VerficationLoading>(),
-        isA<VerficationEmailSent>(),
-        isA<VerficationEmailCooldown>(),
-        isA<VerficationInitial>(),
+        isA<VerificationLoading>(),
+        isA<VerificationEmailSent>(),
+        isA<VerificationEmailCooldown>(),
+        isA<VerificationInitial>(),
       ],
     );
     blocTest<VerificationBloc, VerificationState>(
@@ -40,8 +40,8 @@ void main(){
       },
       act: (bloc) => bloc.add(SendVerificationEmail()),
       expect: () => [
-        isA<VerficationLoading>(),
-        predicate<VerficationError>((state) => state.message.contains("Failed to send")),
+        isA<VerificationLoading>(),
+        predicate<VerificationError>((state) => state.message.contains("Failed to send")),
       ],
     );
     blocTest<VerificationBloc, VerificationState>(
@@ -52,8 +52,8 @@ void main(){
       },
       act: (bloc) => bloc.add(CheckEmailVerification()),
       expect: () => [
-        isA<VerficationLoading>(),
-        VerficationChecked(true),
+        isA<VerificationLoading>(),
+        VerificationChecked(true),
       ],
     );
     blocTest<VerificationBloc, VerificationState>(
@@ -64,8 +64,8 @@ void main(){
       },
       act: (bloc) => bloc.add(CheckEmailVerification()),
       expect: () => [
-        isA<VerficationLoading>(),
-        VerficationChecked(false),
+        isA<VerificationLoading>(),
+        VerificationChecked(false),
       ],
     );
   });
