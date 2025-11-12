@@ -16,7 +16,7 @@ class FilterDrawer extends StatefulWidget {
 }
 
 class _FilterDrawerState extends State<FilterDrawer> {
-  RangeValues _priceRange = const RangeValues(0, 600);
+  RangeValues _priceRange = const RangeValues(0, 1000);
 
   final Map<String, String> categoryKeysEn = {
     "Beverages list": "beverages",
