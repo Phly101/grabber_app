@@ -2,13 +2,14 @@ import "package:flutter/material.dart";
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Blocs/CartBloc/cart_bloc.dart";
+import "package:grabber_app/Blocs/CartBloc/cart_item_model.dart";
 import "package:grabber_app/Blocs/Theming/app_theme_bloc.dart";
 import "package:grabber_app/Blocs/localization/app_locale_bloc.dart";
 import "package:grabber_app/LocalizationHelper/localization_helper.dart";
 import "package:grabber_app/Theme/theme.dart";
 
 class CartItemCard extends StatelessWidget {
-  final dynamic item;
+  final CartItemModel item;
   final ThemeData theme;
 
   const CartItemCard({
@@ -19,6 +20,7 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final themeBloc = context.read<AppThemeBloc>();
     final localBloc = context.read<LocaleBloc>();
     return Card(
@@ -31,7 +33,7 @@ class CartItemCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Product Image
+
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
@@ -43,14 +45,14 @@ class CartItemCard extends StatelessWidget {
             ),
             const SizedBox(width: 16),
 
-            // Product Info + Actions
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Product Name
+
                   Text(
-                    LocalizationHelper.localizedItemName(item, context),
+                    LocalizationHelper.localizedProductField(item , "title", context),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -58,7 +60,7 @@ class CartItemCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  // Price
+
                   RichText(
                     text: TextSpan(
                       style: const TextStyle(

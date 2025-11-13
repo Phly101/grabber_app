@@ -33,7 +33,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordIsRequired => 'Password is required';
 
   @override
-  String get passwordMustBeAtLeast8Characters => 'Password must be at least 8 characters';
+  String get passwordMustBeAtLeast8Characters =>
+      'Password must be at least 8 characters';
 
   @override
   String get forgotPassword => 'Forgot password';
@@ -131,7 +132,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get verificationInstruction => 'We sent a verification link to your email.\nPlease check your inbox.';
+  String get verificationInstruction =>
+      'We sent a verification link to your email.\nPlease check your inbox.';
 
   @override
   String get checkNowButton => 'I\'ve verified, Check now';
@@ -140,7 +142,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resendEmailButton => 'Resend Verification Email';
 
   @override
-  String get verificationCooldown => 'Verification link valid for 10 seconds...';
+  String get verificationCooldown =>
+      'Verification link valid for 10 seconds...';
 
   @override
   String get checkOut => 'Check Out';
@@ -173,7 +176,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get schedule => 'Schedule';
 
   @override
-  String get orderSummary12Items => 'Order Summary (12 items)';
+  String get orderSummary12Items => 'Order Summary';
 
   @override
   String get orderSummary => 'Order Summary';
@@ -353,7 +356,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Logout';
 
   @override
-  String get furtherSecureYourAccountForSafety => 'Further secure your account for safety';
+  String get furtherSecureYourAccountForSafety =>
+      'Further secure your account for safety';
 
   @override
   String get areYouSureYouWantToLogout => 'Are you sure you want to log out?';
@@ -512,13 +516,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get viewOpenSourceLicenses => 'View Open Source Licenses';
 
   @override
-  String get appDescriptionLine1 => 'Grabber is your smart shopping list companion.';
+  String get appDescriptionLine1 =>
+      'Grabber is your smart shopping list companion.';
 
   @override
-  String get appDescriptionLine2 => 'Easily add groceries, track quantities, and stay organized.';
+  String get appDescriptionLine2 =>
+      'Easily add groceries, track quantities, and stay organized.';
 
   @override
-  String get appDescriptionLine3 => 'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
+  String get appDescriptionLine3 =>
+      'Whether at home or in the store, Grabber keeps your shopping hassle-free.';
 
   @override
   String get deliverToCurrentLocation => 'Deliver to your current location';
@@ -578,7 +585,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get currentPasswordEmpty => 'Current password cannot be empty';
 
   @override
-  String get passwordMustBeAtLeast6Characters => 'Password must be at least 6 characters';
+  String get passwordMustBeAtLeast6Characters =>
+      'Password must be at least 6 characters';
 
   @override
   String get newPassword => 'New Password';
@@ -590,7 +598,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newPasswordEmpty => 'New password cannot be empty';
 
   @override
-  String get newPasswordDifferent => 'New password must be different from current password';
+  String get newPasswordDifferent =>
+      'New password must be different from current password';
 
   @override
   String get confirmNewPassword => 'Confirm Password';
@@ -671,7 +680,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get couldNotUpdatePassword => 'Couldn\'t update your password.';
 
   @override
-  String get requiresRecentLogin => 'Please sign in again before changing password.';
+  String get requiresRecentLogin =>
+      'Please sign in again before changing password.';
 
   @override
   String get loggingOut => 'Logging out ...';
@@ -692,7 +702,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get preparingYourGifts => 'Preparing your gifts...';
 
   @override
-  String get passwordResetEmailSent => 'Password reset email sent successfully!';
+  String get passwordResetEmailSent =>
+      'Password reset email sent successfully!';
 
   @override
   String get noUserFoundForThatEmail => 'No user found for that email.';
@@ -704,7 +715,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountNotFound => 'Account not found.';
 
   @override
-  String get pleaseSignInAgainBeforeChangingPassword => 'Please sign in again before changing your password.';
+  String get pleaseSignInAgainBeforeChangingPassword =>
+      'Please sign in again before changing your password.';
 
   @override
   String get unknownErrorOccurred => 'An unknown error occurred.';
@@ -716,7 +728,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToSendGift => 'Failed to send gift.';
 
   @override
-  String get giftSentSuccessfullyCartCleared => 'Gift sent successfully! Cart cleared.';
+  String get giftSentSuccessfullyCartCleared =>
+      'Gift sent successfully! Cart cleared.';
 
   @override
   String get invalidExpiryFormat => 'Invalid format. Use MM/YY or MM/YYYY.';
@@ -746,7 +759,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cardNumberIsRequired => 'Card number is required.';
 
   @override
-  String get cardNumberMustContainOnlyDigits => 'Card number must contain only digits.';
+  String get cardNumberMustContainOnlyDigits =>
+      'Card number must contain only digits.';
 
   @override
   String get invalidCardNumberLength => 'Invalid card number length.';
@@ -812,7 +826,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorLoadingProducts => 'Error loading products';
 
   @override
-  String get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness => 'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
+  String
+  get aReliableHighQualityProductDesignedToMakeEverydayLifeEasierAndBetterPerfectForDailyUseWithGreatValueAndFreshness =>
+      'A reliable, high-quality product designed to make everyday life easier and better. Perfect for daily use with great value and freshness.';
 
   @override
   String get allGiftsDeleted => 'All gifts and notifications deleted!';
@@ -836,5 +852,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemAlreadyInCart => 'Item already in cart with same quantity';
 
   @override
-  String get cannotGoToPaymentWithEmptyCart => 'Can\'t go to payment while cart is Empty';
+  String get cannotGoToPaymentWithEmptyCart =>
+      'Can\'t go to payment while cart is Empty';
 }
