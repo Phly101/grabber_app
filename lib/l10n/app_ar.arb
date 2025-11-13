@@ -1,4 +1,5 @@
 {
+
   "welcomeBackToGrabber": "مرحبًا بك مرة أخرى في جرابر",
   "pleaseSignInWithYourMail": "الرجاء تسجيل الدخول باستخدام بريدك الإلكتروني",
   "userName": "اسم المستخدم",
@@ -53,7 +54,7 @@
   "priority1020Mins": "أولوية (١٠ - ٢٠ دقيقة)",
   "standard3045Mins": "عادي (٣٠ - ٤٥ دقيقة)",
   "schedule": "جدولة",
-  "orderSummary12Items": "ملخص الطلب 12 نوع ",
+  "orderSummary12Items": "ملخص الطلب",
   "orderSummary": "ملخص الطلب ",
   "subtotal": "الإجمالي الفرعي: ",
   "bagFee": "رسوم الحقيبة: ",

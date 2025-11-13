@@ -53,7 +53,7 @@
   "priority1020Mins": "Priority (10 - 20 mins)",
   "standard3045Mins": "Standard (30 - 45 mins)",
   "schedule": "Schedule",
-  "orderSummary12Items": "Order Summary (12 items)",
+  "orderSummary12Items": "Order Summary",
   "orderSummary": "Order Summary",
   "subtotal": "Subtotal: ",
   "bagFee": "Bag fee: ",
@@ -275,7 +275,5 @@
   "pleaseSelectQuantity": "Please select quantity first",
   "itemAlreadyInCart": "Item already in cart with same quantity",
   "cannotGoToPaymentWithEmptyCart": "Can't go to payment while cart is Empty"
-
-
 }
 

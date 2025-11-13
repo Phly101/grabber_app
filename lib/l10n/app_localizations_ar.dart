@@ -8,6 +8,7 @@ import 'app_localizations.dart';
 class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
+
   @override
   String get welcomeBackToGrabber => 'مرحبًا بك مرة أخرى في جرابر';
 
@@ -173,7 +174,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get schedule => 'جدولة';
 
   @override
-  String get orderSummary12Items => 'ملخص الطلب 12 نوع ';
+  String get orderSummary12Items => 'ملخص الطلب ';
 
   @override
   String get orderSummary => 'ملخص الطلب ';
