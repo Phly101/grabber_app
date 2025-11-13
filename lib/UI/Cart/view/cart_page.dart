@@ -139,11 +139,6 @@ class _CartPageState extends State<CartPage> {
       floatingActionButton: CheckoutButton(
         onPressed: () {
           Navigator.pushNamed(context, AppRoutes.checkout);
-          // ScaffoldMessenger.of(context).showSnackBar(
-          //   SnackBar(
-          //     content: Text(AppLocalizations.of(context)!.proceedingToCheckout),
-          //   ),
-          // );
         },
       ),
 

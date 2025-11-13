@@ -87,10 +87,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListItems(
-                        title: LocalizationHelper.localizedItemName(
-                          state.items[index],
-                          context,
-                        ),
+                        title: LocalizationHelper.localizedProductField(currentItem, "title", context),
                         count: currentItem["quantity"] as num,
                         price: currentItem["price"] as num,
                       ),
