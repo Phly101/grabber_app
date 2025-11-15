@@ -83,9 +83,6 @@ class AuthService {
         email: email,
         password: password,
       );
-
-      await saveUserLocally(credential.user!);
-
       return AuthResult(user: credential.user);
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
