@@ -139,7 +139,7 @@ class SliderWidget extends StatelessWidget {
                 ),
               );
             } else if (state is ItemsError) {
-              return Center(child: Text("Error: ${state.message}"));
+              return Center(child: Text("${AppLocalizations.of(context)!.error}: ${state.message}"));
             }
             return const SizedBox.shrink();
           },

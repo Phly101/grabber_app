@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:grabber_app/UI/checkout/widgets/Delivery/textField_delivaryAddress.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 
 
 class DeliveryAddress extends StatefulWidget {
@@ -58,7 +59,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text("Cancle"),
+              child:  Text(AppLocalizations.of(context)!.cancel),
             ),
             const Spacer(
               flex: 1,
@@ -68,7 +69,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                 Navigator.pop(context);
                 controller2.clear();
               },
-              child: const Text("save"),
+              child:  Text(AppLocalizations.of(context)!.save),
             ),
             const Spacer(
               flex: 1,

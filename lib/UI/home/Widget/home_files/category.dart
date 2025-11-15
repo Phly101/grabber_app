@@ -1,6 +1,7 @@
 import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 import "package:shimmer/shimmer.dart";
 import "../../../../Blocs/Theming/app_theme_bloc.dart";
 import "../../../../LocalizationHelper/localization_helper.dart";
@@ -95,7 +96,7 @@ class HomeCategory extends StatelessWidget {
                 },
               );
             } else if (state is ItemsError) {
-              return Center(child: Text("Error: ${state.message}"));
+              return Center(child: Text("${AppLocalizations.of(context)!.error}: ${state.message}"));
             }
             return const SizedBox.shrink();
           },

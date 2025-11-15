@@ -13,7 +13,7 @@ class VerificationDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<VerificationBloc>().add(SendVerificationEmail());
     return AlertDialog(
-      title: const Text("Email Verification"),
+      title:  Text(AppLocalizations.of(context)!.emailVerificationTitle),
       content: BlocConsumer<VerificationBloc, VerificationState>(
         listener: (context, state) {
           if (state is VerificationEmailSent) {
