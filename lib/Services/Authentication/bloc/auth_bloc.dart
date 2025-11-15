@@ -2,9 +2,7 @@ import "package:equatable/equatable.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/Authentication/auth_service.dart";
-
 part "auth_event.dart";
-
 part "auth_state.dart";
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -51,8 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       city: event.city,
     );
     if (result?.isSuccess ?? false) {
-      await authService.saveUserLocally(result!.user!);
-      emit(AuthAuthenticated(result.user!));
+      emit(AuthAuthenticated(result!.user!));
     } else {
       emit(AuthError(result?.error ?? "Unknown Error"));
     }
