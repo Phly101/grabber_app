@@ -28,7 +28,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: const Text("Error"),
+                title:  Text(AppLocalizations.of(context)!.error),
                 content: Text(state.message),
                 actions: [
                   TextButton(

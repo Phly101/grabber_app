@@ -3,6 +3,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:grabber_app/Services/FireStore/bloc/items_bloc.dart";
 import "package:grabber_app/Services/FireStore/firestore_service.dart";
 import "package:grabber_app/UI/home/Widget/home_files/product_card.dart";
+import "package:grabber_app/l10n/app_localizations.dart";
 
 
 
@@ -59,7 +60,7 @@ class ProductListView extends StatelessWidget {
                     },
                   );
                 } else if (state is ItemsError) {
-                  return Center(child: Text("Error: ${state.message}"));
+                  return Center(child: Text("${AppLocalizations.of(context)!.error}: ${state.message}"));
                 } else {
                   return const SizedBox.shrink();
                 }
