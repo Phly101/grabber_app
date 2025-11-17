@@ -49,7 +49,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       city: event.city,
     );
     if (result?.isSuccess ?? false) {
-      emit(AuthAuthenticated(result!.user!));
+      await authService.saveUserLocally(result!.user!);
+      emit(AuthAuthenticated(result.user!));
     } else {
       emit(AuthError(result?.error ?? "Unknown Error"));
     }
