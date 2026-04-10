@@ -1,104 +1,169 @@
-# Project Name: Grabber Shopping List
+# 🛒 Grabber App
 
-## Project Idea:
-### A Collaborative Flutter graduation project for DEPI, that aims to help flutter devs study implement and innovatie in a real project ,with technologies that ranges from simple like basic flutter widgets to firebase integration,
-   implementing state-managment (Bloc), while also dealing with UIUX tech like Figma and much more. Our project is a super market app that help users oder their groceries online with ease, rate products, share with friends and deliver to your      door step in a timely manner.
-   It's easy to use,concise, with a simple yet friendly engaging  UI.
+A collaborative Flutter graduation project for **DEPI** - A modern grocery shopping application inspired by Talabat and DoorDash.
 
-# Team Members:
-## Our Team (MSB) comprised of 6 members:
-### Basel EL Rafei 
-### Mark Ayman
-### Marian Makram
-### Marina Essam
-### Martina Wageeh
-### Simon Abd El Malak.
+## 📱 About
 
-# Work Plan:
-### 1. UI Flutter
-### 2. Firebase (CRUD, Authentication,sharing cart,verification)
-### 3. State Managment (BLoc)
-### 4. Unit testing
-### 5. Finalization
+Grabber App is a full-featured grocery delivery and shopping application that allows users to browse, purchase, and gift groceries to friends and family. Built with Flutter and Firebase, the app provides a seamless shopping experience with real-time notifications and multi-language support.
 
-# Roles & Responsibilites:
-## Team Leader:
-### Basel El Rafei
+## ✨ Features
 
-## Team members:
-### Mark Ayman
-### Marian Makram
-### Marina Essam
-### Martina Wageeh
-### Simon Abd El Malak.
+### 🔐 Authentication
+- User registration and login
+- Secure Firebase authentication
+- Profile management
 
-# Phase 1 Responsibilites:
-## UI Phase: 
-### Basel EL Rafei: initialized  the theme class and main app screens in addition to the nav bar and app bar, and implemented the UI of The payment screen, about app screen, schedule screen and order summary screen in this phase.
-### Marian Makram & Martina Wageeh: wokred on the home screen implementing the categories and their subsequent listviews and the slider of offers.
-### Marian Makram Added UI to the Checkout screen.
-### Martina Wageeh: created the drawer UI for the filter feature, and filtered items screen.
-### Simon Abd EL Malak: implemented the UI of the login and the sign up screen, product screen details.
-### Marina Essam: did the UI of search screen as well as the check out screen.
-### Mark Ayman: did Cart,settings,profile screens.
+### 🛍️ Shopping Experience
+- Browse grocery catalog
+- Add items to shopping cart
+- Manage cart items (add, remove, update quantities)
+- Real-time cart updates
 
-# Phase 2 Responsibilites:
-## FireBase Phase:
-### Basel El Rafei: Authentication , update user data in profile UI, updating locale bloc to update the localization via Firestore rather than local files.
-### Mark Ayman & Basel EL Rafei: Sharing cart.
-### Mark Ayman: Fetching FireStore database data into products UI,updating/Featching cart UI with FireStore database data.
-### Marian Makram: Firstore database (SLider, categories, products) and fetching into UI.
-### Simon Abd EL Malak: Firstore database(loaclization english & arabic) and Crud functions of cart.
-### Martina Wageeh: Verification.
-### Marina Essam: Fetching user data into profile UI and update user data.
+### 💳 Checkout & Payment
+- Smooth checkout process
+- Order confirmation
+- Invoice generation and download
+- View order history
 
-# Phase 3 Responsibilites:
-## State Management phase:
-### Basel El Rafei: Theme Bloc, AuthBloc, Invoice Bloc.
-### Mark Ayman & Basel El Rafei: sharing Bloc.
-### Mark Ayman & Martina Wageeh: Cart Bloc.
-### Simon Abd EL Malak: create/update/delete functions in CartBloc.
-### Martina Wageeh: Verfication Bloc.
-### Mark Ayman:  Firstore Bloc, Sharing Cart Bloc. 
-### Marian Makram: Locale Bloc.
-### Marina Essam: User Bloc.
+### 🎁 Gifting System
+- Send groceries as gifts to other users
+- Share via user email
+- Real-time notifications for gift recipients
+- Track sent and received gifts
 
-# Phase 4 Responsibilites:
-## Unit Testing phase: 
-### Basel EL Rafei: Auth_Bloc, Theme_Bloc.
-### Mark Ayman: Send_Gift_BLoc, FireStore_Bloc. 
-### Marian Makram: locale_bloc.
-### Marina Essam: Users_bloc.
-### Martina Wageeh: Verification_bloc, Cart_Bloc.
-### Simon Abd El Malak: Invoice_bloc.
+### 🎨 Customization
+- **Light & Dark Theme Support** - Choose your preferred appearance
+- **Multi-language Support** - English & Arabic localization
+- Responsive UI for all device sizes
 
+### 📲 Additional Features
+- Invoice download
+- User profile management
 
+## 🏗️ Tech Stack
 
-# Phase 5 Responsibilites:
-## Final phase: 
- ## Integration Testing phase: 
-   ### Basel EL Rafei: Pyament.
-   ### Marian Makram: Home.
-   ### Marina Essam: Search.
-   ### Martina Wageeh: Home.
-   ### Simon Abd El Malak: login, sign up.
+### Frontend
+- **Framework**: [Flutter](https://flutter.dev/) (Dart)
+- **State Management**: [BLoC](https://bloclibrary.dev/) (Business Logic Component)
+- **Architecture**: BLoC pattern
 
+### Backend
+- **Firebase**:
+  - Authentication
+  - Cloud Firestore (Database)
+  - Cloud Storage
+  - Cloud Messaging (Notifications)
 
+### Languages
+- **Dart** (74.6%) - Flutter development
+- **HTML** (18.5%) - Web assets
+- **C++** (3.5%) - Native performance
+- **CMake** (2.8%) - Build configuration
+- **Swift** (0.4%) - iOS integration
+- **C** (0.2%) - System-level code
 
-# Instructor: Michael Hany
+## 🚀 Getting Started
 
+### Prerequisites
+- Flutter SDK (latest version)
+- Dart SDK
+- Android Studio / Xcode (for mobile development)
+- Firebase account
 
-# License:
-## 📄 Licenses
+### Installation
 
-This project uses several open-source packages.  
-All licenses for third-party dependencies are included in the [LICENSES.txt](./LICENSES.txt) file.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Phly101/grabber_app.git
+   cd grabber_app
+   ```
 
-### Main License
-This project itself is licensed under the **MIT License** (or whichever license you choose).
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
 
-See the [LICENSES.txt](./LICENSES.txt) file for details on third-party package licenses.
+3. **Configure Firebase**
+   - Add `google-services.json` (Android)
+   - Add `GoogleService-Info.plist` (iOS)
+   - Update Firebase configuration in the app
 
+4. **Run the app**
+   ```bash
+   flutter run
+   ```
 
+## 📁 Project Structure
 
+```
+lib/
+├── bloc/              # BLoC state management
+├── models/            # Data models
+├── screens/           # UI screens
+├── services/          # Firebase & API services
+├── widgets/           # Reusable widgets
+��── utils/             # Utility functions
+└── main.dart          # App entry point
+```
 
+## 🔄 App Flow
+
+```
+Login/Register → Home → Browse Groceries → Add to Cart → Checkout → Payment → Invoice
+                                                            ↓
+                                                        Gift Option
+                                                            ↓
+                                                      Notify Recipient
+```
+
+## 👥 User Workflows
+
+### Standard Purchase
+1. Log in to your account
+2. Browse available groceries
+3. Add items to cart
+4. Review cart
+5. Proceed to checkout
+6. Complete payment
+7. Download invoice
+
+### Gift Groceries
+1. Follow steps 1-4 above
+2. Select "Gift This Order" at checkout
+3. Enter recipient's email
+4. Complete payment
+5. Recipient receives notification with order details
+
+## 🌐 Localization
+
+- **English** - Default language
+- **Arabic** - Full RTL support
+
+Switch languages in app settings. Theme preference is saved locally.
+
+## 👥 Team Members
+
+Our Team (MSB) comprised of 6 members:
+- **Basel EL Rafei**
+- **Mark Ayman**
+- **Marian Makram**
+- **Marina Essam**
+- **Martina Wageeh**
+- **Simon Abd El Malak**
+
+## 🎯 Project Status
+
+This is a **DEPI Graduation Project** developed as a collaborative effort to demonstrate full-stack mobile application development skills.
+
+## 📝 License
+
+This project is developed as part of the DEPI (Digital Egypt Pioneers Initiative) graduation program.
+
+## 📧 Contact & Support
+
+For questions or support, please open an issue on the [GitHub repository](https://github.com/Phly101/grabber_app).
+
+---
+
+**Made with ❤️ by Team MSB**  
+*DEPI Graduation Project*
